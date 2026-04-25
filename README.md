@@ -11,7 +11,6 @@ Modern editorial-style portfolio for Tiana Oblasser and the five selected projec
   - `PetNest`
   - `Tetris`
   - `Sea Battle`
-- Durable feature docs: `docs/features/portfolio-launch`
 
 ## Commands
 

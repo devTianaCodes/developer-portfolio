@@ -209,7 +209,7 @@ export const projects: ProjectEntry[] = [
     challenge:
       "Create an interview-ready education product that demonstrates both product thinking and implementation discipline without overloading v1 with speculative features.",
     solution:
-      "The build focuses on the learning core: onboarding, dashboard, courses, lessons, quizzes, review flows, and admin-authored collections. Existing private planning docs already defined portfolio polish as a delivery phase, so this portfolio surfaces that intent clearly.",
+      "The build focuses on the learning core: onboarding, dashboard, courses, lessons, quizzes, review flows, and admin-authored collections. The case study emphasizes clear scope, learner value, and a realistic path from MVP structure to portfolio polish.",
     outcome:
       "English4U becomes the lead live full-stack candidate in the portfolio because it balances product depth, route richness, and a cleaner deployment path than the commerce app.",
     features: [
@@ -222,7 +222,7 @@ export const projects: ProjectEntry[] = [
     architecture: [
       "React Router app shell with route guards for guest, learner, and admin experiences",
       "Express backend with auth and content APIs",
-      "Private planning docs kept outside the app repos and reused for portfolio messaging",
+      "Clear learner, guest, and admin boundaries help keep the product understandable as the route surface grows",
       "Phase-based development model with portfolio polish explicitly documented"
     ],
     metrics: [
@@ -280,7 +280,7 @@ export const projects: ProjectEntry[] = [
     links: [{ label: "Case Study", href: "/projects/english4u", kind: "case-study" }],
     demoNotes: [
       "Best candidate for first live product deployment on free infrastructure.",
-      "Portfolio messaging is aligned with the repo's own private planning docs."
+      "Strong candidate for a polished live demo because the learner and admin journeys are both easy to present."
     ],
     captureChecklist: [
       "Landing page and course catalog",
