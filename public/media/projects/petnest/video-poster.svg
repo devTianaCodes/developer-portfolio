@@ -1,0 +1,8 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#2D4F59"/>
+  <rect x="86" y="86" width="1428" height="728" rx="36" fill="#FBF7F0" stroke="#D3B290" stroke-width="2"/>
+  <circle cx="800" cy="450" r="92" fill="#D3B290"/>
+  <path d="M767 389L879 450L767 511V389Z" fill="#2D4F59"/>
+  <text x="122" y="164" fill="#2D4F59" font-size="34" font-family="Georgia, serif" letter-spacing="6">PETNEST</text>
+  <text x="122" y="748" fill="#6A645D" font-size="26" font-family="Arial, sans-serif" letter-spacing="2">BROWSE + REQUEST + ADMIN REVIEW CAPTURE PLANNED</text>
+</svg>

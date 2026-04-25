@@ -1,0 +1,8 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#1F2E4F"/>
+  <rect x="86" y="86" width="1428" height="728" rx="36" fill="#F5EFE6" stroke="#D4B18C" stroke-width="2"/>
+  <circle cx="800" cy="450" r="92" fill="#D4B18C"/>
+  <path d="M767 389L879 450L767 511V389Z" fill="#1F2E4F"/>
+  <text x="122" y="164" fill="#1F2E4F" font-size="34" font-family="Georgia, serif" letter-spacing="6">ENGLISH4U</text>
+  <text x="122" y="748" fill="#6B635C" font-size="26" font-family="Arial, sans-serif" letter-spacing="2">ONBOARDING + DASHBOARD + ADMIN CAPTURE PLANNED</text>
+</svg>

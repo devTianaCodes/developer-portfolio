@@ -1,0 +1,19 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#04111F"/>
+  <rect x="80" y="80" width="1440" height="840" rx="40" fill="url(#panel)" stroke="#0C5B77"/>
+  <rect x="144" y="150" width="620" height="700" rx="28" fill="#0A2132"/>
+  <rect x="828" y="150" width="528" height="220" rx="28" fill="#0A2132"/>
+  <rect x="828" y="410" width="528" height="200" rx="28" fill="#0A2132"/>
+  <rect x="828" y="650" width="528" height="200" rx="28" fill="#0A2132"/>
+  <circle cx="1192" cy="760" r="54" fill="#18C2DB"/>
+  <text x="144" y="136" fill="#8DE7F4" font-size="28" font-family="Arial, sans-serif" letter-spacing="8">SEA BATTLE</text>
+  <text x="188" y="276" fill="#F3FBFF" font-size="82" font-family="Georgia, serif">Adaptive AI,</text>
+  <text x="188" y="366" fill="#F3FBFF" font-size="82" font-family="Georgia, serif">battle UI,</text>
+  <text x="188" y="456" fill="#F3FBFF" font-size="82" font-family="Georgia, serif">and motion.</text>
+  <defs>
+    <linearGradient id="panel" x1="120" y1="120" x2="1480" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#072033"/>
+      <stop offset="1" stop-color="#051521"/>
+    </linearGradient>
+  </defs>
+</svg>
