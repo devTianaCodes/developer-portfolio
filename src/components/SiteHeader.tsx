@@ -44,7 +44,7 @@ export function SiteHeader() {
             href={siteConfig.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="hidden rounded-full bg-ink px-5 py-3 text-sm uppercase tracking-[0.2em] text-white transition hover:bg-accent hover:text-[#28180f] md:inline-flex"
+            className="hidden rounded-full border border-[rgba(154,98,57,0.24)] bg-[rgba(226,202,181,0.68)] px-5 py-3 text-sm uppercase tracking-[0.2em] text-[#4a2c1c] transition hover:bg-[rgba(214,184,156,0.92)] hover:text-[#2b170d] md:inline-flex"
           >
             {siteConfig.githubHandle}
           </Link>

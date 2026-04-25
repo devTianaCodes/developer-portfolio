@@ -11,7 +11,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/projects"
-        className="mt-8 inline-flex rounded-full bg-ink px-5 py-3 text-sm uppercase tracking-[0.2em] text-white transition hover:bg-accent hover:text-[#23160e]"
+        className="mt-8 inline-flex rounded-full border border-[rgba(154,98,57,0.24)] bg-[rgba(226,202,181,0.72)] px-5 py-3 text-sm uppercase tracking-[0.2em] text-[#4a2c1c] transition hover:bg-[rgba(214,184,156,0.94)] hover:text-[#23160e]"
       >
         Back to projects
       </Link>

@@ -90,7 +90,7 @@ export function ProjectCard({ project, prominent = false }: ProjectCardProps) {
             </span>
             <Link
               href={`/projects/${project.slug}`}
-              className="rounded-full bg-ink px-5 py-3 text-sm uppercase tracking-[0.18em] text-white transition hover:bg-accent hover:text-[#241a12]"
+              className="rounded-full border border-[rgba(154,98,57,0.24)] bg-[rgba(226,202,181,0.72)] px-5 py-3 text-sm uppercase tracking-[0.18em] text-[#4a2c1c] transition hover:bg-[rgba(214,184,156,0.94)] hover:text-[#241a12]"
             >
               View case study
             </Link>

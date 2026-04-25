@@ -59,7 +59,7 @@ export default function AboutPage() {
               href={siteConfig.githubUrl}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex rounded-full bg-ink px-5 py-3 text-sm uppercase tracking-[0.18em] text-white transition hover:bg-accent hover:text-[#27170f]"
+              className="mt-6 inline-flex rounded-full border border-[rgba(154,98,57,0.24)] bg-[rgba(226,202,181,0.72)] px-5 py-3 text-sm uppercase tracking-[0.18em] text-[#4a2c1c] transition hover:bg-[rgba(214,184,156,0.94)] hover:text-[#27170f]"
             >
               Open GitHub
             </Link>
