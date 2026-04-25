@@ -25,7 +25,7 @@ export function Hero() {
                 href={siteConfig.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-ink px-6 py-3 text-sm uppercase tracking-[0.22em] text-white transition hover:bg-accent hover:text-[#28170f]"
+                className="rounded-full border border-[rgba(154,98,57,0.24)] bg-[rgba(226,202,181,0.72)] px-6 py-3 text-sm uppercase tracking-[0.22em] text-[#4a2c1c] transition hover:bg-[rgba(214,184,156,0.94)] hover:text-[#28170f]"
               >
                 {siteConfig.primaryCta.label}
               </Link>
