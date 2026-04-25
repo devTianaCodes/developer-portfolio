@@ -1,0 +1,16 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#F5F0E7"/>
+  <rect x="70" y="82" width="1460" height="836" rx="40" fill="#FFF9F0" stroke="#D4C0A7"/>
+  <rect x="140" y="170" width="520" height="540" rx="28" fill="#1F2E4F"/>
+  <rect x="740" y="170" width="706" height="160" rx="24" fill="#EFE4D5"/>
+  <rect x="740" y="368" width="340" height="250" rx="24" fill="#D7B28E"/>
+  <rect x="1106" y="368" width="340" height="250" rx="24" fill="#F2C28E"/>
+  <rect x="740" y="656" width="706" height="170" rx="24" fill="#E7D5BF"/>
+  <text x="140" y="128" fill="#9E6334" font-size="28" font-family="Arial, sans-serif" letter-spacing="8">ENGLISH4U</text>
+  <text x="140" y="260" fill="#FFF9F0" font-size="86" font-family="Georgia, serif">Learn with</text>
+  <text x="140" y="350" fill="#FFF9F0" font-size="86" font-family="Georgia, serif">structure,</text>
+  <text x="140" y="440" fill="#FFF9F0" font-size="86" font-family="Georgia, serif">review,</text>
+  <text x="140" y="530" fill="#FFF9F0" font-size="86" font-family="Georgia, serif">and progress.</text>
+  <text x="790" y="475" fill="#3F2C19" font-size="44" font-family="Georgia, serif">Dashboard</text>
+  <text x="1158" y="475" fill="#3F2C19" font-size="44" font-family="Georgia, serif">Admin CMS</text>
+</svg>

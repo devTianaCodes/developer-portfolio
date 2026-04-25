@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-background: #f5eee6;
+  --color-panel: rgba(255, 250, 244, 0.82);
+  --color-panel-strong: #fffaf3;
+  --color-ink: #17110e;
+  --color-muted: #655850;
+  --color-accent: #9a6239;
+  --color-accent-soft: #d9b89a;
+  --color-line: rgba(38, 27, 20, 0.09);
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.64), transparent 34%),
+    linear-gradient(180deg, #f8f3ec 0%, #f1e8de 100%);
+  color: var(--color-ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+::selection {
+  background: rgba(158, 99, 52, 0.18);
+}
