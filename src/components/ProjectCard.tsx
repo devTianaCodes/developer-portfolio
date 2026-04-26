@@ -18,6 +18,7 @@ const toneClasses: Record<ProjectEntry["visualTone"], string> = {
 export function ProjectCard({ project, prominent = false }: ProjectCardProps) {
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
   const heightClass = prominent ? "min-h-[640px]" : "min-h-[560px]";
+  const liveLink = project.links.find((link) => link.kind === "live" && link.href);
 
   return (
     <article
@@ -80,20 +81,32 @@ export function ProjectCard({ project, prominent = false }: ProjectCardProps) {
             ))}
           </ul>
 
-          <div className="flex items-center justify-between gap-4 border-t border-line pt-4">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-4">
             <span className="text-xs uppercase tracking-[0.24em] text-muted">
               {project.deploymentMode === "live"
-                ? "Live-ready"
+                ? "Live now"
                 : project.deploymentMode === "hybrid"
                   ? "Hybrid demo"
                   : "Media-first"}
             </span>
-            <Link
-              href={`/projects/${project.slug}`}
-              className="rounded-full border border-[rgba(154,98,57,0.24)] bg-[rgba(226,202,181,0.72)] px-5 py-3 text-sm uppercase tracking-[0.18em] text-[#4a2c1c] transition hover:bg-[rgba(214,184,156,0.94)] hover:text-[#241a12]"
-            >
-              View case study
-            </Link>
+            <div className="flex flex-wrap gap-3">
+              {liveLink ? (
+                <Link
+                  href={liveLink.href!}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-[rgba(154,98,57,0.16)] bg-[rgba(255,247,238,0.96)] px-5 py-3 text-sm uppercase tracking-[0.18em] text-[#4a2c1c] transition hover:border-[rgba(154,98,57,0.28)] hover:bg-[rgba(244,231,216,0.96)] hover:text-[#241a12]"
+                >
+                  Live demo
+                </Link>
+              ) : null}
+              <Link
+                href={`/projects/${project.slug}`}
+                className="rounded-full border border-[rgba(154,98,57,0.24)] bg-[rgba(226,202,181,0.72)] px-5 py-3 text-sm uppercase tracking-[0.18em] text-[#4a2c1c] transition hover:bg-[rgba(214,184,156,0.94)] hover:text-[#241a12]"
+              >
+                View case study
+              </Link>
+            </div>
           </div>
         </div>
       </div>

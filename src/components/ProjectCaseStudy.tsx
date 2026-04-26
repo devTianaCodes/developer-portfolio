@@ -50,6 +50,8 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                 <Link
                   key={`${project.slug}-${link.label}`}
                   href={link.href}
+                  target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
+                  rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
                   className="rounded-full border border-white/20 bg-[rgba(255,255,255,0.1)] px-5 py-3 text-sm uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-[#241710]"
                 >
                   {link.label}
