@@ -487,10 +487,13 @@ export const projects: ProjectEntry[] = [
         note: "Capture planned for gameplay, line clear, and game-over loop."
       }
     ],
-    links: [{ label: "Case Study", href: "/projects/tetris", kind: "case-study" }],
+    links: [
+      { label: "Live Demo", href: "https://tiana-tetris.vercel.app", kind: "live" },
+      { label: "Case Study", href: "/projects/tetris", kind: "case-study" }
+    ],
     demoNotes: [
-      "Planned as a separate Vercel static deployment linked from the portfolio.",
-      "Current local preview is already coordinated through `demo-showcase`."
+      "Now live on Vercel as a standalone static demo linked directly from this portfolio.",
+      "The local `demo-showcase` flow still makes it easy to capture gameplay media updates."
     ],
     captureChecklist: [
       "Board and next-piece state",
@@ -581,10 +584,13 @@ export const projects: ProjectEntry[] = [
         note: "Capture planned for onboarding, ship placement, and battle loop."
       }
     ],
-    links: [{ label: "Case Study", href: "/projects/sea-battle", kind: "case-study" }],
+    links: [
+      { label: "Live Demo", href: "https://tiana-sea-battle.vercel.app", kind: "live" },
+      { label: "Case Study", href: "/projects/sea-battle", kind: "case-study" }
+    ],
     demoNotes: [
-      "This project already includes explicit Vercel deployment notes.",
-      "Best visual contrast to the business-product case studies."
+      "Now live on Vercel as a standalone static demo with the existing deployment shape preserved.",
+      "Best visual contrast to the business-product case studies because it foregrounds motion and interface systems."
     ],
     captureChecklist: [
       "Main menu or onboarding",
