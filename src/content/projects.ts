@@ -109,7 +109,7 @@ export const projects: ProjectEntry[] = [
       "REST API domains for auth, products, cart, orders, payments, and admin",
       "MySQL-backed order creation with stock checks and rollback paths",
       "JWT authentication with protected and admin-only routes",
-      "Portfolio docs reuse the existing testing plan for backend confidence"
+      "Backend structure covers the workflows needed for checkout, order handling, and admin operations"
     ],
     metrics: [
       { label: "Frontend routes", value: "20+" },
@@ -223,7 +223,7 @@ export const projects: ProjectEntry[] = [
       "React Router app shell with route guards for guest, learner, and admin experiences",
       "Express backend with auth and content APIs",
       "Clear learner, guest, and admin boundaries help keep the product understandable as the route surface grows",
-      "Phase-based development model with portfolio polish explicitly documented"
+      "A route surface designed to stay understandable as the learning product grows"
     ],
     metrics: [
       { label: "Learner routes", value: "10+" },
@@ -233,7 +233,7 @@ export const projects: ProjectEntry[] = [
     impactBullets: [
       "Connects product thinking to a realistic self-paced education experience.",
       "Shows how auth, progress, content, and admin structure work together.",
-      "Translates private planning discipline into a clearer public case study."
+      "Presents a focused learning product with both user value and clean implementation structure."
     ],
     interviewAngles: [
       "How the route structure separates guest, learner, and admin experiences without becoming messy.",
@@ -461,10 +461,10 @@ export const projects: ProjectEntry[] = [
     media: [
       {
         kind: "image",
-        src: "/media/projects/tetris/hero-editorial.svg",
-        alt: "Editorial hero artwork for the Tetris case study",
+        src: "/media/projects/tetris/tetris-live.png",
+        alt: "Live screenshot of the Tetris game running in the browser",
         width: 1600,
-        height: 1000,
+        height: 1137,
         featured: true,
         status: "ready"
       },
@@ -558,10 +558,10 @@ export const projects: ProjectEntry[] = [
     media: [
       {
         kind: "image",
-        src: "/media/projects/sea-battle/hero-editorial.svg",
-        alt: "Editorial hero artwork for the Sea Battle case study",
+        src: "/media/projects/sea-battle/sea-battle-live.png",
+        alt: "Live screenshot of the Sea Battle interface running in the browser",
         width: 1600,
-        height: 1000,
+        height: 1137,
         featured: true,
         status: "ready"
       },
