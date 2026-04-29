@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import type { ProjectEntry } from "@/content/projects";
 
 type ProjectCardProps = {
@@ -79,8 +80,8 @@ export function ProjectCard({ project, prominent = false }: ProjectCardProps) {
         <div className="space-y-5">
           <ul className="flex flex-wrap gap-2">
             {project.techStack.slice(0, prominent ? 6 : 4).map((tech) => (
-              <li key={tech} className="rounded-full border border-line bg-white px-3 py-1 text-xs uppercase tracking-[0.12em] text-muted">
-                {tech}
+              <li key={tech}>
+                <ProjectTechBadge tech={tech} compact />
               </li>
             ))}
           </ul>
