@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import type { ProjectEntry } from "@/content/projects";
 
 type ProjectCaseStudyProps = {
@@ -291,12 +292,11 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             <p className="text-xs uppercase tracking-[0.3em] text-[var(--case-accent)]">Tech stack</p>
             <div className="mt-6 flex flex-wrap gap-3">
               {project.techStack.map((item) => (
-                <span
+                <ProjectTechBadge
                   key={item}
-                  className="rounded-full border border-[color:var(--case-line)] bg-white/76 px-4 py-2 text-xs uppercase tracking-[0.16em] text-muted"
-                >
-                  {item}
-                </span>
+                  tech={item}
+                  className="border-[color:var(--case-line)]"
+                />
               ))}
             </div>
           </div>

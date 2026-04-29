@@ -32,8 +32,8 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={classNames(
-                  "rounded-full px-4 py-2 text-sm text-blue-100/78 transition",
-                  "hover:bg-white/10 hover:text-white"
+                  "rounded-full bg-white/10 px-4 py-2 text-sm text-white transition",
+                  "hover:bg-white/16 hover:text-blue-200"
                 )}
               >
                 {item.label}
