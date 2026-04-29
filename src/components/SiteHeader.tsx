@@ -12,7 +12,7 @@ const navItems = [
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/18 bg-[#203656]/64 backdrop-blur-2xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-2.5 py-4 md:px-4">
+      <div className="mx-auto flex max-w-[96rem] items-center justify-between gap-6 px-2.5 py-4 md:px-4">
         <Link href="/" className="group inline-flex min-w-0 items-center gap-4">
           <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent/25 bg-[linear-gradient(135deg,#203656,#315f9f)] text-sm font-semibold uppercase tracking-[0.2em] text-white shadow-[0_12px_28px_rgba(49,95,159,0.22)]">
             {siteConfig.shortName}
@@ -45,7 +45,7 @@ export function SiteHeader() {
             href={siteConfig.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="hidden items-center gap-2 rounded-full border border-blue-200/25 bg-white/10 px-5 py-3 text-sm uppercase tracking-[0.18em] text-blue-100 transition hover:-translate-y-0.5 hover:bg-white/16 hover:text-white md:inline-flex"
+            className="hidden items-center gap-2 text-sm text-blue-100 transition hover:-translate-y-0.5 hover:text-white md:inline-flex"
           >
             <GithubIcon className="h-4 w-4" />
             {siteConfig.githubHandle}

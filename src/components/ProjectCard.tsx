@@ -86,10 +86,7 @@ export function ProjectCard({ project, prominent = false }: ProjectCardProps) {
             ))}
           </ul>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-4">
-            <span className="text-xs uppercase tracking-[0.22em] text-muted">
-              {project.flagship ? "Flagship case study" : project.role}
-            </span>
+          <div className="flex flex-wrap items-center justify-end gap-4 border-t border-line pt-4">
             <div className="relative z-20 flex flex-wrap gap-3">
               {liveLink ? (
                 <Link
@@ -105,7 +102,7 @@ export function ProjectCard({ project, prominent = false }: ProjectCardProps) {
                 href={`/projects/${project.slug}`}
                 className="rounded-full bg-[linear-gradient(135deg,#2563eb,#315f9f)] px-5 py-3 text-sm uppercase tracking-[0.16em] text-white shadow-[0_14px_34px_rgba(37,99,235,0.2)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(49,95,159,0.22)]"
               >
-                Case study
+                View
               </Link>
             </div>
           </div>

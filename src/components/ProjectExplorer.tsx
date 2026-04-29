@@ -65,7 +65,7 @@ export function ProjectExplorer({ projects }: { projects: ProjectEntry[] }) {
         </div>
       </div>
 
-      <div className="flex gap-2 overflow-x-auto rounded-[1.25rem] border border-line bg-white/72 p-2 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+      <div className="flex flex-wrap gap-2 rounded-[1.25rem] border border-line bg-white/72 p-2 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
         {filters.map((filter) => (
           <button
             key={filter.key}

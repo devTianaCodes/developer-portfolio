@@ -6,54 +6,18 @@ import { InteractiveHero } from "@/components/InteractiveHero";
 import { PageReveal } from "@/components/PageReveal";
 import { siteConfig } from "@/content/site";
 
-const proofPoints = [
-  {
-    label: "Product judgment",
-    text: "Case studies explain how the interface, business logic, and implementation choices work together."
-  },
-  {
-    label: "Review velocity",
-    text: "Recruiters and engineers can scan the strongest signals quickly, then open deeper project pages."
-  },
-  {
-    label: "Interaction range",
-    text: "The mix of product apps and playable frontend builds shows breadth without scattering the narrative."
-  }
-];
-
 export default function HomePage() {
   return (
     <PageReveal>
       <div className="space-y-20">
         <InteractiveHero />
 
-        <section className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
-          <div className="space-y-5">
-            <p className="text-xs uppercase tracking-[0.3em] text-accent">Professional approach</p>
-            <h2 className="font-display text-4xl leading-tight text-ink md:text-5xl">
-              A portfolio that behaves more like a product surface than a static gallery.
-            </h2>
-            <p className="max-w-xl text-base leading-8 text-muted">
-              The first pass now emphasizes hierarchy, interaction, and proof. Every section is designed to answer what reviewers usually ask next: what was built, why it matters, and how deep the implementation goes.
-            </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-3">
-            {proofPoints.map((item) => (
-              <div key={item.label} className="rounded-[1.25rem] border border-line bg-white/76 p-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
-                <p className="text-xs uppercase tracking-[0.22em] text-accent">{item.label}</p>
-                <p className="mt-4 text-sm leading-7 text-muted">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </section>
 
         <section className="space-y-8">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div className="space-y-3">
-              <p className="text-xs uppercase tracking-[0.3em] text-accent">Selected work</p>
               <h2 className="max-w-4xl font-display text-4xl leading-tight text-ink md:text-5xl">
-                Flagship apps up front, interactive demos close enough to test.
+                Custom professional web design with real product depth.
               </h2>
             </div>
             <Link
