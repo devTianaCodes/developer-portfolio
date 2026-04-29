@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GithubIcon } from "@/components/GithubIcon";
 import { PageReveal } from "@/components/PageReveal";
 import { siteConfig } from "@/content/site";
 
@@ -50,7 +51,7 @@ export default function AboutPage() {
 
           <div className="rounded-[2rem] border border-line bg-[rgba(255,252,248,0.8)] p-8 shadow-editorial">
             <p className="text-xs uppercase tracking-[0.3em] text-accent">Public identity</p>
-            <h2 className="mt-3 font-display text-4xl text-ink">@{siteConfig.githubHandle}</h2>
+            <h2 className="mt-3 inline-flex items-center gap-3 font-display text-4xl text-ink"><GithubIcon className="h-8 w-8 text-accent" />{siteConfig.githubHandle}</h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-muted">
               GitHub is the clearest professional entry point right now, so the portfolio is designed
               around a GitHub-first identity until the rest of the public profile stack is finalized.
@@ -59,8 +60,9 @@ export default function AboutPage() {
               href={siteConfig.githubUrl}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex rounded-full border border-[rgba(154,98,57,0.24)] bg-[rgba(226,202,181,0.72)] px-5 py-3 text-sm uppercase tracking-[0.18em] text-[#4a2c1c] transition hover:bg-[rgba(214,184,156,0.94)] hover:text-[#27170f]"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-blue-50 px-5 py-3 text-sm uppercase tracking-[0.18em] text-accent transition hover:-translate-y-0.5 hover:bg-blue-100"
             >
+              <GithubIcon className="h-4 w-4" />
               Open GitHub
             </Link>
           </div>

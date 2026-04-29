@@ -57,7 +57,7 @@ export const siteConfig = {
     },
     {
       label: "Public code identity",
-      value: "@devTianaCodes"
+      value: "devTianaCodes"
     }
   ],
   stackBands: [

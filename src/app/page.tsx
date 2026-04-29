@@ -2,36 +2,47 @@ import Link from "next/link";
 import { CapabilityBand } from "@/components/CapabilityBand";
 import { FeaturedProjectsRail } from "@/components/FeaturedProjectsRail";
 import { GithubCallout } from "@/components/GithubCallout";
-import { Hero } from "@/components/Hero";
+import { InteractiveHero } from "@/components/InteractiveHero";
 import { PageReveal } from "@/components/PageReveal";
 import { siteConfig } from "@/content/site";
+
+const proofPoints = [
+  {
+    label: "Product judgment",
+    text: "Case studies explain how the interface, business logic, and implementation choices work together."
+  },
+  {
+    label: "Review velocity",
+    text: "Recruiters and engineers can scan the strongest signals quickly, then open deeper project pages."
+  },
+  {
+    label: "Interaction range",
+    text: "The mix of product apps and playable frontend builds shows breadth without scattering the narrative."
+  }
+];
 
 export default function HomePage() {
   return (
     <PageReveal>
       <div className="space-y-20">
-        <Hero />
+        <InteractiveHero />
 
-        <section className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+        <section className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
           <div className="space-y-5">
             <p className="text-xs uppercase tracking-[0.3em] text-accent">Professional approach</p>
-            <h2 className="font-display text-4xl text-ink md:text-5xl">
-              A portfolio designed like a product presentation, not a default template.
+            <h2 className="font-display text-4xl leading-tight text-ink md:text-5xl">
+              A portfolio that behaves more like a product surface than a static gallery.
             </h2>
             <p className="max-w-xl text-base leading-8 text-muted">
-              The strongest portfolio work does not just list technologies. It shows hierarchy,
-              product judgment, and the ability to explain how design quality and implementation fit
-              together. That is the bar this site is built around.
+              The first pass now emphasizes hierarchy, interaction, and proof. Every section is designed to answer what reviewers usually ask next: what was built, why it matters, and how deep the implementation goes.
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {siteConfig.principles.map((item) => (
-              <div
-                key={item}
-                className="rounded-[1.8rem] border border-line bg-[rgba(255,252,248,0.82)] p-6 shadow-editorial"
-              >
-                <p className="text-sm uppercase tracking-[0.18em] text-muted">{item}</p>
+          <div className="grid gap-4 md:grid-cols-3">
+            {proofPoints.map((item) => (
+              <div key={item.label} className="rounded-[1.25rem] border border-line bg-white/76 p-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+                <p className="text-xs uppercase tracking-[0.22em] text-accent">{item.label}</p>
+                <p className="mt-4 text-sm leading-7 text-muted">{item.text}</p>
               </div>
             ))}
           </div>
@@ -41,50 +52,42 @@ export default function HomePage() {
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-[0.3em] text-accent">Selected work</p>
-              <h2 className="font-display text-4xl text-ink md:text-5xl">
-                Two flagship case studies, three supporting portfolio pieces.
+              <h2 className="max-w-4xl font-display text-4xl leading-tight text-ink md:text-5xl">
+                Flagship apps up front, interactive demos close enough to test.
               </h2>
             </div>
             <Link
               href="/projects"
-              className="w-fit rounded-full border border-line bg-panel px-5 py-3 text-sm uppercase tracking-[0.2em] text-ink transition hover:border-accent hover:text-accent"
+              className="w-fit rounded-full border border-line bg-[linear-gradient(135deg,#2563eb,#315f9f)] px-5 py-3 text-sm uppercase tracking-[0.18em] text-white shadow-[0_14px_34px_rgba(37,99,235,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(49,95,159,0.22)]"
             >
-              View all projects
+              Open explorer
             </Link>
           </div>
           <FeaturedProjectsRail />
         </section>
 
+        <CapabilityBand />
+
         <section className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
-          <div className="rounded-[2.2rem] border border-line bg-[rgba(255,252,248,0.8)] p-8 shadow-editorial">
+          <div className="rounded-[1.5rem] border border-line bg-white/78 p-8 shadow-editorial">
             <p className="text-xs uppercase tracking-[0.3em] text-accent">About Tiana</p>
-            <h2 className="mt-4 font-display text-4xl text-ink">Design-minded frontend craft with full-stack range.</h2>
+            <h2 className="mt-4 font-display text-4xl leading-tight text-ink">Design-minded frontend craft with full-stack range.</h2>
             <p className="mt-4 text-base leading-8 text-muted">
-              Tiana Oblasser builds web experiences that are visually refined, product-aware, and
-              grounded in real implementation detail. The work spans commerce, education, adoption,
-              and browser-based interaction systems.
+              Tiana Oblasser builds web experiences that are visually refined, product-aware, and grounded in real implementation detail. The work spans commerce, education, adoption, and browser-based interaction systems.
             </p>
             <Link
               href="/about"
-              className="mt-6 inline-flex rounded-full border border-[rgba(154,98,57,0.24)] bg-[rgba(226,202,181,0.72)] px-5 py-3 text-sm uppercase tracking-[0.18em] text-[#4a2c1c] transition hover:bg-[rgba(214,184,156,0.94)] hover:text-[#27170f]"
+              className="mt-6 inline-flex rounded-full border border-line bg-white px-5 py-3 text-sm uppercase tracking-[0.18em] text-ink transition hover:-translate-y-0.5 hover:border-accent hover:text-accent"
             >
               Read profile
             </Link>
           </div>
 
-          <div className="rounded-[2.2rem] border border-line bg-[rgba(255,252,248,0.72)] p-8 shadow-editorial">
+          <div className="rounded-[1.5rem] border border-line bg-[linear-gradient(135deg,rgba(255,255,255,0.88),rgba(239,246,255,0.82))] p-8 shadow-editorial">
             <p className="text-xs uppercase tracking-[0.3em] text-accent">What this portfolio shows</p>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
-              {[
-                "Case studies with stronger product storytelling and cleaner technical framing.",
-                "A visible GitHub-first identity instead of anonymous portfolio language.",
-                "Project selection that balances business apps with interactive frontend builds.",
-                "A Vercel-friendly implementation that remains practical to maintain and extend."
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-[1.5rem] border border-line bg-background p-5 text-sm leading-7 text-muted"
-                >
+              {siteConfig.principles.map((item) => (
+                <div key={item} className="rounded-[1rem] border border-line bg-white/74 p-5 text-sm leading-7 text-muted">
                   {item}
                 </div>
               ))}
@@ -92,7 +95,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        <CapabilityBand />
         <GithubCallout />
       </div>
     </PageReveal>
