@@ -5,7 +5,7 @@ import { siteConfig } from "@/content/site";
 export function SiteFooter() {
   return (
     <footer className="border-t border-line bg-white/76 backdrop-blur">
-      <div className="mx-auto grid max-w-7xl gap-8 px-2.5 py-12 md:grid-cols-[1.15fr_0.85fr] md:px-4">
+      <div className="mx-auto grid max-w-[96rem] gap-8 px-2.5 py-12 md:grid-cols-[1.15fr_0.85fr] md:px-4">
         <div className="space-y-4">
           <p className="text-xs uppercase tracking-[0.3em] text-accent">Tiana Oblasser</p>
           <h2 className="font-display text-4xl leading-tight text-ink">{siteConfig.headline}</h2>

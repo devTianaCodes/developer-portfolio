@@ -23,58 +23,58 @@ type CaseTheme = {
 const caseStudyThemes: Record<ProjectEntry["visualTone"], CaseTheme> = {
   "warm-luxury": {
     shell:
-      "bg-[radial-gradient(circle_at_14%_8%,rgba(157,183,216,0.2),transparent_32%),radial-gradient(circle_at_86%_16%,rgba(49,95,159,0.12),transparent_32%),linear-gradient(180deg,#203656_0%,#dce7f5_58%,#f7f9fc_100%)]",
-    hero: "bg-[linear-gradient(135deg,rgba(32,54,86,0.98),rgba(49,95,159,0.84))] text-white",
-    panel: "bg-[rgba(255,255,255,0.9)]",
-    tile: "bg-[rgba(247,249,252,0.86)]",
-    imageFrame: "bg-[rgba(32,54,86,0.18)]",
-    accent: "#315f9f",
-    accentSoft: "#9db7d8",
-    line: "rgba(49,95,159,0.16)"
+      "bg-[radial-gradient(circle_at_12%_8%,rgba(142,84,50,0.32),transparent_34%),radial-gradient(circle_at_86%_14%,rgba(244,190,128,0.24),transparent_32%),linear-gradient(180deg,#21100c_0%,#6f3924_42%,#f6eadf_100%)]",
+    hero: "bg-[linear-gradient(135deg,rgba(37,18,12,0.98),rgba(104,54,34,0.92),rgba(161,98,55,0.82))] text-white",
+    panel: "bg-[rgba(255,248,241,0.9)]",
+    tile: "bg-[rgba(252,239,225,0.86)]",
+    imageFrame: "bg-[rgba(92,45,28,0.22)]",
+    accent: "#8b4b2f",
+    accentSoft: "#d9a36e",
+    line: "rgba(116,60,38,0.2)"
   },
   "clean-learning": {
     shell:
-      "bg-[radial-gradient(circle_at_14%_8%,rgba(157,183,216,0.22),transparent_32%),radial-gradient(circle_at_86%_16%,rgba(49,95,159,0.14),transparent_32%),linear-gradient(180deg,#203656_0%,#dce7f5_58%,#f7f9fc_100%)]",
-    hero: "bg-[linear-gradient(135deg,rgba(32,54,86,0.98),rgba(49,95,159,0.84))] text-white",
-    panel: "bg-[rgba(255,255,255,0.9)]",
-    tile: "bg-[rgba(247,249,252,0.86)]",
-    imageFrame: "bg-[rgba(32,54,86,0.18)]",
-    accent: "#315f9f",
-    accentSoft: "#9db7d8",
-    line: "rgba(49,95,159,0.16)"
+      "bg-[radial-gradient(circle_at_14%_8%,rgba(147,197,253,0.26),transparent_34%),radial-gradient(circle_at_84%_12%,rgba(59,130,246,0.18),transparent_34%),linear-gradient(180deg,#123261_0%,#dbeafe_56%,#f8fbff_100%)]",
+    hero: "bg-[linear-gradient(135deg,rgba(18,50,97,0.98),rgba(37,99,235,0.84),rgba(125,176,255,0.72))] text-white",
+    panel: "bg-[rgba(255,255,255,0.92)]",
+    tile: "bg-[rgba(239,246,255,0.9)]",
+    imageFrame: "bg-[rgba(37,99,235,0.16)]",
+    accent: "#2563eb",
+    accentSoft: "#93c5fd",
+    line: "rgba(37,99,235,0.18)"
   },
   "soft-utility": {
     shell:
-      "bg-[radial-gradient(circle_at_14%_8%,rgba(157,183,216,0.22),transparent_32%),radial-gradient(circle_at_86%_16%,rgba(49,95,159,0.14),transparent_32%),linear-gradient(180deg,#203656_0%,#dce7f5_58%,#f7f9fc_100%)]",
-    hero: "bg-[linear-gradient(135deg,rgba(32,54,86,0.98),rgba(49,95,159,0.84))] text-white",
-    panel: "bg-[rgba(255,255,255,0.9)]",
-    tile: "bg-[rgba(247,249,252,0.86)]",
-    imageFrame: "bg-[rgba(32,54,86,0.18)]",
-    accent: "#315f9f",
-    accentSoft: "#9db7d8",
-    line: "rgba(49,95,159,0.16)"
+      "bg-[radial-gradient(circle_at_12%_8%,rgba(134,239,172,0.2),transparent_34%),radial-gradient(circle_at_86%_14%,rgba(45,120,95,0.16),transparent_34%),linear-gradient(180deg,#17372f_0%,#dff4e9_58%,#f8fffb_100%)]",
+    hero: "bg-[linear-gradient(135deg,rgba(21,55,47,0.98),rgba(49,105,83,0.88),rgba(108,166,132,0.76))] text-white",
+    panel: "bg-[rgba(250,255,252,0.92)]",
+    tile: "bg-[rgba(235,248,240,0.9)]",
+    imageFrame: "bg-[rgba(45,120,95,0.18)]",
+    accent: "#2f765d",
+    accentSoft: "#9bd3b0",
+    line: "rgba(47,118,93,0.18)"
   },
   arcade: {
     shell:
-      "bg-[radial-gradient(circle_at_14%_8%,rgba(157,183,216,0.2),transparent_32%),radial-gradient(circle_at_86%_16%,rgba(49,95,159,0.14),transparent_32%),linear-gradient(180deg,#203656_0%,#dce7f5_58%,#f7f9fc_100%)]",
-    hero: "bg-[linear-gradient(135deg,rgba(32,54,86,0.98),rgba(49,95,159,0.84))] text-white",
-    panel: "bg-[rgba(255,255,255,0.9)]",
-    tile: "bg-[rgba(247,249,252,0.86)]",
-    imageFrame: "bg-[rgba(32,54,86,0.18)]",
-    accent: "#315f9f",
-    accentSoft: "#9db7d8",
-    line: "rgba(49,95,159,0.16)"
+      "bg-[radial-gradient(circle_at_12%_10%,rgba(236,72,153,0.26),transparent_32%),radial-gradient(circle_at_84%_8%,rgba(129,140,248,0.28),transparent_34%),linear-gradient(180deg,#140b2e_0%,#312e81_45%,#eef2ff_100%)]",
+    hero: "bg-[linear-gradient(135deg,rgba(20,11,46,0.98),rgba(79,70,229,0.9),rgba(219,39,119,0.74))] text-white",
+    panel: "bg-[rgba(250,250,255,0.92)]",
+    tile: "bg-[rgba(238,242,255,0.9)]",
+    imageFrame: "bg-[rgba(79,70,229,0.18)]",
+    accent: "#4f46e5",
+    accentSoft: "#c4b5fd",
+    line: "rgba(99,102,241,0.2)"
   },
   "naval-tech": {
     shell:
-      "bg-[radial-gradient(circle_at_14%_8%,rgba(157,183,216,0.2),transparent_32%),radial-gradient(circle_at_86%_16%,rgba(49,95,159,0.14),transparent_32%),linear-gradient(180deg,#203656_0%,#dce7f5_58%,#f7f9fc_100%)]",
-    hero: "bg-[linear-gradient(135deg,rgba(32,54,86,0.98),rgba(49,95,159,0.84))] text-white",
-    panel: "bg-[rgba(255,255,255,0.9)]",
-    tile: "bg-[rgba(247,249,252,0.86)]",
-    imageFrame: "bg-[rgba(32,54,86,0.18)]",
-    accent: "#315f9f",
-    accentSoft: "#9db7d8",
-    line: "rgba(49,95,159,0.16)"
+      "bg-[radial-gradient(circle_at_12%_10%,rgba(56,189,248,0.22),transparent_32%),radial-gradient(circle_at_86%_12%,rgba(37,99,235,0.18),transparent_34%),linear-gradient(180deg,#061827_0%,#14365f_48%,#e6f2fb_100%)]",
+    hero: "bg-[linear-gradient(135deg,rgba(6,24,39,0.98),rgba(20,54,95,0.92),rgba(45,104,153,0.76))] text-white",
+    panel: "bg-[rgba(248,252,255,0.92)]",
+    tile: "bg-[rgba(230,242,251,0.9)]",
+    imageFrame: "bg-[rgba(20,54,95,0.2)]",
+    accent: "#1d5f92",
+    accentSoft: "#8dc7e8",
+    line: "rgba(29,95,146,0.18)"
   }
 };
 
@@ -103,7 +103,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
 
   return (
     <div style={themeStyle} className={`-mx-2.5 -my-10 overflow-hidden px-2.5 py-10 md:-mx-4 md:-my-14 md:px-4 md:py-14 ${theme.shell}`}>
-      <div className="mx-auto max-w-7xl space-y-16">
+      <div className="mx-auto max-w-[96rem] space-y-16">
         <section className={`grid gap-8 overflow-hidden rounded-[2.2rem] border border-white/18 p-8 shadow-[0_32px_100px_rgba(15,23,42,0.24)] lg:grid-cols-[1.05fr_0.95fr] lg:items-end ${theme.hero}`}>
           <div className="space-y-6">
             <div className="flex flex-wrap gap-3">

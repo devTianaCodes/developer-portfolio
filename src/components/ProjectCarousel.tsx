@@ -50,16 +50,16 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
   return (
     <section
-      className="relative overflow-hidden rounded-[1.75rem] border border-line bg-[linear-gradient(135deg,rgba(255,255,255,0.88),rgba(226,236,248,0.78))] p-4 shadow-[0_24px_70px_rgba(31,49,78,0.13)] md:p-6"
+      className="relative overflow-visible py-2"
       onPointerMove={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
-        setCursorShift(((event.clientX - rect.left) / rect.width - 0.5) * 2);
+        setCursorShift(((event.clientX - rect.left) / rect.width - 0.5) * 1.45);
       }}
       onPointerLeave={() => setCursorShift(0)}
     >
       <div className="mb-6 mx-auto max-w-3xl text-center">
-        <h2 className="font-display text-4xl leading-tight text-ink md:text-5xl">{activeProject.name}</h2>
-        <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-muted md:text-base">
+        <h2 className="font-display text-4xl leading-tight text-white md:text-5xl">{activeProject.name}</h2>
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-white md:text-base">
           {activeProject.summary}
         </p>
         {activeTechIcons.length > 0 ? (
@@ -71,7 +71,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
         ) : null}
       </div>
 
-      <div className="relative min-h-[700px] overflow-hidden rounded-[1.5rem] bg-[linear-gradient(180deg,rgba(32,54,86,0.08),rgba(255,255,255,0.36))] px-12 py-10 md:px-20">
+      <div className="relative min-h-[700px] overflow-visible px-12 py-10 md:px-20">
         <button
           type="button"
           onClick={() => move("previous")}
@@ -95,28 +95,44 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
             const absOffset = Math.abs(offset);
             const isVisible = absOffset <= 1;
             const hero = project.media.find((item) => item.featured) ?? project.media[0];
-            const x = offset * 330 + cursorShift * (absOffset === 0 ? 12 : 7);
+            const x = offset * 330 + cursorShift * (absOffset === 0 ? 9 : 6);
             const scale = absOffset === 0 ? 1 : 0.74;
-            const opacity = absOffset === 0 ? 1 : absOffset === 1 ? 0.68 : 0;
+            const opacity = absOffset <= 1 ? 1 : 0;
             const zIndex = 30 - absOffset;
 
             return (
               <motion.article
                 key={project.slug}
                 className={classNames(
-                  "absolute top-4 w-[min(680px,64vw)] overflow-hidden rounded-[1.45rem] border border-white/80 bg-white shadow-[0_28px_80px_rgba(31,49,78,0.18)]",
-                  absOffset === 0 ? "pointer-events-auto" : "pointer-events-none"
+                  "absolute top-4 w-[min(680px,64vw)] overflow-hidden rounded-[1.45rem] border border-white/80 bg-white shadow-[0_28px_80px_rgba(31,49,78,0.18)] transition-shadow duration-200 hover:shadow-[0_34px_96px_rgba(31,49,78,0.24)]",
+                  isVisible ? "pointer-events-auto cursor-pointer" : "pointer-events-none",
+                  absOffset === 0 ? "" : "hover:border-accent/40"
                 )}
                 animate={{
                   x,
                   scale,
                   opacity,
-                  rotateY: reduceMotion ? 0 : cursorShift * (absOffset === 0 ? -3 : -1.5)
+                  rotateY: reduceMotion ? 0 : cursorShift * (absOffset === 0 ? -1.4 : -0.7)
                 }}
-                transition={reduceMotion ? { duration: 0 } : { duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={reduceMotion ? undefined : { y: absOffset === 0 ? -10 : -14, scale: scale + (absOffset === 0 ? 0.018 : 0.045), rotateY: cursorShift * (absOffset === 0 ? -1.8 : -0.9) }}
+                transition={reduceMotion ? { duration: 0 } : { duration: 0.42, ease: [0.19, 1, 0.22, 1] }}
+                onClick={() => {
+                  if (absOffset !== 0) setActiveIndex(index);
+                }}
+                onKeyDown={(event) => {
+                  if (absOffset === 0) return;
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setActiveIndex(index);
+                  }
+                }}
+                role={absOffset === 0 ? undefined : "button"}
+                tabIndex={absOffset === 0 || !isVisible ? undefined : 0}
                 style={{ left: "calc(50% - min(340px, 32vw))", zIndex, display: isVisible ? "block" : "none" }}
               >
-                <Link href={`/projects/${project.slug}`} className="absolute inset-0 z-10" aria-label={`Open ${project.name} case study`} />
+                {absOffset === 0 ? (
+                  <Link href={`/projects/${project.slug}`} className="absolute inset-0 z-10" aria-label={`Open ${project.name} case study`} />
+                ) : null}
                 {hero ? (
                   <div className="relative aspect-[16/9] overflow-hidden bg-slate-900">
                     <Image

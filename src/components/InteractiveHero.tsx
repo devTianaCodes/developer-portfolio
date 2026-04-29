@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { GithubIcon } from "@/components/GithubIcon";
 import { motion, useReducedMotion } from "framer-motion";
 import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import { siteConfig } from "@/content/site";
@@ -61,9 +62,10 @@ export function InteractiveHero() {
                 href={siteConfig.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-white/18 bg-white/8 px-6 py-3 text-sm uppercase tracking-[0.18em] text-white transition hover:-translate-y-0.5 hover:border-blue-100 hover:bg-white/14"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm uppercase tracking-[0.18em] text-slate-950 transition hover:-translate-y-0.5 hover:bg-blue-100"
               >
-                View GitHub
+                <GithubIcon className="h-4 w-4" />
+                Open GitHub
               </Link>
             </div>
           </div>
@@ -94,7 +96,7 @@ export function InteractiveHero() {
           <div className="rounded-[1.5rem] border border-white/14 bg-slate-950/42 p-5 shadow-[0_20px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl">
             <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
               <div>
-                <p className="text-xs uppercase tracking-[0.28em] text-blue-100/72">Portfolio cockpit</p>
+                <p className="text-xs uppercase tracking-[0.28em] text-blue-100/72">Professional approach</p>
                 <p className="mt-2 font-display text-3xl text-white">Built to be reviewed.</p>
               </div>
               <span className="rounded-full border border-blue-200/20 bg-blue-200/12 px-3 py-1 text-xs uppercase tracking-[0.18em] text-blue-100">
@@ -112,9 +114,14 @@ export function InteractiveHero() {
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="flex w-full flex-wrap items-center justify-center gap-2.5 justify-self-center px-2">
             {siteConfig.stackBands.map((band) => (
-              <ProjectTechBadge key={band} tech={band} className="border-white/18 bg-white/8 text-white backdrop-blur" />
+              <ProjectTechBadge
+                key={band}
+                tech={band}
+                compact
+                className="border-white/18 bg-white/90 px-3 py-1.5 text-[10px] text-black shadow-[0_10px_24px_rgba(15,23,42,0.12)] backdrop-blur"
+              />
             ))}
           </div>
         </motion.div>
