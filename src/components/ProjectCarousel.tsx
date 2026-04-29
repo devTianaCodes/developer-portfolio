@@ -65,11 +65,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
         {activeTechIcons.length > 0 ? (
           <div className="mt-4 flex flex-wrap justify-center gap-2">
             {activeTechIcons.map((tech) => (
-              <ProjectTechBadge
-                key={tech}
-                tech={tech}
-                className="bg-white/74 shadow-[0_10px_24px_rgba(49,95,159,0.08)]"
-              />
+              <ProjectTechBadge key={tech} tech={tech} />
             ))}
           </div>
         ) : null}
@@ -149,7 +145,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                   <p className="mt-3 text-sm uppercase tracking-[0.2em] text-muted">{project.tagline}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {project.techStack.slice(0, 5).map((tech) => (
-                      <ProjectTechBadge key={tech} tech={tech} compact className="bg-slate-50" />
+                      <ProjectTechBadge key={tech} tech={tech} compact />
                     ))}
                   </div>
                 </div>

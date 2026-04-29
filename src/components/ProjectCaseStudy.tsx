@@ -292,11 +292,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             <p className="text-xs uppercase tracking-[0.3em] text-[var(--case-accent)]">Tech stack</p>
             <div className="mt-6 flex flex-wrap gap-3">
               {project.techStack.map((item) => (
-                <ProjectTechBadge
-                  key={item}
-                  tech={item}
-                  className="border-[color:var(--case-line)]"
-                />
+                <ProjectTechBadge key={item} tech={item} />
               ))}
             </div>
           </div>

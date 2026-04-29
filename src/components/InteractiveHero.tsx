@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import { siteConfig } from "@/content/site";
 
 const proofMetrics = [
@@ -27,7 +28,10 @@ export function InteractiveHero() {
       };
 
   return (
-    <section className="relative overflow-hidden rounded-[1.75rem] border border-white/70 bg-[linear-gradient(135deg,rgba(32,54,86,0.98),rgba(49,95,159,0.94))] px-5 py-7 text-white shadow-[0_24px_70px_rgba(31,49,78,0.22)] md:px-8 md:py-9">
+    <div className="relative">
+      <div className="pointer-events-none absolute -inset-x-4 -top-4 h-24 rounded-[2rem] bg-[linear-gradient(180deg,rgba(49,95,159,0.18),rgba(49,95,159,0))] blur-2xl" />
+      <div className="pointer-events-none absolute -inset-x-6 -bottom-12 h-36 rounded-[2rem] bg-[linear-gradient(180deg,rgba(49,95,159,0.22),rgba(157,183,216,0.12)_42%,rgba(243,246,251,0))] blur-2xl" />
+      <section className="relative overflow-hidden rounded-[1.75rem] bg-[linear-gradient(135deg,rgba(32,54,86,0.98),rgba(49,95,159,0.94))] px-5 py-7 text-white shadow-[0_24px_70px_rgba(31,49,78,0.18)] md:px-8 md:py-9">
       <div className="absolute inset-0 opacity-70 [background-image:linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:42px_42px]" />
       <div className="absolute -right-24 top-12 h-72 w-72 rounded-full bg-blue-200/12 blur-3xl" />
       <div className="absolute -bottom-28 left-16 h-72 w-72 rounded-full bg-blue-400/10 blur-3xl" />
@@ -35,15 +39,9 @@ export function InteractiveHero() {
       <div className="relative grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch">
         <motion.div className="flex flex-col justify-between gap-9" {...reveal}>
           <div className="space-y-7">
-            <div className="inline-flex w-fit items-center gap-3 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-xs uppercase tracking-[0.22em] text-blue-100">
-              <span className="h-2 w-2 rounded-full bg-blue-200 shadow-[0_0_14px_rgba(147,197,253,0.55)]" />
-              {siteConfig.role}
-            </div>
-
             <div className="space-y-4">
-              <p className="text-sm uppercase tracking-[0.34em] text-blue-100/78">{siteConfig.name}</p>
               <h1 className="max-w-5xl font-display text-[3.2rem] leading-[0.94] tracking-normal text-white md:text-[5.6rem]">
-                Product-minded web experiences with standout interface craft.
+                Product-minded web experiences.
               </h1>
             </div>
 
@@ -115,17 +113,13 @@ export function InteractiveHero() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            {siteConfig.stackBands.slice(0, 6).map((band) => (
-              <span
-                key={band}
-                className="rounded-[1rem] border border-white/12 bg-white/[0.08] px-4 py-3 text-xs uppercase tracking-[0.18em] text-slate-200 backdrop-blur"
-              >
-                {band}
-              </span>
+            {siteConfig.stackBands.map((band) => (
+              <ProjectTechBadge key={band} tech={band} className="border-white/18 bg-white/8 text-white backdrop-blur" />
             ))}
           </div>
         </motion.div>
       </div>
-    </section>
+      </section>
+    </div>
   );
 }
