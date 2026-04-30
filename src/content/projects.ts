@@ -129,38 +129,44 @@ export const projects: ProjectEntry[] = [
     media: [
       {
         kind: "image",
-        src: "/media/projects/chocolate/hero-desktop.png",
-        alt: "Chocolate Craft House storefront hero artwork",
-        width: 1600,
-        height: 1000,
+        src: "/media/projects/chocolate/showcase/01.png",
+        alt: "Chocolate Craft House screenshot 1",
+        width: 2944,
+        height: 1808,
         featured: true,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/chocolate/shop-grid.png",
-        alt: "Chocolate product grid visual used for the portfolio case study",
-        width: 1600,
-        height: 1000,
+        src: "/media/projects/chocolate/showcase/02.png",
+        alt: "Chocolate Craft House screenshot 2",
+        width: 2944,
+        height: 1808,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/chocolate/about-story.png",
-        alt: "Chocolate Craft House brand storytelling image",
-        width: 1600,
-        height: 1000,
+        src: "/media/projects/chocolate/showcase/03.png",
+        alt: "Chocolate Craft House screenshot 3",
+        width: 2228,
+        height: 1674,
         status: "ready"
       },
       {
-        kind: "video",
-        src: "/media/projects/chocolate/demo.mp4",
-        poster: "/media/projects/chocolate/video-poster.svg",
-        alt: "Chocolate Craft House demo clip poster",
-        width: 1280,
-        height: 720,
-        status: "capture-planned",
-        note: "Capture planned from the local `demo-showcase` checkout and admin flow."
+        kind: "image",
+        src: "/media/projects/chocolate/showcase/04.png",
+        alt: "Chocolate Craft House screenshot 4",
+        width: 2858,
+        height: 1734,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/chocolate/showcase/05.png",
+        alt: "Chocolate Craft House screenshot 5",
+        width: 2858,
+        height: 1784,
+        status: "ready"
       }
     ],
     links: [{ label: "Case Study", href: "/projects/chocolate", kind: "case-study" }],
@@ -243,38 +249,44 @@ export const projects: ProjectEntry[] = [
     media: [
       {
         kind: "image",
-        src: "/media/projects/english4u/hero-editorial.svg",
-        alt: "Editorial cover image for the English4U learning platform",
-        width: 1600,
-        height: 1000,
+        src: "/media/projects/english4u/showcase/01.png",
+        alt: "English4U screenshot 1",
+        width: 2602,
+        height: 1626,
         featured: true,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/english4u/dashboard-editorial.svg",
-        alt: "English4U dashboard concept graphic used in the portfolio",
-        width: 1600,
-        height: 1000,
+        src: "/media/projects/english4u/showcase/02.png",
+        alt: "English4U screenshot 2",
+        width: 2602,
+        height: 1796,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/english4u/admin-editorial.svg",
-        alt: "English4U admin CMS concept graphic used in the portfolio",
-        width: 1600,
-        height: 1000,
+        src: "/media/projects/english4u/showcase/03.png",
+        alt: "English4U screenshot 3",
+        width: 2602,
+        height: 1818,
         status: "ready"
       },
       {
-        kind: "video",
-        src: "/media/projects/english4u/demo.mp4",
-        poster: "/media/projects/english4u/video-poster.svg",
-        alt: "English4U demo clip poster",
-        width: 1280,
-        height: 720,
-        status: "capture-planned",
-        note: "Capture planned for onboarding, dashboard, lesson, and admin CMS flow."
+        kind: "image",
+        src: "/media/projects/english4u/showcase/04.png",
+        alt: "English4U screenshot 4",
+        width: 2602,
+        height: 1516,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/english4u/showcase/05.png",
+        alt: "English4U screenshot 5",
+        width: 2818,
+        height: 1808,
+        status: "ready"
       }
     ],
     links: [{ label: "Case Study", href: "/projects/english4u", kind: "case-study" }],
@@ -359,38 +371,44 @@ export const projects: ProjectEntry[] = [
     media: [
       {
         kind: "image",
-        src: "/media/projects/petnest/hero.png",
-        alt: "PetNest landing hero image",
-        width: 1400,
-        height: 900,
+        src: "/media/projects/petnest/showcase/01.png",
+        alt: "PetNest screenshot 1",
+        width: 2786,
+        height: 1808,
         featured: true,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/petnest/logo.png",
-        alt: "PetNest logo artwork",
-        width: 1200,
-        height: 1200,
+        src: "/media/projects/petnest/showcase/02.png",
+        alt: "PetNest screenshot 2",
+        width: 2856,
+        height: 1802,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/petnest/dashboard-editorial.svg",
-        alt: "PetNest dashboard concept graphic used in the portfolio",
-        width: 1600,
-        height: 1000,
+        src: "/media/projects/petnest/showcase/03.png",
+        alt: "PetNest screenshot 3",
+        width: 2856,
+        height: 1818,
         status: "ready"
       },
       {
-        kind: "video",
-        src: "/media/projects/petnest/demo.mp4",
-        poster: "/media/projects/petnest/video-poster.svg",
-        alt: "PetNest demo clip poster",
-        width: 1280,
-        height: 720,
-        status: "capture-planned",
-        note: "Capture planned for browse, request, and admin review workflow."
+        kind: "image",
+        src: "/media/projects/petnest/showcase/04.png",
+        alt: "PetNest screenshot 4",
+        width: 2858,
+        height: 1784,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/petnest/showcase/05.png",
+        alt: "PetNest screenshot 5",
+        width: 2858,
+        height: 1784,
+        status: "ready"
       }
     ],
     links: [{ label: "Case Study", href: "/projects/petnest", kind: "case-study" }],
@@ -461,30 +479,28 @@ export const projects: ProjectEntry[] = [
     media: [
       {
         kind: "image",
-        src: "/media/projects/tetris/tetris-live.png",
-        alt: "Live screenshot of the Tetris game running in the browser",
-        width: 1600,
-        height: 1137,
+        src: "/media/projects/tetris/showcase/01.png",
+        alt: "Tetris screenshot 1",
+        width: 2944,
+        height: 1808,
         featured: true,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/tetris/gameplay-editorial.svg",
-        alt: "Tetris gameplay concept graphic used in the portfolio",
-        width: 1600,
-        height: 1000,
+        src: "/media/projects/tetris/showcase/02.png",
+        alt: "Tetris screenshot 2",
+        width: 2568,
+        height: 1662,
         status: "ready"
       },
       {
-        kind: "video",
-        src: "/media/projects/tetris/demo.mp4",
-        poster: "/media/projects/tetris/video-poster.svg",
-        alt: "Tetris demo clip poster",
-        width: 1280,
-        height: 720,
-        status: "capture-planned",
-        note: "Capture planned for gameplay, line clear, and game-over loop."
+        kind: "image",
+        src: "/media/projects/tetris/showcase/03.png",
+        alt: "Tetris screenshot 3",
+        width: 2856,
+        height: 1818,
+        status: "ready"
       }
     ],
     links: [
@@ -558,30 +574,36 @@ export const projects: ProjectEntry[] = [
     media: [
       {
         kind: "image",
-        src: "/media/projects/sea-battle/sea-battle-live.png",
-        alt: "Live screenshot of the Sea Battle interface running in the browser",
-        width: 1600,
-        height: 1137,
+        src: "/media/projects/sea-battle/showcase/01.png",
+        alt: "Sea Battle screenshot 1",
+        width: 2856,
+        height: 1802,
         featured: true,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/sea-battle/gameplay-editorial.svg",
-        alt: "Sea Battle gameplay concept graphic used in the portfolio",
-        width: 1600,
-        height: 1000,
+        src: "/media/projects/sea-battle/showcase/02.png",
+        alt: "Sea Battle screenshot 2",
+        width: 2856,
+        height: 1802,
         status: "ready"
       },
       {
-        kind: "video",
-        src: "/media/projects/sea-battle/demo.mp4",
-        poster: "/media/projects/sea-battle/video-poster.svg",
-        alt: "Sea Battle demo clip poster",
-        width: 1280,
-        height: 720,
-        status: "capture-planned",
-        note: "Capture planned for onboarding, ship placement, and battle loop."
+        kind: "image",
+        src: "/media/projects/sea-battle/showcase/03.png",
+        alt: "Sea Battle screenshot 3",
+        width: 2856,
+        height: 1802,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/sea-battle/showcase/04.png",
+        alt: "Sea Battle screenshot 4",
+        width: 2856,
+        height: 1802,
+        status: "ready"
       }
     ],
     links: [
