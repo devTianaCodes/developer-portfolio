@@ -25,9 +25,7 @@ export const siteConfig = {
   ] satisfies SocialLink[],
   headline: "Polished web products with design taste, strong frontend craft, and real full-stack depth.",
   subheadline:
-    "I build modern web experiences that feel intentional from the first screen to the underlying product system. This portfolio brings together three full-stack apps, two interactive browser games, and case studies designed to hold up in real technical conversations.",
-  identityStatement:
-    "Frontend polish, product thinking, and deployable implementation in one portfolio.",
+    "I build modern web experiences that feel intentional from the first screen to the underlying product system.",
   primaryCta: {
     label: "View GitHub",
     href: "https://github.com/devTianaCodes"

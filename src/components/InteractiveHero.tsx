@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { GithubIcon } from "@/components/GithubIcon";
 import { motion, useReducedMotion } from "framer-motion";
@@ -12,10 +13,12 @@ const proofMetrics = [
   { label: "live demos", value: "2", detail: "interactive browser games ready to test" }
 ];
 
-const cockpitRows = [
-  { label: "Product depth", value: "Auth, admin, payments, moderation" },
-  { label: "Frontend craft", value: "Motion, responsive systems, game state" },
-  { label: "Review ready", value: "Case-study framing and public code identity" }
+const projectCollage = [
+  { src: "/media/projects/english4u/showcase/01.png", alt: "English4U project screenshot" },
+  { src: "/media/projects/chocolate/showcase/01.png", alt: "Chocolate Craft House project screenshot" },
+  { src: "/media/projects/petnest/showcase/01.png", alt: "PetNest project screenshot" },
+  { src: "/media/projects/tetris/showcase/01.png", alt: "Tetris project screenshot" },
+  { src: "/media/projects/sea-battle/showcase/01.png", alt: "Sea Battle project screenshot" }
 ];
 
 export function InteractiveHero() {
@@ -47,7 +50,6 @@ export function InteractiveHero() {
             </div>
 
             <div className="max-w-3xl space-y-4">
-              <p className="text-lg font-medium leading-8 text-white/90">{siteConfig.identityStatement}</p>
               <p className="text-base leading-8 text-slate-200 md:text-lg">{siteConfig.subheadline}</p>
             </div>
 
@@ -93,25 +95,37 @@ export function InteractiveHero() {
           animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
           transition={{ delay: 0.15, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="rounded-[1.5rem] border border-white/14 bg-slate-950/42 p-5 shadow-[0_20px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl">
-            <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
-              <div>
-                <p className="text-xs uppercase tracking-[0.28em] text-blue-100/72">Professional approach</p>
-                <p className="mt-2 font-display text-3xl text-white">Built to be reviewed.</p>
-              </div>
-              <span className="rounded-full border border-blue-200/20 bg-blue-200/12 px-3 py-1 text-xs uppercase tracking-[0.18em] text-blue-100">
-                active
-              </span>
-            </div>
-
-            <div className="mt-5 space-y-3">
-              {cockpitRows.map((row) => (
-                <div key={row.label} className="rounded-[1rem] border border-white/10 bg-white/[0.06] p-4">
-                  <p className="text-[11px] uppercase tracking-[0.22em] text-blue-100/62">{row.label}</p>
-                  <p className="mt-2 text-sm leading-6 text-white/88">{row.value}</p>
+          <div className="hero-scroll-gallery group/gallery relative min-h-[430px] overflow-hidden rounded-[1.5rem] border border-white/14 bg-slate-950/42 p-5 shadow-[0_20px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl md:min-h-[520px]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_18%,rgba(255,255,255,0.16),transparent_28%),radial-gradient(circle_at_78%_74%,rgba(147,197,253,0.16),transparent_30%)]" />
+            <div className="absolute inset-5 rounded-[1.25rem] border border-white/10 bg-white/[0.04]" />
+            <div className="hero-scroll-track absolute left-0 top-[31%] flex w-max gap-5 pr-5 will-change-transform">
+              {[...projectCollage, ...projectCollage].map((item, index) => (
+                <div
+                  key={`top-${item.src}-${index}`}
+                  className={`hero-scroll-card relative w-[290px] shrink-0 overflow-hidden rounded-[1rem] border border-white/20 bg-white shadow-[0_22px_55px_rgba(0,0,0,0.3)] md:w-[380px] ${index % 2 === 0 ? "rotate-[-2deg]" : "rotate-[2deg]"}`}
+                >
+                  <div className="relative aspect-[16/10]">
+                    <Image src={item.src} alt={item.alt} fill className="object-cover" sizes="(max-width: 1024px) 50vw, 380px" />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/24 to-transparent" />
                 </div>
               ))}
             </div>
+            <div className="hero-scroll-track hero-scroll-track-reverse absolute left-0 top-[66%] flex w-max gap-5 pr-5 will-change-transform">
+              {[...projectCollage.slice().reverse(), ...projectCollage.slice().reverse()].map((item, index) => (
+                <div
+                  key={`bottom-${item.src}-${index}`}
+                  className={`hero-scroll-card relative w-[250px] shrink-0 overflow-hidden rounded-[1rem] border border-white/20 bg-white shadow-[0_22px_55px_rgba(0,0,0,0.28)] md:w-[330px] ${index % 2 === 0 ? "rotate-[2deg]" : "rotate-[-2deg]"}`}
+                >
+                  <div className="relative aspect-[16/10]">
+                    <Image src={item.src} alt={item.alt} fill className="object-cover" sizes="(max-width: 1024px) 44vw, 330px" />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/24 to-transparent" />
+                </div>
+              ))}
+            </div>
+            <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-slate-950/40 to-transparent" />
+            <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-slate-950/40 to-transparent" />
           </div>
 
           <div className="flex w-full flex-wrap items-center justify-center gap-2.5 justify-self-center px-2">
