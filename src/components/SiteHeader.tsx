@@ -92,16 +92,6 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href={siteConfig.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => setMenuOpen(false)}
-            className="inline-flex items-center gap-2 px-1 py-4 font-sans text-lg font-medium text-[#262626] transition hover:scale-[1.01] hover:text-[#262626]"
-          >
-            <GithubIcon className="h-5 w-5" />
-            {siteConfig.githubHandle}
-          </Link>
         </nav>
       </div>
     </header>

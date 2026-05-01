@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { ProjectEntry } from "@/content/projects";
 import { classNames } from "@/lib/classNames";
 
@@ -128,9 +128,12 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const panelTransition = reduceMotion
     ? { duration: 0 }
     : { duration: 0.72, ease: [0, 0, 1, 1] as const };
+  const mobilePanelTransition = reduceMotion
+    ? { duration: 0 }
+    : { duration: 0.92, ease: [0.22, 1, 0.36, 1] as const };
 
   return (
-    <section data-testid="project-carousel" className="relative -mx-2.5 overflow-hidden md:-mx-4">
+    <section data-testid="project-carousel" className="relative overflow-hidden px-3 md:px-4 lg:-mx-4 lg:px-0">
       <div className="relative mx-auto h-[650px] max-w-[128rem] overflow-hidden bg-slate-950/20 md:h-[760px]">
         <button
           type="button"
@@ -211,21 +214,27 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           })}
         </div>
 
-        <motion.div
-          key={activeProject.slug}
-          className={classNames("relative block h-full overflow-hidden md:hidden", pastelPanels[activeProject.visualTone])}
-          initial={reduceMotion ? false : { x: direction * 42, opacity: 0.72 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={panelTransition}
-        >
-          <Link
-            href={"/projects/" + activeProject.slug}
-            aria-label={"Open " + activeProject.name + " project"}
-            className="group relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-          >
-            {projectPanel(activeProject, true, false, 0)}
-          </Link>
-        </motion.div>
+        <div className="relative block h-full overflow-hidden md:hidden">
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.div
+              key={activeProject.slug}
+              custom={direction}
+              className={classNames("absolute inset-0 overflow-hidden", pastelPanels[activeProject.visualTone])}
+              initial={reduceMotion ? false : { x: direction * 92 + "%", opacity: 0.98, scale: 1.01 }}
+              animate={{ x: "0%", opacity: 1, scale: 1, zIndex: 2 }}
+              exit={reduceMotion ? undefined : { x: direction * -38 + "%", opacity: 0.64, scale: 0.985, zIndex: 1 }}
+              transition={mobilePanelTransition}
+            >
+              <Link
+                href={"/projects/" + activeProject.slug}
+                aria-label={"Open " + activeProject.name + " project"}
+                className="group relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              >
+                {projectPanel(activeProject, true, false, 0)}
+              </Link>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );
