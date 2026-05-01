@@ -16,12 +16,6 @@ const toneClasses: Record<ProjectEntry["visualTone"], string> = {
   "naval-tech": "from-[rgba(3,16,28,0.82)] via-[rgba(49,95,159,0.14)] to-transparent"
 };
 
-const categoryLabels: Record<ProjectEntry["category"], string> = {
-  "full-stack": "Full-stack",
-  frontend: "Frontend",
-  game: "Game"
-};
-
 export function ProjectCard({ project, prominent = false }: ProjectCardProps) {
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
   const heightClass = prominent ? "min-h-[560px]" : "min-h-[500px]";
@@ -40,13 +34,6 @@ export function ProjectCard({ project, prominent = false }: ProjectCardProps) {
             sizes={prominent ? "(max-width: 1280px) 100vw, 50vw" : "(max-width: 768px) 100vw, 33vw"}
           />
           <div className={"absolute inset-0 bg-gradient-to-t " + toneClasses[project.visualTone]} />
-          <div className="absolute left-4 top-4 flex flex-wrap gap-2">
-            {[categoryLabels[project.category], project.year, project.deploymentMode === "live" ? "Live" : project.deploymentMode === "hybrid" ? "Hybrid" : "Media"].map((item) => (
-              <span key={item} className="inline-flex rounded-[3px] border border-white/30 bg-slate-950/46 px-3 py-1 text-[11px] uppercase tracking-[2px] text-white backdrop-blur">
-                {item}
-              </span>
-            ))}
-          </div>
         </div>
       ) : null}
 
@@ -77,7 +64,7 @@ export function ProjectCard({ project, prominent = false }: ProjectCardProps) {
             {liveLink ? (
               <Link href={liveLink.href!} target="_blank" rel="noreferrer" className="sharp-button">Live demo</Link>
             ) : null}
-            <Link href={"/projects/" + project.slug} className="sharp-button">View</Link>
+            <Link href={"/projects/" + project.slug} className="sharp-button">View WebApp</Link>
           </div>
         </div>
       </div>

@@ -12,16 +12,7 @@ export default function HomePage() {
       <div className="space-y-16">
         <InteractiveHero />
 
-        <section className="space-y-8">
-          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-            <div className="space-y-3">
-              <p className="section-label text-white">Selected work</p>
-              <h2 className="minimal-heading max-w-4xl text-4xl md:text-5xl">
-                Custom web products with sharp interface direction.
-              </h2>
-            </div>
-            <Link href="/projects" className="sharp-button w-fit">Open explorer</Link>
-          </div>
+        <section>
           <FeaturedProjectsRail />
         </section>
 

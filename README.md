@@ -9,7 +9,7 @@ Modern editorial-style portfolio for Tiana Oblasser and the five selected projec
   - `Chocolate Craft House`
   - `English4U`
   - `PetNest`
-  - `Tetris`
+  - `BrickDrop`
   - `Sea Battle`
 
 ## Commands
@@ -37,7 +37,7 @@ Portfolio media lives in `public/media/projects/*`.
 Phase 1 target:
 
 - Deploy this portfolio to Vercel free.
-- Deploy `Tetris` and `Sea Battle` as separate static Vercel projects.
+- Deploy `BrickDrop` and `Sea Battle` as separate static Vercel projects.
 - Deploy `English4U` first among the full-stack apps.
 - Treat `PetNest` as a second live candidate if backend hosting is stable.
 - Keep `Chocolate Craft House` media-first until payment and email demo mode is finalized.
