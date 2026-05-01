@@ -11,13 +11,25 @@ type ProjectCarouselProps = {
   projects: ProjectEntry[];
 };
 
-const toneOverlay: Record<ProjectEntry["visualTone"], string> = {
-  "warm-luxury": "from-[#21100c]/92 via-[#6f3924]/34 to-transparent",
-  "clean-learning": "from-[#123261]/92 via-[#2563eb]/28 to-transparent",
-  "soft-utility": "from-[#17372f]/92 via-[#2f765d]/30 to-transparent",
-  arcade: "from-[#140b2e]/92 via-[#4f46e5]/30 to-transparent",
-  "naval-tech": "from-[#061827]/92 via-[#1d5f92]/30 to-transparent"
+const pastelPanels: Record<ProjectEntry["visualTone"], string> = {
+  "warm-luxury": "bg-[#e6c9bc]",
+  "clean-learning": "bg-[#d9e8ff]",
+  "soft-utility": "bg-[#dcefe6]",
+  arcade: "bg-[#e2dcff]",
+  "naval-tech": "bg-[#d8edf7]"
 };
+
+const imageGlow: Record<ProjectEntry["visualTone"], string> = {
+  "warm-luxury": "from-[#7a3f2a]/16 via-transparent to-[#f5e4d6]/50",
+  "clean-learning": "from-[#2d67b8]/14 via-transparent to-[#f4f8ff]/56",
+  "soft-utility": "from-[#2f765d]/14 via-transparent to-[#f4fff8]/56",
+  arcade: "from-[#5547b8]/14 via-transparent to-[#f7f3ff]/56",
+  "naval-tech": "from-[#1f6d94]/14 via-transparent to-[#f5fbff]/56"
+};
+
+function wrapIndex(index: number, length: number) {
+  return ((index % length) + length) % length;
+}
 
 function circularOffset(index: number, activeIndex: number, length: number) {
   const raw = index - activeIndex;
@@ -26,124 +38,177 @@ function circularOffset(index: number, activeIndex: number, length: number) {
   return raw;
 }
 
+function projectPanel(project: ProjectEntry, isActive: boolean, shadeOpacity: number) {
+  const hero = project.media.find((item) => item.featured) ?? project.media[0];
+
+  return (
+    <>
+      <div className={classNames("absolute inset-0", pastelPanels[project.visualTone])} />
+      <div className={classNames("absolute inset-0 bg-gradient-to-b", imageGlow[project.visualTone])} />
+
+      {hero ? (
+        <motion.div
+          className="absolute inset-x-0 top-0 h-[67%] px-8 pt-12 md:px-10 md:pt-16"
+          animate={{ scale: isActive ? 1.01 : 0.99, filter: isActive ? "saturate(1.04)" : "saturate(0.92)" }}
+          transition={{ duration: 0.72, ease: [0, 0, 1, 1] as const }}
+        >
+          <Image
+            src={hero.poster ?? hero.src}
+            alt={hero.alt}
+            fill
+            priority={isActive}
+            className="object-contain p-8 drop-shadow-[0_28px_42px_rgba(16,24,40,0.22)] md:p-10"
+            sizes="(max-width: 768px) 100vw, 34vw"
+          />
+        </motion.div>
+      ) : null}
+
+      <div className="absolute inset-x-0 bottom-10 z-20 mx-auto flex max-w-[82%] flex-col items-center text-center text-[#202124] md:bottom-14">
+        <p className="font-sans text-[14px] font-bold uppercase leading-[1.2] tracking-[2px] text-[#262626]">About project</p>
+        <h2 className="mt-[10px] max-w-xl text-balance font-sans text-3xl font-medium leading-[1.32] text-[#262626] md:text-[2.05rem]">
+          {project.name}
+        </h2>
+        <p className="mt-[12px] line-clamp-2 max-w-xl font-sans text-[20px] font-normal leading-[1.55] text-[#262626]/82">
+          {project.tagline}
+        </p>
+        <span className="mt-[10px] inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent px-[1.4em] py-[1em] font-sans text-[14px] font-bold leading-[1.2] tracking-[1px] text-[#262626] transition group-hover:bg-[#262626] group-hover:text-white group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)]">
+          View Project
+        </span>
+      </div>
+
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-30 bg-slate-950"
+        initial={false}
+        animate={{ opacity: shadeOpacity }}
+        transition={{ duration: 0.72, ease: [0, 0, 1, 1] as const }}
+      />
+    </>
+  );
+}
+
 export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const orderedProjects = useMemo(
     () => [...projects].sort((a, b) => Number(Boolean(b.flagship)) - Number(Boolean(a.flagship))),
     [projects]
   );
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [{ activeIndex, direction }, setCarousel] = useState({ activeIndex: 1, direction: 1 });
   const reduceMotion = useReducedMotion();
-  const activeProject = orderedProjects[activeIndex];
 
-  function move(direction: "previous" | "next") {
-    setActiveIndex((current) => {
-      if (direction === "previous") return current === 0 ? orderedProjects.length - 1 : current - 1;
-      return current === orderedProjects.length - 1 ? 0 : current + 1;
+  if (!orderedProjects.length) return null;
+
+  function setActiveProject(index: number) {
+    setCarousel((current) => {
+      const forwardDistance = wrapIndex(index - current.activeIndex, orderedProjects.length);
+      const backwardDistance = wrapIndex(current.activeIndex - index, orderedProjects.length);
+      return {
+        activeIndex: index,
+        direction: forwardDistance <= backwardDistance ? 1 : -1
+      };
     });
   }
 
+  function move(nextDirection: -1 | 1) {
+    setCarousel((current) => ({
+      activeIndex: wrapIndex(current.activeIndex + nextDirection, orderedProjects.length),
+      direction: nextDirection
+    }));
+  }
+
+  const activeProject = orderedProjects[activeIndex];
+  const panelTransition = reduceMotion
+    ? { duration: 0 }
+    : { duration: 0.72, ease: [0, 0, 1, 1] as const };
+
   return (
-    <section className="relative -mx-2.5 overflow-hidden py-4 md:-mx-4">
-      <div className="mx-auto mb-7 max-w-3xl px-4 text-center">
-        <p className="text-xs uppercase tracking-[0.32em] text-white/72">Portfolio showcase</p>
-        <h1 className="mt-3 font-display text-4xl leading-tight text-white md:text-6xl">{activeProject.name}</h1>
-      </div>
-
-      <div className="relative min-h-[660px] overflow-hidden md:min-h-[720px]">
+    <section data-testid="project-carousel" className="relative -mx-2.5 overflow-hidden md:-mx-4">
+      <div className="relative mx-auto h-[650px] max-w-[128rem] overflow-hidden bg-slate-950/20 md:h-[760px]">
         <button
           type="button"
-          onClick={() => move("previous")}
+          onClick={() => move(-1)}
           aria-label="Show previous project"
-          className="absolute left-3 top-1/2 z-40 flex -translate-y-1/2 items-center justify-center px-3 py-5 text-4xl font-extralight leading-none text-white/72 transition hover:-translate-x-1 hover:text-white md:left-8 md:text-6xl"
+          className="absolute left-4 top-1/2 z-40 flex -translate-y-1/2 items-center justify-center px-2 py-5 text-5xl font-extralight leading-none text-white/86 transition hover:-translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:left-7 md:text-7xl"
         >
-          <span aria-hidden="true">&lt;</span>
+          <span aria-hidden="true">‹</span>
         </button>
         <button
           type="button"
-          onClick={() => move("next")}
+          onClick={() => move(1)}
           aria-label="Show next project"
-          className="absolute right-3 top-1/2 z-40 flex -translate-y-1/2 items-center justify-center px-3 py-5 text-4xl font-extralight leading-none text-white/72 transition hover:translate-x-1 hover:text-white md:right-8 md:text-6xl"
+          className="absolute right-4 top-1/2 z-40 flex -translate-y-1/2 items-center justify-center px-2 py-5 text-5xl font-extralight leading-none text-white/86 transition hover:translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:right-7 md:text-7xl"
         >
-          <span aria-hidden="true">&gt;</span>
+          <span aria-hidden="true">›</span>
         </button>
 
-        <div className="relative mx-auto h-[610px] max-w-[118rem] md:h-[680px]">
+        <div className="relative hidden h-full md:block">
           {orderedProjects.map((project, index) => {
             const offset = circularOffset(index, activeIndex, orderedProjects.length);
             const absOffset = Math.abs(offset);
+            const isActive = offset === 0;
             const isVisible = absOffset <= 2;
-            const isActive = absOffset === 0;
-            const hero = project.media.find((item) => item.featured) ?? project.media[0];
-            const x = offset * 430;
-            const scale = isActive ? 1 : absOffset === 1 ? 0.78 : 0.64;
-            const opacity = isActive ? 1 : absOffset === 1 ? 0.66 : 0.28;
-            const zIndex = 30 - absOffset;
+            const left = offset === 0 ? "31.25%" : offset < 0 ? (offset === -1 ? "0%" : "-31.25%") : offset === 1 ? "68.75%" : "100%";
+            const width = isActive ? "37.5%" : "31.25%";
+            const top = "0%";
+            const height = "100%";
 
             return (
-              <motion.article
+              <motion.div
                 key={project.slug}
                 className={classNames(
-                  "absolute left-1/2 top-4 h-[560px] w-[min(760px,82vw)] -translate-x-1/2 overflow-hidden rounded-[0.9rem] bg-slate-950 shadow-[0_34px_100px_rgba(5,16,35,0.34)] outline outline-1 outline-white/12 md:h-[620px]",
+                  "absolute overflow-hidden transition-shadow",
                   isVisible ? "pointer-events-auto" : "pointer-events-none",
-                  isActive ? "cursor-pointer" : "cursor-pointer"
+                  pastelPanels[project.visualTone]
                 )}
-                animate={{ x, scale, opacity }}
-                transition={reduceMotion ? { duration: 0 } : { duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
-                onClick={() => {
-                  if (!isActive) setActiveIndex(index);
+                initial={false}
+                animate={{
+                  left,
+                  width,
+                  top,
+                  height,
+                  opacity: absOffset <= 1 ? 1 : 0,
+                  scale: 1
                 }}
-                onKeyDown={(event) => {
-                  if (isActive) return;
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    setActiveIndex(index);
-                  }
-                }}
-                role={isActive ? undefined : "button"}
-                tabIndex={isActive || !isVisible ? undefined : 0}
-                style={{ zIndex, display: isVisible ? "block" : "none" }}
+                transition={panelTransition}
+                style={{ left, top, width, height, zIndex: isActive ? 30 : 20 - absOffset }}
               >
-                {isActive ? <Link href={`/projects/${project.slug}`} className="absolute inset-0 z-20" aria-label={`Open ${project.name} case study`} /> : null}
-                {hero ? (
-                  <Image
-                    src={hero.poster ?? hero.src}
-                    alt={hero.alt}
-                    fill
-                    priority={isActive}
-                    className="object-cover"
-                    sizes="(max-width: 768px) 82vw, 760px"
-                  />
-                ) : null}
-                <div className={`absolute inset-0 bg-gradient-to-t ${toneOverlay[project.visualTone]}`} />
-                {!isActive ? <div className="absolute inset-0 bg-slate-950/50" /> : null}
-
-                <div className={classNames("absolute inset-x-0 bottom-0 z-10 p-6 text-white md:p-9", isActive ? "opacity-100" : "opacity-0")}> 
-                  <p className="text-xs uppercase tracking-[0.3em] text-white/70">About project</p>
-                  <h2 className="mt-3 max-w-xl font-display text-4xl leading-tight md:text-5xl">{project.name}</h2>
-                  <p className="mt-3 max-w-xl text-base leading-8 text-white/82">{project.tagline}</p>
-                  <span className="mt-6 inline-flex rounded-full bg-white px-5 py-3 text-sm uppercase tracking-[0.18em] text-slate-950 transition group-hover:bg-blue-50">
-                    Learn more
-                  </span>
-                </div>
-              </motion.article>
+                {isActive ? (
+                  <Link
+                    href={"/projects/" + project.slug}
+                    aria-label={"Open " + project.name + " project"}
+                    className="group relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                  >
+                    {projectPanel(project, true, 0)}
+                  </Link>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setActiveProject(index)}
+                    className="group relative block h-full w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                    aria-label={"Center " + project.name}
+                    tabIndex={absOffset === 1 ? 0 : -1}
+                  >
+                    {projectPanel(project, false, 0.45)}
+                  </button>
+                )}
+              </motion.div>
             );
           })}
         </div>
-      </div>
 
-      <div className="mt-7 flex flex-wrap justify-center gap-2 px-4">
-        {orderedProjects.map((project, index) => (
-          <button
-            key={project.slug}
-            type="button"
-            onClick={() => setActiveIndex(index)}
-            aria-label={`Show ${project.name}`}
-            className={classNames(
-              "h-2 rounded-full transition-all",
-              activeIndex === index ? "w-12 bg-white" : "w-2 bg-white/34 hover:bg-white/62"
-            )}
-          />
-        ))}
+        <motion.div
+          key={activeProject.slug}
+          className={classNames("relative block h-full overflow-hidden md:hidden", pastelPanels[activeProject.visualTone])}
+          initial={reduceMotion ? false : { x: direction * 42, opacity: 0.72 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={panelTransition}
+        >
+          <Link
+            href={"/projects/" + activeProject.slug}
+            aria-label={"Open " + activeProject.name + " project"}
+            className="group relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+          >
+            {projectPanel(activeProject, true, 0)}
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

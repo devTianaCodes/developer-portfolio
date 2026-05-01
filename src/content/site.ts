@@ -8,7 +8,7 @@ export type SocialLink = {
 export const siteConfig = {
   name: "Tiana Oblasser",
   shortName: "TO",
-  role: "Frontend + Full-Stack Web Developer",
+  role: "Full Stack Web Developer",
   title: "Tiana Oblasser | Modern Web Developer Portfolio",
   description:
     "Professional web developer portfolio for Tiana Oblasser, featuring premium UI, full-stack product case studies, interactive frontend work, and Vercel-ready delivery.",

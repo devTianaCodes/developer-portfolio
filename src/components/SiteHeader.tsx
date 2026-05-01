@@ -1,7 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { GithubIcon } from "@/components/GithubIcon";
 import { siteConfig } from "@/content/site";
-import { classNames } from "@/lib/classNames";
 
 const navItems = [
   { href: "/projects", label: "Projects" },
@@ -11,30 +11,34 @@ const navItems = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/18 bg-[#203656]/64 backdrop-blur-2xl">
+    <header className="sticky top-0 z-40 border-b border-line bg-white/82 backdrop-blur-2xl">
       <div className="mx-auto flex max-w-[96rem] items-center justify-between gap-6 px-2.5 py-4 md:px-4">
         <Link href="/" className="group inline-flex min-w-0 items-center gap-4">
-          <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent/25 bg-[linear-gradient(135deg,#203656,#315f9f)] text-sm font-semibold uppercase tracking-[0.2em] text-white shadow-[0_12px_28px_rgba(49,95,159,0.22)]">
-            {siteConfig.shortName}
+          <span className="relative h-[70px] w-[70px] shrink-0 overflow-hidden rounded-full border-2 border-[#262626] bg-white shadow-[0_8px_20px_rgba(15,23,42,0.12)] transition group-hover:scale-[1.03]">
+            <Image
+              src="/media/profile/tiana-logo-coding-blank.png"
+              alt="Tiana Oblasser"
+              fill
+              sizes="70px"
+              className="scale-110 object-cover object-center"
+              priority
+            />
           </span>
           <span className="min-w-0">
-            <span className="block truncate font-display text-2xl text-white">{siteConfig.name}</span>
-            <span className="block text-[11px] uppercase tracking-[0.28em] text-blue-100/72">
+            <span className="block truncate font-sans text-2xl font-medium text-[#262626]">{siteConfig.name}</span>
+            <span className="block text-[11px] uppercase tracking-[0.28em] text-[#262626]/62">
               {siteConfig.role}
             </span>
           </span>
         </Link>
 
-        <div className="flex items-center gap-3">
-          <nav className="hidden items-center gap-2 md:flex">
+        <div className="flex items-center gap-4">
+          <nav className="hidden items-center gap-5 md:flex">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={classNames(
-                  "rounded-full bg-white/10 px-4 py-2 text-sm text-white transition",
-                  "hover:bg-white/16 hover:text-blue-200"
-                )}
+                className="text-sm font-medium text-[#262626] transition hover:text-accent"
               >
                 {item.label}
               </Link>
@@ -45,7 +49,7 @@ export function SiteHeader() {
             href={siteConfig.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="hidden items-center gap-2 text-sm text-blue-100 transition hover:-translate-y-0.5 hover:text-white md:inline-flex"
+            className="hidden items-center gap-2 text-sm text-[#262626] transition hover:text-accent md:inline-flex"
           >
             <GithubIcon className="h-4 w-4" />
             {siteConfig.githubHandle}

@@ -179,7 +179,7 @@ export function ProjectTechBadge({ tech, compact = false, className = "" }: Proj
 
   return (
     <span
-      className={`inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-line bg-white/78 ${padding} ${size} uppercase tracking-[0.12em] text-black ${className}`}
+      className={`inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-[3px] border border-line bg-white/78 ${padding} ${size} uppercase tracking-[0.12em] text-black ${className}`}
     >
       {icon ? <TechIcon type={icon} /> : null}
       {tech}

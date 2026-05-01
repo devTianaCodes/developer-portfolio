@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --color-background: #f3f6fb;
+  --color-background: #edf3f8;
   --color-panel: rgba(255, 255, 255, 0.82);
   --color-panel-strong: #ffffff;
   --color-ink: #111827;
@@ -11,7 +11,7 @@
   --color-accent: #315f9f;
   --color-accent-soft: #9db7d8;
   --color-line: rgba(51, 65, 85, 0.1);
-  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --font-display: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
   --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
 }
 
@@ -25,10 +25,7 @@ html {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at 18% 0%, rgba(96, 165, 250, 0.12), transparent 34%),
-    radial-gradient(circle at 86% 10%, rgba(49, 95, 159, 0.1), transparent 32%),
-    linear-gradient(180deg, #243b61 0%, #dce7f5 42%, #f7f9fc 100%);
+  background: var(--color-background);
   color: var(--color-ink);
 }
 
@@ -129,5 +126,43 @@ body::-webkit-scrollbar,
   .hero-scroll-gallery:hover .hero-scroll-card,
   .hero-scroll-gallery:focus-within .hero-scroll-card {
     transform: none;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply font-sans text-xs font-bold uppercase leading-[1.2] tracking-[2px] text-accent;
+  }
+
+  .minimal-heading {
+    @apply font-sans font-medium leading-[1.16] tracking-normal text-ink;
+  }
+
+  .minimal-text {
+    @apply font-sans text-base font-normal leading-7 text-muted;
+  }
+
+  .sharp-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-[3px] border-2 border-[#262626] bg-transparent px-[1.4em] py-[1em] font-sans text-sm font-bold leading-[1.2] tracking-[1px] text-[#262626] transition;
+  }
+
+  .sharp-button:hover {
+    @apply bg-[#262626] text-white shadow-[0_2px_10px_rgba(0,0,0,0.13)];
+  }
+
+  .sharp-button-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-[3px] border-2 border-white/80 bg-transparent px-[1.4em] py-[1em] font-sans text-sm font-bold leading-[1.2] tracking-[1px] text-white transition;
+  }
+
+  .sharp-button-dark:hover {
+    @apply bg-white text-[#262626] shadow-[0_2px_10px_rgba(0,0,0,0.13)];
+  }
+
+  .sharp-panel {
+    @apply rounded-[6px] border border-line bg-white/80 shadow-[0_18px_48px_rgba(15,23,42,0.08)];
+  }
+
+  .sharp-panel-soft {
+    @apply rounded-[6px] border border-line bg-white/60;
   }
 }
