@@ -512,7 +512,7 @@ export const projects: ProjectEntry[] = [
       }
     ],
     links: [
-      { label: "Live Demo", href: "https://tiana-brickdrop.vercel.app", kind: "live" },
+      { label: "Live Demo", href: "https://tiana-tetris.vercel.app", kind: "live" },
       { label: "Case Study", href: "/projects/brickdrop", kind: "case-study" }
     ],
     demoNotes: [
