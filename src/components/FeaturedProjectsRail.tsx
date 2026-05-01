@@ -14,7 +14,7 @@ export function FeaturedProjectsRail() {
         </div>
         <div className="grid gap-5 lg:grid-cols-3">
           {fullStackProjects.map((project) => (
-            <ProjectCard key={project.slug} project={project} prominent={Boolean(project.flagship)} />
+            <ProjectCard key={project.slug} project={project} prominent={Boolean(project.flagship)} tallMedia />
           ))}
         </div>
       </section>

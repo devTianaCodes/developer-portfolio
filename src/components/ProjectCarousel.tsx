@@ -75,7 +75,12 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
         <p className="mt-[12px] line-clamp-2 max-w-xl font-sans text-[20px] font-normal leading-[1.55] text-[#262626]/82">
           {project.tagline}
         </p>
-        <span className="mt-[10px] inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent px-[1.4em] py-[1em] font-sans text-[14px] font-bold leading-[1.2] tracking-[1px] text-[#262626] transition group-hover:scale-[1.03] group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)]">
+        <span
+          className={classNames(
+            "mt-[10px] inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent px-[1.4em] py-[1em] font-sans text-[14px] font-bold leading-[1.2] tracking-[1px] text-[#262626] transition group-hover:scale-[1.03] group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)]",
+            isActive && "group-hover:bg-[#262626] group-hover:text-white"
+          )}
+        >
           View WebApp
         </span>
       </div>
@@ -131,7 +136,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           type="button"
           onClick={() => move(-1)}
           aria-label="Show previous project"
-          className="absolute left-4 top-1/2 z-40 flex -translate-y-1/2 items-center justify-center px-2 py-5 text-5xl font-extralight leading-none text-white/86 transition hover:-translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:left-7 md:text-7xl"
+          className="absolute left-4 top-1/2 z-[80] flex -translate-y-1/2 items-center justify-center px-2 py-5 text-5xl font-extralight leading-none text-white/90 drop-shadow-[0_3px_12px_rgba(0,0,0,0.45)] transition hover:-translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:left-7 md:text-7xl"
         >
           <span aria-hidden="true">‹</span>
         </button>
@@ -139,7 +144,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           type="button"
           onClick={() => move(1)}
           aria-label="Show next project"
-          className="absolute right-4 top-1/2 z-40 flex -translate-y-1/2 items-center justify-center px-2 py-5 text-5xl font-extralight leading-none text-white/86 transition hover:translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:right-7 md:text-7xl"
+          className="absolute right-4 top-1/2 z-[80] flex -translate-y-1/2 items-center justify-center px-2 py-5 text-5xl font-extralight leading-none text-white/90 drop-shadow-[0_3px_12px_rgba(0,0,0,0.45)] transition hover:translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:right-7 md:text-7xl"
         >
           <span aria-hidden="true">›</span>
         </button>

@@ -615,7 +615,7 @@ export const projects: ProjectEntry[] = [
       }
     ],
     links: [
-      { label: "Live Demo", href: "https://tiana-sea-battle.vercel.app", kind: "live" },
+      { label: "Live Demo", href: "/demos/sea-battle.html", kind: "live" },
       { label: "Case Study", href: "/projects/sea-battle", kind: "case-study" }
     ],
     demoNotes: [
