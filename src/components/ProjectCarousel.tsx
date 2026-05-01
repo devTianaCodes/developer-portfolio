@@ -136,7 +136,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           type="button"
           onClick={() => move(-1)}
           aria-label="Show previous project"
-          className="absolute left-4 top-1/2 z-[80] flex -translate-y-1/2 items-center justify-center px-2 py-5 text-5xl font-extralight leading-none text-white/90 drop-shadow-[0_3px_12px_rgba(0,0,0,0.45)] transition hover:-translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:left-7 md:text-7xl"
+          className="absolute left-4 top-1/2 z-[80] flex -translate-y-1/2 items-center justify-center px-2 py-5 text-5xl font-medium leading-none text-white/95 drop-shadow-[0_3px_12px_rgba(0,0,0,0.48)] transition hover:-translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:left-7 md:text-7xl"
         >
           <span aria-hidden="true">‹</span>
         </button>
@@ -144,7 +144,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           type="button"
           onClick={() => move(1)}
           aria-label="Show next project"
-          className="absolute right-4 top-1/2 z-[80] flex -translate-y-1/2 items-center justify-center px-2 py-5 text-5xl font-extralight leading-none text-white/90 drop-shadow-[0_3px_12px_rgba(0,0,0,0.45)] transition hover:translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:right-7 md:text-7xl"
+          className="absolute right-4 top-1/2 z-[80] flex -translate-y-1/2 items-center justify-center px-2 py-5 text-5xl font-medium leading-none text-white/95 drop-shadow-[0_3px_12px_rgba(0,0,0,0.48)] transition hover:translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:right-7 md:text-7xl"
         >
           <span aria-hidden="true">›</span>
         </button>
