@@ -6,6 +6,7 @@ import type { ProjectEntry } from "@/content/projects";
 type ProjectCardProps = {
   project: ProjectEntry;
   prominent?: boolean;
+  tallMedia?: boolean;
 };
 
 const toneClasses: Record<ProjectEntry["visualTone"], string> = {
@@ -16,16 +17,17 @@ const toneClasses: Record<ProjectEntry["visualTone"], string> = {
   "naval-tech": "from-[rgba(3,16,28,0.82)] via-[rgba(49,95,159,0.14)] to-transparent"
 };
 
-export function ProjectCard({ project, prominent = false }: ProjectCardProps) {
+export function ProjectCard({ project, prominent = false, tallMedia = false }: ProjectCardProps) {
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
   const heightClass = prominent ? "min-h-[560px]" : "min-h-[500px]";
   const liveLink = project.links.find((link) => link.kind === "live" && link.href);
+  const mediaAspect = prominent || tallMedia ? "aspect-[16/10]" : "aspect-[16/9]";
 
   return (
     <article className={"group relative flex " + heightClass + " cursor-pointer flex-col overflow-hidden sharp-panel transition duration-300 hover:border-[#262626]/34 hover:shadow-[0_22px_58px_rgba(15,23,42,0.12)]"}>
       <Link href={"/projects/" + project.slug} aria-label={"Open " + project.name + " case study"} className="absolute inset-0 z-10" />
       {hero ? (
-        <div className={"relative " + (prominent ? "aspect-[16/10]" : "aspect-[16/9]") + " overflow-hidden bg-slate-900"}>
+        <div className={"relative " + mediaAspect + " overflow-hidden bg-slate-900"}>
           <Image
             src={hero.poster ?? hero.src}
             alt={hero.alt}
