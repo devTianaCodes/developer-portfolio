@@ -38,7 +38,7 @@ function circularOffset(index: number, activeIndex: number, length: number) {
   return raw;
 }
 
-function projectPanel(project: ProjectEntry, isActive: boolean, shadeOpacity: number) {
+function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boolean, shadeOpacity: number) {
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
 
   return (
@@ -49,15 +49,19 @@ function projectPanel(project: ProjectEntry, isActive: boolean, shadeOpacity: nu
       {hero ? (
         <motion.div
           className="absolute inset-x-0 top-0 h-[67%] px-8 pt-12 md:px-10 md:pt-16"
-          animate={{ scale: isActive ? 1.01 : 0.99, filter: isActive ? "saturate(1.04)" : "saturate(0.92)" }}
-          transition={{ duration: 0.72, ease: [0, 0, 1, 1] as const }}
+          animate={{
+            scale: isHovered ? 1.065 : isActive ? 1.018 : 0.99,
+            y: isHovered ? -18 : 0,
+            filter: isHovered ? "saturate(1.12) contrast(1.04)" : isActive ? "saturate(1.04)" : "saturate(0.92)"
+          }}
+          transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] as const }}
         >
           <Image
             src={hero.poster ?? hero.src}
             alt={hero.alt}
             fill
             priority={isActive}
-            className="object-contain p-8 drop-shadow-[0_28px_42px_rgba(16,24,40,0.22)] md:p-10"
+            className="object-contain p-8 drop-shadow-[0_28px_42px_rgba(16,24,40,0.22)] transition-transform duration-500 ease-out group-hover:scale-[1.035] md:p-10"
             sizes="(max-width: 768px) 100vw, 34vw"
           />
         </motion.div>
@@ -71,8 +75,8 @@ function projectPanel(project: ProjectEntry, isActive: boolean, shadeOpacity: nu
         <p className="mt-[12px] line-clamp-2 max-w-xl font-sans text-[20px] font-normal leading-[1.55] text-[#262626]/82">
           {project.tagline}
         </p>
-        <span className="mt-[10px] inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent px-[1.4em] py-[1em] font-sans text-[14px] font-bold leading-[1.2] tracking-[1px] text-[#262626] transition group-hover:bg-[#262626] group-hover:text-white group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)]">
-          View Project
+        <span className="mt-[10px] inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent px-[1.4em] py-[1em] font-sans text-[14px] font-bold leading-[1.2] tracking-[1px] text-[#262626] transition group-hover:scale-[1.03] group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)]">
+          View WebApp
         </span>
       </div>
 
@@ -93,6 +97,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   );
   const [{ activeIndex, direction }, setCarousel] = useState({ activeIndex: 1, direction: 1 });
   const reduceMotion = useReducedMotion();
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   if (!orderedProjects.length) return null;
 
@@ -145,6 +150,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
             const absOffset = Math.abs(offset);
             const isActive = offset === 0;
             const isVisible = absOffset <= 2;
+            const isHovered = hoveredIndex === index;
             const left = offset === 0 ? "31.25%" : offset < 0 ? (offset === -1 ? "0%" : "-31.25%") : offset === 1 ? "68.75%" : "100%";
             const width = isActive ? "37.5%" : "31.25%";
             const top = "0%";
@@ -154,7 +160,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
               <motion.div
                 key={project.slug}
                 className={classNames(
-                  "absolute overflow-hidden transition-shadow",
+                  "absolute overflow-hidden transition-shadow duration-500 ease-out",
                   isVisible ? "pointer-events-auto" : "pointer-events-none",
                   pastelPanels[project.visualTone]
                 )}
@@ -165,10 +171,16 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                   top,
                   height,
                   opacity: absOffset <= 1 ? 1 : 0,
-                  scale: 1
+                  scale: isHovered ? (isActive ? 1.035 : 1.075) : 1,
+                  y: isHovered ? (isActive ? -8 : -16) : 0,
+                  boxShadow: isHovered ? "0 34px 90px rgba(15, 23, 42, 0.26)" : "0 0 0 rgba(15, 23, 42, 0)"
                 }}
                 transition={panelTransition}
-                style={{ left, top, width, height, zIndex: isActive ? 30 : 20 - absOffset }}
+                style={{ left, top, width, height, zIndex: isHovered ? 45 : isActive ? 30 : 20 - absOffset }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                onFocus={() => setHoveredIndex(index)}
+                onBlur={() => setHoveredIndex(null)}
               >
                 {isActive ? (
                   <Link
@@ -176,7 +188,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                     aria-label={"Open " + project.name + " project"}
                     className="group relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                   >
-                    {projectPanel(project, true, 0)}
+                    {projectPanel(project, true, isHovered, 0)}
                   </Link>
                 ) : (
                   <button
@@ -186,7 +198,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                     aria-label={"Center " + project.name}
                     tabIndex={absOffset === 1 ? 0 : -1}
                   >
-                    {projectPanel(project, false, 0.45)}
+                    {projectPanel(project, false, isHovered, isHovered ? 0.18 : 0.45)}
                   </button>
                 )}
               </motion.div>
@@ -206,7 +218,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
             aria-label={"Open " + activeProject.name + " project"}
             className="group relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
           >
-            {projectPanel(activeProject, true, 0)}
+            {projectPanel(activeProject, true, false, 0)}
           </Link>
         </motion.div>
       </div>

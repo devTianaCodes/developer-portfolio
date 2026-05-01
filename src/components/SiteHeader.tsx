@@ -32,13 +32,13 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-12 lg:gap-16">
           <nav className="hidden items-center gap-5 md:flex">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-[#262626] transition hover:text-accent"
+                className="text-[0.98rem] font-medium leading-none text-[#262626] transition hover:scale-105 hover:text-[#262626]"
               >
                 {item.label}
               </Link>
@@ -49,7 +49,7 @@ export function SiteHeader() {
             href={siteConfig.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="hidden items-center gap-2 text-sm text-[#262626] transition hover:text-accent md:inline-flex"
+            className="hidden items-center gap-2 text-[0.98rem] leading-none text-[#262626] transition hover:scale-105 hover:text-[#262626] md:inline-flex"
           >
             <GithubIcon className="h-4 w-4" />
             {siteConfig.githubHandle}

@@ -9,7 +9,7 @@ export function FeaturedProjectsRail() {
     <div className="space-y-12">
       <section className="space-y-5">
         <div className="space-y-2">
-          <p className="section-label text-white">Full-stack web apps</p>
+          <p className="section-label text-accent">Full-stack web apps</p>
           <h3 className="minimal-heading text-3xl md:text-4xl">Product-focused applications.</h3>
         </div>
         <div className="grid gap-5 lg:grid-cols-3">

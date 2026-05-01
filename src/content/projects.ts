@@ -2,7 +2,7 @@ export type ProjectSlug =
   | "chocolate"
   | "english4u"
   | "petnest"
-  | "tetris"
+  | "brickdrop"
   | "sea-battle";
 
 export type DeploymentMode = "live" | "media" | "hybrid";
@@ -129,16 +129,16 @@ export const projects: ProjectEntry[] = [
     media: [
       {
         kind: "image",
-        src: "/media/projects/chocolate/showcase/01.png",
+        src: "/media/projects/chocolate/showcase/06.png",
         alt: "Chocolate Craft House screenshot 1",
-        width: 2944,
-        height: 1808,
+        width: 2868,
+        height: 1762,
         featured: true,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/chocolate/showcase/02.png",
+        src: "/media/projects/chocolate/showcase/01.png",
         alt: "Chocolate Craft House screenshot 2",
         width: 2944,
         height: 1808,
@@ -146,26 +146,34 @@ export const projects: ProjectEntry[] = [
       },
       {
         kind: "image",
-        src: "/media/projects/chocolate/showcase/03.png",
+        src: "/media/projects/chocolate/showcase/05.png",
         alt: "Chocolate Craft House screenshot 3",
-        width: 2228,
-        height: 1674,
+        width: 2858,
+        height: 1784,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/chocolate/showcase/02.png",
+        alt: "Chocolate Craft House screenshot 4",
+        width: 2944,
+        height: 1808,
         status: "ready"
       },
       {
         kind: "image",
         src: "/media/projects/chocolate/showcase/04.png",
-        alt: "Chocolate Craft House screenshot 4",
+        alt: "Chocolate Craft House screenshot 5",
         width: 2858,
         height: 1734,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/chocolate/showcase/05.png",
-        alt: "Chocolate Craft House screenshot 5",
-        width: 2858,
-        height: 1784,
+        src: "/media/projects/chocolate/showcase/03.png",
+        alt: "Chocolate Craft House screenshot 6",
+        width: 2228,
+        height: 1674,
         status: "ready"
       }
     ],
@@ -249,10 +257,10 @@ export const projects: ProjectEntry[] = [
     media: [
       {
         kind: "image",
-        src: "/media/projects/english4u/showcase/01.png",
+        src: "/media/projects/english4u/showcase/05.png",
         alt: "English4U screenshot 1",
-        width: 2602,
-        height: 1626,
+        width: 2818,
+        height: 1808,
         featured: true,
         status: "ready"
       },
@@ -266,26 +274,18 @@ export const projects: ProjectEntry[] = [
       },
       {
         kind: "image",
-        src: "/media/projects/english4u/showcase/03.png",
-        alt: "English4U screenshot 3",
-        width: 2602,
-        height: 1818,
-        status: "ready"
-      },
-      {
-        kind: "image",
         src: "/media/projects/english4u/showcase/04.png",
-        alt: "English4U screenshot 4",
+        alt: "English4U screenshot 3",
         width: 2602,
         height: 1516,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/english4u/showcase/05.png",
-        alt: "English4U screenshot 5",
-        width: 2818,
-        height: 1808,
+        src: "/media/projects/english4u/showcase/03.png",
+        alt: "English4U screenshot 4",
+        width: 2602,
+        height: 1818,
         status: "ready"
       }
     ],
@@ -371,17 +371,25 @@ export const projects: ProjectEntry[] = [
     media: [
       {
         kind: "image",
-        src: "/media/projects/petnest/showcase/01.png",
+        src: "/media/projects/petnest/showcase/05.png",
         alt: "PetNest screenshot 1",
-        width: 2786,
-        height: 1808,
+        width: 2858,
+        height: 1784,
         featured: true,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/petnest/showcase/02.png",
+        src: "/media/projects/petnest/showcase/01.png",
         alt: "PetNest screenshot 2",
+        width: 2786,
+        height: 1808,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/petnest/showcase/02.png",
+        alt: "PetNest screenshot 3",
         width: 2856,
         height: 1802,
         status: "ready"
@@ -389,7 +397,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/petnest/showcase/03.png",
-        alt: "PetNest screenshot 3",
+        alt: "PetNest screenshot 4",
         width: 2856,
         height: 1818,
         status: "ready"
@@ -397,14 +405,6 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/petnest/showcase/04.png",
-        alt: "PetNest screenshot 4",
-        width: 2858,
-        height: 1784,
-        status: "ready"
-      },
-      {
-        kind: "image",
-        src: "/media/projects/petnest/showcase/05.png",
         alt: "PetNest screenshot 5",
         width: 2858,
         height: 1784,
@@ -424,15 +424,15 @@ export const projects: ProjectEntry[] = [
     ]
   },
   {
-    slug: "tetris",
-    name: "Tetris",
+    slug: "brickdrop",
+    name: "BrickDrop",
     tagline: "Fast, focused browser game with modern polish and classic scoring pressure.",
     summary:
-      "A React and Vite implementation of Tetris with line clearing, level progression, ghost pieces, bag randomization, pause handling, and responsive styling. It is the most immediate interaction demo in the portfolio.",
+      "A React and Vite implementation of BrickDrop with line clearing, level progression, ghost pieces, bag randomization, pause handling, and responsive styling. It is the most immediate interaction demo in the portfolio.",
     role: "Frontend gameplay engineering",
     category: "game",
     deploymentMode: "live",
-    repoPath: "/Users/parents/Developer/Tetris",
+    repoPath: "/Users/parents/Developer/BrickDrop",
     year: "2025",
     visualTone: "arcade",
     hook: "A compact game build that proves strong frontend logic can be immediately playable.",
@@ -448,7 +448,7 @@ export const projects: ProjectEntry[] = [
     solution:
       "The board, piece movement, locking, line clearing, and scoring logic live directly in the app component. The implementation uses ghost-piece previews, level scaling, and a bag system to give the game a more polished feel.",
     outcome:
-      "Tetris gives the portfolio an instantly testable live experience and shows tight frontend logic without needing backend infrastructure.",
+      "BrickDrop gives the portfolio an instantly testable live experience and shows tight frontend logic without needing backend infrastructure.",
     features: [
       "Line clear scoring and level progression",
       "Ghost piece preview",
@@ -479,33 +479,41 @@ export const projects: ProjectEntry[] = [
     media: [
       {
         kind: "image",
-        src: "/media/projects/tetris/showcase/01.png",
-        alt: "Tetris screenshot 1",
-        width: 2944,
-        height: 1808,
+        src: "/media/projects/brickdrop/showcase/04.png",
+        alt: "BrickDrop screenshot 1",
+        width: 2704,
+        height: 1762,
         featured: true,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/tetris/showcase/02.png",
-        alt: "Tetris screenshot 2",
+        src: "/media/projects/brickdrop/showcase/01.png",
+        alt: "BrickDrop screenshot 2",
+        width: 2944,
+        height: 1808,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/brickdrop/showcase/02.png",
+        alt: "BrickDrop screenshot 3",
         width: 2568,
         height: 1662,
         status: "ready"
       },
       {
         kind: "image",
-        src: "/media/projects/tetris/showcase/03.png",
-        alt: "Tetris screenshot 3",
-        width: 2856,
-        height: 1818,
+        src: "/media/projects/brickdrop/showcase/03.png",
+        alt: "BrickDrop screenshot 4",
+        width: 2704,
+        height: 1762,
         status: "ready"
       }
     ],
     links: [
-      { label: "Live Demo", href: "https://tiana-tetris.vercel.app", kind: "live" },
-      { label: "Case Study", href: "/projects/tetris", kind: "case-study" }
+      { label: "Live Demo", href: "https://tiana-brickdrop.vercel.app", kind: "live" },
+      { label: "Case Study", href: "/projects/brickdrop", kind: "case-study" }
     ],
     demoNotes: [
       "Now live on Vercel as a standalone static demo linked directly from this portfolio.",

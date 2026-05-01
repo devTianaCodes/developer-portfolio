@@ -17,7 +17,7 @@ const projectCollage = [
   { src: "/media/projects/english4u/showcase/01.png", alt: "English4U project screenshot" },
   { src: "/media/projects/chocolate/showcase/01.png", alt: "Chocolate Craft House project screenshot" },
   { src: "/media/projects/petnest/showcase/01.png", alt: "PetNest project screenshot" },
-  { src: "/media/projects/tetris/showcase/01.png", alt: "Tetris project screenshot" },
+  { src: "/media/projects/brickdrop/showcase/01.png", alt: "BrickDrop project screenshot" },
   { src: "/media/projects/sea-battle/showcase/01.png", alt: "Sea Battle project screenshot" }
 ];
 
@@ -45,7 +45,7 @@ export function InteractiveHero() {
           <div className="space-y-7">
             <div className="space-y-4">
               <h1 className="max-w-5xl font-sans text-[3.2rem] leading-[1.02] tracking-normal text-white md:text-[5.2rem]">
-                Sharp web products.
+                Product-minded web experiences.
               </h1>
             </div>
 
