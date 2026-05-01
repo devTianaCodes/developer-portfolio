@@ -53,29 +53,29 @@ export function ProjectExplorer({ projects }: { projects: ProjectEntry[] }) {
       <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
         <div className="space-y-3">
           <p className="text-xs uppercase tracking-[0.3em] text-accent">Project explorer</p>
-          <h2 className="font-display text-4xl text-ink md:text-5xl">Filter the work by the signal reviewers need.</h2>
-          <p className="max-w-2xl text-base leading-8 text-muted">
+          <h2 className="minimal-heading text-4xl md:text-5xl">Filter the work by the signal reviewers need.</h2>
+          <p className="minimal-text max-w-2xl">
             Jump between product systems, live interaction demos, and flagship case studies without losing the story behind each project.
           </p>
         </div>
-        <div className="rounded-[1.25rem] border border-line bg-white/76 p-4 shadow-editorial">
+        <div className="rounded-[6px] border border-line bg-white/76 p-4 shadow-[0_18px_48px_rgba(15,23,42,0.08)]">
           <p className="text-xs uppercase tracking-[0.24em] text-accent">Now showing</p>
-          <p className="mt-2 font-display text-3xl text-ink">{filteredProjects.length} project{filteredProjects.length === 1 ? "" : "s"}</p>
+          <p className="mt-2 font-sans text-3xl font-medium text-ink">{filteredProjects.length} project{filteredProjects.length === 1 ? "" : "s"}</p>
           <p className="mt-2 text-sm leading-6 text-muted">{active.description}</p>
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2 rounded-[1.25rem] border border-line bg-white/72 p-2 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+      <div className="flex flex-wrap gap-2 rounded-[6px] border border-line bg-white/72 p-2 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
         {filters.map((filter) => (
           <button
             key={filter.key}
             type="button"
             onClick={() => setActiveFilter(filter.key)}
             className={classNames(
-              "shrink-0 rounded-[0.9rem] px-4 py-3 text-sm transition",
+              "shrink-0 rounded-[3px] px-4 py-3 text-sm transition",
               activeFilter === filter.key
-                ? "bg-[linear-gradient(135deg,#2563eb,#315f9f)] text-white shadow-[0_12px_30px_rgba(37,99,235,0.22)]"
-                : "text-muted hover:bg-white hover:text-ink"
+                ? "border-[#262626] bg-[#262626] text-white shadow-[0_2px_10px_rgba(0,0,0,0.13)]"
+                : "border-transparent text-muted hover:border-[#262626]/30 hover:bg-white hover:text-ink"
             )}
           >
             {filter.label}

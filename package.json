@@ -11,7 +11,8 @@
     "vercel:pull": "vercel env pull .env.local",
     "vercel:build": "vercel build",
     "vercel:preview": "vercel",
-    "vercel:prod": "vercel --prod"
+    "vercel:prod": "vercel --prod",
+    "visual:firefox": "node scripts/visual-firefox.mjs"
   },
   "engines": {
     "node": ">=20.16.0"
