@@ -11,7 +11,14 @@ type TechIconKey =
   | "mysql"
   | "prisma"
   | "stripe"
-  | "vercel";
+  | "vercel"
+  | "tool"
+  | "api"
+  | "security"
+  | "test"
+  | "motion"
+  | "form"
+  | "cloud";
 
 type ProjectTechBadgeProps = {
   tech: string;
@@ -23,6 +30,8 @@ function techIconKey(tech: string): TechIconKey | undefined {
   const value = tech.toLowerCase();
 
   if (value.includes("react router")) return "router";
+  if (value.includes("react query") || value.includes("tanstack")) return "api";
+  if (value.includes("react hook form") || value.includes("zod")) return "form";
   if (value.includes("react")) return "react";
   if (value.includes("typescript")) return "typescript";
   if (value.includes("next")) return "next";
@@ -35,8 +44,14 @@ function techIconKey(tech: string): TechIconKey | undefined {
   if (value.includes("prisma")) return "prisma";
   if (value.includes("stripe")) return "stripe";
   if (value.includes("vercel")) return "vercel";
+  if (value.includes("axios") || value.includes("cors") || value.includes("morgan") || value.includes("pino")) return "api";
+  if (value.includes("jwt") || value.includes("cookie") || value.includes("bcrypt") || value.includes("helmet") || value.includes("rate")) return "security";
+  if (value.includes("vitest") || value.includes("supertest")) return "test";
+  if (value.includes("framer") || value.includes("clsx")) return "motion";
+  if (value.includes("cloudinary") || value.includes("multer")) return "cloud";
+  if (value.includes("nodemailer") || value.includes("dotenv") || value.includes("lucide")) return "tool";
 
-  return undefined;
+  return "tool";
 }
 
 function TechIcon({ type }: { type: TechIconKey }) {
@@ -157,6 +172,65 @@ function TechIcon({ type }: { type: TechIconKey }) {
     );
   }
 
+  if (type === "api") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M8 7H6a4 4 0 0 0 0 8h2" />
+        <path d="M16 7h2a4 4 0 0 1 0 8h-2" />
+        <path d="M8.5 12h7" />
+      </svg>
+    );
+  }
+
+  if (type === "security") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 3.5 18.5 6v5.2c0 4.1-2.6 7.8-6.5 9.3-3.9-1.5-6.5-5.2-6.5-9.3V6L12 3.5Z" />
+        <path d="m9.2 12.1 1.8 1.8 3.8-4" />
+      </svg>
+    );
+  }
+
+  if (type === "test") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 3h6" />
+        <path d="M10 3v5.2L5.5 17a2.6 2.6 0 0 0 2.3 3.8h8.4a2.6 2.6 0 0 0 2.3-3.8L14 8.2V3" />
+        <path d="M8 15h8" />
+      </svg>
+    );
+  }
+
+  if (type === "motion") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 8h9" />
+        <path d="M4 12h13" />
+        <path d="M4 16h7" />
+        <path d="m16 8 4 4-4 4" />
+      </svg>
+    );
+  }
+
+  if (type === "form") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M7 4.5h10v15H7z" />
+        <path d="M9.5 8h5" />
+        <path d="M9.5 12h5" />
+        <path d="M9.5 16h3" />
+      </svg>
+    );
+  }
+
+  if (type === "cloud") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M7.5 18h9.2a4 4 0 0 0 .5-8 5.5 5.5 0 0 0-10.5 1.4A3.4 3.4 0 0 0 7.5 18Z" />
+      </svg>
+    );
+  }
+
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 7.5h16" />
@@ -174,12 +248,13 @@ export function hasKnownTechIcon(tech: string) {
 
 export function ProjectTechBadge({ tech, compact = false, className = "" }: ProjectTechBadgeProps) {
   const icon = techIconKey(tech);
-  const size = compact ? "text-[11px]" : "text-xs";
-  const padding = compact ? "px-3 py-1" : "px-4 py-2";
+  const size = compact ? "text-[9px]" : "text-xs";
+  const padding = compact ? "px-2 py-1" : "px-4 py-2";
+  const iconSize = compact ? "[&_svg]:h-4 [&_svg]:w-4" : "";
 
   return (
     <span
-      className={`inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-[3px] border border-line bg-white/78 ${padding} ${size} uppercase tracking-[0.12em] text-black ${className}`}
+      className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[3px] border border-line bg-white/78 ${padding} ${size} ${iconSize} uppercase tracking-[0.12em] text-black ${className}`}
     >
       {icon ? <TechIcon type={icon} /> : null}
       {tech}

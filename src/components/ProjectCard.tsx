@@ -57,7 +57,7 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
 
         <div className="space-y-4">
           <ul className="flex flex-wrap gap-2">
-            {project.techStack.slice(0, prominent ? 6 : 4).map((tech) => (
+            {project.techStack.map((tech) => (
               <li key={tech}><ProjectTechBadge tech={tech} compact /></li>
             ))}
           </ul>
