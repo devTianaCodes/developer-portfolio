@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { GithubIcon } from "@/components/GithubIcon";
+import { SocialIcon } from "@/components/SocialIcon";
 import { siteConfig } from "@/content/site";
 
 export function SiteFooter() {
@@ -16,6 +17,14 @@ export function SiteFooter() {
           <Link href={siteConfig.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-accent">
             <GithubIcon className="h-4 w-4" />
             {siteConfig.githubHandle}
+          </Link>
+          <Link href={siteConfig.linkedInUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-accent">
+            <SocialIcon kind="linkedin" />
+            LinkedIn
+          </Link>
+          <Link href={siteConfig.emailUrl} className="flex items-center gap-2 hover:text-accent">
+            <SocialIcon kind="email" />
+            {siteConfig.email}
           </Link>
           <Link href="/projects" className="block hover:text-accent">Projects</Link>
           <Link href="/about" className="block hover:text-accent">About</Link>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { GithubIcon } from "@/components/GithubIcon";
 import { PageReveal } from "@/components/PageReveal";
+import { SocialIcon } from "@/components/SocialIcon";
 import { siteConfig } from "@/content/site";
 
 export const metadata = { title: "About" };
@@ -43,11 +44,21 @@ export default function AboutPage() {
           <div className="sharp-panel p-8">
             <p className="section-label">Public identity</p>
             <h2 className="minimal-heading mt-3 inline-flex items-center gap-3 text-4xl"><GithubIcon className="h-8 w-8 text-accent" />{siteConfig.githubHandle}</h2>
-            <p className="minimal-text mt-4 max-w-2xl">GitHub is the primary public entry point for code ownership and project review.</p>
-            <Link href={siteConfig.githubUrl} target="_blank" rel="noreferrer" className="sharp-button mt-6">
-              <GithubIcon className="h-4 w-4" />
-              Open GitHub
-            </Link>
+            <p className="minimal-text mt-4 max-w-2xl">GitHub, LinkedIn, and email provide clear paths for code review, professional context, and direct contact.</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href={siteConfig.githubUrl} target="_blank" rel="noreferrer" className="sharp-button">
+                <GithubIcon className="h-4 w-4" />
+                GitHub
+              </Link>
+              <Link href={siteConfig.linkedInUrl} target="_blank" rel="noreferrer" className="sharp-button">
+                <SocialIcon kind="linkedin" />
+                LinkedIn
+              </Link>
+              <Link href={siteConfig.emailUrl} className="sharp-button">
+                <SocialIcon kind="email" />
+                Email
+              </Link>
+            </div>
           </div>
         </section>
       </div>

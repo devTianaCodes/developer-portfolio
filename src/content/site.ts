@@ -15,12 +15,25 @@ export const siteConfig = {
   location: "United States",
   githubHandle: "devTianaCodes",
   githubUrl: "https://github.com/devTianaCodes",
+  email: "oblasser.tatiana@gmail.com",
+  emailUrl: "mailto:oblasser.tatiana@gmail.com",
+  linkedInUrl: "https://www.linkedin.com/in/tiana-oblasser-78ba8665",
   socialLinks: [
     {
       label: "GitHub",
       href: "https://github.com/devTianaCodes",
       kind: "github",
       primary: true
+    },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/tiana-oblasser-78ba8665",
+      kind: "linkedin"
+    },
+    {
+      label: "Email",
+      href: "mailto:oblasser.tatiana@gmail.com",
+      kind: "email"
     }
   ] satisfies SocialLink[],
   headline: "Polished web products with design taste, strong frontend craft, and real full-stack depth.",
