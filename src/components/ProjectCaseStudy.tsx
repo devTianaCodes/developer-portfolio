@@ -91,8 +91,8 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   return (
     <div style={themeStyle} className={`-mx-2.5 -my-10 overflow-hidden px-2.5 py-10 md:-mx-4 md:-my-14 md:px-4 md:py-14 ${theme.shell}`}>
       <div className="mx-auto max-w-[96rem] space-y-16">
-        <section className={`grid gap-8 overflow-hidden rounded-[6px] border border-[color:var(--case-line)] p-8 shadow-[0_32px_100px_rgba(15,23,42,0.12)] lg:grid-cols-[minmax(0,1fr)_minmax(320px,430px)] lg:items-end ${theme.hero}`}>
-          <div className="space-y-6">
+        <section className={`grid gap-8 overflow-hidden rounded-[6px] border border-[color:var(--case-line)] p-6 shadow-[0_32px_100px_rgba(15,23,42,0.12)] md:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,430px)] lg:items-center ${theme.hero}`}>
+          <div className="space-y-5">
             <div className="flex flex-wrap gap-3">
               <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-4 py-2 text-xs uppercase tracking-[0.26em] text-[#262626]/76">
                 {project.category}
