@@ -36,7 +36,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-3 lg:flex-nowrap">
+          <div className="flex flex-wrap gap-3 pt-5 lg:flex-nowrap">
             <Link href={siteConfig.githubUrl} target="_blank" rel="noreferrer" className="sharp-button justify-start">
               <GithubIcon className="h-4 w-4" />
               {siteConfig.githubHandle}
