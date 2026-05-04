@@ -14,13 +14,11 @@ const proofMetrics = [
 
 export function InteractiveHero() {
   const reduceMotion = useReducedMotion();
-  const reveal = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 18 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
-      };
+  const reveal = {
+    initial: false,
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: reduceMotion ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] as const }
+  };
 
   return (
     <div className="relative">
@@ -68,7 +66,7 @@ export function InteractiveHero() {
 
         <motion.div
           className="flex min-w-0 items-stretch justify-center lg:h-full lg:justify-end"
-          initial={reduceMotion ? false : { opacity: 0, scale: 0.98 }}
+          initial={false}
           animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
           transition={{ delay: 0.15, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -89,7 +87,7 @@ export function InteractiveHero() {
                 <motion.div
                   key={metric.label}
                   className="min-w-0 rounded-[6px] border border-white/12 bg-white/[0.07] p-4 backdrop-blur"
-                  initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                  initial={false}
                   animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
                   transition={{ delay: 0.12 + index * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 >

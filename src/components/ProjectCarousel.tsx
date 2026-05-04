@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import type { PanInfo } from "framer-motion";
 import type { ProjectEntry } from "@/content/projects";
 import { classNames } from "@/lib/classNames";
 
@@ -124,6 +125,19 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     }));
   }
 
+  function handleMobileDragEnd(_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
+    const swipeDistance = info.offset.x;
+    const swipeVelocity = info.velocity.x;
+
+    if (swipeDistance < -70 || swipeVelocity < -450) {
+      move(1);
+    }
+
+    if (swipeDistance > 70 || swipeVelocity > 450) {
+      move(-1);
+    }
+  }
+
   const activeProject = orderedProjects[activeIndex];
   const panelTransition = reduceMotion
     ? { duration: 0 }
@@ -220,6 +234,10 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
               key={activeProject.slug}
               custom={direction}
               className={classNames("absolute inset-0 overflow-hidden", pastelPanels[activeProject.visualTone])}
+              drag={reduceMotion ? false : "x"}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.18}
+              onDragEnd={handleMobileDragEnd}
               initial={reduceMotion ? false : { x: direction * 92 + "%", opacity: 0.98, scale: 1.01 }}
               animate={{ x: "0%", opacity: 1, scale: 1, zIndex: 2 }}
               exit={reduceMotion ? undefined : { x: direction * -38 + "%", opacity: 0.64, scale: 0.985, zIndex: 1 }}
@@ -234,6 +252,9 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
               </Link>
             </motion.div>
           </AnimatePresence>
+          <div className="pointer-events-none absolute bottom-5 left-1/2 z-[70] -translate-x-1/2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-[#262626]/72">
+            {String(activeIndex + 1).padStart(2, "0")} / {String(orderedProjects.length).padStart(2, "0")}
+          </div>
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { GithubIcon } from "@/components/GithubIcon";
 import { siteConfig } from "@/content/site";
 
@@ -14,6 +15,11 @@ const navItems = [
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  function isActiveRoute(href: string) {
+    return pathname === href || pathname.startsWith(href + "/");
+  }
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-white/82 backdrop-blur-2xl">
@@ -39,15 +45,24 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-12 lg:gap-16">
           <nav className="hidden items-center gap-5 lg:flex">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-[0.98rem] font-medium leading-none text-[#262626] transition hover:scale-105 hover:text-[#262626]"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const active = isActiveRoute(item.href);
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`relative text-[0.98rem] font-medium leading-none text-[#262626] transition hover:scale-105 hover:text-[#262626] ${
+                    active
+                      ? "scale-105 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:bg-[#262626]"
+                      : "after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-[#262626] after:transition-all hover:after:w-full"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <Link
@@ -86,8 +101,11 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
+              aria-current={isActiveRoute(item.href) ? "page" : undefined}
               onClick={() => setMenuOpen(false)}
-              className="border-b border-line px-1 py-4 font-sans text-lg font-medium text-[#262626] transition hover:scale-[1.01] hover:text-[#262626]"
+              className={`border-b border-line px-1 py-4 font-sans text-lg font-medium text-[#262626] transition hover:scale-[1.01] hover:text-[#262626] ${
+                isActiveRoute(item.href) ? "translate-x-1 font-semibold" : ""
+              }`}
             >
               {item.label}
             </Link>
