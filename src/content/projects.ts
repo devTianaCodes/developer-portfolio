@@ -163,8 +163,8 @@ export const projects: ProjectEntry[] = [
       { label: "Backend repository", href: "https://github.com/devTianaCodes/chocolate_backend" }
     ],
     repositoryRoots: [
-      { label: "Frontend", path: "chocolate_frontend/client" },
-      { label: "Backend", path: "chocolate_backend/server" }
+      { label: "Frontend", path: "https://github.com/devTianaCodes/chocolate_frontend/tree/main/client" },
+      { label: "Backend", path: "https://github.com/devTianaCodes/chocolate_backend" }
     ],
     workflowHighlights: [
       {
@@ -367,8 +367,8 @@ export const projects: ProjectEntry[] = [
       { label: "Backend repository", href: "https://github.com/devTianaCodes/english4u-backend" }
     ],
     repositoryRoots: [
-      { label: "Frontend", path: "english4u-frontend" },
-      { label: "Backend", path: "english4u-backend" }
+      { label: "Frontend", path: "https://github.com/devTianaCodes/english4u-frontend" },
+      { label: "Backend", path: "https://github.com/devTianaCodes/english4u-backend" }
     ],
     workflowIntro: {
       eyebrow: "Learning workflow",
@@ -590,8 +590,8 @@ export const projects: ProjectEntry[] = [
       { label: "Backend repository", href: "https://github.com/devTianaCodes/petNest-backend" }
     ],
     repositoryRoots: [
-      { label: "Frontend", path: "petNest-frontend" },
-      { label: "Backend", path: "petNest-backend" }
+      { label: "Frontend", path: "https://github.com/devTianaCodes/petNest-frontend" },
+      { label: "Backend", path: "https://github.com/devTianaCodes/petNest-backend" }
     ],
     workflowIntro: {
       eyebrow: "Adoption workflow",
@@ -810,7 +810,7 @@ export const projects: ProjectEntry[] = [
       "What changes when you optimize a frontend project for direct playability instead of business workflows."
     ],
     repositories: [{ label: "Game repository", href: "https://github.com/devTianaCodes/BrickDrop" }],
-    repositoryRoots: [{ label: "Project", path: "BrickDrop" }],
+    repositoryRoots: [{ label: "Project", path: "https://github.com/devTianaCodes/BrickDrop" }],
     workflowIntro: {
       eyebrow: "Gameplay workflow",
       title: "Compact real-time puzzle system",
@@ -1023,7 +1023,7 @@ export const projects: ProjectEntry[] = [
       "How static deployment and interface polish make this an easy live demo for portfolio review."
     ],
     repositories: [{ label: "Game repository", href: "https://github.com/devTianaCodes/sea-battle" }],
-    repositoryRoots: [{ label: "Project", path: "sea-battle" }],
+    repositoryRoots: [{ label: "Project", path: "https://github.com/devTianaCodes/sea-battle" }],
     workflowIntro: {
       eyebrow: "Gameplay workflow",
       title: "Complete responsive Battleship loop",
