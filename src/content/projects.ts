@@ -756,7 +756,20 @@ export const projects: ProjectEntry[] = [
     year: "2025",
     visualTone: "arcade",
     hook: "A compact game build that proves strong frontend logic can be immediately playable.",
-    techStack: ["React 18", "Vite", "Tailwind CSS"],
+    techStack: [
+      "React 18",
+      "Vite",
+      "JavaScript",
+      "JSX",
+      "Tailwind CSS",
+      "Custom CSS",
+      "PostCSS",
+      "Autoprefixer",
+      "Local Storage",
+      "Keyboard Events",
+      "Pointer Events",
+      "Dynamic Viewport Units"
+    ],
     strengths: [
       "Self-contained gameplay logic",
       "Clear state transitions and scoring",
@@ -795,6 +808,104 @@ export const projects: ProjectEntry[] = [
       "How the game logic is structured to stay readable while still feeling polished.",
       "Why ghost pieces, bag randomization, and level pacing elevate a simple clone.",
       "What changes when you optimize a frontend project for direct playability instead of business workflows."
+    ],
+    repositories: [{ label: "Game repository", href: "https://github.com/devTianaCodes/BrickDrop" }],
+    repositoryRoots: [{ label: "Project", path: "BrickDrop" }],
+    workflowIntro: {
+      eyebrow: "Gameplay workflow",
+      title: "Compact real-time puzzle system",
+      text: "BrickDrop is strongest as a small but complete frontend game that combines game-loop thinking, collision logic, responsive controls, persistence, and polished feedback."
+    },
+    workflowHighlights: [
+      {
+        title: "Core falling-block logic",
+        text: "The project implements the expected mechanics of a playable block-stacking game rather than stopping at a visual board.",
+        items: [
+          "The game uses a standard 10 x 20 board with seven tetromino pieces: I, O, T, S, Z, J, and L",
+          "Piece movement, collision detection, rotation, locking, line clearing, pause/resume, hard drop, and soft drop are handled in the game loop",
+          "Scoring supports single, double, triple, and four-line clears, with level progression every 10 cleared lines and increasing drop speed"
+        ]
+      },
+      {
+        title: "Fairness and player assistance",
+        text: "Small gameplay choices make the clone feel more complete and more enjoyable to play.",
+        items: [
+          "A shuffled bag-style randomizer is used instead of purely random piece selection",
+          "New games avoid opening with S or Z pieces, improving perceived quality at the start of play",
+          "Ghost piece projection and next-piece preview help players plan instead of only react"
+        ]
+      },
+      {
+        title: "Mobile-first interaction",
+        text: "Mobile is treated as its own play experience, not a squeezed desktop layout.",
+        items: [
+          "The mobile layout dedicates the upper 60% of the viewport to the board and the lower 40% to controls",
+          "Large skeuomorphic buttons support real thumb play, including press-and-hold left/right movement",
+          "Pause/Resume uses state-specific coloring, while invalid actions are disabled during pause, row clearing, or non-gameplay states"
+        ]
+      }
+    ],
+    apiIntro: {
+      eyebrow: "Frontend systems",
+      title: "Game architecture surfaces",
+      text: "BrickDrop is a static frontend game, so the important technical surfaces are board logic, timing, input, persistence, and responsive rendering."
+    },
+    apiDomains: [
+      "Game board",
+      "Tetromino bag",
+      "Next preview",
+      "Ghost piece",
+      "Collision checks",
+      "Line clearing",
+      "Score and level state",
+      "High score storage",
+      "Desktop keyboard input",
+      "Mobile pointer controls",
+      "Welcome overlay",
+      "Game-over modal"
+    ],
+    qualityIntro: {
+      eyebrow: "Engineering decisions",
+      title: "State, timing, responsive play, and polish",
+      text: "The interview value comes from explaining how real-time state, timers, browser input, and mobile layout constraints are kept understandable."
+    },
+    qualitySignals: [
+      {
+        title: "State management",
+        text: "The implementation stays dependency-light by using React state and refs for gameplay instead of an external state library.",
+        items: [
+          "Board, active piece, next piece, status, score, level, lines, high score, and clearing state are separated",
+          "Refs hold timers, clear animations, hold-to-move behavior, and the current piece bag",
+          "localStorage persists high score under BrickDrop_high_score across browser sessions"
+        ]
+      },
+      {
+        title: "Game loop and timing",
+        text: "Timing is treated as a core part of the game feel.",
+        items: [
+          "Automatic falling uses setInterval based on current level, with speed increasing as level rises",
+          "Line clear animation uses a timeout before rows are removed and the next piece spawns",
+          "Mobile hold-to-move starts with a timeout, then repeats with a faster interval and cleanup on release, cancel, pause, or game over"
+        ]
+      },
+      {
+        title: "Collision and board updates",
+        text: "The core board operations are named and explainable, which makes the project easier to discuss in review.",
+        items: [
+          "canPlace centralizes boundary and collision checks",
+          "mergePiece overlays the active piece onto the board, and clearLines removes full rows while prepending empty rows",
+          "Rotation uses matrix transformation with simple wall-kick attempts"
+        ]
+      },
+      {
+        title: "Product polish and next steps",
+        text: "The project has enough polish to feel playable while still offering clear future improvements.",
+        items: [
+          "The welcome and game-over overlays use the same branded visual language with mini piece shapes, score, level, lines, Play Again, and Quit Game actions",
+          "The dark neon arcade system uses glass panels, glowing block colors, row-clear flashes, and skeuomorphic mobile buttons",
+          "Good next steps include tests for board collision, line clearing, rotation, opening-piece selection, haptics, sound, leaderboard, PWA support, and richer wall-kick behavior"
+        ]
+      }
     ],
     media: [
       {
