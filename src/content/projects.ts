@@ -38,6 +38,12 @@ export type ProjectRepository = {
   href: string;
 };
 
+export type ProjectSectionIntro = {
+  eyebrow: string;
+  title: string;
+  text: string;
+};
+
 export type ProjectEntry = {
   slug: ProjectSlug;
   name: string;
@@ -63,8 +69,11 @@ export type ProjectEntry = {
   interviewAngles: string[];
   repositories?: ProjectRepository[];
   repositoryRoots?: { label: string; path: string }[];
+  workflowIntro?: ProjectSectionIntro;
   workflowHighlights?: ProjectDetailGroup[];
+  apiIntro?: ProjectSectionIntro;
   apiDomains?: string[];
+  qualityIntro?: ProjectSectionIntro;
   qualitySignals?: ProjectDetailGroup[];
   media: MediaAsset[];
   links: ProjectLink[];
@@ -298,10 +307,15 @@ export const projects: ProjectEntry[] = [
       "React 18",
       "Vite",
       "React Router",
+      "React.lazy",
+      "Suspense",
+      "Custom CSS",
       "Node.js",
       "Express",
       "MySQL",
+      "mysql2",
       "JWT",
+      "jsonwebtoken",
       "Cookie Parser",
       "CORS",
       "Dotenv",
@@ -347,6 +361,102 @@ export const projects: ProjectEntry[] = [
       "How the route structure separates guest, learner, and admin experiences without becoming messy.",
       "Why narrowing v1 scope to the learning core made the project stronger and more believable.",
       "How the product becomes demo-ready through polish, seed content, and admin-managed flows."
+    ],
+    repositories: [
+      { label: "Frontend repository", href: "https://github.com/devTianaCodes/english4u-frontend" },
+      { label: "Backend repository", href: "https://github.com/devTianaCodes/english4u-backend" }
+    ],
+    repositoryRoots: [
+      { label: "Frontend", path: "english4u-frontend" },
+      { label: "Backend", path: "english4u-backend" }
+    ],
+    workflowIntro: {
+      eyebrow: "Learning workflow",
+      title: "Placement-to-progress system",
+      text: "English4U is strongest when presented as a connected learner journey, not a collection of isolated lesson screens."
+    },
+    workflowHighlights: [
+      {
+        title: "Personalized learner path",
+        text: "The app guides a learner from account creation into placement, recommended level, course progress, quizzes, review, and study planning.",
+        items: [
+          "Placement testing recommends A1 or A2 paths with confidence labels, focus-area feedback, history, and trend comparison",
+          "The dashboard combines current course, next lesson, streak, completed lessons, quiz average, weekly activity, and coach recommendation",
+          "Lessons, quizzes, grammar references, certificates, profile, settings, and study plan pages support the learning journey around the core path"
+        ]
+      },
+      {
+        title: "Assessment and review logic",
+        text: "The learning flows include backend-driven scoring and review generation instead of only static frontend exercises.",
+        items: [
+          "Quiz payloads do not expose correct answers before submission, and scoring is handled server-side",
+          "Quiz attempts can persist to MySQL and update quiz averages, streaks, and learner progress",
+          "Review modes generate practice from mistakes, warm-up content, grammar topics, vocabulary, placement, progress, and recent quiz attempts"
+        ]
+      },
+      {
+        title: "Admin and content operations",
+        text: "The project includes protected back-office workflows that show role-based product thinking beyond the learner UI.",
+        items: [
+          "Admin collections cover courses, levels, units, lessons, quizzes, and users",
+          "Create, edit, and delete flows support relationship selectors for course, unit, and lesson content",
+          "The quiz studio constrains each quiz to three questions, making the admin experience intentionally scoped for demo clarity"
+        ]
+      }
+    ],
+    apiIntro: {
+      eyebrow: "Backend surface",
+      title: "Learning API domains",
+      text: "The Express API separates public discovery, authenticated learner workflows, and admin-only content operations."
+    },
+    apiDomains: [
+      "/api/health",
+      "/api/auth",
+      "/api/courses",
+      "/api/lessons",
+      "/api/quizzes",
+      "/api/onboarding",
+      "/api/dashboard",
+      "/api/progress",
+      "/api/review",
+      "/api/study-plan",
+      "/api/grammar-topics",
+      "/api/users",
+      "/api/admin"
+    ],
+    qualityIntro: {
+      eyebrow: "Engineering decisions",
+      title: "Architecture, auth, and persistence",
+      text: "The implementation choices make the project useful in interviews because they show realistic boundaries between UI, API, auth, and data."
+    },
+    qualitySignals: [
+      {
+        title: "Frontend architecture",
+        text: "The React app is organized around route-level pages, protected routes, reusable UI/layout pieces, and centralized API access.",
+        items: [
+          "React Router separates public, authenticated learner, guest-only, and admin-only routes",
+          "Route components are lazy-loaded with React.lazy and Suspense for a modular route surface",
+          "API calls are centralized through src/services/api.js with consistent response handling"
+        ]
+      },
+      {
+        title: "Backend architecture",
+        text: "The Express backend follows a layered request flow that keeps controllers, persistence, and domain logic separated.",
+        items: [
+          "Request flow follows route -> controller -> service/repository/helper -> database or demo content",
+          "Feature modules sit under src/modules, with shared config, db pool, middleware, routes, and utilities",
+          "Dashboard and review modules compose data across placement, progress, quiz attempts, study plans, lessons, and grammar metadata"
+        ]
+      },
+      {
+        title: "Security and persistence",
+        text: "Authentication and learner state are handled as backend responsibilities rather than frontend-only route checks.",
+        items: [
+          "Passwords are hashed with bcryptjs, JWTs include user identity/role, and auth can use HTTP-only cookies or bearer tokens",
+          "Backend middleware attaches the current user and enforces protected learner routes plus admin role guards",
+          "MySQL persists user, role, placement, lesson progress, quiz attempt, streak, and study plan data while demo libraries keep catalog content portable"
+        ]
+      }
     ],
     media: [
       {

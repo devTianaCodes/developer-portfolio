@@ -202,9 +202,12 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         {project.workflowHighlights ? (
           <section className="space-y-6">
             <SectionTitle
-              eyebrow="Commerce workflow"
-              title="Full-stack purchase system"
-              text="The strongest Chocolate Craft House signals are the real commerce flows behind the branded interface."
+              eyebrow={project.workflowIntro?.eyebrow ?? "Commerce workflow"}
+              title={project.workflowIntro?.title ?? "Full-stack purchase system"}
+              text={
+                project.workflowIntro?.text ??
+                "The strongest Chocolate Craft House signals are the real commerce flows behind the branded interface."
+              }
             />
             <div className="grid gap-6 lg:grid-cols-3">
               {project.workflowHighlights.map((group) => (
@@ -240,9 +243,12 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             {project.apiDomains ? (
               <div className={`space-y-5 ${panelClass}`}>
                 <SectionTitle
-                  eyebrow="Backend surface"
-                  title="API domains"
-                  text="The backend exposes dedicated REST domains for customer, commerce, admin, payment, and health workflows."
+                  eyebrow={project.apiIntro?.eyebrow ?? "Backend surface"}
+                  title={project.apiIntro?.title ?? "API domains"}
+                  text={
+                    project.apiIntro?.text ??
+                    "The backend exposes dedicated REST domains for customer, commerce, admin, payment, and health workflows."
+                  }
                 />
                 <div className="grid gap-3 sm:grid-cols-2">
                   {project.apiDomains.map((domain) => (
@@ -257,9 +263,12 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             {project.qualitySignals ? (
               <div className={`space-y-6 ${panelClass}`}>
                 <SectionTitle
-                  eyebrow="Engineering quality"
-                  title="Testing and coverage gates"
-                  text="The backend is presented as an interview-ready system with automated tests and measurable quality thresholds."
+                  eyebrow={project.qualityIntro?.eyebrow ?? "Engineering quality"}
+                  title={project.qualityIntro?.title ?? "Testing and coverage gates"}
+                  text={
+                    project.qualityIntro?.text ??
+                    "The backend is presented as an interview-ready system with automated tests and measurable quality thresholds."
+                  }
                 />
                 <div className="grid gap-4">
                   {project.qualitySignals.map((group) => (
