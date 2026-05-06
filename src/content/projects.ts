@@ -526,6 +526,7 @@ export const projects: ProjectEntry[] = [
       "React Router",
       "TanStack Query",
       "Axios",
+      "Fetch API",
       "React Hook Form",
       "Zod",
       "Node.js",
@@ -540,7 +541,9 @@ export const projects: ProjectEntry[] = [
       "Express Rate Limit",
       "Multer",
       "Cloudinary",
-      "Pino HTTP"
+      "Pino HTTP",
+      "Node Test Runner",
+      "Prisma Migrate"
     ],
     strengths: [
       "Most operationally rich dashboard surface",
@@ -581,6 +584,109 @@ export const projects: ProjectEntry[] = [
       "How moderation changes both the backend model and the dashboard UX in a trust-based platform.",
       "Why typed forms, validation, and dashboard routes matter more in operational products than in simple brochure apps.",
       "How deployment decisions change when uploads, Prisma, and seeded demo data are involved."
+    ],
+    repositories: [
+      { label: "Frontend repository", href: "https://github.com/devTianaCodes/petNest-frontend" },
+      { label: "Backend repository", href: "https://github.com/devTianaCodes/petNest-backend" }
+    ],
+    repositoryRoots: [
+      { label: "Frontend", path: "petNest-frontend" },
+      { label: "Backend", path: "petNest-backend" }
+    ],
+    workflowIntro: {
+      eyebrow: "Adoption workflow",
+      title: "Trust-centered marketplace system",
+      text: "PetNest is strongest as a multi-role product where adopters, rescuers, and admins all have different responsibilities."
+    },
+    workflowHighlights: [
+      {
+        title: "Public discovery and adoption",
+        text: "The public experience supports browsing, filtering, pet detail review, and private adoption requests without exposing sensitive owner contact data.",
+        items: [
+          "Published pet browsing supports category, location, search, sorting, pagination, and configurable page size",
+          "Single pet pages include gallery, metadata, compatibility tags, rescue story, health notes, rescuer info, sharing, and adoption request flow",
+          "Private contact fields are hidden from public responses, keeping adoption interest inside the platform"
+        ]
+      },
+      {
+        title: "Rescuer dashboard workflows",
+        text: "Authenticated users can manage adoption intent and listing operations from a real account surface.",
+        items: [
+          "Users can create pet listings with structured animal, health, location, compatibility, rescue story, and contact fields",
+          "Favorites use relational storage, duplicate protection, optimistic UI updates, safe rollback, and saved-animal views",
+          "Saved searches, incoming requests, outgoing requests, profile settings, my listings, and listing analytics create owner-facing product value"
+        ]
+      },
+      {
+        title: "Admin trust and safety",
+        text: "The platform includes moderation and governance flows that make it feel closer to production software than a CRUD demo.",
+        items: [
+          "Listings move through draft, pending approval, approved/published, rejected, adopted, and archived states",
+          "Admins can approve or reject pending listings, review reports, inspect platform statistics, and update user status",
+          "Listing reports support open, resolved, and dismissed states with reviewed-by admin tracking"
+        ]
+      }
+    ],
+    apiIntro: {
+      eyebrow: "Backend surface",
+      title: "Adoption platform API domains",
+      text: "The Express API separates public browsing, authenticated account workflows, moderation, media, and admin operations."
+    },
+    apiDomains: [
+      "/api/health",
+      "/api/auth",
+      "/api/users",
+      "/api/categories",
+      "/api/pets",
+      "/api/favorites",
+      "/api/saved-searches",
+      "/api/adoption-requests",
+      "/api/reports",
+      "/api/admin",
+      "/uploads"
+    ],
+    qualityIntro: {
+      eyebrow: "Engineering decisions",
+      title: "Typed architecture, security, and data model",
+      text: "The technical story is built around type safety, role boundaries, normalized data, secure sessions, and tested business rules."
+    },
+    qualitySignals: [
+      {
+        title: "Frontend architecture",
+        text: "The React TypeScript client is organized around public pages, protected dashboards, admin pages, reusable components, and feature helpers.",
+        items: [
+          "TanStack Query manages server state for listings, favorites, dashboards, requests, and admin surfaces",
+          "React Hook Form and Zod support typed form validation for auth, profile, listing, and request flows",
+          "Reusable pieces include PetCard, FavoriteButton, ProtectedRoute, QueryStateNotice, StatusBadge, SocialLinks, NavBar, and Footer"
+        ]
+      },
+      {
+        title: "Backend architecture",
+        text: "The Express TypeScript backend uses modular domain boundaries with Prisma as the data access layer.",
+        items: [
+          "Domain modules include auth, users, categories, pets, adoption requests, favorites, saved searches, reports, and admin",
+          "Shared middleware handles authentication, validation, centralized errors, rate limiting, uploads, and role enforcement",
+          "Image storage is abstracted for Cloudinary-ready hosted storage with a local upload fallback for development"
+        ]
+      },
+      {
+        title: "Security and data integrity",
+        text: "The system models the parts of a trust-based platform that would create real bugs if handled casually.",
+        items: [
+          "JWT access tokens pair with HTTP-only refresh cookies, hashed refresh tokens, logout revocation, and unique jti values",
+          "Prisma models normalize users, verification tokens, refresh tokens, categories, listings, images, favorites, searches, reports, requests, and audit logs",
+          "Indexes and constraints support common access patterns, duplicate favorite prevention, listing visibility, ownership boundaries, and moderation queues"
+        ]
+      },
+      {
+        title: "Testing focus",
+        text: "Tests are aimed at business rules and security-sensitive behavior rather than shallow page checks.",
+        items: [
+          "Backend tests cover auth middleware, token behavior, favorites, listing visibility, moderation, reports, saved searches, requests, images, analytics, and profiles",
+          "Important rules include owner access to private fields, public sanitization, saved search ownership, request status transitions, and listing submission rules",
+          "Build and tooling cover TypeScript checks, Vite production build, Prisma generation, migration, seed scripts, and workspace development commands"
+        ]
+      }
     ],
     media: [
       {
