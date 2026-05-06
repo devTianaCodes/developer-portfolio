@@ -27,6 +27,17 @@ export type ProjectLink = {
   kind: "live" | "code" | "case-study";
 };
 
+export type ProjectDetailGroup = {
+  title: string;
+  text: string;
+  items: string[];
+};
+
+export type ProjectRepository = {
+  label: string;
+  href: string;
+};
+
 export type ProjectEntry = {
   slug: ProjectSlug;
   name: string;
@@ -50,6 +61,11 @@ export type ProjectEntry = {
   metrics: { label: string; value: string }[];
   impactBullets: string[];
   interviewAngles: string[];
+  repositories?: ProjectRepository[];
+  repositoryRoots?: { label: string; path: string }[];
+  workflowHighlights?: ProjectDetailGroup[];
+  apiDomains?: string[];
+  qualitySignals?: ProjectDetailGroup[];
   media: MediaAsset[];
   links: ProjectLink[];
   demoNotes: string[];
@@ -132,6 +148,73 @@ export const projects: ProjectEntry[] = [
       "How the product keeps a premium visual identity consistent across catalog, cart, checkout, and admin areas.",
       "Why guest-cart merge, stock validation, and rollback behavior matter in real commerce software.",
       "How a portfolio project becomes stronger when it includes payment and post-purchase operations, not just a store UI."
+    ],
+    repositories: [
+      { label: "Frontend repository", href: "https://github.com/devTianaCodes/chocolate_frontend" },
+      { label: "Backend repository", href: "https://github.com/devTianaCodes/chocolate_backend" }
+    ],
+    repositoryRoots: [
+      { label: "Frontend", path: "chocolate_frontend/client" },
+      { label: "Backend", path: "chocolate_backend/server" }
+    ],
+    workflowHighlights: [
+      {
+        title: "Full purchase journey",
+        text: "The product goes beyond a storefront by covering discovery, search, favourites, cart, checkout, payment, confirmation, account, and admin workflows.",
+        items: [
+          "Editorial catalog paths through Shop, Offers, Gifts, Search, Favourites, and homepage highlights",
+          "Product detail pages with pricing, discount handling, gallery/hover image support, add-to-cart, and review presentation",
+          "Checkout flow with delivery information, shipping method support, order summary, and confirmation"
+        ]
+      },
+      {
+        title: "Cart, checkout, and order logic",
+        text: "Commerce behavior is modeled with the details reviewers expect in a real application, not only a UI demo.",
+        items: [
+          "Guest carts use session IDs, authenticated carts use user IDs, and shopping intent is preserved through merge-on-login",
+          "Order creation performs stock checks, subtotal and shipping calculations, inventory deduction, cart clearing, and rollback on failure",
+          "Stripe payment intents and webhook handling move orders into paid status"
+        ]
+      },
+      {
+        title: "Operations after payment",
+        text: "The system includes back-office and post-payment flows that make the case study stronger for technical interviews.",
+        items: [
+          "Customer confirmation and admin/store notification emails are sent with Nodemailer",
+          "Branded HTML email templates include a centered brand logo for the customer email",
+          "Admin screens support product creation, product updates, inventory updates, order listing, and order status changes"
+        ]
+      }
+    ],
+    apiDomains: [
+      "/api/auth",
+      "/api/products",
+      "/api/categories",
+      "/api/cart",
+      "/api/orders",
+      "/api/payments",
+      "/api/admin",
+      "/api/health"
+    ],
+    qualitySignals: [
+      {
+        title: "Backend test coverage",
+        text: "The backend includes service, controller, middleware, route integration, and optional real DB-backed integration tests.",
+        items: [
+          "Vitest and Supertest cover unit and route-level behavior",
+          "Current backend source coverage: 80.72% statements and lines, 86.32% functions",
+          "Test scripts include coverage, DB integration, overall coverage, and changed-code coverage checks"
+        ]
+      },
+      {
+        title: "Quality gates and CI",
+        text: "Coverage enforcement is treated as a project feature, not an afterthought.",
+        items: [
+          "Overall backend source coverage target is 80%",
+          "New or changed backend source coverage target is 90%",
+          "GitHub Actions enforces backend tests, coverage generation, and pull-request changed-code coverage gates"
+        ]
+      }
     ],
     media: [
       {

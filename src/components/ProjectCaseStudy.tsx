@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { GithubIcon } from "@/components/GithubIcon";
 import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import type { ProjectEntry } from "@/content/projects";
 
@@ -79,6 +80,7 @@ function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title: string
 export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   const images = project.media.filter((item) => item.kind === "image");
   const videos = project.media.filter((item) => item.kind === "video");
+  const actionLinks = project.links.filter((link) => link.kind !== "case-study");
   const theme = caseStudyThemes[project.visualTone];
   const themeStyle = {
     "--case-accent": theme.accent,
@@ -107,21 +109,55 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             <h1 className="font-sans text-5xl font-medium leading-none md:text-7xl">{project.name}</h1>
             <p className="max-w-2xl text-xl font-normal text-[#262626]/88">{project.tagline}</p>
             <p className="max-w-2xl text-base leading-7 text-[#262626]/72">{project.hook}</p>
-            <div className="flex flex-wrap gap-3">
-              {project.links.map((link) =>
-                link.href ? (
-                  <Link
-                    key={`${project.slug}-${link.label}`}
-                    href={link.href}
-                    target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
-                    rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
-                    className="sharp-button"
-                  >
-                    {link.label}
-                  </Link>
-                ) : null
-              )}
-            </div>
+            {project.repositories || project.repositoryRoots ? (
+              <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-4">
+                {project.repositories ? (
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {project.repositories.map((repo) => (
+                      <Link
+                        key={repo.href}
+                        href={repo.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group rounded-[4px] border-2 border-[#262626]/72 px-4 py-3 text-sm font-bold uppercase tracking-[0.18em] transition hover:bg-[#262626] hover:text-white"
+                      >
+                        <span className="flex items-center gap-2">
+                          <GithubIcon className="h-4 w-4" />
+                          {repo.label}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+                {project.repositoryRoots ? (
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {project.repositoryRoots.map((root) => (
+                      <div key={root.path} className="rounded-[4px] border border-[color:var(--case-line)] bg-white/30 px-4 py-3">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#262626]/58">{root.label} root</p>
+                        <p className="mt-2 font-mono text-sm leading-6 text-[#262626]/78">{root.path}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+            {actionLinks.length > 0 ? (
+              <div className="flex flex-wrap gap-3">
+                {actionLinks.map((link) =>
+                  link.href ? (
+                    <Link
+                      key={`${project.slug}-${link.label}`}
+                      href={link.href}
+                      target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
+                      rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
+                      className="sharp-button"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : null
+                )}
+              </div>
+            ) : null}
           </div>
 
           <div className="flex w-full max-w-[430px] flex-col justify-center justify-self-center rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-6 backdrop-blur lg:aspect-square lg:justify-self-end">
@@ -163,38 +199,109 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
           </section>
         ) : null}
 
-        <section className="grid gap-8 lg:grid-cols-2">
-          <div className={panelClass}>
-            <SectionTitle eyebrow="Challenge" title="What needed to work" text={project.challenge} />
-          </div>
-          <div className={panelClass}>
-            <SectionTitle eyebrow="Solution" title="How it was built" text={project.solution} />
-          </div>
-        </section>
-
-        <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className={`space-y-5 ${panelClass}`}>
-            <SectionTitle eyebrow="Outcome" title="Why this project stands out" text={project.outcome} />
-            <p className="text-sm uppercase tracking-[0.24em] text-muted">Repository roots</p>
-            <p className="rounded-[6px] border border-[color:var(--case-line)] bg-white/72 px-4 py-4 font-mono text-sm text-muted">
-              {project.repoPath}
-            </p>
-          </div>
-
-          <div className={`space-y-6 ${panelClass}`}>
-            <div>
-              <p className="font-sans text-xs font-bold uppercase tracking-[2px] text-[var(--case-accent)]">What this demonstrates</p>
-              <h2 className="minimal-heading mt-3 text-4xl">Project impact</h2>
-            </div>
-            <div className="grid gap-4">
-              {project.impactBullets.map((item) => (
-                <div key={item} className={tileClass}>
-                  {item}
+        {project.workflowHighlights ? (
+          <section className="space-y-6">
+            <SectionTitle
+              eyebrow="Commerce workflow"
+              title="Full-stack purchase system"
+              text="The strongest Chocolate Craft House signals are the real commerce flows behind the branded interface."
+            />
+            <div className="grid gap-6 lg:grid-cols-3">
+              {project.workflowHighlights.map((group) => (
+                <div key={group.title} className={`space-y-5 ${panelClass}`}>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.24em] text-[var(--case-accent)]">{group.title}</p>
+                    <p className="mt-3 text-sm leading-7 text-muted">{group.text}</p>
+                  </div>
+                  <div className="grid gap-3">
+                    {group.items.map((item) => (
+                      <p key={item} className={tileClass}>
+                        {item}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
-        </section>
+          </section>
+        ) : (
+          <section className="grid gap-8 lg:grid-cols-2">
+            <div className={panelClass}>
+              <SectionTitle eyebrow="Challenge" title="What needed to work" text={project.challenge} />
+            </div>
+            <div className={panelClass}>
+              <SectionTitle eyebrow="Solution" title="How it was built" text={project.solution} />
+            </div>
+          </section>
+        )}
+
+        {project.apiDomains || project.qualitySignals ? (
+          <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            {project.apiDomains ? (
+              <div className={`space-y-5 ${panelClass}`}>
+                <SectionTitle
+                  eyebrow="Backend surface"
+                  title="API domains"
+                  text="The backend exposes dedicated REST domains for customer, commerce, admin, payment, and health workflows."
+                />
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {project.apiDomains.map((domain) => (
+                    <p key={domain} className="rounded-[6px] border border-[color:var(--case-line)] bg-white/72 px-4 py-3 font-mono text-sm text-muted">
+                      {domain}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {project.qualitySignals ? (
+              <div className={`space-y-6 ${panelClass}`}>
+                <SectionTitle
+                  eyebrow="Engineering quality"
+                  title="Testing and coverage gates"
+                  text="The backend is presented as an interview-ready system with automated tests and measurable quality thresholds."
+                />
+                <div className="grid gap-4">
+                  {project.qualitySignals.map((group) => (
+                    <div key={group.title} className={tileClass}>
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--case-accent)]">{group.title}</p>
+                      <p className="mt-2">{group.text}</p>
+                      <ul className="mt-3 space-y-2">
+                        {group.items.map((item) => (
+                          <li key={item}>- {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </section>
+        ) : (
+          <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className={`space-y-5 ${panelClass}`}>
+              <SectionTitle eyebrow="Outcome" title="Why this project stands out" text={project.outcome} />
+              <p className="text-sm uppercase tracking-[0.24em] text-muted">Repository roots</p>
+              <p className="rounded-[6px] border border-[color:var(--case-line)] bg-white/72 px-4 py-4 font-mono text-sm text-muted">
+                {project.repoPath}
+              </p>
+            </div>
+
+            <div className={`space-y-6 ${panelClass}`}>
+              <div>
+                <p className="font-sans text-xs font-bold uppercase tracking-[2px] text-[var(--case-accent)]">What this demonstrates</p>
+                <h2 className="minimal-heading mt-3 text-4xl">Project impact</h2>
+              </div>
+              <div className="grid gap-4">
+                {project.impactBullets.map((item) => (
+                  <div key={item} className={tileClass}>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="space-y-6">
           <SectionTitle
