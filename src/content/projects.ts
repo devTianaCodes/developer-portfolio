@@ -859,7 +859,19 @@ export const projects: ProjectEntry[] = [
     year: "2025",
     visualTone: "naval-tech",
     hook: "A visually ambitious browser game that combines interface systems, motion, and AI-driven play.",
-    techStack: ["React 18", "Vite", "Framer Motion", "Zustand", "Tailwind CSS", "clsx"],
+    techStack: [
+      "React 18",
+      "Vite",
+      "Framer Motion",
+      "Zustand",
+      "Tailwind CSS",
+      "Custom CSS",
+      "clsx",
+      "React Context",
+      "Local Storage",
+      "ResizeObserver",
+      "Node Test Runner"
+    ],
     strengths: [
       "Most stylistically ambitious frontend game",
       "Adaptive AI and richer UI orchestration",
@@ -898,6 +910,104 @@ export const projects: ProjectEntry[] = [
       "How hooks and component boundaries support a more layered interactive experience.",
       "Why good frontend case studies can come from game systems, not only product apps.",
       "How static deployment and interface polish make this an easy live demo for portfolio review."
+    ],
+    repositories: [{ label: "Game repository", href: "https://github.com/devTianaCodes/sea-battle" }],
+    repositoryRoots: [{ label: "Project", path: "sea-battle" }],
+    workflowIntro: {
+      eyebrow: "Gameplay workflow",
+      title: "Complete responsive Battleship loop",
+      text: "Sea Battle is strongest as a compact but complete frontend system: game rules, AI, state, accessibility, animation, and mobile layout all work together."
+    },
+    workflowHighlights: [
+      {
+        title: "Full Battleship experience",
+        text: "The game includes the complete loop expected from a playable single-player Battleship implementation.",
+        items: [
+          "10x10 player and opponent grids use the standard fleet: Carrier, Battleship, Cruiser, Submarine, and Destroyer",
+          "Manual placement, horizontal/vertical rotation, random fleet placement, turn-based firing, hit/miss/sunk/win detection, and enemy fleet reveal are included",
+          "Easy, Medium, and Hard AI modes change opponent behavior from forgiving random play to more efficient hunt/target strategy"
+        ]
+      },
+      {
+        title: "Responsive and mobile-first play",
+        text: "The interface was shaped around the hard problem of keeping two board grids readable, square, and tappable across devices.",
+        items: [
+          "Phone portrait setup is simplified around clear Random, Clear, Play, and Rotate Ship actions",
+          "Phone landscape has dedicated rules so both boards remain playable side by side",
+          "Viewport-aware CSS variables keep board sizing stable, while removing the live timer avoided mobile header jitter"
+        ]
+      },
+      {
+        title: "Accessible interaction model",
+        text: "The grid is built to be playable and understandable beyond mouse clicks.",
+        items: [
+          "Cells expose descriptive ARIA labels with coordinates and state",
+          "Keyboard navigation supports arrow movement, Enter/Space confirmation, and Escape for modal-style flows",
+          "Dialogs use focus management and body scroll lock, while live regions announce game status"
+        ]
+      }
+    ],
+    apiIntro: {
+      eyebrow: "Frontend systems",
+      title: "Game architecture surfaces",
+      text: "The project is a static frontend app, so the important surfaces are game state, AI, rendering, persistence, and browser interaction layers."
+    },
+    apiDomains: [
+      "GameShell",
+      "GameBoard",
+      "BoardCell",
+      "StatusBar",
+      "BattleActionBar",
+      "ShipPlacementPanel",
+      "ResultsModal",
+      "GameProvider",
+      "useSeaBattleGame",
+      "useGameContext",
+      "AI player logic",
+      "Local history"
+    ],
+    qualityIntro: {
+      eyebrow: "Engineering decisions",
+      title: "State, polish, accessibility, and tests",
+      text: "The interview value comes from separating rules, UI, AI, responsive layout, local persistence, animation, and accessibility concerns."
+    },
+    qualitySignals: [
+      {
+        title: "State and logic separation",
+        text: "The game is organized so UI components do not own every gameplay rule directly.",
+        items: [
+          "GameProvider and useGameContext wrap the main game state",
+          "useSeaBattleGame owns match lifecycle, phase transitions, fleet placement, turn handling, history, settings, and results",
+          "Board rules, ship placement, AI move selection, stats/history formatting, sound, dialog behavior, and scroll locking are separated into hooks and utilities"
+        ]
+      },
+      {
+        title: "Animation and product polish",
+        text: "Motion supports gameplay feedback instead of only decoration.",
+        items: [
+          "Framer Motion powers modal, menu, result, footer, and UI transitions",
+          "CSS animations communicate hits, misses, sunk ships, opponent thinking, and victory moments",
+          "Settings allow sound and ambient background effects to be controlled without overcrowding the battle screen"
+        ]
+      },
+      {
+        title: "Persistence and results",
+        text: "The game remembers player progress and turns the final result into a useful summary.",
+        items: [
+          "Local storage persists match history, sound preference, background effects preference, and onboarding state",
+          "The results modal shows victory/defeat, accuracy, moves, hits, misses, mission time, best streak, archive wins, best accuracy, and enemy reveal",
+          "Play Again returns to difficulty selection so the next match can intentionally change challenge level"
+        ]
+      },
+      {
+        title: "Testing focus",
+        text: "Tests target the core rule regressions that would break the game experience.",
+        items: [
+          "Node test runner coverage includes ship placement, required fleet completion, duplicate shot prevention, and win condition",
+          "Keyboard navigation mapping and rotation shortcut behavior are covered as interaction rules",
+          "Production validation is handled through npm run build"
+        ]
+      }
     ],
     media: [
       {

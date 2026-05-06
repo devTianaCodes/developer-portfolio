@@ -81,6 +81,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   const images = project.media.filter((item) => item.kind === "image");
   const videos = project.media.filter((item) => item.kind === "video");
   const actionLinks = project.links.filter((link) => link.kind !== "case-study");
+  const hasResourceBlock = Boolean(project.repositories || project.repositoryRoots);
   const theme = caseStudyThemes[project.visualTone];
   const themeStyle = {
     "--case-accent": theme.accent,
@@ -109,11 +110,11 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             <h1 className="font-sans text-5xl font-medium leading-none md:text-7xl">{project.name}</h1>
             <p className="max-w-2xl text-xl font-normal text-[#262626]/88">{project.tagline}</p>
             <p className="max-w-2xl text-base leading-7 text-[#262626]/72">{project.hook}</p>
-            {project.repositories || project.repositoryRoots ? (
+            {hasResourceBlock ? (
               <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-4">
-                {project.repositories ? (
+                {project.repositories || actionLinks.length > 0 ? (
                   <div className="grid gap-3 sm:grid-cols-2">
-                    {project.repositories.map((repo) => (
+                    {project.repositories?.map((repo) => (
                       <Link
                         key={repo.href}
                         href={repo.href}
@@ -127,6 +128,19 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                         </span>
                       </Link>
                     ))}
+                    {actionLinks.map((link) =>
+                      link.href ? (
+                        <Link
+                          key={`${project.slug}-${link.label}`}
+                          href={link.href}
+                          target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
+                          rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
+                          className="rounded-[4px] border-2 border-[#262626]/72 px-4 py-3 text-sm font-bold uppercase tracking-[0.18em] transition hover:bg-[#262626] hover:text-white"
+                        >
+                          {link.label}
+                        </Link>
+                      ) : null
+                    )}
                   </div>
                 ) : null}
                 {project.repositoryRoots ? (
@@ -141,7 +155,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                 ) : null}
               </div>
             ) : null}
-            {actionLinks.length > 0 ? (
+            {!hasResourceBlock && actionLinks.length > 0 ? (
               <div className="flex flex-wrap gap-3">
                 {actionLinks.map((link) =>
                   link.href ? (
