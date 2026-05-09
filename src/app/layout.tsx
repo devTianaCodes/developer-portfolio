@@ -7,12 +7,12 @@ import { siteConfig } from "@/content/site";
 export const metadata: Metadata = {
   metadataBase: new URL("https://developer-portfolio.vercel.app"),
   title: {
-    default: "Tiana Oblasser | Modern Web Developer Portfolio",
+    default: "Tiana Oblasser | Web Developer",
     template: "%s | Tiana Oblasser"
   },
   description: siteConfig.description,
   openGraph: {
-    title: "Tiana Oblasser | Modern Web Developer Portfolio",
+    title: "Tiana Oblasser | Web Developer",
     description: siteConfig.description,
     url: "https://developer-portfolio.vercel.app",
     siteName: "Tiana Oblasser Portfolio",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tiana Oblasser | Modern Web Developer Portfolio",
+    title: "Tiana Oblasser | Web Developer",
     description: siteConfig.description
   }
 };
