@@ -78,8 +78,6 @@ export type ProjectEntry = {
   qualitySignals?: ProjectDetailGroup[];
   media: MediaAsset[];
   links: ProjectLink[];
-  demoNotes: string[];
-  captureChecklist: string[];
 };
 
 export const projects: ProjectEntry[] = [
@@ -283,17 +281,7 @@ export const projects: ProjectEntry[] = [
         status: "ready"
       }
     ],
-    links: [{ label: "Case Study", href: "/projects/chocolate", kind: "case-study" }],
-    demoNotes: [
-      "Media-first in phase 1 to avoid exposing payment and email infrastructure prematurely.",
-      "Existing local demo credentials and orchestration live in `demo-showcase`."
-    ],
-    captureChecklist: [
-      "Storefront hero and featured products",
-      "Product detail and cart state",
-      "Checkout summary and confirmation",
-      "Admin inventory or orders screen"
-    ]
+    links: [{ label: "Case Study", href: "/projects/chocolate", kind: "case-study" }]
   },
   {
     slug: "english4u",
@@ -504,17 +492,7 @@ export const projects: ProjectEntry[] = [
         status: "ready"
       }
     ],
-    links: [{ label: "Case Study", href: "/projects/english4u", kind: "case-study" }],
-    demoNotes: [
-      "Best candidate for first live product deployment on free infrastructure.",
-      "Strong candidate for a polished live demo because the learner and admin journeys are both easy to present."
-    ],
-    captureChecklist: [
-      "Landing page and course catalog",
-      "Learner dashboard and study plan",
-      "Lesson or quiz flow",
-      "Admin collection management"
-    ]
+    links: [{ label: "Case Study", href: "/projects/english4u", kind: "case-study" }]
   },
   {
     slug: "petnest",
@@ -747,17 +725,7 @@ export const projects: ProjectEntry[] = [
         status: "ready"
       }
     ],
-    links: [{ label: "Case Study", href: "/projects/petnest", kind: "case-study" }],
-    demoNotes: [
-      "Second live deployment target after English4U if Prisma hosting and free database constraints remain acceptable.",
-      "Cloudinary-backed uploads can be disabled for a safer portfolio demo mode."
-    ],
-    captureChecklist: [
-      "Browse and pet details pages",
-      "Dashboard listings and analytics",
-      "Favorites or saved searches",
-      "Admin pending listings or reports"
-    ]
+    links: [{ label: "Case Study", href: "/projects/petnest", kind: "case-study" }]
   },
   {
     slug: "brickdrop",
@@ -965,16 +933,6 @@ export const projects: ProjectEntry[] = [
     links: [
       { label: "Live Demo", href: "/demos/brickdrop.html", kind: "live" },
       { label: "Case Study", href: "/projects/brickdrop", kind: "case-study" }
-    ],
-    demoNotes: [
-      "Now live on Vercel as a standalone static demo linked directly from this portfolio.",
-      "The local `demo-showcase` flow still makes it easy to capture gameplay media updates."
-    ],
-    captureChecklist: [
-      "Board and next-piece state",
-      "Line clear moment",
-      "Level or score UI",
-      "Short gameplay clip"
     ]
   },
   {
@@ -1182,16 +1140,6 @@ export const projects: ProjectEntry[] = [
     links: [
       { label: "Live Demo", href: "/demos/sea-battle.html", kind: "live" },
       { label: "Case Study", href: "/projects/sea-battle", kind: "case-study" }
-    ],
-    demoNotes: [
-      "Now live on Vercel as a standalone static demo with the existing deployment shape preserved.",
-      "Best visual contrast to the business-product case studies because it foregrounds motion and interface systems."
-    ],
-    captureChecklist: [
-      "Main menu or onboarding",
-      "Ship placement",
-      "Battle state with AI turn history",
-      "Short gameplay clip"
     ]
   }
 ];

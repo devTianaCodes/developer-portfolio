@@ -38,7 +38,7 @@ export const siteConfig = {
   ] satisfies SocialLink[],
   headline: "Polished web products with design taste, strong frontend craft, and real full-stack depth.",
   subheadline:
-    "I build modern web experiences that feel intentional from the first screen to the underlying product system.",
+    "Build modern experiences that feel intentional from the first screen to the underlying product system.",
   primaryCta: {
     label: "View GitHub",
     href: "https://github.com/devTianaCodes"

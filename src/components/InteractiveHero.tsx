@@ -35,7 +35,7 @@ export function InteractiveHero() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="max-w-5xl font-sans text-[3.2rem] leading-[1.02] tracking-normal text-white md:text-[5.2rem]">
-                Bring your idea, I&apos;ll build the web experience.
+                Bring your idea, let&apos;s build the web experience.
               </h1>
             </div>
 

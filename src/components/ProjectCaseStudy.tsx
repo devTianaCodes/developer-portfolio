@@ -94,24 +94,24 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   return (
     <div style={themeStyle} className={`-mx-2.5 -my-10 overflow-hidden px-2.5 py-10 md:-mx-4 md:-my-14 md:px-4 md:py-14 ${theme.shell}`}>
       <div className="mx-auto max-w-[96rem] space-y-16">
-        <section className={`grid gap-8 overflow-hidden rounded-[6px] border border-[color:var(--case-line)] p-6 shadow-[0_32px_100px_rgba(15,23,42,0.12)] md:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,430px)] lg:items-center ${theme.hero}`}>
-          <div className="space-y-5">
+        <section className={`grid gap-8 overflow-hidden rounded-[6px] border border-[color:var(--case-line)] p-4 shadow-[0_32px_100px_rgba(15,23,42,0.12)] sm:p-5 md:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,430px)] lg:items-center ${theme.hero}`}>
+          <div className="min-w-0 space-y-5">
             <div className="flex flex-wrap gap-3">
-              <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-4 py-2 text-xs uppercase tracking-[0.26em] text-[#262626]/76">
+              <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
                 {project.category}
               </span>
-              <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-4 py-2 text-xs uppercase tracking-[0.26em] text-[#262626]/76">
+              <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
                 {project.year}
               </span>
-              <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-4 py-2 text-xs uppercase tracking-[0.26em] text-[#262626]/76">
+              <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
                 {project.deploymentMode}
               </span>
             </div>
-            <h1 className="font-sans text-5xl font-medium leading-none md:text-7xl">{project.name}</h1>
-            <p className="max-w-2xl text-xl font-normal text-[#262626]/88">{project.tagline}</p>
+            <h1 className="max-w-full text-balance font-sans text-[clamp(2.45rem,13vw,4.35rem)] font-medium leading-[0.96] tracking-[-0.01em] md:text-7xl">{project.name}</h1>
+            <p className="max-w-2xl text-lg font-normal leading-7 text-[#262626]/88 sm:text-xl">{project.tagline}</p>
             <p className="max-w-2xl text-base leading-7 text-[#262626]/72">{project.hook}</p>
             {hasResourceBlock ? (
-              <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-4">
+              <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4">
                 {project.repositories || actionLinks.length > 0 ? (
                   <div className="grid gap-3 sm:grid-cols-2">
                     {project.repositories?.map((repo) => (
@@ -120,7 +120,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                         href={repo.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="group rounded-[4px] border-2 border-[#262626]/72 px-4 py-3 text-sm font-bold uppercase tracking-[0.18em] transition hover:bg-[#262626] hover:text-white"
+                        className="group rounded-[4px] border-2 border-[#262626]/72 px-3 py-3 text-xs font-bold uppercase tracking-[0.12em] transition hover:bg-[#262626] hover:text-white sm:px-4 sm:text-sm sm:tracking-[0.18em]"
                       >
                         <span className="flex items-center gap-2">
                           <GithubIcon className="h-4 w-4" />
@@ -135,7 +135,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                           href={link.href}
                           target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
                           rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
-                          className="rounded-[4px] border-2 border-[#262626]/72 px-4 py-3 text-sm font-bold uppercase tracking-[0.18em] transition hover:bg-[#262626] hover:text-white"
+                          className="rounded-[4px] border-2 border-[#262626]/72 px-3 py-3 text-xs font-bold uppercase tracking-[0.12em] transition hover:bg-[#262626] hover:text-white sm:px-4 sm:text-sm sm:tracking-[0.18em]"
                         >
                           {link.label}
                         </Link>
@@ -144,11 +144,11 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                   </div>
                 ) : null}
                 {project.repositoryRoots ? (
-                  <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="hidden gap-3 sm:grid sm:grid-cols-2">
                     {project.repositoryRoots.map((root) => (
-                      <div key={root.path} className="rounded-[4px] border border-[color:var(--case-line)] bg-white/30 px-4 py-3">
+                      <div key={root.path} className="min-w-0 rounded-[4px] border border-[color:var(--case-line)] bg-white/30 px-3 py-3 sm:px-4">
                         <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#262626]/58">{root.label} root</p>
-                        <p className="mt-2 font-mono text-sm leading-6 text-[#262626]/78">{root.path}</p>
+                        <p className="mt-2 break-words font-mono text-[12px] leading-6 text-[#262626]/78 sm:text-sm">{root.path}</p>
                       </div>
                     ))}
                   </div>
@@ -174,7 +174,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             ) : null}
           </div>
 
-          <div className="flex w-full max-w-[430px] flex-col justify-center justify-self-center rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-6 backdrop-blur lg:aspect-square lg:justify-self-end">
+          <div className="hidden w-full max-w-[430px] flex-col justify-center justify-self-center rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-6 backdrop-blur lg:flex lg:aspect-square lg:justify-self-end">
             <p className="text-xs font-bold uppercase tracking-[2px] text-[#262626]/62">Tech stack</p>
             <div className="mt-5 flex flex-wrap content-center gap-3">
               {project.techStack.map((item) => (
@@ -216,15 +216,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         ) : null}
 
         {project.workflowHighlights ? (
-          <section className="space-y-6">
-            <SectionTitle
-              eyebrow={project.workflowIntro?.eyebrow ?? "Commerce workflow"}
-              title={project.workflowIntro?.title ?? "Full-stack purchase system"}
-              text={
-                project.workflowIntro?.text ??
-                "The strongest Chocolate Craft House signals are the real commerce flows behind the branded interface."
-              }
-            />
+          <section>
             <div className="grid gap-6 lg:grid-cols-3">
               {project.workflowHighlights.map((group) => (
                 <div key={group.title} className={`space-y-5 ${panelClass}`}>
@@ -393,7 +385,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
           </section>
         ) : null}
 
-        <section className="grid gap-8 lg:grid-cols-2">
+        <section>
           <div className={panelClass}>
             <p className="text-xs uppercase tracking-[0.3em] text-[var(--case-accent)]">Tech stack</p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -401,29 +393,6 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                 <ProjectTechBadge key={item} tech={item} />
               ))}
             </div>
-          </div>
-
-          <div className={panelClass}>
-            <p className="text-xs uppercase tracking-[0.3em] text-[var(--case-accent)]">Demo notes</p>
-            <div className="mt-6 space-y-4">
-              {project.demoNotes.map((note) => (
-                <p key={note} className={tileClass}>
-                  {note}
-                </p>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className={panelClass}>
-          <p className="text-xs uppercase tracking-[0.3em] text-[var(--case-accent)]">Capture checklist</p>
-          <h2 className="minimal-heading mt-3 text-4xl">Production-ready shot list</h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {project.captureChecklist.map((item) => (
-              <div key={item} className={tileClass}>
-                {item}
-              </div>
-            ))}
           </div>
         </section>
       </div>
