@@ -55,6 +55,7 @@ function circularOffset(index: number, activeIndex: number, length: number) {
 
 function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boolean, shadeOpacity: number) {
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
+  const heroSrc = hero?.optimizedSrc ?? hero?.poster ?? hero?.src;
 
   return (
     <>
@@ -72,12 +73,13 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
           transition={{ duration: 0.24, ease: polishedEase }}
         >
           <Image
-            src={hero.poster ?? hero.src}
+            src={heroSrc}
             alt={hero.alt}
             fill
             priority={isActive}
+            quality={82}
             className="object-contain p-8 drop-shadow-[0_28px_42px_rgba(16,24,40,0.22)] transition-transform duration-500 ease-out group-hover:scale-[1.035] md:p-10"
-            sizes="(max-width: 768px) 100vw, 34vw"
+            sizes="(max-width: 640px) 82vw, (max-width: 1024px) 48vw, 34vw"
           />
         </motion.div>
       ) : null}

@@ -8,7 +8,8 @@ const __dirname = path.dirname(__filename);
 const nextConfig = {
   outputFileTracingRoot: __dirname,
   images: {
-    formats: ["image/avif", "image/webp"]
+    formats: ["image/avif", "image/webp"],
+    qualities: [75, 82]
   }
 };
 

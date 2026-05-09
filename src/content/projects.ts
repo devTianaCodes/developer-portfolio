@@ -16,6 +16,7 @@ export type MediaAsset = {
   width: number;
   height: number;
   poster?: string;
+  optimizedSrc?: string;
   featured?: boolean;
   status?: AssetStatus;
   note?: string;
@@ -229,6 +230,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/chocolate/showcase/06.png",
+        optimizedSrc: "/media/projects/chocolate/showcase/06.webp",
         alt: "Chocolate Craft House screenshot 1",
         width: 2868,
         height: 1762,
@@ -238,6 +240,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/chocolate/showcase/01.png",
+        optimizedSrc: "/media/projects/chocolate/showcase/01.webp",
         alt: "Chocolate Craft House screenshot 2",
         width: 2944,
         height: 1808,
@@ -246,6 +249,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/chocolate/showcase/05.png",
+        optimizedSrc: "/media/projects/chocolate/showcase/05.webp",
         alt: "Chocolate Craft House screenshot 3",
         width: 2858,
         height: 1784,
@@ -254,6 +258,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/chocolate/showcase/02.png",
+        optimizedSrc: "/media/projects/chocolate/showcase/02.webp",
         alt: "Chocolate Craft House screenshot 4",
         width: 2944,
         height: 1808,
@@ -262,6 +267,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/chocolate/showcase/04.png",
+        optimizedSrc: "/media/projects/chocolate/showcase/04.webp",
         alt: "Chocolate Craft House screenshot 5",
         width: 2858,
         height: 1734,
@@ -270,6 +276,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/chocolate/showcase/03.png",
+        optimizedSrc: "/media/projects/chocolate/showcase/03.webp",
         alt: "Chocolate Craft House screenshot 6",
         width: 2228,
         height: 1674,
@@ -462,6 +469,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/english4u/showcase/05.png",
+        optimizedSrc: "/media/projects/english4u/showcase/05.webp",
         alt: "English4U screenshot 1",
         width: 2818,
         height: 1808,
@@ -471,6 +479,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/english4u/showcase/02.png",
+        optimizedSrc: "/media/projects/english4u/showcase/02.webp",
         alt: "English4U screenshot 2",
         width: 2602,
         height: 1796,
@@ -479,6 +488,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/english4u/showcase/04.png",
+        optimizedSrc: "/media/projects/english4u/showcase/04.webp",
         alt: "English4U screenshot 3",
         width: 2602,
         height: 1516,
@@ -487,6 +497,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/english4u/showcase/03.png",
+        optimizedSrc: "/media/projects/english4u/showcase/03.webp",
         alt: "English4U screenshot 4",
         width: 2602,
         height: 1818,
@@ -692,6 +703,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/petnest/showcase/05.png",
+        optimizedSrc: "/media/projects/petnest/showcase/05.webp",
         alt: "PetNest screenshot 1",
         width: 2858,
         height: 1784,
@@ -701,6 +713,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/petnest/showcase/01.png",
+        optimizedSrc: "/media/projects/petnest/showcase/01.webp",
         alt: "PetNest screenshot 2",
         width: 2786,
         height: 1808,
@@ -709,6 +722,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/petnest/showcase/02.png",
+        optimizedSrc: "/media/projects/petnest/showcase/02.webp",
         alt: "PetNest screenshot 3",
         width: 2856,
         height: 1802,
@@ -717,6 +731,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/petnest/showcase/03.png",
+        optimizedSrc: "/media/projects/petnest/showcase/03.webp",
         alt: "PetNest screenshot 4",
         width: 2856,
         height: 1818,
@@ -725,6 +740,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/petnest/showcase/04.png",
+        optimizedSrc: "/media/projects/petnest/showcase/04.webp",
         alt: "PetNest screenshot 5",
         width: 2858,
         height: 1784,
@@ -911,6 +927,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/brickdrop/showcase/04.png",
+        optimizedSrc: "/media/projects/brickdrop/showcase/04.webp",
         alt: "BrickDrop screenshot 1",
         width: 2704,
         height: 1762,
@@ -920,6 +937,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/brickdrop/showcase/01.png",
+        optimizedSrc: "/media/projects/brickdrop/showcase/01.webp",
         alt: "BrickDrop screenshot 2",
         width: 2944,
         height: 1808,
@@ -928,6 +946,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/brickdrop/showcase/02.png",
+        optimizedSrc: "/media/projects/brickdrop/showcase/02.webp",
         alt: "BrickDrop screenshot 3",
         width: 2568,
         height: 1662,
@@ -936,6 +955,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/brickdrop/showcase/03.png",
+        optimizedSrc: "/media/projects/brickdrop/showcase/03.webp",
         alt: "BrickDrop screenshot 4",
         width: 2704,
         height: 1762,
@@ -1124,6 +1144,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/sea-battle/showcase/01.png",
+        optimizedSrc: "/media/projects/sea-battle/showcase/01.webp",
         alt: "Sea Battle screenshot 1",
         width: 2856,
         height: 1802,
@@ -1133,6 +1154,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/sea-battle/showcase/02.png",
+        optimizedSrc: "/media/projects/sea-battle/showcase/02.webp",
         alt: "Sea Battle screenshot 2",
         width: 2856,
         height: 1802,
@@ -1141,6 +1163,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/sea-battle/showcase/03.png",
+        optimizedSrc: "/media/projects/sea-battle/showcase/03.webp",
         alt: "Sea Battle screenshot 3",
         width: 2856,
         height: 1802,
@@ -1149,6 +1172,7 @@ export const projects: ProjectEntry[] = [
       {
         kind: "image",
         src: "/media/projects/sea-battle/showcase/04.png",
+        optimizedSrc: "/media/projects/sea-battle/showcase/04.webp",
         alt: "Sea Battle screenshot 4",
         width: 2856,
         height: 1802,

@@ -197,12 +197,14 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                   className={`overflow-hidden rounded-[6px] border border-[color:var(--case-line)] ${theme.panel} shadow-[0_18px_48px_rgba(15,23,42,0.1)]`}
                 >
                   <Image
-                    src={asset.poster ?? asset.src}
+                    src={asset.optimizedSrc ?? asset.poster ?? asset.src}
                     alt={asset.alt}
                     width={asset.width}
                     height={asset.height}
                     className="h-auto w-full object-cover"
                     priority={index === 0}
+                    quality={82}
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <figcaption className="px-5 py-4 text-xs uppercase tracking-[0.18em] text-muted">
                     {asset.alt}
@@ -370,11 +372,13 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                 <div key={asset.src} className={`rounded-[6px] border border-dashed border-[color:var(--case-line)] ${theme.panel} p-6 shadow-[0_18px_60px_rgba(15,23,42,0.1)]`}>
                   {asset.poster ? (
                     <Image
-                      src={asset.poster}
+                      src={asset.optimizedSrc ?? asset.poster}
                       alt={asset.alt}
                       width={asset.width}
                       height={asset.height}
                       className="h-auto w-full rounded-[6px] object-cover"
+                      quality={82}
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                   ) : null}
                   <div className="mt-4 space-y-2">

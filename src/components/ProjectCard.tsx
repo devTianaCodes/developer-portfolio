@@ -19,6 +19,7 @@ const toneClasses: Record<ProjectEntry["visualTone"], string> = {
 
 export function ProjectCard({ project, prominent = false, tallMedia = false }: ProjectCardProps) {
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
+  const heroSrc = hero?.optimizedSrc ?? hero?.poster ?? hero?.src;
   const heightClass = prominent ? "min-h-[560px]" : "min-h-[500px]";
   const liveLink = project.links.find((link) => link.kind === "live" && link.href);
   const mediaAspect = prominent || tallMedia ? "aspect-[16/10]" : "aspect-[16/9]";
@@ -29,11 +30,16 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
       {hero ? (
         <div className={"relative " + mediaAspect + " overflow-hidden bg-slate-900"}>
           <Image
-            src={hero.poster ?? hero.src}
+            src={heroSrc}
             alt={hero.alt}
             fill
+            quality={82}
             className="object-cover transition duration-700 group-hover:scale-[1.025]"
-            sizes={prominent ? "(max-width: 1280px) 100vw, 50vw" : "(max-width: 768px) 100vw, 33vw"}
+            sizes={
+              prominent
+                ? "(max-width: 768px) 100vw, (max-width: 1280px) 48vw, 44vw"
+                : "(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 31vw"
+            }
           />
           <div className={"absolute inset-0 bg-gradient-to-t " + toneClasses[project.visualTone]} />
         </div>

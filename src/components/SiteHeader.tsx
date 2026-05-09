@@ -27,12 +27,13 @@ export function SiteHeader() {
         <Link href="/" className="group inline-flex min-w-0 items-center gap-4">
           <span className="relative h-[58px] w-[58px] shrink-0 overflow-hidden rounded-full border-2 border-[#262626] bg-white shadow-[0_8px_20px_rgba(15,23,42,0.12)] transition group-hover:scale-[1.03] lg:h-[70px] lg:w-[70px]">
             <Image
-              src="/media/profile/tiana-logo-coding-blank.png"
+              src="/media/profile/tiana-logo-coding-blank.webp"
               alt="Tiana Oblasser"
               fill
               sizes="(max-width: 1024px) 58px, 70px"
               className="scale-110 object-cover object-center"
               priority
+              quality={82}
             />
           </span>
           <span className="min-w-0">
