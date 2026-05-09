@@ -28,6 +28,20 @@ const imageGlow: Record<ProjectEntry["visualTone"], string> = {
   "naval-tech": "from-[#1f6d94]/14 via-transparent to-[#f5fbff]/56"
 };
 
+const polishedEase = [0.25, 0.8, 0.25, 1] as const;
+const desktopPanelSpring = {
+  type: "spring",
+  stiffness: 220,
+  damping: 34,
+  mass: 0.95
+} as const;
+const mobilePanelSpring = {
+  type: "spring",
+  stiffness: 520,
+  damping: 44,
+  mass: 0.52
+} as const;
+
 function wrapIndex(index: number, length: number) {
   return ((index % length) + length) % length;
 }
@@ -55,7 +69,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
             y: isHovered ? -10 : 0,
             filter: isHovered ? "saturate(1.12) contrast(1.04)" : isActive ? "saturate(1.04)" : "saturate(0.92)"
           }}
-          transition={{ duration: 0.3, ease: [0.25, 0.8, 0.25, 1] as const }}
+          transition={{ duration: 0.24, ease: polishedEase }}
         >
           <Image
             src={hero.poster ?? hero.src}
@@ -68,7 +82,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
         </motion.div>
       ) : null}
 
-      <div className="absolute inset-x-0 bottom-10 z-20 mx-auto flex max-w-[82%] flex-col items-center text-center text-[#202124] md:bottom-14">
+      <div className="absolute inset-x-0 bottom-16 z-20 mx-auto flex max-w-[82%] flex-col items-center text-center text-[#202124] md:bottom-14">
         <p className="font-sans text-[14px] font-bold uppercase leading-[1.2] tracking-[2px] text-[#262626]">About project</p>
         <h2 className="mt-[10px] max-w-xl text-balance font-sans text-3xl font-medium leading-[1.32] text-[#262626] md:text-[2.05rem]">
           {project.name}
@@ -78,7 +92,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
         </p>
         <span
           className={classNames(
-            "mt-[10px] inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent px-[1.4em] py-[1em] font-sans text-[14px] font-bold leading-[1.2] tracking-[1px] text-[#262626] transition group-hover:scale-[1.03] group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)]",
+            "mt-[18px] inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent px-[1.4em] py-[1em] font-sans text-[14px] font-bold leading-[1.2] tracking-[1px] text-[#262626] transition group-hover:scale-[1.03] group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)]",
             isActive && "group-hover:bg-[#262626] group-hover:text-white"
           )}
         >
@@ -90,7 +104,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
         className="pointer-events-none absolute inset-0 z-30 bg-slate-950"
         initial={false}
         animate={{ opacity: shadeOpacity }}
-        transition={{ duration: 0.35, ease: [0.25, 0.8, 0.25, 1] as const }}
+        transition={{ duration: 0.28, ease: polishedEase }}
       />
     </>
   );
@@ -129,11 +143,11 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     const swipeDistance = info.offset.x;
     const swipeVelocity = info.velocity.x;
 
-    if (swipeDistance < -70 || swipeVelocity < -450) {
+    if (swipeDistance < -54 || swipeVelocity < -360) {
       move(1);
     }
 
-    if (swipeDistance > 70 || swipeVelocity > 450) {
+    if (swipeDistance > 54 || swipeVelocity > 360) {
       move(-1);
     }
   }
@@ -141,10 +155,10 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const activeProject = orderedProjects[activeIndex];
   const panelTransition = reduceMotion
     ? { duration: 0 }
-    : { duration: 0.46, ease: [0.25, 0.8, 0.25, 1] as const };
+    : desktopPanelSpring;
   const mobilePanelTransition = reduceMotion
     ? { duration: 0 }
-    : { duration: 0.82, ease: [0.22, 1, 0.36, 1] as const };
+    : mobilePanelSpring;
 
   return (
     <section data-testid="project-carousel" className="relative overflow-hidden px-3 md:px-4 lg:-mx-4 lg:px-0">
@@ -236,11 +250,13 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
               className={classNames("absolute inset-0 overflow-hidden", pastelPanels[activeProject.visualTone])}
               drag={reduceMotion ? false : "x"}
               dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.18}
+              dragElastic={0.12}
+              dragMomentum={false}
               onDragEnd={handleMobileDragEnd}
-              initial={reduceMotion ? false : { x: direction * 92 + "%", opacity: 0.98, scale: 1.01 }}
+              initial={reduceMotion ? false : { x: direction * 68 + "%", opacity: 0.92, scale: 1.006 }}
               animate={{ x: "0%", opacity: 1, scale: 1, zIndex: 2 }}
-              exit={reduceMotion ? undefined : { x: direction * -38 + "%", opacity: 0.64, scale: 0.985, zIndex: 1 }}
+              exit={reduceMotion ? undefined : { x: direction * -58 + "%", opacity: 0.72, scale: 0.992, zIndex: 1 }}
+              whileDrag={reduceMotion ? undefined : { scale: 0.988 }}
               transition={mobilePanelTransition}
             >
               <Link
