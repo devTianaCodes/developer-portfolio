@@ -51,11 +51,11 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
         <motion.div
           className="absolute inset-x-0 top-0 h-[67%] px-8 pt-12 md:px-10 md:pt-16"
           animate={{
-            scale: isHovered ? 1.065 : isActive ? 1.018 : 0.99,
-            y: isHovered ? -18 : 0,
+            scale: isHovered ? 1.045 : isActive ? 1.014 : 0.99,
+            y: isHovered ? -10 : 0,
             filter: isHovered ? "saturate(1.12) contrast(1.04)" : isActive ? "saturate(1.04)" : "saturate(0.92)"
           }}
-          transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] as const }}
+          transition={{ duration: 0.3, ease: [0.25, 0.8, 0.25, 1] as const }}
         >
           <Image
             src={hero.poster ?? hero.src}
@@ -90,7 +90,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
         className="pointer-events-none absolute inset-0 z-30 bg-slate-950"
         initial={false}
         animate={{ opacity: shadeOpacity }}
-        transition={{ duration: 0.72, ease: [0, 0, 1, 1] as const }}
+        transition={{ duration: 0.35, ease: [0.25, 0.8, 0.25, 1] as const }}
       />
     </>
   );
@@ -141,10 +141,10 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const activeProject = orderedProjects[activeIndex];
   const panelTransition = reduceMotion
     ? { duration: 0 }
-    : { duration: 0.72, ease: [0, 0, 1, 1] as const };
+    : { duration: 0.46, ease: [0.25, 0.8, 0.25, 1] as const };
   const mobilePanelTransition = reduceMotion
     ? { duration: 0 }
-    : { duration: 0.92, ease: [0.22, 1, 0.36, 1] as const };
+    : { duration: 0.82, ease: [0.22, 1, 0.36, 1] as const };
 
   return (
     <section data-testid="project-carousel" className="relative overflow-hidden px-3 md:px-4 lg:-mx-4 lg:px-0">
@@ -193,9 +193,9 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                   top,
                   height,
                   opacity: absOffset <= 1 ? 1 : 0,
-                  scale: isHovered ? (isActive ? 1.035 : 1.075) : 1,
-                  y: isHovered ? (isActive ? -8 : -16) : 0,
-                  boxShadow: isHovered ? "0 34px 90px rgba(15, 23, 42, 0.26)" : "0 0 0 rgba(15, 23, 42, 0)"
+                  scale: isHovered ? (isActive ? 1.022 : 1.04) : 1,
+                  y: isHovered ? (isActive ? -5 : -9) : 0,
+                  boxShadow: isHovered ? "0 26px 70px rgba(15, 23, 42, 0.22)" : "0 0 0 rgba(15, 23, 42, 0)"
                 }}
                 transition={panelTransition}
                 style={{ left, top, width, height, zIndex: isHovered ? 45 : isActive ? 30 : 20 - absOffset }}
