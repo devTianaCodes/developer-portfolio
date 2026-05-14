@@ -38,8 +38,18 @@ Phase 1 target:
 
 - Deploy this portfolio to Vercel free.
 - Deploy `BrickDrop` and `Sea Battle` as separate static Vercel projects.
-- Deploy `English4U` first among the full-stack apps.
-- Treat `PetNest` as a second live candidate if backend hosting is stable.
-- Keep `Chocolate Craft House` media-first until payment and email demo mode is finalized.
+- Deploy `Chocolate Craft House` and `PetNest` as browse-only full-stack demos.
+- Keep `English4U` as a case study.
 
 Detailed deployment steps live in [DEPLOYMENT.md](./DEPLOYMENT.md).
+
+## Full-Stack Live App Links
+
+The portfolio can show `Open Web App` buttons for the deployed full-stack projects without committing deployment URLs directly. Configure these public environment variables in Vercel after each frontend/backend demo is deployed:
+
+```bash
+NEXT_PUBLIC_CHOCOLATE_WEB_APP_URL=https://...
+NEXT_PUBLIC_PETNEST_WEB_APP_URL=https://...
+```
+
+Leave a variable empty until that app is safely deployed. Empty values keep the portfolio focused on the case study and repository links.

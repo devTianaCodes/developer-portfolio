@@ -80,6 +80,11 @@ export type ProjectEntry = {
   links: ProjectLink[];
 };
 
+const fullStackLiveUrls = {
+  chocolate: process.env.NEXT_PUBLIC_CHOCOLATE_WEB_APP_URL,
+  petnest: process.env.NEXT_PUBLIC_PETNEST_WEB_APP_URL
+} as const;
+
 export const projects: ProjectEntry[] = [
   {
     slug: "chocolate",
@@ -89,7 +94,7 @@ export const projects: ProjectEntry[] = [
       "A full-stack chocolate storefront built as a polished branded product rather than a generic shop. It covers catalog discovery, favorites, cart and checkout, payment handling, admin operations, and post-purchase email flows.",
     role: "Full-stack product and frontend branding",
     category: "full-stack",
-    deploymentMode: "media",
+    deploymentMode: fullStackLiveUrls.chocolate ? "hybrid" : "media",
     repoPath:
       "/Users/parents/Developer/Project Chocolate Craft House/chocolate_frontend/client and /Users/parents/Developer/Project Chocolate Craft House/chocolate_backend/server",
     year: "2025",
@@ -281,7 +286,10 @@ export const projects: ProjectEntry[] = [
         status: "ready"
       }
     ],
-    links: [{ label: "Case Study", href: "/projects/chocolate", kind: "case-study" }]
+    links: [
+      { label: "Open Web App", href: fullStackLiveUrls.chocolate, kind: "live" },
+      { label: "Case Study", href: "/projects/chocolate", kind: "case-study" }
+    ]
   },
   {
     slug: "english4u",
@@ -321,14 +329,14 @@ export const projects: ProjectEntry[] = [
       "Clear learner and admin product surfaces",
       "Designed specifically as portfolio software",
       "Strong route coverage for real app behavior",
-      "Practical deployment candidate for Vercel plus external backend"
+      "Clear full-stack architecture for learner and admin workflows"
     ],
     challenge:
       "Create an interview-ready education product that demonstrates both product thinking and implementation discipline without overloading v1 with speculative features.",
     solution:
       "The build focuses on the learning core: onboarding, dashboard, courses, lessons, quizzes, review flows, and admin-authored collections. The case study emphasizes clear scope, learner value, and a realistic path from MVP structure to portfolio polish.",
     outcome:
-      "English4U becomes the lead live full-stack candidate in the portfolio because it balances product depth, route richness, and a cleaner deployment path than the commerce app.",
+      "English4U remains a strong case study because it balances product depth, route richness, and a clear full-stack structure for technical review.",
     features: [
       "Guest, learner, and admin route handling",
       "Course catalog, course detail, and lesson routes",
@@ -345,7 +353,7 @@ export const projects: ProjectEntry[] = [
     metrics: [
       { label: "Learner routes", value: "10+" },
       { label: "Admin collections", value: "6" },
-      { label: "Launch mode", value: "Hybrid" }
+      { label: "Case study mode", value: "Full-stack" }
     ],
     impactBullets: [
       "Connects product thinking to a realistic self-paced education experience.",
@@ -492,7 +500,9 @@ export const projects: ProjectEntry[] = [
         status: "ready"
       }
     ],
-    links: [{ label: "Case Study", href: "/projects/english4u", kind: "case-study" }]
+    links: [
+      { label: "Case Study", href: "/projects/english4u", kind: "case-study" }
+    ]
   },
   {
     slug: "petnest",
@@ -725,7 +735,10 @@ export const projects: ProjectEntry[] = [
         status: "ready"
       }
     ],
-    links: [{ label: "Case Study", href: "/projects/petnest", kind: "case-study" }]
+    links: [
+      { label: "Open Web App", href: fullStackLiveUrls.petnest, kind: "live" },
+      { label: "Case Study", href: "/projects/petnest", kind: "case-study" }
+    ]
   },
   {
     slug: "brickdrop",

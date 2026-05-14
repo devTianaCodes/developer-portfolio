@@ -70,7 +70,7 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
 
           <div className="relative z-20 flex flex-wrap justify-end gap-3 border-t border-line pt-4">
             {liveLink ? (
-              <Link href={liveLink.href!} target="_blank" rel="noreferrer" className="sharp-button">Live demo</Link>
+              <Link href={liveLink.href!} target="_blank" rel="noreferrer" className="sharp-button">{liveLink.label}</Link>
             ) : null}
             <Link href={"/projects/" + project.slug} className="sharp-button">View WebApp</Link>
           </div>

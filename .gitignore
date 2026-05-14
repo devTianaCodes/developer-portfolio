@@ -7,3 +7,11 @@ dist
 .env*.local
 .DS_Store
 tsconfig.tsbuildinfo
+
+# Local AI/workflow context, not project source.
+ai-docs/
+ai-rules/
+ai-scripts/
+skills/
+docs/
+docs-ai/

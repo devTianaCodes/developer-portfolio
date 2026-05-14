@@ -114,6 +114,19 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
               <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4">
                 {project.repositories || actionLinks.length > 0 ? (
                   <div className="grid gap-3 sm:grid-cols-2">
+                    {actionLinks.map((link) =>
+                      link.href ? (
+                        <Link
+                          key={`${project.slug}-${link.label}`}
+                          href={link.href}
+                          target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
+                          rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
+                          className="rounded-[4px] border-2 border-[#262626]/72 px-3 py-3 text-xs font-bold uppercase tracking-[0.12em] transition hover:bg-[#262626] hover:text-white sm:px-4 sm:text-sm sm:tracking-[0.18em]"
+                        >
+                          {link.label}
+                        </Link>
+                      ) : null
+                    )}
                     {project.repositories?.map((repo) => (
                       <Link
                         key={repo.href}
@@ -128,19 +141,6 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                         </span>
                       </Link>
                     ))}
-                    {actionLinks.map((link) =>
-                      link.href ? (
-                        <Link
-                          key={`${project.slug}-${link.label}`}
-                          href={link.href}
-                          target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
-                          rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
-                          className="rounded-[4px] border-2 border-[#262626]/72 px-3 py-3 text-xs font-bold uppercase tracking-[0.12em] transition hover:bg-[#262626] hover:text-white sm:px-4 sm:text-sm sm:tracking-[0.18em]"
-                        >
-                          {link.label}
-                        </Link>
-                      ) : null
-                    )}
                   </div>
                 ) : null}
                 {project.repositoryRoots ? (
