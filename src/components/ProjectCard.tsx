@@ -21,7 +21,6 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
   const heroSrc = hero?.optimizedSrc ?? hero?.poster ?? hero?.src;
   const heightClass = prominent ? "min-h-[560px]" : "min-h-[500px]";
-  const liveLink = project.links.find((link) => link.kind === "live" && link.href);
   const mediaAspect = prominent || tallMedia ? "aspect-[16/10]" : "aspect-[16/9]";
 
   return (
@@ -69,9 +68,6 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
           </ul>
 
           <div className="relative z-20 flex flex-wrap justify-end gap-3 border-t border-line pt-4">
-            {liveLink ? (
-              <Link href={liveLink.href!} target="_blank" rel="noreferrer" className="sharp-button">{liveLink.label}</Link>
-            ) : null}
             <Link href={"/projects/" + project.slug} className="sharp-button">View WebApp</Link>
           </div>
         </div>

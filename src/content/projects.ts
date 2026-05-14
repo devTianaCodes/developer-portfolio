@@ -81,8 +81,8 @@ export type ProjectEntry = {
 };
 
 const fullStackLiveUrls = {
-  chocolate: process.env.NEXT_PUBLIC_CHOCOLATE_WEB_APP_URL,
-  petnest: process.env.NEXT_PUBLIC_PETNEST_WEB_APP_URL
+  chocolate: process.env.NEXT_PUBLIC_CHOCOLATE_WEB_APP_URL ?? "https://chocolate-frontend-one.vercel.app",
+  petnest: process.env.NEXT_PUBLIC_PETNEST_WEB_APP_URL ?? "https://petnest-frontend.vercel.app"
 } as const;
 
 export const projects: ProjectEntry[] = [
