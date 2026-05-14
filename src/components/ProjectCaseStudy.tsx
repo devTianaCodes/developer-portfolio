@@ -119,43 +119,39 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             <h1 className="max-w-full text-balance font-sans text-[clamp(2.45rem,13vw,4.35rem)] font-medium leading-[0.96] tracking-[-0.01em] md:text-7xl">{project.name}</h1>
             <p className="max-w-2xl text-lg font-normal leading-7 text-[#262626]/88 sm:text-xl">{project.tagline}</p>
             <p className="max-w-2xl text-base leading-7 text-[#262626]/72">{project.hook}</p>
+            {actionLinks.length > 0 ? (
+              <div className="flex flex-wrap justify-start gap-3">
+                {actionLinks.map((link) =>
+                  link.href ? (
+                    <Link
+                      key={`${project.slug}-${link.label}`}
+                      href={link.href}
+                      target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
+                      rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
+                      className="rounded-[4px] border-2 border-[#262626]/72 px-3 py-3 text-xs font-bold uppercase tracking-[0.12em] transition hover:bg-[#262626] hover:text-white sm:px-4 sm:text-sm sm:tracking-[0.18em]"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : null
+                )}
+              </div>
+            ) : null}
             {hasResourceBlock ? (
               <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4">
-                {project.repositories || actionLinks.length > 0 ? (
-                  <div className="space-y-4">
-                    {actionLinks.length > 0 ? (
-                      <div className="flex flex-wrap justify-center gap-3">
-                        {actionLinks.map((link) =>
-                          link.href ? (
-                            <Link
-                              key={`${project.slug}-${link.label}`}
-                              href={link.href}
-                              target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
-                              rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
-                              className="rounded-[4px] border-2 border-[#262626]/72 px-3 py-3 text-xs font-bold uppercase tracking-[0.12em] transition hover:bg-[#262626] hover:text-white sm:px-4 sm:text-sm sm:tracking-[0.18em]"
-                            >
-                              {link.label}
-                            </Link>
-                          ) : null
-                        )}
-                      </div>
-                    ) : null}
-                    {project.repositories ? (
-                      <div className="flex flex-wrap gap-x-6 gap-y-3">
-                        {project.repositories.map((repo) => (
-                          <Link
-                            key={repo.href}
-                            href={repo.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="group inline-flex items-center gap-2 text-sm font-semibold lowercase tracking-[0.02em] text-[#262626]/74 underline-offset-4 transition hover:text-[var(--case-accent)] hover:underline"
-                          >
-                            <GithubIcon className="h-4 w-4 transition group-hover:scale-110" />
-                            {repositoryLabel(repo.label)}
-                          </Link>
-                        ))}
-                      </div>
-                    ) : null}
+                {project.repositories ? (
+                  <div className="flex flex-wrap justify-start gap-x-6 gap-y-3">
+                    {project.repositories.map((repo) => (
+                      <Link
+                        key={repo.href}
+                        href={repo.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group inline-flex items-center gap-2 text-sm font-semibold lowercase tracking-[0.02em] text-[#262626]/74 underline-offset-4 transition hover:text-[var(--case-accent)] hover:underline"
+                      >
+                        <GithubIcon className="h-4 w-4 transition group-hover:scale-110" />
+                        {repositoryLabel(repo.label)}
+                      </Link>
+                    ))}
                   </div>
                 ) : null}
                 {project.repositoryRoots ? (
@@ -168,23 +164,6 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                     ))}
                   </div>
                 ) : null}
-              </div>
-            ) : null}
-            {!hasResourceBlock && actionLinks.length > 0 ? (
-              <div className="flex flex-wrap gap-3">
-                {actionLinks.map((link) =>
-                  link.href ? (
-                    <Link
-                      key={`${project.slug}-${link.label}`}
-                      href={link.href}
-                      target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
-                      rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
-                      className="sharp-button"
-                    >
-                      {link.label}
-                    </Link>
-                  ) : null
-                )}
               </div>
             ) : null}
           </div>

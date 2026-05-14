@@ -117,7 +117,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     () => [...projects].sort((a, b) => Number(Boolean(b.flagship)) - Number(Boolean(a.flagship))),
     [projects]
   );
-  const [{ activeIndex, direction }, setCarousel] = useState({ activeIndex: 1, direction: 1 });
+  const [{ activeIndex, direction }, setCarousel] = useState({ activeIndex: 0, direction: 1 });
   const reduceMotion = useReducedMotion();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
