@@ -55,9 +55,19 @@ function circularOffset(index: number, activeIndex: number, length: number) {
   return raw;
 }
 
+const mobileSummaries: Partial<Record<ProjectEntry["slug"], string>> = {
+  chocolate: "Full-stack e-commerce app with catalog, cart, checkout, and admin operations.",
+  english4u: "Learning platform with course journeys, quizzes, dashboards, and admin content tools.",
+  petnest: "Adoption workflow app with animal listings, profiles, favourites, and request flows.",
+  paytrack: "Mobile-first subscription tracker with reminders, dashboard insights, and secure account flows.",
+  brickdrop: "Playable puzzle game with clean controls, scoring, levels, and responsive browser play.",
+  "sea-battle": "Interactive Battleship game with board logic, turn flow, and polished browser gameplay."
+};
+
 function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boolean, shadeOpacity: number) {
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
   const heroSrc = hero?.optimizedSrc ?? hero?.poster ?? hero?.src;
+  const mobileSummary = mobileSummaries[project.slug] ?? project.tagline;
 
   return (
     <>
@@ -66,7 +76,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
 
       {hero ? (
         <motion.div
-          className="absolute inset-x-0 top-0 h-[67%] px-8 pt-4 md:px-10 md:pt-5"
+          className="absolute inset-x-0 -top-10 h-[66%] px-7 pt-0 md:-top-6 md:px-9"
           animate={{
             scale: isHovered ? 1.045 : isActive ? 1.014 : 0.99,
             y: isHovered ? -10 : 0,
@@ -80,23 +90,27 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
             fill
             priority={isActive}
             quality={82}
-            className="object-contain px-8 pb-8 pt-1 drop-shadow-[0_28px_42px_rgba(16,24,40,0.22)] transition-transform duration-500 ease-out group-hover:scale-[1.035] md:px-10 md:pb-10 md:pt-2"
+            className="object-contain px-7 pb-6 pt-0 drop-shadow-[0_28px_42px_rgba(16,24,40,0.22)] transition-transform duration-500 ease-out group-hover:scale-[1.035] md:px-9 md:pb-8"
             sizes="(max-width: 640px) 82vw, (max-width: 1024px) 48vw, 34vw"
           />
         </motion.div>
       ) : null}
 
-      <div className="absolute inset-x-0 bottom-16 z-20 mx-auto flex max-w-[82%] flex-col items-center text-center text-[#202124] md:bottom-14">
-        <p className="font-sans text-[14px] font-bold uppercase leading-[1.2] tracking-[2px] text-[#262626]">About project</p>
-        <h2 className="mt-[10px] max-w-xl text-balance font-sans text-3xl font-medium leading-[1.32] text-[#262626] md:text-[2.05rem]">
-          {project.name}
-        </h2>
-        <p className="mt-[12px] line-clamp-2 max-w-xl font-sans text-[20px] font-normal leading-[1.55] text-[#262626]/82">
-          {project.tagline}
-        </p>
+      <div className="absolute inset-x-0 bottom-12 z-20 mx-auto flex max-w-[82%] flex-col items-center text-center text-[#202124] md:bottom-12">
+        <div className="-translate-y-[7rem] md:translate-y-0">
+          <h2 className="max-w-xl text-balance font-sans text-[1.72rem] font-medium leading-[1.22] text-[#262626] md:text-[1.95rem]">
+            {project.name}
+          </h2>
+          <p className="mt-5 line-clamp-3 max-w-xl font-sans text-[15px] font-normal leading-[1.38] text-[#262626]/82 md:hidden">
+            {mobileSummary}
+          </p>
+          <p className="mt-[10px] hidden max-w-xl font-sans text-[19px] font-normal leading-[1.45] text-[#262626]/82 md:line-clamp-2 md:block">
+            {project.tagline}
+          </p>
+        </div>
         <span
           className={classNames(
-            "mt-[18px] inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent px-[1.4em] py-[1em] font-sans text-[14px] font-bold leading-[1.2] tracking-[1px] text-[#262626] transition group-hover:scale-[1.03] group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)]",
+            "-mt-3 inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent px-[1.25em] py-[0.85em] font-sans text-[13px] font-bold leading-[1.2] tracking-[1px] text-[#262626] transition group-hover:scale-[1.03] group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)] md:mt-[14px] md:text-[14px]",
             isActive && "group-hover:bg-[#262626] group-hover:text-white"
           )}
         >
@@ -166,7 +180,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
   return (
     <section data-testid="project-carousel" className="relative overflow-hidden px-3 md:px-4 lg:-mx-4 lg:px-0">
-      <div className="relative mx-auto h-[650px] max-w-[128rem] overflow-hidden bg-slate-950/20 md:h-[760px]">
+      <div className="relative mx-auto h-[560px] max-w-[128rem] overflow-hidden bg-slate-950/20 md:h-[680px]">
         <button
           type="button"
           onClick={() => move(-1)}
