@@ -56,7 +56,7 @@ function circularOffset(index: number, activeIndex: number, length: number) {
 }
 
 const mobileSummaries: Partial<Record<ProjectEntry["slug"], string>> = {
-  chocolate: "Full-stack e-commerce app with catalog, cart, checkout, and admin operations.",
+  chocolate: "E-commerce web app with catalog, cart, checkout, and admin operations.",
   english4u: "Learning platform with course journeys, quizzes, dashboards, and admin content tools.",
   petnest: "Adoption workflow app with animal listings, profiles, favourites, and request flows.",
   paytrack: "Mobile-first subscription tracker with reminders, dashboard insights, and secure account flows.",
@@ -68,6 +68,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
   const heroSrc = hero?.optimizedSrc ?? hero?.poster ?? hero?.src;
   const mobileSummary = mobileSummaries[project.slug] ?? project.tagline;
+  const projectTypeLabel = project.category === "game" ? "Web application game" : "Full stack web application";
 
   return (
     <>
@@ -103,10 +104,13 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
           <h2 className="max-w-xl text-balance font-sans text-[1.72rem] font-medium leading-[1.22] text-[#262626] md:text-[1.95rem]">
             {project.name}
           </h2>
-          <p className="mt-5 line-clamp-3 max-w-xl font-sans text-[15px] font-normal leading-[1.38] text-[#262626]/82 md:hidden">
+          <p className="mt-2 font-sans text-[11px] font-bold uppercase leading-[1.2] tracking-[1.8px] text-[#262626]/70 md:mt-3 md:text-[12px]">
+            {projectTypeLabel}
+          </p>
+          <p className="mt-4 line-clamp-3 max-w-xl font-sans text-[15px] font-normal leading-[1.38] text-[#262626]/82 md:hidden">
             {mobileSummary}
           </p>
-          <p className="mt-[10px] hidden max-w-xl font-sans text-[19px] font-normal leading-[1.45] text-[#262626]/82 md:line-clamp-2 md:block">
+          <p className="mt-[12px] hidden max-w-xl font-sans text-[19px] font-normal leading-[1.45] text-[#262626]/82 md:line-clamp-2 md:block">
             {project.tagline}
           </p>
         </div>
