@@ -796,14 +796,16 @@ export const projects: ProjectEntry[] = [
       "Dashboard with monthly spend, yearly projection, active subscription count, upcoming renewals, and category mix",
       "Subscription CRUD with renewal dates, billing frequency, category, status, payment-method label, and notes",
       "Manual payment history that records amount, paid date, currency, method, and notes",
-      "Reminder history and scheduled renewal checks for seven-day and one-day windows",
-      "Settings for display name, language, default currency, timezone, dark mode, and payment methods"
+      "Reminder history, scheduled renewal checks, and per-subscription reminder preferences",
+      "Settings for display name, language, default currency, timezone, dark mode, and branded payment-method controls",
+      "Password reset flow with expiring reset tokens and email delivery support"
     ],
     architecture: [
       "React frontend communicates only with REST JSON endpoints under /api",
       "Express backend owns validation, business logic, authentication, reminder jobs, and Prisma data access",
       "Prisma schema models users, categories, payment methods, subscriptions, payment records, reminder logs, reminder preferences, and password reset tokens",
-      "Mobile uses bottom navigation while tablet and desktop expand into side navigation and wider summary layouts"
+      "Mobile uses full-label bottom navigation while tablet and desktop expand into side navigation and wider summary layouts",
+      "Deployment config supports explicit frontend origins, cross-site cookie settings, and hardened CORS behavior"
     ],
     metrics: [
       { label: "Languages", value: "6" },
@@ -849,7 +851,8 @@ export const projects: ProjectEntry[] = [
         items: [
           "Users can create, edit, cancel, archive, and restore subscriptions across active, cancelled, and archived states",
           "Archive flows remove subscriptions from active totals and reminders without immediately destroying history",
-          "Manage Subscription controls group important actions into a more intentional workflow"
+          "Manage Subscription controls group important actions into a more intentional workflow",
+          "Seven-day and one-day reminder preferences can be adjusted per subscription"
         ]
       },
       {
@@ -869,10 +872,14 @@ export const projects: ProjectEntry[] = [
     },
     apiDomains: [
       "/api/auth",
+      "/api/auth/password-reset/request",
+      "/api/auth/password-reset/confirm",
       "/api/me",
       "/api/categories",
       "/api/payment-methods",
       "/api/subscriptions",
+      "/api/subscriptions/:id/payments",
+      "/api/subscriptions/:id/reminder-preferences",
       "/api/dashboard",
       "/api/reminders"
     ],
@@ -888,7 +895,8 @@ export const projects: ProjectEntry[] = [
         items: [
           "JWT auth is stored in HTTP-only cookies so frontend JavaScript does not directly handle session tokens",
           "Passwords are hashed, never stored as plain text",
-          "Users can only access their own subscriptions, payment methods, reminders, and profile data"
+          "Users can only access their own subscriptions, payment methods, reminders, and profile data",
+          "Password reset tokens are stored server-side, expire, and are marked used after confirmation"
         ]
       },
       {
@@ -897,6 +905,7 @@ export const projects: ProjectEntry[] = [
         items: [
           "Zod validates backend request payloads before business logic runs",
           "Payment methods store labels only and never full card numbers or real payment credentials",
+          "Payment-method deletion uses a confirmation step before removing the saved label",
           "Deletion-sensitive actions use confirmation or archive flows instead of immediate permanent removal"
         ]
       },
@@ -906,16 +915,27 @@ export const projects: ProjectEntry[] = [
         items: [
           "node-cron powers scheduled reminder checks for upcoming renewal windows",
           "Nodemailer supports email reminder delivery when SMTP is configured",
-          "Reminder logs keep a reviewable history of sent renewal notifications"
+          "Reminder logs keep a reviewable history of sent renewal notifications",
+          "Subscription-level reminder preferences let users disable specific reminder windows"
         ]
       },
       {
         title: "Responsive and internationalized UI",
         text: "The frontend is built for repeated everyday use across devices and languages.",
         items: [
-          "The interface starts mobile-first with bottom navigation, then expands into tablet and desktop layouts",
+          "The interface starts mobile-first with full navigation labels, then expands into tablet and desktop layouts",
           "i18next supports English, Italian, German, French, Romanian, and Russian",
-          "Dark mode, default currency, timezone, and language settings let users personalize the app"
+          "Dark mode, default currency, timezone, and language settings let users personalize the app",
+          "Recent frontend polish improved accessibility text, navigation clarity, and branded settings dropdowns"
+        ]
+      },
+      {
+        title: "Testing and deployment hardening",
+        text: "Recent PayTrack updates added focused checks around the areas most likely to regress.",
+        items: [
+          "Frontend node:test coverage checks payment-method label formatting and full navigation words across locales",
+          "Backend tests cover auth schemas, subscription schemas, reminder preference behavior, and allowed CORS origins",
+          "Environment config supports multiple frontend URLs for preview and production deployments"
         ]
       }
     ],
