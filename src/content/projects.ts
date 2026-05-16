@@ -2,6 +2,7 @@ export type ProjectSlug =
   | "chocolate"
   | "english4u"
   | "petnest"
+  | "paytrack"
   | "brickdrop"
   | "sea-battle";
 
@@ -56,7 +57,7 @@ export type ProjectEntry = {
   repoPath: string;
   year: string;
   flagship?: boolean;
-  visualTone: "warm-luxury" | "clean-learning" | "soft-utility" | "arcade" | "naval-tech";
+  visualTone: "warm-luxury" | "clean-learning" | "soft-utility" | "finance-mint" | "arcade" | "naval-tech";
   hook: string;
   techStack: string[];
   strengths: string[];
@@ -738,6 +739,245 @@ export const projects: ProjectEntry[] = [
     links: [
       { label: "Open Web App", href: fullStackLiveUrls.petnest, kind: "live" },
       { label: "Case Study", href: "/projects/petnest", kind: "case-study" }
+    ]
+  },
+  {
+    slug: "paytrack",
+    name: "PayTrack",
+    tagline: "Mobile-first subscription manager for recurring payments, reminders, and spending clarity.",
+    summary:
+      "A full-stack subscription tracking app that helps users understand recurring costs, renewal dates, payment-method labels, payment history, and reminder activity without becoming a full banking product.",
+    role: "Full-stack subscription product",
+    category: "full-stack",
+    deploymentMode: "media",
+    repoPath:
+      "/Users/parents/Developer/PayTrack/payTrack-frontend and /Users/parents/Developer/PayTrack/payTrack-backend",
+    year: "2026",
+    visualTone: "finance-mint",
+    hook: "A calm personal finance assistant that turns forgotten recurring payments into a clear, mobile-first product flow.",
+    techStack: [
+      "React 18",
+      "Vite 6",
+      "JavaScript",
+      "React Router",
+      "Tailwind CSS",
+      "i18next",
+      "React i18next",
+      "Recharts",
+      "Lucide React",
+      "Simple Icons",
+      "Node.js",
+      "Express",
+      "Prisma",
+      "MySQL",
+      "Zod",
+      "JWT",
+      "HTTP-only Cookies",
+      "bcryptjs",
+      "Cookie Parser",
+      "CORS",
+      "Nodemailer",
+      "node-cron",
+      "Node Test Runner"
+    ],
+    strengths: [
+      "Mobile-first product direction",
+      "Secure handling of payment-adjacent data",
+      "Dashboard analytics and renewal reminders",
+      "Internationalization across six languages"
+    ],
+    challenge:
+      "Create a focused subscription manager that feels simpler than a banking app while still modeling real recurring-payment behavior, authenticated user data, and renewal reminders.",
+    solution:
+      "The app combines a React/Vite frontend with an Express, Prisma, and MySQL backend. It keeps payment methods as safe labels, uses HTTP-only cookie auth, validates requests with Zod, and organizes the product around dashboard insights, subscription management, payment timelines, reminders, and settings.",
+    outcome:
+      "PayTrack adds a mobile-first finance-adjacent product to the portfolio, showing full-stack architecture, safe data decisions, analytics, internationalization, scheduled jobs, and recurring-payment workflows.",
+    features: [
+      "Dashboard with monthly spend, yearly projection, active subscription count, upcoming renewals, and category mix",
+      "Subscription CRUD with renewal dates, billing frequency, category, status, payment-method label, and notes",
+      "Manual payment history that records amount, paid date, currency, method, and notes",
+      "Reminder history and scheduled renewal checks for seven-day and one-day windows",
+      "Settings for display name, language, default currency, timezone, dark mode, and payment methods"
+    ],
+    architecture: [
+      "React frontend communicates only with REST JSON endpoints under /api",
+      "Express backend owns validation, business logic, authentication, reminder jobs, and Prisma data access",
+      "Prisma schema models users, categories, payment methods, subscriptions, payment records, reminder logs, reminder preferences, and password reset tokens",
+      "Mobile uses bottom navigation while tablet and desktop expand into side navigation and wider summary layouts"
+    ],
+    metrics: [
+      { label: "Languages", value: "6" },
+      { label: "API domains", value: "7" },
+      { label: "Reminder windows", value: "2" }
+    ],
+    impactBullets: [
+      "Shows full-stack product thinking around a real everyday money problem.",
+      "Demonstrates secure organization of sensitive-adjacent payment information without storing full card data.",
+      "Adds mobile-first responsive depth and internationalization to the portfolio."
+    ],
+    interviewAngles: [
+      "How recurring subscription tracking differs from real payment processing and why labels-only payment methods are safer.",
+      "Why archive and restore flows are better than risky one-click deletion for financial history.",
+      "How dashboard analytics, reminder jobs, and payment timelines work together in a focused subscription product."
+    ],
+    repositories: [
+      { label: "Frontend repository", href: "https://github.com/devTianaCodes/payTrack-frontend" },
+      { label: "Backend repository", href: "https://github.com/devTianaCodes/payTrack-backend" }
+    ],
+    repositoryRoots: [
+      { label: "Frontend", path: "https://github.com/devTianaCodes/payTrack-frontend" },
+      { label: "Backend", path: "https://github.com/devTianaCodes/payTrack-backend" }
+    ],
+    workflowIntro: {
+      eyebrow: "Subscription workflow",
+      title: "Recurring payments under control",
+      text: "PayTrack is strongest as a mobile-first product that turns subscription clutter into clear recurring-payment decisions."
+    },
+    workflowHighlights: [
+      {
+        title: "Dashboard and overview",
+        text: "The dashboard answers the core user question quickly: how much is being spent, and what renews soon?",
+        items: [
+          "Monthly spend, yearly projection, active subscription count, upcoming renewals, and spending mix are surfaced together",
+          "Subscriptions are grouped by category so repeated costs become easier to understand",
+          "Responsive layouts keep the dashboard useful on mobile, tablet, and desktop screens"
+        ]
+      },
+      {
+        title: "Subscription lifecycle",
+        text: "Subscription management covers repeated real-world operations while avoiding destructive shortcuts.",
+        items: [
+          "Users can create, edit, cancel, archive, and restore subscriptions across active, cancelled, and archived states",
+          "Archive flows remove subscriptions from active totals and reminders without immediately destroying history",
+          "Manage Subscription controls group important actions into a more intentional workflow"
+        ]
+      },
+      {
+        title: "Payment labels and history",
+        text: "The app tracks payment context without handling real payment credentials.",
+        items: [
+          "Payment methods are labels only, such as Visa **** 4242, PayPal, or Bank account",
+          "Mark-as-paid records amount, paid date, currency, payment method, and notes",
+          "Payment timeline pages show total paid, payment count, average payment, last paid date, next renewal, and year filtering"
+        ]
+      }
+    ],
+    apiIntro: {
+      eyebrow: "Backend surface",
+      title: "Subscription tracking API domains",
+      text: "The REST API separates authentication, account settings, subscriptions, dashboard analytics, payment methods, categories, and reminders."
+    },
+    apiDomains: [
+      "/api/auth",
+      "/api/me",
+      "/api/categories",
+      "/api/payment-methods",
+      "/api/subscriptions",
+      "/api/dashboard",
+      "/api/reminders"
+    ],
+    qualityIntro: {
+      eyebrow: "Engineering decisions",
+      title: "Safe auth, validation, reminders, and i18n",
+      text: "The project is strongest when presented as secure recurring-payment organization rather than payment processing."
+    },
+    qualitySignals: [
+      {
+        title: "Authentication and ownership",
+        text: "PayTrack protects account data through backend-owned sessions and user-scoped queries.",
+        items: [
+          "JWT auth is stored in HTTP-only cookies so frontend JavaScript does not directly handle session tokens",
+          "Passwords are hashed, never stored as plain text",
+          "Users can only access their own subscriptions, payment methods, reminders, and profile data"
+        ]
+      },
+      {
+        title: "Validation and data safety",
+        text: "The app keeps sensitive-adjacent payment information useful without turning into a payment processor.",
+        items: [
+          "Zod validates backend request payloads before business logic runs",
+          "Payment methods store labels only and never full card numbers or real payment credentials",
+          "Deletion-sensitive actions use confirmation or archive flows instead of immediate permanent removal"
+        ]
+      },
+      {
+        title: "Reminder and product systems",
+        text: "Scheduled jobs and product preferences make the MVP feel closer to a real subscription assistant.",
+        items: [
+          "node-cron powers scheduled reminder checks for upcoming renewal windows",
+          "Nodemailer supports email reminder delivery when SMTP is configured",
+          "Reminder logs keep a reviewable history of sent renewal notifications"
+        ]
+      },
+      {
+        title: "Responsive and internationalized UI",
+        text: "The frontend is built for repeated everyday use across devices and languages.",
+        items: [
+          "The interface starts mobile-first with bottom navigation, then expands into tablet and desktop layouts",
+          "i18next supports English, Italian, German, French, Romanian, and Russian",
+          "Dark mode, default currency, timezone, and language settings let users personalize the app"
+        ]
+      }
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/media/projects/paytrack/showcase/01.png",
+        optimizedSrc: "/media/projects/paytrack/showcase/01.webp",
+        alt: "PayTrack desktop dashboard screenshot",
+        width: 2900,
+        height: 1798,
+        featured: true,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/paytrack/showcase/02.png",
+        optimizedSrc: "/media/projects/paytrack/showcase/02.webp",
+        alt: "PayTrack desktop subscriptions screenshot",
+        width: 2900,
+        height: 1798,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/paytrack/showcase/03.png",
+        optimizedSrc: "/media/projects/paytrack/showcase/03.webp",
+        alt: "PayTrack desktop settings screenshot",
+        width: 2900,
+        height: 1798,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/paytrack/showcase/04.png",
+        optimizedSrc: "/media/projects/paytrack/showcase/04.webp",
+        alt: "PayTrack light desktop dashboard screenshot",
+        width: 2900,
+        height: 1798,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/paytrack/showcase/05.png",
+        optimizedSrc: "/media/projects/paytrack/showcase/05.webp",
+        alt: "PayTrack mobile dashboard screenshot",
+        width: 896,
+        height: 1786,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/paytrack/showcase/06.png",
+        optimizedSrc: "/media/projects/paytrack/showcase/06.webp",
+        alt: "PayTrack mobile settings screenshot",
+        width: 896,
+        height: 1786,
+        status: "ready"
+      }
+    ],
+    links: [
+      { label: "Case Study", href: "/projects/paytrack", kind: "case-study" }
     ]
   },
   {

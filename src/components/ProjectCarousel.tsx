@@ -16,6 +16,7 @@ const pastelPanels: Record<ProjectEntry["visualTone"], string> = {
   "warm-luxury": "bg-[#e6c9bc]",
   "clean-learning": "bg-[#d9e8ff]",
   "soft-utility": "bg-[#dcefe6]",
+  "finance-mint": "bg-[#d8f4e6]",
   arcade: "bg-[#e2dcff]",
   "naval-tech": "bg-[#d8edf7]"
 };
@@ -24,6 +25,7 @@ const imageGlow: Record<ProjectEntry["visualTone"], string> = {
   "warm-luxury": "from-[#7a3f2a]/16 via-transparent to-[#f5e4d6]/50",
   "clean-learning": "from-[#2d67b8]/14 via-transparent to-[#f4f8ff]/56",
   "soft-utility": "from-[#2f765d]/14 via-transparent to-[#f4fff8]/56",
+  "finance-mint": "from-[#101828]/16 via-transparent to-[#effdf5]/60",
   arcade: "from-[#5547b8]/14 via-transparent to-[#f7f3ff]/56",
   "naval-tech": "from-[#1f6d94]/14 via-transparent to-[#f5fbff]/56"
 };
