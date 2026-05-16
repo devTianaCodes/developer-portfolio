@@ -100,11 +100,11 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
       ) : null}
 
       <div className="absolute inset-x-0 bottom-12 z-20 mx-auto flex max-w-[82%] flex-col items-center text-center text-[#202124] md:bottom-12">
-        <div className="-translate-y-[7rem] md:translate-y-0">
-          <h2 className="max-w-xl text-balance font-sans text-[1.72rem] font-medium leading-[1.22] text-[#262626] md:text-[1.95rem]">
+        <div className="-translate-y-[88px] md:translate-y-0">
+          <h2 className="max-w-xl text-balance font-sans text-[1.84rem] font-medium leading-[1.18] text-[#262626] md:text-[2.05rem]">
             {project.name}
           </h2>
-          <p className="mt-2 font-sans text-[11px] font-bold uppercase leading-[1.2] tracking-[1.8px] text-[#262626]/70 md:mt-3 md:text-[12px]">
+          <p className="mt-5 font-sans text-[11px] font-bold uppercase leading-[1.2] tracking-[1.8px] text-[#262626]/70 md:mt-5 md:text-[12px]">
             {projectTypeLabel}
           </p>
           <p className="mt-4 line-clamp-3 max-w-xl font-sans text-[15px] font-normal leading-[1.38] text-[#262626]/82 md:hidden">
