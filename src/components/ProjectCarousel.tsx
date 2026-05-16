@@ -66,7 +66,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
 
       {hero ? (
         <motion.div
-          className="absolute inset-x-0 top-0 h-[67%] px-8 pt-12 md:px-10 md:pt-16"
+          className="absolute inset-x-0 top-0 h-[67%] px-8 pt-4 md:px-10 md:pt-5"
           animate={{
             scale: isHovered ? 1.045 : isActive ? 1.014 : 0.99,
             y: isHovered ? -10 : 0,
@@ -80,7 +80,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
             fill
             priority={isActive}
             quality={82}
-            className="object-contain p-8 drop-shadow-[0_28px_42px_rgba(16,24,40,0.22)] transition-transform duration-500 ease-out group-hover:scale-[1.035] md:p-10"
+            className="object-contain px-8 pb-8 pt-1 drop-shadow-[0_28px_42px_rgba(16,24,40,0.22)] transition-transform duration-500 ease-out group-hover:scale-[1.035] md:px-10 md:pb-10 md:pt-2"
             sizes="(max-width: 640px) 82vw, (max-width: 1024px) 48vw, 34vw"
           />
         </motion.div>
