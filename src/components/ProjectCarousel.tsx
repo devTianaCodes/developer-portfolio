@@ -89,6 +89,8 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
             alt={hero.alt}
             fill
             priority={isActive}
+            loading={isActive ? undefined : "eager"}
+            unoptimized
             quality={82}
             className="object-contain px-7 pb-6 pt-0 drop-shadow-[0_28px_42px_rgba(16,24,40,0.22)] transition-transform duration-500 ease-out group-hover:scale-[1.035] md:px-9 md:pb-8"
             sizes="(max-width: 640px) 82vw, (max-width: 1024px) 48vw, 34vw"
