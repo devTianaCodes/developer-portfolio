@@ -47,14 +47,14 @@ const caseStudyThemes: Record<ProjectEntry["visualTone"], CaseTheme> = {
     accentSoft: "#a6d7ba",
     line: "rgba(47,118,93,0.2)"
   },
-  "finance-mint": {
-    shell: "bg-[#d8f4e6]",
-    hero: "bg-[#bff0d7] text-[#101828]",
-    panel: "bg-[rgba(250,255,252,0.78)]",
-    tile: "bg-[rgba(235,251,242,0.72)]",
-    accent: "#128957",
-    accentSoft: "#8ee9bd",
-    line: "rgba(16,24,40,0.16)"
+  "finance-peach": {
+    shell: "bg-[#f4d8c8]",
+    hero: "bg-[#f0c2aa] text-[#101828]",
+    panel: "bg-[rgba(255,250,246,0.8)]",
+    tile: "bg-[rgba(255,239,229,0.72)]",
+    accent: "#c65345",
+    accentSoft: "#f3a88c",
+    line: "rgba(198,83,69,0.18)"
   },
   arcade: {
     shell: "bg-[#e2dcff]",

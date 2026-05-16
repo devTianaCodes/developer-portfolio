@@ -32,6 +32,7 @@ function techIconKey(tech: string): TechIconKey | undefined {
   if (value.includes("react router")) return "router";
   if (value.includes("react query") || value.includes("tanstack")) return "api";
   if (value.includes("react hook form") || value.includes("zod")) return "form";
+  if (value.includes("i18next")) return "tool";
   if (value.includes("react")) return "react";
   if (value.includes("typescript")) return "typescript";
   if (value.includes("next")) return "next";

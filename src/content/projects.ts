@@ -57,7 +57,7 @@ export type ProjectEntry = {
   repoPath: string;
   year: string;
   flagship?: boolean;
-  visualTone: "warm-luxury" | "clean-learning" | "soft-utility" | "finance-mint" | "arcade" | "naval-tech";
+  visualTone: "warm-luxury" | "clean-learning" | "soft-utility" | "finance-peach" | "arcade" | "naval-tech";
   hook: string;
   techStack: string[];
   strengths: string[];
@@ -753,7 +753,7 @@ export const projects: ProjectEntry[] = [
     repoPath:
       "/Users/parents/Developer/PayTrack/payTrack-frontend and /Users/parents/Developer/PayTrack/payTrack-backend",
     year: "2026",
-    visualTone: "finance-mint",
+    visualTone: "finance-peach",
     hook: "A calm personal finance assistant that turns forgotten recurring payments into a clear, mobile-first product flow.",
     techStack: [
       "React 18",
