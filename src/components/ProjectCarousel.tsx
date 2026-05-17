@@ -120,7 +120,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
             isActive && "group-hover:bg-[#262626] group-hover:text-white"
           )}
         >
-          View WebApp
+          View Project
         </span>
       </div>
 

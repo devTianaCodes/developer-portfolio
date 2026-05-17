@@ -69,7 +69,7 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
           </ul>
 
           <div className="relative z-20 flex flex-wrap justify-end gap-3 border-t border-line pt-4">
-            <Link href={"/projects/" + project.slug} className="sharp-button">View WebApp</Link>
+            <Link href={"/projects/" + project.slug} className="sharp-button">View Project</Link>
           </div>
         </div>
       </div>

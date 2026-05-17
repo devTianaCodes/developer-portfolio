@@ -153,39 +153,59 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
               />
             </figure>
 
-            {hasResourceBlock ? (
-              <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4 md:mt-auto">
-                {project.repositories ? (
-                  <div className="flex flex-wrap justify-start gap-x-6 gap-y-3">
-                    {project.repositories.map((repo) => (
+            <div className="space-y-5 md:mt-auto">
+              {actionLinks.length > 0 ? (
+                <div className="hidden flex-wrap justify-start gap-3 md:flex">
+                  {actionLinks.map((link) =>
+                    link.href ? (
                       <Link
-                        key={repo.href}
-                        href={repo.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="group inline-flex items-center gap-2 text-sm font-semibold lowercase tracking-[0.02em] text-[#262626]/74 underline-offset-4 transition hover:text-[var(--case-accent)] hover:underline"
+                        key={`${project.slug}-${link.label}`}
+                        href={link.href}
+                        target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
+                        rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
+                        className="rounded-[4px] border-2 border-[#262626]/72 px-3 py-3 text-xs font-bold uppercase tracking-[0.12em] transition hover:bg-[#262626] hover:text-white sm:px-4 sm:text-sm sm:tracking-[0.18em]"
                       >
-                        <GithubIcon className="h-4 w-4 transition group-hover:scale-110" />
-                        {repositoryLabel(repo.label)}
+                        {link.label}
                       </Link>
-                    ))}
-                  </div>
-                ) : null}
-                {project.repositoryRoots ? (
-                  <div className="hidden gap-3 sm:grid sm:grid-cols-2">
-                    {project.repositoryRoots.map((root) => (
-                      <div key={root.path} className="min-w-0 rounded-[4px] border border-[color:var(--case-line)] bg-white/30 px-3 py-3 sm:px-4">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#262626]/58">{root.label} root</p>
-                        <p className="mt-2 break-words font-mono text-[12px] leading-6 text-[#262626]/78 sm:text-sm">{root.path}</p>
-                      </div>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-            ) : null}
+                    ) : null
+                  )}
+                </div>
+              ) : null}
+
+              {hasResourceBlock ? (
+                <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4">
+                  {project.repositories ? (
+                    <div className="flex flex-wrap justify-start gap-x-6 gap-y-3">
+                      {project.repositories.map((repo) => (
+                        <Link
+                          key={repo.href}
+                          href={repo.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="group inline-flex items-center gap-2 text-sm font-semibold lowercase tracking-[0.02em] text-[#262626]/74 underline-offset-4 transition hover:text-[var(--case-accent)] hover:underline"
+                        >
+                          <GithubIcon className="h-4 w-4 transition group-hover:scale-110" />
+                          {repositoryLabel(repo.label)}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                  {project.repositoryRoots ? (
+                    <div className="hidden gap-3 sm:grid sm:grid-cols-2">
+                      {project.repositoryRoots.map((root) => (
+                        <div key={root.path} className="min-w-0 rounded-[4px] border border-[color:var(--case-line)] bg-white/30 px-3 py-3 sm:px-4">
+                          <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#262626]/58">{root.label} root</p>
+                          <p className="mt-2 break-words font-mono text-[12px] leading-6 text-[#262626]/78 sm:text-sm">{root.path}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
 
             {actionLinks.length > 0 ? (
-              <div className="flex flex-wrap justify-start gap-3">
+              <div className="flex flex-wrap justify-start gap-3 md:hidden">
                 {actionLinks.map((link) =>
                   link.href ? (
                     <Link
