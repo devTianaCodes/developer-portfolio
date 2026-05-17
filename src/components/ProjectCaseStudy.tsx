@@ -122,41 +122,39 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   return (
     <div style={themeStyle} className={`-mx-2.5 -my-10 overflow-hidden px-2.5 py-10 md:-mx-4 md:-my-14 md:px-4 md:py-14 ${theme.shell}`}>
       <div className="mx-auto max-w-[96rem] space-y-16">
-        <section className={`grid gap-8 overflow-hidden rounded-[6px] border border-[color:var(--case-line)] p-4 shadow-[0_32px_100px_rgba(15,23,42,0.12)] sm:p-5 md:p-8 lg:grid-cols-2 lg:items-start ${theme.hero}`}>
-          <div className="min-w-0 space-y-5">
-            <div className="flex flex-wrap gap-3">
-              <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
-                {project.category}
-              </span>
-              <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
-                {project.year}
-              </span>
-              <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
-                {project.deploymentMode}
-              </span>
-            </div>
-            <h1 className="max-w-full text-balance font-sans text-[clamp(2.45rem,13vw,4.35rem)] font-medium leading-[0.96] tracking-[-0.01em] md:text-7xl">{project.name}</h1>
-            <p className="max-w-2xl text-lg font-normal leading-7 text-[#262626]/88 sm:text-xl">{project.tagline}</p>
-            <p className="max-w-2xl text-base leading-7 text-[#262626]/72">{project.hook}</p>
-            {actionLinks.length > 0 ? (
-              <div className="flex flex-wrap justify-start gap-3">
-                {actionLinks.map((link) =>
-                  link.href ? (
-                    <Link
-                      key={`${project.slug}-${link.label}`}
-                      href={link.href}
-                      target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
-                      rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
-                      className="rounded-[4px] border-2 border-[#262626]/72 px-3 py-3 text-xs font-bold uppercase tracking-[0.12em] transition hover:bg-[#262626] hover:text-white sm:px-4 sm:text-sm sm:tracking-[0.18em]"
-                    >
-                      {link.label}
-                    </Link>
-                  ) : null
-                )}
+        <section className={`grid gap-8 overflow-hidden rounded-[6px] border border-[color:var(--case-line)] p-4 shadow-[0_32px_100px_rgba(15,23,42,0.12)] sm:p-5 md:grid-cols-2 md:items-stretch md:p-8 ${theme.hero}`}>
+          <div className="flex min-w-0 flex-col gap-5">
+            <div className="space-y-5">
+              <div className="flex flex-wrap gap-3">
+                <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
+                  {project.category}
+                </span>
+                <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
+                  {project.year}
+                </span>
+                <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
+                  {project.deploymentMode}
+                </span>
               </div>
-            ) : null}
+              <h1 className="max-w-full text-balance font-sans text-[clamp(2.45rem,13vw,4.35rem)] font-medium leading-[0.96] tracking-[-0.01em] md:text-7xl">{project.name}</h1>
+              <p className="max-w-2xl text-lg font-normal leading-7 text-[#262626]/88 sm:text-xl">{project.tagline}</p>
+            </div>
+
+            <figure className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)] md:hidden">
+              <Image
+                src={logicMap.src}
+                alt={`${project.name} logic flow map`}
+                width={logicMap.width}
+                height={logicMap.height}
+                className="h-auto w-full object-cover"
+                priority
+                quality={82}
+                sizes="100vw"
+              />
+            </figure>
+
             {hasResourceBlock ? (
-              <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4">
+              <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4 md:mt-auto">
                 {project.repositories ? (
                   <div className="flex flex-wrap justify-start gap-x-6 gap-y-3">
                     {project.repositories.map((repo) => (
@@ -185,9 +183,27 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                 ) : null}
               </div>
             ) : null}
+
+            {actionLinks.length > 0 ? (
+              <div className="flex flex-wrap justify-start gap-3">
+                {actionLinks.map((link) =>
+                  link.href ? (
+                    <Link
+                      key={`${project.slug}-${link.label}`}
+                      href={link.href}
+                      target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
+                      rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
+                      className="rounded-[4px] border-2 border-[#262626]/72 px-3 py-3 text-xs font-bold uppercase tracking-[0.12em] transition hover:bg-[#262626] hover:text-white sm:px-4 sm:text-sm sm:tracking-[0.18em]"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : null
+                )}
+              </div>
+            ) : null}
           </div>
 
-          <div className="grid min-w-0 gap-4 lg:justify-self-stretch">
+          <div className="hidden min-w-0 gap-4 md:grid md:justify-self-stretch">
             <figure className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)]">
               <Image
                 src={logicMap.src}
@@ -201,7 +217,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
               />
             </figure>
 
-            <div className="hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 backdrop-blur lg:block">
+            <div className="rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 backdrop-blur">
               <p className="text-[11px] font-bold uppercase tracking-[2px] text-[#262626]/62">Tech stack</p>
               <div className="mt-3 flex max-h-[12rem] flex-wrap gap-2 overflow-hidden">
                 {project.techStack.map((item) => (
