@@ -1,9 +1,10 @@
-import { projects } from "@/content/projects";
+import { projects, sortProjectsForDisplay } from "@/content/projects";
 import { ProjectCard } from "./ProjectCard";
 
 export function FeaturedProjectsRail() {
-  const fullStackProjects = projects.filter((project) => project.category === "full-stack");
-  const gameProjects = projects.filter((project) => project.category === "game");
+  const orderedProjects = sortProjectsForDisplay(projects);
+  const fullStackProjects = orderedProjects.filter((project) => project.category === "full-stack");
+  const gameProjects = orderedProjects.filter((project) => project.category === "game");
   const displayProjects = [...fullStackProjects, ...gameProjects];
 
   return (

@@ -81,6 +81,24 @@ export type ProjectEntry = {
   links: ProjectLink[];
 };
 
+export const projectDisplayOrder: ProjectSlug[] = [
+  "chocolate",
+  "petnest",
+  "english4u",
+  "paytrack",
+  "brickdrop",
+  "sea-battle"
+];
+
+export function sortProjectsForDisplay(projectList: ProjectEntry[]) {
+  return [...projectList].sort((a, b) => {
+    const aIndex = projectDisplayOrder.indexOf(a.slug);
+    const bIndex = projectDisplayOrder.indexOf(b.slug);
+
+    return (aIndex === -1 ? Number.MAX_SAFE_INTEGER : aIndex) - (bIndex === -1 ? Number.MAX_SAFE_INTEGER : bIndex);
+  });
+}
+
 const fullStackLiveUrls = {
   chocolate: process.env.NEXT_PUBLIC_CHOCOLATE_WEB_APP_URL ?? "https://chocolate-frontend-one.vercel.app",
   petnest: process.env.NEXT_PUBLIC_PETNEST_WEB_APP_URL ?? "https://petnest-frontend.vercel.app"

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { PanInfo } from "framer-motion";
 import type { ProjectEntry } from "@/content/projects";
+import { sortProjectsForDisplay } from "@/content/projects";
 import { classNames } from "@/lib/classNames";
 
 type ProjectCarouselProps = {
@@ -135,10 +136,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
 }
 
 export function ProjectCarousel({ projects }: ProjectCarouselProps) {
-  const orderedProjects = useMemo(
-    () => [...projects].sort((a, b) => Number(Boolean(b.flagship)) - Number(Boolean(a.flagship))),
-    [projects]
-  );
+  const orderedProjects = useMemo(() => sortProjectsForDisplay(projects), [projects]);
   const [{ activeIndex, direction }, setCarousel] = useState({ activeIndex: 0, direction: 1 });
   const reduceMotion = useReducedMotion();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);

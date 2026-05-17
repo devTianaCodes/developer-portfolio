@@ -121,7 +121,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
 
   return (
     <div style={themeStyle} className={`-mx-2.5 -my-10 overflow-hidden px-2.5 py-10 md:-mx-4 md:-my-14 md:px-4 md:py-14 ${theme.shell}`}>
-      <div className="mx-auto max-w-[96rem] space-y-16">
+      <div className="mx-auto max-w-[96rem] space-y-6 md:space-y-16">
         <section className={`grid gap-8 overflow-hidden rounded-[6px] border border-[color:var(--case-line)] p-4 shadow-[0_32px_100px_rgba(15,23,42,0.12)] sm:p-5 md:grid-cols-2 md:items-stretch md:p-8 ${theme.hero}`}>
           <div className="flex min-w-0 flex-col gap-5">
             <div className="space-y-5">
