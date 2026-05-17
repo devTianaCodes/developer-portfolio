@@ -108,6 +108,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   const videos = project.media.filter((item) => item.kind === "video");
   const actionLinks = project.links.filter((link) => link.kind !== "case-study");
   const liveLink = actionLinks.find((link) => link.kind === "live" && link.href);
+  const lowerHeroLiveButton = liveLink?.label === "Open Web App" && (project.slug === "chocolate" || project.slug === "petnest");
   const hasResourceBlock = Boolean(project.repositories || project.repositoryRoots);
   const logicMap = logicMaps[project.slug];
   const theme = caseStudyThemes[project.visualTone];
@@ -140,6 +141,19 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
               <p className="max-w-2xl text-lg font-normal leading-7 text-[#262626]/88 sm:text-xl">{project.tagline}</p>
             </div>
 
+            {liveLink ? (
+              <div className={`hidden justify-start pt-2 md:flex ${lowerHeroLiveButton ? "md:translate-y-[15px] md:pb-5" : "md:pb-3"}`}>
+                <Link
+                  href={liveLink.href!}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-[4px] border-2 border-[#262626]/72 px-5 py-3 text-sm font-bold uppercase tracking-[0.18em] transition hover:bg-[#262626] hover:text-white"
+                >
+                  {liveLink.label}
+                </Link>
+              </div>
+            ) : null}
+
             <figure className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)] md:hidden">
               <Image
                 src={logicMap.src}
@@ -154,26 +168,8 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             </figure>
 
             <div className="space-y-5 md:mt-auto">
-              {actionLinks.length > 0 ? (
-                <div className="hidden flex-wrap justify-start gap-3 md:flex">
-                  {actionLinks.map((link) =>
-                    link.href ? (
-                      <Link
-                        key={`${project.slug}-${link.label}`}
-                        href={link.href}
-                        target={link.kind === "live" || link.kind === "code" ? "_blank" : undefined}
-                        rel={link.kind === "live" || link.kind === "code" ? "noreferrer" : undefined}
-                        className="rounded-[4px] border-2 border-[#262626]/72 px-3 py-3 text-xs font-bold uppercase tracking-[0.12em] transition hover:bg-[#262626] hover:text-white sm:px-4 sm:text-sm sm:tracking-[0.18em]"
-                      >
-                        {link.label}
-                      </Link>
-                    ) : null
-                  )}
-                </div>
-              ) : null}
-
               {hasResourceBlock ? (
-                <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4">
+                <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4 md:h-[11.5rem] md:overflow-hidden">
                   {project.repositories ? (
                     <div className="flex flex-wrap justify-start gap-x-6 gap-y-3">
                       {project.repositories.map((repo) => (
@@ -193,9 +189,9 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                   {project.repositoryRoots ? (
                     <div className="hidden gap-3 sm:grid sm:grid-cols-2">
                       {project.repositoryRoots.map((root) => (
-                        <div key={root.path} className="min-w-0 rounded-[4px] border border-[color:var(--case-line)] bg-white/30 px-3 py-3 sm:px-4">
-                          <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#262626]/58">{root.label} root</p>
-                          <p className="mt-2 break-words font-mono text-[12px] leading-6 text-[#262626]/78 sm:text-sm">{root.path}</p>
+                        <div key={root.path} className="min-w-0 rounded-[4px] border border-[color:var(--case-line)] bg-white/30 px-3 py-2 sm:px-3">
+                          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#262626]/58">{root.label} root</p>
+                          <p className="mt-1 break-words font-mono text-[11px] leading-5 text-[#262626]/78">{root.path}</p>
                         </div>
                       ))}
                     </div>
@@ -223,7 +219,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             ) : null}
           </div>
 
-          <div className="hidden min-w-0 gap-4 md:grid md:justify-self-stretch">
+          <div className="hidden min-w-0 grid-rows-[auto_11.5rem] gap-4 md:grid md:justify-self-stretch">
             <figure className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)]">
               <Image
                 src={logicMap.src}
@@ -237,9 +233,9 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
               />
             </figure>
 
-            <div className="rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 backdrop-blur">
+            <div className="self-end rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 backdrop-blur md:h-[11.5rem] md:overflow-hidden">
               <p className="text-[11px] font-bold uppercase tracking-[2px] text-[#262626]/62">Tech stack</p>
-              <div className="mt-3 flex max-h-[12rem] flex-wrap gap-2 overflow-hidden">
+              <div className="mt-3 flex max-h-[8.25rem] flex-wrap gap-2 overflow-hidden">
                 {project.techStack.map((item) => (
                   <ProjectTechBadge
                     key={item}
@@ -447,19 +443,6 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                 </div>
               ))}
             </div>
-          </section>
-        ) : null}
-
-        {liveLink ? (
-          <section className="flex justify-center">
-            <Link
-              href={liveLink.href!}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-[4px] border-2 border-[#262626]/72 px-6 py-4 text-sm font-bold uppercase tracking-[0.18em] transition hover:bg-[#262626] hover:text-white"
-            >
-              {liveLink.label}
-            </Link>
           </section>
         ) : null}
 
