@@ -185,7 +185,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     : mobilePanelSpring;
 
   return (
-    <section data-testid="project-carousel" className="relative overflow-hidden px-3 md:px-4 lg:-mx-4 lg:px-0">
+    <section data-testid="project-carousel" className="relative -mb-6 -mt-6 overflow-hidden p-1.5 md:mb-0 md:mt-0 md:px-4 md:py-0 lg:-mx-4 lg:px-0">
       <div className="relative mx-auto h-[560px] max-w-[128rem] overflow-hidden bg-slate-950/20 md:h-[680px]">
         <button
           type="button"
