@@ -76,6 +76,15 @@ const caseStudyThemes: Record<ProjectEntry["visualTone"], CaseTheme> = {
   }
 };
 
+const logicMaps: Record<ProjectEntry["slug"], { src: string; width: number; height: number }> = {
+  chocolate: { src: "/media/projects/chocolate/logic-map.png", width: 1536, height: 1024 },
+  english4u: { src: "/media/projects/english4u/logic-map.png", width: 1536, height: 1024 },
+  petnest: { src: "/media/projects/petnest/logic-map.png", width: 1672, height: 941 },
+  paytrack: { src: "/media/projects/paytrack/logic-map.png", width: 1536, height: 1024 },
+  brickdrop: { src: "/media/projects/brickdrop/logic-map.png", width: 1536, height: 1024 },
+  "sea-battle": { src: "/media/projects/sea-battle/logic-map.png", width: 1672, height: 941 }
+};
+
 function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title: string; text: string }) {
   return (
     <div className="space-y-3">
@@ -100,6 +109,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   const actionLinks = project.links.filter((link) => link.kind !== "case-study");
   const liveLink = actionLinks.find((link) => link.kind === "live" && link.href);
   const hasResourceBlock = Boolean(project.repositories || project.repositoryRoots);
+  const logicMap = logicMaps[project.slug];
   const theme = caseStudyThemes[project.visualTone];
   const themeStyle = {
     "--case-accent": theme.accent,
@@ -112,7 +122,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   return (
     <div style={themeStyle} className={`-mx-2.5 -my-10 overflow-hidden px-2.5 py-10 md:-mx-4 md:-my-14 md:px-4 md:py-14 ${theme.shell}`}>
       <div className="mx-auto max-w-[96rem] space-y-16">
-        <section className={`grid gap-8 overflow-hidden rounded-[6px] border border-[color:var(--case-line)] p-4 shadow-[0_32px_100px_rgba(15,23,42,0.12)] sm:p-5 md:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,430px)] lg:items-center ${theme.hero}`}>
+        <section className={`grid gap-8 overflow-hidden rounded-[6px] border border-[color:var(--case-line)] p-4 shadow-[0_32px_100px_rgba(15,23,42,0.12)] sm:p-5 md:p-8 lg:grid-cols-2 lg:items-start ${theme.hero}`}>
           <div className="min-w-0 space-y-5">
             <div className="flex flex-wrap gap-3">
               <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
@@ -177,16 +187,32 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             ) : null}
           </div>
 
-          <div className="hidden w-full max-w-[430px] flex-col justify-center justify-self-center rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-6 backdrop-blur lg:flex lg:aspect-square lg:justify-self-end">
-            <p className="text-xs font-bold uppercase tracking-[2px] text-[#262626]/62">Tech stack</p>
-            <div className="mt-5 flex flex-wrap content-center gap-3">
-              {project.techStack.map((item) => (
-                <ProjectTechBadge
-                  key={item}
-                  tech={item}
-                  className="border-[color:var(--case-line)] bg-white/72 text-[#262626]"
-                />
-              ))}
+          <div className="grid min-w-0 gap-4 lg:justify-self-stretch">
+            <figure className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)]">
+              <Image
+                src={logicMap.src}
+                alt={`${project.name} logic flow map`}
+                width={logicMap.width}
+                height={logicMap.height}
+                className="h-auto w-full object-cover"
+                priority
+                quality={82}
+                sizes="(max-width: 1024px) 100vw, 48vw"
+              />
+            </figure>
+
+            <div className="hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 backdrop-blur lg:block">
+              <p className="text-[11px] font-bold uppercase tracking-[2px] text-[#262626]/62">Tech stack</p>
+              <div className="mt-3 flex max-h-[12rem] flex-wrap gap-2 overflow-hidden">
+                {project.techStack.map((item) => (
+                  <ProjectTechBadge
+                    key={item}
+                    tech={item}
+                    compact
+                    className="border-[color:var(--case-line)] bg-white/78 text-[#262626]"
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
