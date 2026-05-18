@@ -19,7 +19,7 @@ export function FeaturedProjectsRail() {
             key={project.slug}
             project={project}
             prominent={Boolean(project.flagship)}
-            tallMedia={project.category === "full-stack"}
+            tallMedia={project.category === "full-stack" && project.slug !== "paytrack"}
           />
         ))}
       </div>
