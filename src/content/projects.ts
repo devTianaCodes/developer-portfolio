@@ -1214,7 +1214,7 @@ export const projects: ProjectEntry[] = [
         kind: "image",
         src: "/media/projects/ai-comparator/showcase/04.png",
         optimizedSrc: "/media/projects/ai-comparator/showcase/04.webp",
-        alt: "AI Comparator comparison detail screenshot",
+        alt: "AI Comparator model detail screenshot",
         width: 3172,
         height: 1816,
         status: "ready"
