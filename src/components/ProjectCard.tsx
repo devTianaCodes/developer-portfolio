@@ -14,6 +14,7 @@ const toneClasses: Record<ProjectEntry["visualTone"], string> = {
   "clean-learning": "from-[rgba(15,23,42,0.72)] via-[rgba(37,99,235,0.18)] to-transparent",
   "soft-utility": "from-[rgba(15,54,50,0.72)] via-[rgba(49,95,159,0.14)] to-transparent",
   "finance-peach": "from-[rgba(16,24,40,0.78)] via-[rgba(255,107,95,0.22)] to-transparent",
+  "ai-lilac": "from-[rgba(99,61,75,0.58)] via-[rgba(205,112,137,0.18)] to-transparent",
   arcade: "from-[rgba(32,54,86,0.82)] via-[rgba(49,95,159,0.2)] to-transparent",
   "naval-tech": "from-[rgba(3,16,28,0.82)] via-[rgba(49,95,159,0.14)] to-transparent"
 };

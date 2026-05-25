@@ -56,6 +56,15 @@ const caseStudyThemes: Record<ProjectEntry["visualTone"], CaseTheme> = {
     accentSoft: "#f3a88c",
     line: "rgba(198,83,69,0.18)"
   },
+  "ai-lilac": {
+    shell: "bg-[#f6e4ea]",
+    hero: "bg-[#f1d4df] text-[#262626]",
+    panel: "bg-[rgba(255,249,251,0.84)]",
+    tile: "bg-[rgba(250,231,238,0.7)]",
+    accent: "#9b6475",
+    accentSoft: "#dba2b2",
+    line: "rgba(155,100,117,0.18)"
+  },
   arcade: {
     shell: "bg-[#e2dcff]",
     hero: "bg-[#d3c9ff] text-[#262626]",
@@ -76,11 +85,12 @@ const caseStudyThemes: Record<ProjectEntry["visualTone"], CaseTheme> = {
   }
 };
 
-const logicMaps: Record<ProjectEntry["slug"], { src: string; width: number; height: number }> = {
+const logicMaps: Partial<Record<ProjectEntry["slug"], { src: string; width: number; height: number }>> = {
   chocolate: { src: "/media/projects/chocolate/logic-map.png", width: 1536, height: 1024 },
   english4u: { src: "/media/projects/english4u/logic-map.png", width: 1536, height: 1024 },
   petnest: { src: "/media/projects/petnest/logic-map.png", width: 1672, height: 941 },
   paytrack: { src: "/media/projects/paytrack/logic-map.png", width: 1536, height: 1024 },
+  "ai-comparator": { src: "/media/projects/ai-comparator/logic-map.png", width: 1672, height: 941 },
   brickdrop: { src: "/media/projects/brickdrop/logic-map.png", width: 1536, height: 1024 },
   "sea-battle": { src: "/media/projects/sea-battle/logic-map.png", width: 1672, height: 941 }
 };
@@ -154,18 +164,20 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
               </div>
             ) : null}
 
-            <figure className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)] md:hidden">
-              <Image
-                src={logicMap.src}
-                alt={`${project.name} logic flow map`}
-                width={logicMap.width}
-                height={logicMap.height}
-                className="h-auto w-full object-cover"
-                priority
-                quality={82}
-                sizes="100vw"
-              />
-            </figure>
+            {logicMap ? (
+              <figure className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)] md:hidden">
+                <Image
+                  src={logicMap.src}
+                  alt={`${project.name} logic flow map`}
+                  width={logicMap.width}
+                  height={logicMap.height}
+                  className="h-auto w-full object-cover"
+                  priority
+                  quality={82}
+                  sizes="100vw"
+                />
+              </figure>
+            ) : null}
 
             <div className="space-y-5 md:mt-auto">
               {hasResourceBlock ? (
@@ -220,18 +232,20 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
           </div>
 
           <div className="hidden min-w-0 grid-rows-[auto_11.5rem] gap-4 md:grid md:justify-self-stretch">
-            <figure className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)]">
-              <Image
-                src={logicMap.src}
-                alt={`${project.name} logic flow map`}
-                width={logicMap.width}
-                height={logicMap.height}
-                className="h-auto w-full object-cover"
-                priority
-                quality={82}
-                sizes="(max-width: 1024px) 100vw, 48vw"
-              />
-            </figure>
+            {logicMap ? (
+              <figure className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)]">
+                <Image
+                  src={logicMap.src}
+                  alt={`${project.name} logic flow map`}
+                  width={logicMap.width}
+                  height={logicMap.height}
+                  className="h-auto w-full object-cover"
+                  priority
+                  quality={82}
+                  sizes="(max-width: 1024px) 100vw, 48vw"
+                />
+              </figure>
+            ) : null}
 
             <div className="self-end rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 backdrop-blur md:h-[11.5rem] md:overflow-hidden">
               <p className="text-[11px] font-bold uppercase tracking-[2px] text-[#262626]/62">Tech stack</p>

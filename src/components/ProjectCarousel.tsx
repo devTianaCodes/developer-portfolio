@@ -18,6 +18,7 @@ const pastelPanels: Record<ProjectEntry["visualTone"], string> = {
   "clean-learning": "bg-[#d9e8ff]",
   "soft-utility": "bg-[#dcefe6]",
   "finance-peach": "bg-[#f4d8c8]",
+  "ai-lilac": "bg-[#f6e4ea]",
   arcade: "bg-[#e2dcff]",
   "naval-tech": "bg-[#d8edf7]"
 };
@@ -27,6 +28,7 @@ const imageGlow: Record<ProjectEntry["visualTone"], string> = {
   "clean-learning": "from-[#2d67b8]/14 via-transparent to-[#f4f8ff]/56",
   "soft-utility": "from-[#2f765d]/14 via-transparent to-[#f4fff8]/56",
   "finance-peach": "from-[#ff6b5f]/18 via-transparent to-[#fff3e8]/60",
+  "ai-lilac": "from-[#c98298]/16 via-transparent to-[#fff6f8]/64",
   arcade: "from-[#5547b8]/14 via-transparent to-[#f7f3ff]/56",
   "naval-tech": "from-[#1f6d94]/14 via-transparent to-[#f5fbff]/56"
 };
@@ -61,6 +63,7 @@ const mobileSummaries: Partial<Record<ProjectEntry["slug"], string>> = {
   english4u: "Learning platform with course journeys, quizzes, dashboards, and admin content tools.",
   petnest: "Adoption workflow app with animal listings, profiles, favourites, and request flows.",
   paytrack: "Mobile-first subscription tracker with reminders, dashboard insights, and secure account flows.",
+  "ai-comparator": "AI model comparison SPA with search, filters, favourites, and side-by-side analysis.",
   brickdrop: "Playable puzzle game with clean controls, scoring, levels, and responsive browser play.",
   "sea-battle": "Interactive Battleship game with board logic, turn flow, and polished browser gameplay."
 };

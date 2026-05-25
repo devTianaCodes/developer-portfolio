@@ -3,6 +3,7 @@ export type ProjectSlug =
   | "english4u"
   | "petnest"
   | "paytrack"
+  | "ai-comparator"
   | "brickdrop"
   | "sea-battle";
 
@@ -57,7 +58,7 @@ export type ProjectEntry = {
   repoPath: string;
   year: string;
   flagship?: boolean;
-  visualTone: "warm-luxury" | "clean-learning" | "soft-utility" | "finance-peach" | "arcade" | "naval-tech";
+  visualTone: "warm-luxury" | "clean-learning" | "soft-utility" | "finance-peach" | "ai-lilac" | "arcade" | "naval-tech";
   hook: string;
   techStack: string[];
   strengths: string[];
@@ -86,6 +87,7 @@ export const projectDisplayOrder: ProjectSlug[] = [
   "petnest",
   "english4u",
   "paytrack",
+  "ai-comparator",
   "brickdrop",
   "sea-battle"
 ];
@@ -1016,6 +1018,210 @@ export const projects: ProjectEntry[] = [
     ],
     links: [
       { label: "Case Study", href: "/projects/paytrack", kind: "case-study" }
+    ]
+  },
+  {
+    slug: "ai-comparator",
+    name: "AI Comparator",
+    tagline: "Unauthenticated AI model comparison SPA with search, filters, favourites, and side-by-side analysis.",
+    summary:
+      "A React and Vite project built around the Boolean final-project requirements: browse AI model records, search and filter them, inspect model details, compare two models side by side, and keep a favourites collection without exposing CRUD actions to the user.",
+    role: "Frontend product workflow with REST backend integration",
+    category: "full-stack",
+    deploymentMode: "media",
+    repoPath:
+      "/Users/parents/Desktop/Boolean Specializzazione/ai-comparator-final-project/ai-comparator-front and /Users/parents/Desktop/Boolean Specializzazione/ai-comparator-final-project/ai-comparator-back",
+    year: "2026",
+    visualTone: "ai-lilac",
+    hook: "A focused comparison tool that turns a course assignment into a clean product workflow for evaluating AI models.",
+    techStack: [
+      "React 19",
+      "Vite 7",
+      "JavaScript",
+      "React Router",
+      "Custom CSS",
+      "Fetch API",
+      "Local Storage",
+      "Node.js",
+      "Express",
+      "CORS",
+      "Morgan",
+      "Zod",
+      "TypeScript Schema",
+      "JSON Database"
+    ],
+    strengths: [
+      "Clear non-authenticated browsing journey",
+      "Search, category filter, and sorting controls",
+      "Two-model comparison workflow",
+      "Favourites available across the app"
+    ],
+    challenge:
+      "Build a complete comparison SPA against a generated REST backend while respecting the assignment constraint that unauthenticated users can browse, compare, and save favourites, but cannot create, edit, or delete records.",
+    solution:
+      "The frontend uses React Router pages for the model list, details, comparison, and favourites. It connects to the Express backend through fetch calls, composes query strings for search and category filters, retrieves detail records for richer model cards, and passes selected IDs through the comparison route.",
+    outcome:
+      "The project demonstrates a complete read-only product flow with real backend data, explainable state management, route-based navigation, and a comparison experience that is easy to test in an interview.",
+    features: [
+      "Model catalogue with search by title, category filtering, and alphabetical sorting by title or category",
+      "Detail page that exposes provider, modality, context window, price tier, intelligence index, strengths, and description",
+      "Two-model comparison route that loads selected IDs from the query string and displays comparable fields side by side",
+      "Favourites flow available from the header and model cards",
+      "Empty, loading, and error states for model list, details, favourites, and comparison views"
+    ],
+    architecture: [
+      "React Router separates list, detail, favourites, and comparison routes",
+      "Frontend state tracks favourites, selected comparison IDs, filters, sorting, loading, and errors",
+      "The backend generates REST endpoints from the exported Model type in types.ts",
+      "The Model resource is persisted as JSON data and validated through a generated Zod schema",
+      "The UI intentionally excludes create, update, and delete actions to match the non-authenticated user scope"
+    ],
+    metrics: [
+      { label: "Screens", value: "4" },
+      { label: "API resource", value: "Model" },
+      { label: "Seed records", value: "10+" }
+    ],
+    impactBullets: [
+      "Shows practical React routing, API integration, and state coordination without overengineering.",
+      "Makes comparison logic visible through a real two-model workflow instead of a static table.",
+      "Demonstrates constraint discipline by keeping the interface read-only for unauthenticated users."
+    ],
+    interviewAngles: [
+      "How the frontend turns assignment requirements into routes and user flows.",
+      "Why selected comparison IDs are passed through the URL for a shareable, reloadable comparison view.",
+      "How the backend uses a typed resource definition to generate REST endpoints and validate persisted data."
+    ],
+    repositories: [
+      { label: "Frontend repository", href: "https://github.com/devTianaCodes/ai-comparator-front" },
+      { label: "Backend repository", href: "https://github.com/devTianaCodes/ai-comparator-back" }
+    ],
+    repositoryRoots: [
+      { label: "Frontend", path: "https://github.com/devTianaCodes/ai-comparator-front" },
+      { label: "Backend", path: "https://github.com/devTianaCodes/ai-comparator-back" }
+    ],
+    workflowIntro: {
+      eyebrow: "Comparison workflow",
+      title: "Browse, select, compare, and save",
+      text: "The strongest part of AI Comparator is the complete read-only journey from catalogue discovery to side-by-side decision support."
+    },
+    workflowHighlights: [
+      {
+        title: "Model catalogue",
+        text: "The list page gives users the controls expected from a comparison product.",
+        items: [
+          "Search targets model titles through the backend query string",
+          "Category filtering is derived from the model data so the filter stays aligned with available records",
+          "Sorting supports title and category in both A-Z and Z-A directions"
+        ]
+      },
+      {
+        title: "Selection and comparison",
+        text: "The comparison flow is intentionally simple and easy to reason about.",
+        items: [
+          "Users select exactly two models from the catalogue before opening the comparison view",
+          "The compare route reads selected IDs from the URL and fetches both detail records",
+          "Comparable fields include provider, release year, modality, context window, pricing tier, intelligence index, strengths, and category"
+        ]
+      },
+      {
+        title: "Favourites and detail review",
+        text: "The app keeps repeated review actions close to the user without adding account complexity.",
+        items: [
+          "Favourite buttons are available on cards and detail views",
+          "A dedicated favourites route keeps saved models accessible from the header",
+          "Detail pages display the extended Model resource instead of only the catalogue fields"
+        ]
+      }
+    ],
+    apiIntro: {
+      eyebrow: "Backend surface",
+      title: "Generated REST API over a Model resource",
+      text: "The backend is the provided Boolean-style resource server, customized through a Model type and seeded JSON data."
+    },
+    apiDomains: [
+      "GET /models",
+      "GET /models?search=...",
+      "GET /models?category=...",
+      "GET /models/:id",
+      "POST /models",
+      "PUT /models/:id",
+      "DELETE /models/:id"
+    ],
+    qualityIntro: {
+      eyebrow: "Implementation decisions",
+      title: "Readable constraints and explainable state",
+      text: "The project is strongest as a clean implementation of required behaviour rather than a heavy framework exercise."
+    },
+    qualitySignals: [
+      {
+        title: "Requirement discipline",
+        text: "The frontend keeps the public user experience read-only.",
+        items: [
+          "No create, edit, or delete controls are exposed in the SPA",
+          "The core minimum requirements are represented as explicit routes and UI states",
+          "The comparison flow stays focused on two records to keep the first version clear"
+        ]
+      },
+      {
+        title: "Data modelling",
+        text: "The Model resource includes enough fields to make comparison meaningful.",
+        items: [
+          "Required fields are title and category, matching the assignment contract",
+          "Optional fields add provider, release year, modality, context window, price tier, image, intelligence index, strengths, and description",
+          "Seeded JSON data gives the app real records for browsing and comparing"
+        ]
+      },
+      {
+        title: "User feedback",
+        text: "The app handles the most visible API and route states.",
+        items: [
+          "List, favourites, details, and comparison pages show loading and error feedback",
+          "The comparison panel communicates when two models are required",
+          "The favourites page handles the empty collection state"
+        ]
+      }
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/media/projects/ai-comparator/showcase/01.png",
+        optimizedSrc: "/media/projects/ai-comparator/showcase/01.webp",
+        alt: "AI Comparator model catalogue screenshot",
+        width: 3172,
+        height: 1816,
+        featured: true,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/ai-comparator/showcase/02.png",
+        optimizedSrc: "/media/projects/ai-comparator/showcase/02.webp",
+        alt: "AI Comparator favourites screenshot",
+        width: 3172,
+        height: 1816,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/ai-comparator/showcase/03.png",
+        optimizedSrc: "/media/projects/ai-comparator/showcase/03.webp",
+        alt: "AI Comparator comparison screenshot",
+        width: 3172,
+        height: 1816,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/ai-comparator/showcase/04.png",
+        optimizedSrc: "/media/projects/ai-comparator/showcase/04.webp",
+        alt: "AI Comparator comparison detail screenshot",
+        width: 3172,
+        height: 1816,
+        status: "ready"
+      }
+    ],
+    links: [
+      { label: "Case Study", href: "/projects/ai-comparator", kind: "case-study" }
     ]
   },
   {

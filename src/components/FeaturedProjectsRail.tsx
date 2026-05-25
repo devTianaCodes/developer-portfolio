@@ -6,6 +6,7 @@ export function FeaturedProjectsRail() {
   const fullStackProjects = orderedProjects.filter((project) => project.category === "full-stack");
   const gameProjects = orderedProjects.filter((project) => project.category === "game");
   const displayProjects = [...fullStackProjects, ...gameProjects];
+  const compactMediaProjects = new Set(["paytrack", "ai-comparator"]);
 
   return (
     <section className="space-y-5">
@@ -19,7 +20,7 @@ export function FeaturedProjectsRail() {
             key={project.slug}
             project={project}
             prominent={Boolean(project.flagship)}
-            tallMedia={project.category === "full-stack" && project.slug !== "paytrack"}
+            tallMedia={project.category === "full-stack" && !compactMediaProjects.has(project.slug)}
           />
         ))}
       </div>

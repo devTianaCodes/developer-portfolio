@@ -7,8 +7,8 @@ import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import { siteConfig } from "@/content/site";
 
 const proofMetrics = [
-  { label: "selected work", value: "6", detail: "case studies spanning product and play" },
-  { label: "full-stack apps", value: "4", detail: "commerce, learning, adoption, and subscription workflows" },
+  { label: "selected work", value: "7", detail: "case studies spanning product and play" },
+  { label: "full-stack apps", value: "5", detail: "commerce, learning, adoption, subscription, and comparison workflows" },
   { label: "live demos", value: "2", detail: "interactive browser games ready to test" }
 ];
 
