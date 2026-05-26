@@ -10,8 +10,7 @@ export const siteConfig = {
   shortName: "TO",
   role: "Full Stack Web Developer",
   title: "Tiana Oblasser | Web Developer",
-  description:
-    "Professional web developer portfolio for Tiana Oblasser, featuring premium UI, full-stack product case studies, interactive frontend work, and Vercel-ready delivery.",
+  description: "Professional web developer portfolio.",
   location: "United States",
   githubHandle: "devTianaCodes",
   githubUrl: "https://github.com/devTianaCodes",
