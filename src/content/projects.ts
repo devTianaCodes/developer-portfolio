@@ -1039,6 +1039,8 @@ export const projects: ProjectEntry[] = [
       "Vite 7",
       "JavaScript",
       "React Router",
+      "React Context",
+      "Custom Hooks",
       "Custom CSS",
       "Fetch API",
       "Local Storage",
@@ -1054,24 +1056,26 @@ export const projects: ProjectEntry[] = [
       "Clear non-authenticated browsing journey",
       "Search, category filter, and sorting controls",
       "Two-model comparison workflow",
-      "Favourites available across the app"
+      "Persisted favourites available across the app"
     ],
     challenge:
       "Build a complete comparison SPA against a generated REST backend while respecting the assignment constraint that unauthenticated users can browse, compare, and save favourites, but cannot create, edit, or delete records.",
     solution:
-      "The frontend uses React Router pages for the model list, details, comparison, and favourites. It connects to the Express backend through fetch calls, composes query strings for search and category filters, retrieves detail records for richer model cards, and passes selected IDs through the comparison route.",
+      "The frontend uses React Router pages for the model list, details, comparison, and favourites, wrapped in a GlobalProvider for shared favourite state. A custom useModels hook centralizes API loading, debounced search reduces unnecessary requests, memoized sorting keeps the catalogue responsive, and selected IDs are passed through the comparison route.",
     outcome:
       "The project demonstrates a complete read-only product flow with real backend data, explainable state management, route-based navigation, and a comparison experience that is easy to test in an interview.",
     features: [
-      "Model catalogue with search by title, category filtering, and alphabetical sorting by title or category",
+      "Model catalogue with debounced search by title, category filtering, and alphabetical sorting by title or category",
       "Detail page that exposes provider, modality, context window, price tier, intelligence index, strengths, and description",
       "Two-model comparison route that loads selected IDs from the query string and displays comparable fields side by side",
-      "Favourites flow available from the header and model cards",
+      "Favourites flow available from the header and model cards, persisted in localStorage",
       "Empty, loading, and error states for model list, details, favourites, and comparison views"
     ],
     architecture: [
-      "React Router separates list, detail, favourites, and comparison routes",
-      "Frontend state tracks favourites, selected comparison IDs, filters, sorting, loading, and errors",
+      "React Router separates list, detail, favourites, and comparison routes under a shared DefaultLayout",
+      "GlobalContext stores favourite model IDs and syncs them to localStorage",
+      "The useModels hook owns model loading, single-model fetches, loading state, and API errors",
+      "ModelList keeps the local catalogue controls focused on search, category, sorting, and comparison selection",
       "The backend generates REST endpoints from the exported Model type in types.ts",
       "The Model resource is persisted as JSON data and validated through a generated Zod schema",
       "The UI intentionally excludes create, update, and delete actions to match the non-authenticated user scope"
@@ -1109,9 +1113,9 @@ export const projects: ProjectEntry[] = [
         title: "Model catalogue",
         text: "The list page gives users the controls expected from a comparison product.",
         items: [
-          "Search targets model titles through the backend query string",
+          "Search targets model titles through the backend query string after a 500ms debounce",
           "Category filtering is derived from the model data so the filter stays aligned with available records",
-          "Sorting supports title and category in both A-Z and Z-A directions"
+          "Sorting supports title and category in both A-Z and Z-A directions, memoized with useMemo"
         ]
       },
       {
@@ -1127,7 +1131,8 @@ export const projects: ProjectEntry[] = [
         title: "Favourites and detail review",
         text: "The app keeps repeated review actions close to the user without adding account complexity.",
         items: [
-          "Favourite buttons are available on cards and detail views",
+          "Favourite buttons are available on cards and detail views through GlobalContext",
+          "Favourite model IDs persist in localStorage so selections survive page refreshes",
           "A dedicated favourites route keeps saved models accessible from the header",
           "Detail pages display the extended Model resource instead of only the catalogue fields"
         ]
@@ -1160,6 +1165,15 @@ export const projects: ProjectEntry[] = [
           "No create, edit, or delete controls are exposed in the SPA",
           "The core minimum requirements are represented as explicit routes and UI states",
           "The comparison flow stays focused on two records to keep the first version clear"
+        ]
+      },
+      {
+        title: "Frontend state structure",
+        text: "Recent refactoring makes the data flow easier to explain and maintain.",
+        items: [
+          "GlobalProvider wraps the routes so favourites are available to list, detail, and favourites pages",
+          "useModels centralizes API fetch logic for model lists and individual model details",
+          "ModelList combines backend query loading with local sorting and two-model comparison selection"
         ]
       },
       {
