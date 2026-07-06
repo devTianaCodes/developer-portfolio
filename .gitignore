@@ -9,6 +9,7 @@ dist
 tsconfig.tsbuildinfo
 
 # Local AI/workflow context, not project source.
+Plan1.md
 ai-docs/
 ai-rules/
 ai-scripts/
