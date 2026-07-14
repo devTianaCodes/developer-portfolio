@@ -8,10 +8,10 @@ export type SocialLink = {
 export const siteConfig = {
   name: "Tiana Oblasser",
   shortName: "TO",
-  role: "Full Stack Web Developer",
+  role: "Junior Full Stack Web Developer",
   title: "Tiana Oblasser | Web Developer",
-  description: "Professional web developer portfolio.",
-  location: "United States",
+  description: "Full-stack web developer portfolio focused on React, Node.js, REST APIs, and user-centered interfaces.",
+  location: "Italy-based",
   githubHandle: "devTianaCodes",
   githubUrl: "https://github.com/devTianaCodes",
   email: "oblasser.tatiana@gmail.com",
@@ -35,9 +35,9 @@ export const siteConfig = {
       kind: "email"
     }
   ] satisfies SocialLink[],
-  headline: "Polished web products with design taste, strong frontend craft, and real full-stack depth.",
+  headline: "Full-stack web products with React, Node.js, REST APIs, and user-centered interface craft.",
   subheadline:
-    "Build modern experiences that feel intentional from the first screen to the underlying product system.",
+    "I build responsive, intuitive applications that connect polished frontend flows with Express, MySQL, Prisma, authentication, and practical backend logic.",
   primaryCta: {
     label: "View GitHub",
     href: "https://github.com/devTianaCodes"
@@ -47,9 +47,9 @@ export const siteConfig = {
     href: "/projects"
   },
   principles: [
-    "Premium UI without sacrificing usability",
-    "Full-stack features that stay demoable and explainable",
-    "Design systems shaped by product goals, not decoration",
+    "Mobile-first interfaces shaped by real user flows",
+    "REST APIs, database models, and frontend state that work together",
+    "UX/UI decisions grounded in clarity, accessibility, and usability",
     "Case studies that show implementation depth, not just screenshots"
   ],
   strengths: [
@@ -72,14 +72,19 @@ export const siteConfig = {
   ],
   stackBands: [
     "React",
-    "Next.js",
     "TypeScript",
+    "Next.js",
     "Node.js",
     "Express",
+    "REST APIs",
     "MySQL",
     "Prisma",
+    "PostgreSQL",
+    "JWT",
     "Tailwind CSS",
-    "Stripe",
-    "Vercel"
+    "Java",
+    "Spring Boot",
+    "Vitest",
+    "Supertest"
   ]
 } as const;
