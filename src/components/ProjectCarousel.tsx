@@ -61,6 +61,7 @@ function circularOffset(index: number, activeIndex: number, length: number) {
 const mobileSummaries: Partial<Record<ProjectEntry["slug"], string>> = {
   chocolate: "E-commerce web app with catalog, cart, checkout, and admin operations.",
   english4u: "Learning platform with course journeys, quizzes, dashboards, and admin content tools.",
+  orchidcare: "Orchid encyclopedia with care filters, detail pages, favourites, and PostgreSQL data.",
   petnest: "Adoption workflow app with animal listings, profiles, favourites, and request flows.",
   paytrack: "Mobile-first subscription tracker with reminders, dashboard insights, and secure account flows.",
   "ai-comparator": "AI model comparison SPA with search, filters, favourites, and side-by-side analysis.",

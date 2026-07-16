@@ -17,7 +17,7 @@ export default function HomePage() {
         <section className="sharp-panel p-8">
           <p className="section-label">About Tiana</p>
           <h2 className="minimal-heading mt-4 text-4xl">Frontend craft with full-stack range.</h2>
-          <p className="minimal-text mt-4 max-w-2xl">Design-led web experiences across commerce, education, adoption, and browser games.</p>
+          <p className="minimal-text mt-4 max-w-2xl">Design-led web experiences across commerce, education, adoption, plant care, AI tools, and browser games.</p>
           <Link href="/about" className="sharp-button mt-6">Read profile</Link>
         </section>
 
