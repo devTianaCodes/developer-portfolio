@@ -843,6 +843,40 @@ export const projects: ProjectEntry[] = [
       { label: "Frontend", path: "https://github.com/devTianaCodes/orchid-frontend" },
       { label: "Backend", path: "https://github.com/devTianaCodes/orchid-backend" }
     ],
+    workflowIntro: {
+      eyebrow: "Orchid workflow",
+      title: "Care decisions from search to detail",
+      text: "OrchidCare is structured around a visitor who wants to identify plants, compare care needs, save favourites, and learn the basics without needing an account."
+    },
+    workflowHighlights: [
+      {
+        title: "Browse and filter",
+        text: "The main encyclopedia route turns orchid care metadata into a browsable decision surface instead of a static gallery.",
+        items: [
+          "Visitors can search orchid names and descriptions while filtering by difficulty, light, water, growth type, and bloom season",
+          "Pagination keeps the listing readable while preserving the backend as the source for current orchid records",
+          "Filter metadata comes from the API, so the UI options reflect the data that actually exists in PostgreSQL"
+        ]
+      },
+      {
+        title: "Care-focused detail pages",
+        text: "The detail flow is built around practical care understanding, not only botanical display information.",
+        items: [
+          "Each orchid detail page includes origin, roots, bloom notes, care summary, rarity, growth type, and image attribution",
+          "Slug-based routing keeps individual profiles shareable and easy to connect to API lookup behavior",
+          "The care guide complements specific profiles with beginner topics such as light, humidity, feeding, repotting, and propagation"
+        ]
+      },
+      {
+        title: "Local collection flow",
+        text: "The MVP uses lightweight client state for favourites while leaving room for future authenticated collections.",
+        items: [
+          "The `useFavoriteOrchids` hook stores selected orchids in localStorage so favourites persist between browser visits",
+          "Favourite modal feedback confirms save and remove actions without interrupting browsing",
+          "A dedicated rare collection route reuses the same API list flow with `isRare` filtering for focused discovery"
+        ]
+      }
+    ],
     media: [
       {
         kind: "image",
