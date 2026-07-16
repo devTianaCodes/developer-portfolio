@@ -81,7 +81,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
 
       {hero ? (
         <motion.div
-          className="absolute inset-x-0 -top-10 h-[66%] px-7 pt-0 md:-top-6 md:px-9"
+          className="absolute inset-x-0 top-[calc(6%-2.5rem)] h-[66%] px-7 pt-0 md:top-[calc(6%-1.5rem)] md:px-9"
           animate={{
             scale: isHovered ? 1.045 : isActive ? 1.014 : 0.99,
             y: isHovered ? -10 : 0,
@@ -103,7 +103,12 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
         </motion.div>
       ) : null}
 
-      <div className="absolute inset-x-0 bottom-12 z-20 mx-auto flex max-w-[82%] flex-col items-center text-center text-[#202124] md:bottom-12">
+      <div
+        className={classNames(
+          "absolute inset-x-0 bottom-[3.9rem] z-20 mx-auto flex max-w-[82%] flex-col items-center text-center text-[#202124]",
+          isActive ? "md:bottom-[2.9rem]" : "md:bottom-[3.9rem]"
+        )}
+      >
         <div className="-translate-y-[88px] md:translate-y-0">
           <h2 className="max-w-xl text-balance font-sans text-[1.84rem] font-medium leading-[1.18] text-[#262626] md:text-[2.05rem]">
             {project.name}
