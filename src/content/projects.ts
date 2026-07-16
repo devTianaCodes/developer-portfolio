@@ -1,6 +1,7 @@
 export type ProjectSlug =
   | "chocolate"
   | "english4u"
+  | "orchidcare"
   | "petnest"
   | "paytrack"
   | "ai-comparator"
@@ -85,6 +86,7 @@ export type ProjectEntry = {
 export const projectDisplayOrder: ProjectSlug[] = [
   "chocolate",
   "petnest",
+  "orchidcare",
   "english4u",
   "paytrack",
   "ai-comparator",
