@@ -764,6 +764,138 @@ export const projects: ProjectEntry[] = [
     ]
   },
   {
+    slug: "orchidcare",
+    name: "OrchidCare",
+    tagline: "Care-focused orchid encyclopedia with searchable profiles, filters, favourites, and rare collection browsing.",
+    summary:
+      "A full-stack orchid care app built with a React and Vite frontend plus an Express and PostgreSQL API. It lets visitors browse orchid profiles, search and filter by care needs, open detailed care pages, save local favourites, explore rare orchids, and read beginner care guidance.",
+    role: "Full-stack TypeScript product",
+    category: "full-stack",
+    deploymentMode: "media",
+    repoPath:
+      "/Users/parents/Developer/OrchidCare/orchid-frontend and /Users/parents/Developer/OrchidCare/orchid-backend",
+    year: "2026",
+    visualTone: "soft-utility",
+    hook: "A practical plant-care product where searchable data, care metadata, and a calm browsing experience work together.",
+    techStack: [
+      "React",
+      "Vite",
+      "TypeScript",
+      "React Router",
+      "Tailwind CSS",
+      "Fetch API",
+      "LocalStorage",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "pg",
+      "Helmet",
+      "CORS",
+      "Dotenv",
+      "tsx",
+      "Docker Compose"
+    ],
+    strengths: [
+      "Clean encyclopedia browsing experience",
+      "Typed API client and typed backend DTOs",
+      "Search and care-based filtering",
+      "PostgreSQL seed data with image attribution"
+    ],
+    challenge:
+      "Build a public orchid care product that feels approachable to beginners while still modeling structured care data such as light, watering, humidity, temperature, bloom season, rarity, and growth type.",
+    solution:
+      "The frontend organizes orchid discovery into home, browse, detail, favourites, rare collection, and care guide routes. The backend serves normalized PostgreSQL data through a small REST API with validated query filters, pagination, slug lookup, filter metadata, CORS, Helmet, request logging, and controlled error responses.",
+    outcome:
+      "OrchidCare adds a focused data-driven case study to the portfolio: it shows a typed frontend-to-backend flow, PostgreSQL querying, local client state, and a product surface designed around care decisions rather than generic CRUD.",
+    features: [
+      "Browse orchid profiles with search, filters, and pagination",
+      "Open detailed care pages with origin, roots, bloom, and care summaries",
+      "Save favourite orchids locally with user feedback",
+      "Explore a dedicated rare orchid collection",
+      "Read a beginner-friendly orchid care guide"
+    ],
+    architecture: [
+      "React Router frontend with home, browse, detail, favourites, rare collection, and care guide routes",
+      "Typed API client wraps JSON fetch calls and base URL configuration",
+      "Express API separates routes, controllers, services, repositories, and error handlers",
+      "PostgreSQL stores orchids and one-to-one care profile records"
+    ],
+    metrics: [
+      { label: "Frontend routes", value: "6" },
+      { label: "API endpoints", value: "4" },
+      { label: "Database", value: "PostgreSQL" }
+    ],
+    impactBullets: [
+      "Shows care-specific product thinking instead of another general dashboard.",
+      "Demonstrates how frontend filters connect to validated backend query handling.",
+      "Adds a PostgreSQL-backed full-stack project with a clearly explained data model."
+    ],
+    interviewAngles: [
+      "How the app turns plant-care requirements into searchable structured data.",
+      "Why the API exposes both list data and filter metadata for a smoother browsing UI.",
+      "How local favourites support the MVP while leaving room for synced accounts later."
+    ],
+    repositories: [
+      { label: "Frontend repository", href: "https://github.com/devTianaCodes/orchid-frontend" },
+      { label: "Backend repository", href: "https://github.com/devTianaCodes/orchid-backend" }
+    ],
+    repositoryRoots: [
+      { label: "Frontend", path: "https://github.com/devTianaCodes/orchid-frontend" },
+      { label: "Backend", path: "https://github.com/devTianaCodes/orchid-backend" }
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/media/projects/orchidcare/showcase/01.png",
+        optimizedSrc: "/media/projects/orchidcare/showcase/01.webp",
+        alt: "OrchidCare screenshot 1",
+        width: 2958,
+        height: 1804,
+        featured: true,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/orchidcare/showcase/02.png",
+        optimizedSrc: "/media/projects/orchidcare/showcase/02.webp",
+        alt: "OrchidCare screenshot 2",
+        width: 2958,
+        height: 1804,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/orchidcare/showcase/03.png",
+        optimizedSrc: "/media/projects/orchidcare/showcase/03.webp",
+        alt: "OrchidCare screenshot 3",
+        width: 2958,
+        height: 1804,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/orchidcare/showcase/04.png",
+        optimizedSrc: "/media/projects/orchidcare/showcase/04.webp",
+        alt: "OrchidCare screenshot 4",
+        width: 2958,
+        height: 1804,
+        status: "ready"
+      },
+      {
+        kind: "image",
+        src: "/media/projects/orchidcare/showcase/05.png",
+        optimizedSrc: "/media/projects/orchidcare/showcase/05.webp",
+        alt: "OrchidCare screenshot 5",
+        width: 2960,
+        height: 1818,
+        status: "ready"
+      }
+    ],
+    links: [
+      { label: "Case Study", href: "/projects/orchidcare", kind: "case-study" }
+    ]
+  },
+  {
     slug: "paytrack",
     name: "PayTrack",
     tagline: "Mobile-first subscription manager for recurring payments, reminders, and spending clarity.",

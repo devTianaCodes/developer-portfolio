@@ -88,6 +88,7 @@ const caseStudyThemes: Record<ProjectEntry["visualTone"], CaseTheme> = {
 const logicMaps: Partial<Record<ProjectEntry["slug"], { src: string; width: number; height: number }>> = {
   chocolate: { src: "/media/projects/chocolate/logic-map.png", width: 1536, height: 1024 },
   english4u: { src: "/media/projects/english4u/logic-map.png", width: 1536, height: 1024 },
+  orchidcare: { src: "/media/projects/orchidcare/logic-map.webp", width: 1536, height: 1024 },
   petnest: { src: "/media/projects/petnest/logic-map.png", width: 1672, height: 941 },
   paytrack: { src: "/media/projects/paytrack/logic-map.png", width: 1536, height: 1024 },
   "ai-comparator": { src: "/media/projects/ai-comparator/logic-map.png", width: 1536, height: 1024 },
