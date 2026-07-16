@@ -877,6 +877,60 @@ export const projects: ProjectEntry[] = [
         ]
       }
     ],
+    apiIntro: {
+      eyebrow: "Backend surface",
+      title: "Focused orchid encyclopedia API",
+      text: "The Express API keeps the public MVP intentionally small, with dedicated endpoints for health checks, orchid listings, slug-based details, and filter metadata."
+    },
+    apiDomains: [
+      "GET /api/health",
+      "GET /api/orchids",
+      "GET /api/orchids/:slug",
+      "GET /api/orchid-filters"
+    ],
+    qualityIntro: {
+      eyebrow: "Engineering decisions",
+      title: "Typed data flow, validation, and PostgreSQL discipline",
+      text: "OrchidCare is strongest where the frontend care filters meet backend validation and a normalized data model."
+    },
+    qualitySignals: [
+      {
+        title: "Typed frontend-to-API contract",
+        text: "The React client models the API response shape directly, so listing cards, detail pages, filters, and pagination use explicit TypeScript DTOs.",
+        items: [
+          "DTO types cover orchid list items, orchid details, filter metadata, pagination, and every supported care filter",
+          "The typed API client builds URLSearchParams for search, difficulty, light, water, humidity, temperature, growth type, bloom season, rarity, page, and page size",
+          "Frontend routes map cleanly to the backend surface: browse uses list and metadata endpoints, detail pages use slug lookup, and rare collection reuses list filtering"
+        ]
+      },
+      {
+        title: "Validated API query handling",
+        text: "The controller checks incoming query values before they reach the repository, returning controlled 400 or 404 responses for invalid input.",
+        items: [
+          "Enum filters are restricted to known values for difficulty, light, watering, growth type, and bloom season",
+          "Humidity and temperature filters are parsed as finite numbers, while page and pageSize must be positive integers",
+          "Page size is capped at 40, slugs must match the expected lowercase URL format, and missing orchid details return a structured 404"
+        ]
+      },
+      {
+        title: "PostgreSQL schema and query safety",
+        text: "The database layer uses normalized tables, constraints, indexes, and parameterized `pg` queries for the public orchid data model.",
+        items: [
+          "The schema separates `orchids` from one-to-one `orchid_care_profiles` records with cascade cleanup through a foreign key",
+          "Check constraints protect slug format, growth type, difficulty, light, watering, humidity range, temperature range, bloom season, and image metadata completeness",
+          "Repository queries use parameter placeholders for search and filters, plus indexes on slug, names, genus, growth type, difficulty, light, water, and bloom season"
+        ]
+      },
+      {
+        title: "Runtime safety and repeatable setup",
+        text: "The Express app includes basic production-minded middleware and local database scripts that make the project easier to run and review.",
+        items: [
+          "Helmet, configured CORS origin, JSON parsing, request logging, a not-found handler, and a centralized error handler are wired at app level",
+          "`db/schema.sql` and `db/seed.sql` support repeatable PostgreSQL setup through `npm run db:reset`",
+          "Frontend and backend build scripts run TypeScript checks before producing reviewable production assets"
+        ]
+      }
+    ],
     media: [
       {
         kind: "image",
