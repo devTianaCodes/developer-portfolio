@@ -59,7 +59,15 @@ export type ProjectEntry = {
   repoPath: string;
   year: string;
   flagship?: boolean;
-  visualTone: "warm-luxury" | "clean-learning" | "soft-utility" | "finance-peach" | "ai-lilac" | "arcade" | "naval-tech";
+  visualTone:
+    | "warm-luxury"
+    | "clean-learning"
+    | "soft-utility"
+    | "botanical-gold"
+    | "finance-peach"
+    | "ai-lilac"
+    | "arcade"
+    | "naval-tech";
   hook: string;
   techStack: string[];
   strengths: string[];
@@ -775,7 +783,7 @@ export const projects: ProjectEntry[] = [
     repoPath:
       "/Users/parents/Developer/OrchidCare/orchid-frontend and /Users/parents/Developer/OrchidCare/orchid-backend",
     year: "2026",
-    visualTone: "soft-utility",
+    visualTone: "botanical-gold",
     hook: "A practical plant-care product where searchable data, care metadata, and a calm browsing experience work together.",
     techStack: [
       "React",

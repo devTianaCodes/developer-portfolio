@@ -47,6 +47,15 @@ const caseStudyThemes: Record<ProjectEntry["visualTone"], CaseTheme> = {
     accentSoft: "#a6d7ba",
     line: "rgba(47,118,93,0.2)"
   },
+  "botanical-gold": {
+    shell: "bg-[#f8edc6]",
+    hero: "bg-[#f2e2ad] text-[#262626]",
+    panel: "bg-[rgba(255,254,244,0.84)]",
+    tile: "bg-[rgba(252,246,221,0.76)]",
+    accent: "#7d6814",
+    accentSoft: "#e5cf82",
+    line: "rgba(125,104,20,0.15)"
+  },
   "finance-peach": {
     shell: "bg-[#f4d8c8]",
     hero: "bg-[#f0c2aa] text-[#101828]",

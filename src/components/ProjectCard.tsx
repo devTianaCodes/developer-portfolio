@@ -13,6 +13,7 @@ const toneClasses: Record<ProjectEntry["visualTone"], string> = {
   "warm-luxury": "from-[rgba(39,23,18,0.78)] via-[rgba(116,60,38,0.2)] to-transparent",
   "clean-learning": "from-[rgba(15,23,42,0.72)] via-[rgba(37,99,235,0.18)] to-transparent",
   "soft-utility": "from-[rgba(15,54,50,0.72)] via-[rgba(49,95,159,0.14)] to-transparent",
+  "botanical-gold": "from-[rgba(86,70,30,0.58)] via-[rgba(196,164,76,0.1)] to-transparent",
   "finance-peach": "from-[rgba(16,24,40,0.78)] via-[rgba(255,107,95,0.22)] to-transparent",
   "ai-lilac": "from-[rgba(99,61,75,0.58)] via-[rgba(205,112,137,0.18)] to-transparent",
   arcade: "from-[rgba(32,54,86,0.82)] via-[rgba(49,95,159,0.2)] to-transparent",
@@ -69,7 +70,7 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
             ))}
           </ul>
 
-          <div className="relative z-20 flex flex-wrap justify-end gap-3 border-t border-line pt-4">
+          <div className="relative z-20 flex flex-wrap justify-center gap-3 border-t border-line pt-4">
             <Link href={"/projects/" + project.slug} className="sharp-button">View Project</Link>
           </div>
         </div>
