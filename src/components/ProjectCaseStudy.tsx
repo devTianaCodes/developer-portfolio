@@ -323,27 +323,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         )}
 
         {project.apiDomains || project.qualitySignals ? (
-          <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            {project.apiDomains ? (
-              <div className={`space-y-5 ${panelClass}`}>
-                <SectionTitle
-                  eyebrow={project.apiIntro?.eyebrow ?? "Backend surface"}
-                  title={project.apiIntro?.title ?? "API domains"}
-                  text={
-                    project.apiIntro?.text ??
-                    "The backend exposes dedicated REST domains for customer, commerce, admin, payment, and health workflows."
-                  }
-                />
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {project.apiDomains.map((domain) => (
-                    <p key={domain} className="rounded-[6px] border border-[color:var(--case-line)] bg-white/72 px-4 py-3 font-mono text-sm text-muted">
-                      {domain}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
+          <section className="space-y-8">
             {project.qualitySignals ? (
               <div className={`space-y-6 ${panelClass}`}>
                 <SectionTitle
@@ -354,7 +334,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                     "The backend is presented as an interview-ready system with automated tests and measurable quality thresholds."
                   }
                 />
-                <div className="grid gap-4">
+                <div className="grid gap-4 md:grid-cols-2">
                   {project.qualitySignals.map((group) => (
                     <div key={group.title} className={tileClass}>
                       <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--case-accent)]">{group.title}</p>
@@ -365,6 +345,26 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                         ))}
                       </ul>
                     </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {project.apiDomains ? (
+              <div className={`space-y-5 ${panelClass}`}>
+                <SectionTitle
+                  eyebrow={project.apiIntro?.eyebrow ?? "Backend surface"}
+                  title={project.apiIntro?.title ?? "API domains"}
+                  text={
+                    project.apiIntro?.text ??
+                    "The backend exposes dedicated REST domains for customer, commerce, admin, payment, and health workflows."
+                  }
+                />
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {project.apiDomains.map((domain) => (
+                    <p key={domain} className="rounded-[6px] border border-[color:var(--case-line)] bg-white/72 px-4 py-3 font-mono text-sm text-muted">
+                      {domain}
+                    </p>
                   ))}
                 </div>
               </div>
