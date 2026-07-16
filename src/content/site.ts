@@ -55,11 +55,11 @@ export const siteConfig = {
   strengths: [
     {
       label: "Projects selected",
-      value: "5"
+      value: "8"
     },
     {
       label: "Full-stack products",
-      value: "3"
+      value: "6"
     },
     {
       label: "Interactive builds",

@@ -936,7 +936,7 @@ export const projects: ProjectEntry[] = [
         kind: "image",
         src: "/media/projects/orchidcare/showcase/01.png",
         optimizedSrc: "/media/projects/orchidcare/showcase/01.webp",
-        alt: "OrchidCare screenshot 1",
+        alt: "OrchidCare home page with hero entry and feature highlights",
         width: 2958,
         height: 1804,
         featured: true,
@@ -946,7 +946,7 @@ export const projects: ProjectEntry[] = [
         kind: "image",
         src: "/media/projects/orchidcare/showcase/02.png",
         optimizedSrc: "/media/projects/orchidcare/showcase/02.webp",
-        alt: "OrchidCare screenshot 2",
+        alt: "OrchidCare orchid browse page with search, care filters, and profile cards",
         width: 2958,
         height: 1804,
         status: "ready"
@@ -955,7 +955,7 @@ export const projects: ProjectEntry[] = [
         kind: "image",
         src: "/media/projects/orchidcare/showcase/03.png",
         optimizedSrc: "/media/projects/orchidcare/showcase/03.webp",
-        alt: "OrchidCare screenshot 3",
+        alt: "OrchidCare favourites page with saved orchid cards",
         width: 2958,
         height: 1804,
         status: "ready"
@@ -964,7 +964,7 @@ export const projects: ProjectEntry[] = [
         kind: "image",
         src: "/media/projects/orchidcare/showcase/04.png",
         optimizedSrc: "/media/projects/orchidcare/showcase/04.webp",
-        alt: "OrchidCare screenshot 4",
+        alt: "OrchidCare care guide page with beginner watering guidance",
         width: 2958,
         height: 1804,
         status: "ready"
@@ -973,7 +973,7 @@ export const projects: ProjectEntry[] = [
         kind: "image",
         src: "/media/projects/orchidcare/showcase/05.png",
         optimizedSrc: "/media/projects/orchidcare/showcase/05.webp",
-        alt: "OrchidCare screenshot 5",
+        alt: "OrchidCare orchid detail page for the Queen of Sheba Orchid",
         width: 2960,
         height: 1818,
         status: "ready"
