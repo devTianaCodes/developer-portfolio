@@ -193,14 +193,14 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
               {hasResourceBlock ? (
                 <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4 md:h-[11.5rem] md:overflow-hidden">
                   {project.repositories ? (
-                    <div className="flex flex-wrap justify-start gap-x-6 gap-y-3">
+                    <div className="grid gap-3 sm:grid-cols-2">
                       {project.repositories.map((repo) => (
                         <Link
                           key={repo.href}
                           href={repo.href}
                           target="_blank"
                           rel="noreferrer"
-                          className="group inline-flex items-center gap-2 text-sm font-semibold lowercase tracking-[0.02em] text-[#262626]/74 underline-offset-4 transition hover:text-[var(--case-accent)] hover:underline"
+                          className="group inline-flex min-w-0 w-full items-center gap-2 px-3 text-sm font-semibold lowercase tracking-[0.02em] text-[#262626]/74 underline-offset-4 transition hover:text-[var(--case-accent)] hover:underline"
                         >
                           <GithubIcon className="h-4 w-4 transition group-hover:scale-110" />
                           {repositoryLabel(repo.label)}

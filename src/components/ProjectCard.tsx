@@ -24,7 +24,7 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
   const heroSrc = hero?.optimizedSrc ?? hero?.poster ?? hero?.src;
   const heightClass = prominent ? "min-h-[560px]" : "min-h-[500px]";
-  const mediaAspect = prominent || tallMedia ? "aspect-[16/10]" : "aspect-[16/9]";
+  const mediaAspect = tallMedia ? "aspect-[16/10]" : "aspect-[16/9]";
 
   return (
     <article className={"group relative flex " + heightClass + " cursor-pointer flex-col overflow-hidden sharp-panel transition duration-300 hover:border-[#262626]/34 hover:shadow-[0_22px_58px_rgba(15,23,42,0.12)]"}>
