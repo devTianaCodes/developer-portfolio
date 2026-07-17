@@ -99,43 +99,57 @@ export default function AboutPage() {
   return (
     <PageReveal>
       <div className="space-y-10">
-        <div className="space-y-4">
-          <p className="section-label">About</p>
+        <section className="relative left-1/2 -mt-10 flex min-h-[74rem] w-screen -translate-x-1/2 items-center bg-[#4b73a5] py-10 text-white sm:min-h-[55.5rem] md:-mt-14 md:min-h-[57.5rem] md:py-14 lg:min-h-[37.25rem]">
+          <Image
+            src="/media/about/about-blue-background.png"
+            alt=""
+            fill
+            priority
+            quality={82}
+            sizes="100vw"
+            className="object-cover object-center opacity-90"
+          />
 
-          <div className="relative">
-            <div className="min-h-[80px] pr-24 sm:min-h-[92px] sm:pr-28 md:min-h-[112px] md:pr-[8.25rem] lg:min-h-[128px] lg:pr-[9.5rem]">
-              <h1 className="font-sans text-[2rem] font-normal leading-[1.05] tracking-[-0.01em] text-ink sm:text-5xl md:text-6xl lg:text-[4.25rem]">
-                Tatiana Oblasser
-              </h1>
-              <p className="mt-3 font-sans text-xl font-medium leading-tight text-accent sm:text-2xl md:text-3xl">
-                Full Stack Web Developer Jr.
+          <div className="relative z-10 mx-auto max-w-[96rem] space-y-8 px-2.5 md:px-4">
+            <div className="space-y-4">
+              <p className="font-sans text-xs font-bold uppercase leading-[1.2] tracking-[2px] text-white">About</p>
+
+              <div className="relative">
+                <div className="min-h-[80px] pr-24 sm:min-h-[92px] sm:pr-28 md:min-h-[112px] md:pr-[8.25rem] lg:min-h-[166px] lg:pr-44">
+                  <h1 className="font-sans text-[2rem] font-normal leading-[1.05] tracking-[-0.01em] text-white sm:text-5xl md:text-6xl lg:text-[4.25rem]">
+                    Tatiana Oblasser
+                  </h1>
+                  <p className="mt-3 font-sans text-xl font-medium leading-tight text-white sm:text-2xl md:text-3xl">
+                    Full Stack Web Developer Jr.
+                  </p>
+                </div>
+
+                <div className="absolute right-0 top-0 aspect-square w-[80px] overflow-hidden rounded-full ring-[3.6px] ring-white shadow-[0_12px_30px_rgba(15,23,42,0.3)] sm:w-[92px] md:w-[112px] lg:right-3 lg:top-3 lg:w-[154px]">
+                  <Image
+                    src="/media/profile/tiana-contact.jpg"
+                    alt="Tatiana Oblasser portrait"
+                    fill
+                    sizes="(max-width: 640px) 80px, (max-width: 768px) 92px, (max-width: 1024px) 112px, 154px"
+                    className="object-cover object-center"
+                    priority
+                  />
+                </div>
+              </div>
+
+              <p className="max-w-6xl font-sans text-base font-normal leading-7 text-white">
+                Junior Full-Stack Developer building responsive, user-focused web applications with React, TypeScript, Node.js, Express and MySQL. Hands-on experience delivering end-to-end projects, from mobile-first interfaces to REST APIs, authentication, payment workflows and database integration. A background in Java and Spring Boot, UX/UI and technical teaching brings a thoughtful approach to usability, problem-solving, collaboration and commitment to continuous learning.
               </p>
             </div>
 
-            <div className="absolute right-0 top-0 aspect-square w-[80px] overflow-hidden rounded-full sm:w-[92px] md:w-[112px] lg:w-[128px]">
-              <Image
-                src="/media/profile/tiana-contact.jpg"
-                alt="Tatiana Oblasser portrait"
-                fill
-                sizes="(max-width: 640px) 80px, (max-width: 768px) 92px, (max-width: 1024px) 112px, 128px"
-                className="object-cover object-center"
-                priority
-              />
+            <div className="grid gap-4 lg:grid-cols-3">
+              {skillAreas.map((area) => (
+                <div key={area.title} className="rounded-[6px] border border-white/20 bg-white/10 p-6 shadow-[0_18px_48px_rgba(15,23,42,0.12)]">
+                  <p className="font-sans text-xs font-bold uppercase leading-[1.2] tracking-[2px] text-white">{area.title}</p>
+                  <p className="mt-4 text-sm leading-7 text-white">{area.text}</p>
+                </div>
+              ))}
             </div>
           </div>
-
-          <p className="minimal-text max-w-6xl">
-            Junior Full-Stack Developer building responsive, user-focused web applications with React, TypeScript, Node.js, Express and MySQL. Hands-on experience delivering end-to-end projects, from mobile-first interfaces to REST APIs, authentication, payment workflows and database integration. A background in Java and Spring Boot, UX/UI and technical teaching brings a thoughtful approach to usability, problem-solving, collaboration and commitment to continuous learning.
-          </p>
-        </div>
-
-        <section className="grid gap-4 lg:grid-cols-3">
-          {skillAreas.map((area) => (
-            <div key={area.title} className="sharp-panel p-6">
-              <p className="section-label">{area.title}</p>
-              <p className="mt-4 text-sm leading-7 text-muted">{area.text}</p>
-            </div>
-          ))}
         </section>
 
         <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">

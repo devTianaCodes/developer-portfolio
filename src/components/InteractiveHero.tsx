@@ -21,7 +21,7 @@ export function InteractiveHero() {
   };
 
   return (
-    <section className="relative left-1/2 -mt-10 w-screen -translate-x-1/2 overflow-hidden bg-[#06152f] py-8 text-white shadow-[0_24px_70px_rgba(31,49,78,0.18)] md:-mt-14 md:py-12">
+    <section className="relative left-1/2 -mt-10 flex min-h-[74rem] w-screen -translate-x-1/2 items-center overflow-hidden bg-[#06152f] py-8 text-white shadow-[0_24px_70px_rgba(31,49,78,0.18)] sm:min-h-[55.5rem] md:-mt-14 md:min-h-[57.5rem] md:py-12 lg:min-h-[37.25rem]">
       <Image
         src="/media/hero/technology-network.png"
         alt=""
