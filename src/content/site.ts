@@ -76,7 +76,7 @@ export const siteConfig = {
     "Next.js",
     "Node.js",
     "Express",
-    "REST APIs",
+    "REST API",
     "MySQL",
     "Prisma",
     "PostgreSQL",
