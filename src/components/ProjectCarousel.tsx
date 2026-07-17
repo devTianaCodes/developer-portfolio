@@ -84,7 +84,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
 
       {hero ? (
         <motion.div
-          className="absolute inset-x-0 top-[calc(6%-2.5rem)] h-[66%] px-7 pt-0 md:top-[calc(6%-1.5rem)] md:px-9"
+          className="absolute inset-x-0 top-0 h-[48%] px-7 pt-0 sm:h-[50%] md:h-[53%] md:px-9 lg:top-[calc(6%-1.5rem)] lg:h-[55%]"
           animate={{
             scale: isHovered ? 1.045 : isActive ? 1.014 : 0.99,
             y: isHovered ? -10 : 0,
@@ -112,7 +112,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
           isActive ? "md:bottom-[2.9rem]" : "md:bottom-[3.9rem]"
         )}
       >
-        <div className="-translate-y-[88px] md:translate-y-0">
+        <div>
           <h2 className="max-w-xl text-balance font-sans text-[1.84rem] font-medium leading-[1.18] text-[#262626] md:text-[2.05rem]">
             {project.name}
           </h2>
@@ -213,7 +213,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           <span aria-hidden="true">›</span>
         </button>
 
-        <div className="relative hidden h-full md:block">
+        <div className="relative hidden h-full xl:block">
           {orderedProjects.map((project, index) => {
             const offset = circularOffset(index, activeIndex, orderedProjects.length);
             const absOffset = Math.abs(offset);
@@ -275,7 +275,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           })}
         </div>
 
-        <div className="relative block h-full overflow-hidden md:hidden">
+        <div className="relative block h-full overflow-hidden xl:hidden">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               key={activeProject.slug}
