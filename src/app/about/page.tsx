@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { GithubIcon } from "@/components/GithubIcon";
 import { PageReveal } from "@/components/PageReveal";
@@ -60,14 +61,27 @@ export default function AboutPage() {
   return (
     <PageReveal>
       <div className="space-y-10">
-        <div className="space-y-4">
-          <p className="section-label">About</p>
-          <h1 className="minimal-heading max-w-4xl text-5xl md:text-6xl">
-            Junior full-stack developer with design sense and backend range.
-          </h1>
-          <p className="minimal-text max-w-3xl">
-            I build modern, responsive web applications with React, Node.js, Express, REST APIs, and MySQL. My background combines full-stack training, Java backend foundations, UX/UI study, and teaching experience, so I care about both how a product works and how clearly people can use it.
-          </p>
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_240px] lg:items-start">
+          <div className="space-y-4">
+            <p className="section-label">About</p>
+            <h1 className="minimal-heading max-w-4xl text-5xl md:text-6xl">
+              Junior full-stack developer with design sense and backend range.
+            </h1>
+            <p className="minimal-text max-w-3xl">
+              I build modern, responsive web applications with React, Node.js, Express, REST APIs, and MySQL. My background combines full-stack training, Java backend foundations, UX/UI study, and teaching experience, so I care about both how a product works and how clearly people can use it.
+            </p>
+          </div>
+
+          <div className="relative aspect-square w-[180px] overflow-hidden rounded-[8px] sm:w-[210px] md:w-[240px] lg:justify-self-end">
+            <Image
+              src="/media/profile/tiana-contact.jpg"
+              alt="Tiana Oblasser portrait"
+              fill
+              sizes="(max-width: 640px) 180px, (max-width: 768px) 210px, 240px"
+              className="object-cover object-center"
+              priority
+            />
+          </div>
         </div>
 
         <section className="grid gap-4 lg:grid-cols-3">

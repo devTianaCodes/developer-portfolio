@@ -111,7 +111,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
           isActive ? "md:bottom-[2.9rem]" : "md:bottom-[3.9rem]"
         )}
       >
-        <div>
+        <div className="-translate-y-[44px] md:translate-y-0">
           <h2 className="max-w-xl text-balance font-sans text-[1.84rem] font-medium leading-[1.18] text-[#262626] md:text-[2.05rem]">
             {project.name}
           </h2>
