@@ -61,27 +61,34 @@ export default function AboutPage() {
   return (
     <PageReveal>
       <div className="space-y-10">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_240px] lg:items-start">
-          <div className="space-y-4">
-            <p className="section-label">About</p>
-            <h1 className="minimal-heading max-w-4xl text-5xl md:text-6xl">
-              Junior full-stack developer with design sense and backend range.
-            </h1>
-            <p className="minimal-text max-w-3xl">
-              I build modern, responsive web applications with React, Node.js, Express, REST APIs, and MySQL. My background combines full-stack training, Java backend foundations, UX/UI study, and teaching experience, so I care about both how a product works and how clearly people can use it.
-            </p>
+        <div className="space-y-4">
+          <p className="section-label">About</p>
+
+          <div className="relative">
+            <div className="min-h-[80px] pr-24 sm:min-h-[92px] sm:pr-28 md:min-h-[112px] md:pr-[8.25rem] lg:min-h-[128px] lg:pr-[9.5rem]">
+              <h1 className="minimal-heading text-[2rem] uppercase leading-[0.98] tracking-[-0.02em] sm:text-5xl md:text-6xl lg:text-7xl">
+                Tatiana Oblasser
+              </h1>
+              <p className="mt-3 font-sans text-xl font-medium leading-tight text-accent sm:text-2xl md:text-3xl">
+                Junior Full-Stack Developer
+              </p>
+            </div>
+
+            <div className="absolute right-0 top-0 aspect-square w-[80px] overflow-hidden rounded-full sm:w-[92px] md:w-[112px] lg:w-[128px]">
+              <Image
+                src="/media/profile/tiana-contact.jpg"
+                alt="Tatiana Oblasser portrait"
+                fill
+                sizes="(max-width: 640px) 80px, (max-width: 768px) 92px, (max-width: 1024px) 112px, 128px"
+                className="object-cover object-center"
+                priority
+              />
+            </div>
           </div>
 
-          <div className="relative aspect-square w-[180px] overflow-hidden rounded-[8px] sm:w-[210px] md:w-[240px] lg:justify-self-end">
-            <Image
-              src="/media/profile/tiana-contact.jpg"
-              alt="Tiana Oblasser portrait"
-              fill
-              sizes="(max-width: 640px) 180px, (max-width: 768px) 210px, 240px"
-              className="object-cover object-center"
-              priority
-            />
-          </div>
+          <p className="minimal-text max-w-6xl">
+            Junior Full-Stack Developer building responsive, user-focused web applications with React, TypeScript, Node.js, Express and MySQL. Hands-on experience delivering end-to-end projects, from mobile-first interfaces to REST APIs, authentication, payment workflows and database integration. A background in Java and Spring Boot, UX/UI and technical teaching brings a thoughtful approach to usability, problem-solving, collaboration and commitment to continuous learning.
+          </p>
         </div>
 
         <section className="grid gap-4 lg:grid-cols-3">
