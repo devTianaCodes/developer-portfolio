@@ -60,7 +60,7 @@ export default function AboutPage() {
 
           <div className="relative">
             <div className="min-h-[80px] pr-24 sm:min-h-[92px] sm:pr-28 md:min-h-[112px] md:pr-[8.25rem] lg:min-h-[128px] lg:pr-[9.5rem]">
-              <h1 className="minimal-heading text-[2rem] uppercase leading-[0.98] tracking-[-0.02em] sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="font-sans text-[2rem] font-normal leading-[1.05] tracking-[-0.01em] text-ink sm:text-5xl md:text-6xl lg:text-[4.25rem]">
                 Tatiana Oblasser
               </h1>
               <p className="mt-3 font-sans text-xl font-medium leading-tight text-accent sm:text-2xl md:text-3xl">
@@ -94,8 +94,8 @@ export default function AboutPage() {
           ))}
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="sharp-panel p-8">
+        <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="sharp-panel p-8 lg:order-2">
             <p className="section-label">Current focus</p>
             <h2 className="minimal-heading mt-3 text-4xl">Practical full-stack products.</h2>
             <p className="minimal-text mt-4">
@@ -103,7 +103,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="sharp-panel p-8">
+          <div className="sharp-panel p-8 lg:order-1">
             <p className="section-label">Public identity</p>
             <h2 className="minimal-heading mt-3 inline-flex items-center gap-3 text-4xl"><GithubIcon className="h-8 w-8 text-accent" />{siteConfig.githubHandle}</h2>
             <p className="minimal-text mt-4 max-w-2xl">GitHub, LinkedIn, and email provide clear paths for code review, professional context, and direct contact.</p>
@@ -138,7 +138,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 lg:grid lg:h-full lg:grid-rows-[1fr_auto] lg:gap-6 lg:space-y-0">
             <div className="sharp-panel p-8">
               <p className="section-label">Education and training</p>
               <ul className="mt-5 space-y-3 text-sm leading-7 text-muted">
