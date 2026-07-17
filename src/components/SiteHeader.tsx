@@ -22,7 +22,7 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-white/82 backdrop-blur-2xl">
+    <header className="sticky top-0 z-40 border-b border-line bg-white/95">
       <div className="mx-auto flex max-w-[96rem] items-center justify-between gap-4 px-2.5 py-3 md:px-4 lg:py-4">
         <Link href="/" className="group inline-flex min-w-0 items-center gap-4">
           <span className="relative h-[58px] w-[58px] shrink-0 overflow-hidden rounded-full border-2 border-[#262626] bg-white shadow-[0_8px_20px_rgba(15,23,42,0.12)] transition group-hover:scale-[1.03] lg:h-[70px] lg:w-[70px]">

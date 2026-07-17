@@ -5,7 +5,7 @@ import { siteConfig } from "@/content/site";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-line bg-white/82 backdrop-blur">
+    <footer className="border-t border-line bg-white/95">
       <div className="mx-auto grid max-w-[96rem] gap-8 px-2.5 py-10 md:grid-cols-[1.15fr_0.85fr] md:px-4">
         <div className="space-y-3">
           <p className="section-label">Tiana Oblasser</p>

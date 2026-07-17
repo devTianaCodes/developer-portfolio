@@ -87,8 +87,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
           className="absolute inset-x-0 top-0 h-[48%] px-7 pt-0 sm:h-[50%] md:h-[53%] md:px-9 lg:top-[calc(6%-1.5rem)] lg:h-[55%]"
           animate={{
             scale: isHovered ? 1.045 : isActive ? 1.014 : 0.99,
-            y: isHovered ? -10 : 0,
-            filter: isHovered ? "saturate(1.12) contrast(1.04)" : isActive ? "saturate(1.04)" : "saturate(0.92)"
+            y: isHovered ? -10 : 0
           }}
           transition={{ duration: 0.24, ease: polishedEase }}
         >
@@ -100,7 +99,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
             loading={isActive ? undefined : "eager"}
             unoptimized
             quality={82}
-            className="object-contain px-7 pb-6 pt-0 drop-shadow-[0_28px_42px_rgba(16,24,40,0.22)] transition-transform duration-500 ease-out group-hover:scale-[1.035] md:px-9 md:pb-8"
+            className="object-contain px-7 pb-6 pt-0 transition-transform duration-500 ease-out group-hover:scale-[1.035] md:px-9 md:pb-8 xl:drop-shadow-[0_28px_42px_rgba(16,24,40,0.22)]"
             sizes="(max-width: 640px) 82vw, (max-width: 1024px) 48vw, 34vw"
           />
         </motion.div>

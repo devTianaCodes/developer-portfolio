@@ -137,7 +137,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
     "--case-accent-soft": theme.accentSoft,
     "--case-line": theme.line
   } as CSSProperties;
-  const panelClass = `rounded-[6px] border border-[color:var(--case-line)] ${theme.panel} p-8 shadow-[0_18px_48px_rgba(15,23,42,0.08)] backdrop-blur`;
+  const panelClass = `rounded-[6px] border border-[color:var(--case-line)] ${theme.panel} p-8 shadow-[0_18px_48px_rgba(15,23,42,0.08)]`;
   const tileClass = `rounded-[6px] border border-[color:var(--case-line)] ${theme.tile} p-4 text-sm leading-7 text-muted`;
 
   return (
@@ -257,7 +257,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
               </figure>
             ) : null}
 
-            <div className="self-end rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 backdrop-blur md:h-[11.5rem] md:overflow-hidden">
+            <div className="self-end rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 md:h-[11.5rem] md:overflow-hidden">
               <p className="text-[11px] font-bold uppercase tracking-[2px] text-[#262626]/62">Tech stack</p>
               <div className="mt-3 flex max-h-[8.25rem] flex-wrap gap-2 overflow-hidden">
                 {project.techStack.map((item) => (
