@@ -162,7 +162,7 @@ export const projects: ProjectEntry[] = [
     challenge:
       "Build a commerce experience that feels premium end to end while still supporting real operational workflows like stock checks, order state changes, payment events, and admin maintenance.",
     solution:
-      "The frontend uses editorial layouts, focused product discovery routes, and a branded visual system while the backend handles auth, orders, cart merging, payment intents, webhooks, and admin APIs. The project presentation and testing notes were folded directly into this portfolio case study.",
+      "The frontend uses editorial layouts, focused product discovery routes, and a branded visual system while the backend handles auth, orders, cart merging, payment intents, webhooks, and admin APIs. A focused delivery pass also replaces broken seeded image references with category-specific fallbacks and compressed product media.",
     outcome:
       "The result is the flagship case study: a product with visual polish, business logic depth, and a clear interview narrative about shipping an end-to-end commerce system.",
     features: [
@@ -176,16 +176,18 @@ export const projects: ProjectEntry[] = [
       "REST API domains for auth, products, cart, orders, payments, and admin",
       "MySQL-backed order creation with stock checks and rollback paths",
       "JWT authentication with protected and admin-only routes",
+      "Seeded and broken demo image URLs map to compressed local category artwork while valid custom product URLs remain unchanged",
       "Backend structure covers the workflows needed for checkout, order handling, and admin operations"
     ],
     metrics: [
       { label: "Frontend routes", value: "20+" },
       { label: "Admin areas", value: "3" },
-      { label: "Deployment mode", value: "Media-first" }
+      { label: "Product media", value: "93.9% smaller" }
     ],
     impactBullets: [
       "Shows the difference between a styled storefront and a real purchase system.",
       "Demonstrates brand-led UI decisions without losing backend rigor.",
+      "Cuts the category media set from 76.09 MB to 4.62 MB while restoring images for seeded products.",
       "Creates a clear interview narrative around auth, payments, inventory, and admin tooling."
     ],
     interviewAngles: [
@@ -257,6 +259,15 @@ export const projects: ProjectEntry[] = [
           "Overall backend source coverage target is 80%",
           "New or changed backend source coverage target is 90%",
           "GitHub Actions enforces backend tests, coverage generation, and pull-request changed-code coverage gates"
+        ]
+      },
+      {
+        title: "Storefront delivery performance",
+        text: "The live catalog includes a focused image-delivery pass for database-backed product media.",
+        items: [
+          "Thirty category images were resized and compressed from 76.09 MB to 4.62 MB, a 93.9% reduction",
+          "Broken Cloudinary demo references fall back to matching local category artwork without requiring a database migration",
+          "Catalog, detail, cart, and cart drawer images use lazy loading, asynchronous decoding, and priority hints"
         ]
       }
     ],
@@ -584,7 +595,7 @@ export const projects: ProjectEntry[] = [
     challenge:
       "Design a product that supports both public discovery and trusted rescue operations while keeping the experience understandable for everyday users and admins.",
     solution:
-      "The app separates public browsing from authenticated dashboard workflows, adds moderation gates for listings, and introduces supporting tools like analytics, saved searches, and request tracking. The portfolio uses the existing README and page structure as the factual source for the case study.",
+      "The app separates public browsing from authenticated dashboard workflows, adds moderation gates for listings, and introduces supporting tools like analytics, saved searches, and request tracking. Public catalog queries now stay fresh for five minutes, and listing media uses optimized Cloudinary delivery plus compressed seeded fallbacks.",
     outcome:
       "PetNest rounds out the portfolio as the most system-heavy TypeScript app, demonstrating moderation workflows, typed APIs, and product depth outside e-commerce or education.",
     features: [
@@ -598,16 +609,19 @@ export const projects: ProjectEntry[] = [
       "TypeScript frontend and backend split into dedicated apps",
       "Prisma client generation, migration, and seed scripts from the root workspace",
       "Protected route branches for user and admin areas",
+      "Cloudinary transforms and compressed seeded media reduce listing-card and gallery payloads without changing the database schema",
       "Image upload flow prepared for Cloudinary-backed media"
     ],
     metrics: [
       { label: "Dashboard routes", value: "9" },
       { label: "Admin areas", value: "4" },
-      { label: "Backend language", value: "TypeScript" }
+      { label: "Backend language", value: "TypeScript" },
+      { label: "Demo media", value: "94% smaller" }
     ],
     impactBullets: [
       "Shows how a portfolio app can model trust, moderation, and user workflow complexity.",
       "Adds strong TypeScript credibility across frontend and backend.",
+      "Reduces seeded media from roughly 18 MB to 1.1 MB and avoids repeat public catalog requests during navigation.",
       "Demonstrates operations-heavy UX beyond the public-facing landing pages."
     ],
     interviewAngles: [
@@ -688,6 +702,15 @@ export const projects: ProjectEntry[] = [
           "TanStack Query manages server state for listings, favorites, dashboards, requests, and admin surfaces",
           "React Hook Form and Zod support typed form validation for auth, profile, listing, and request flows",
           "Reusable pieces include PetCard, FavoriteButton, ProtectedRoute, QueryStateNotice, StatusBadge, SocialLinks, NavBar, and Footer"
+        ]
+      },
+      {
+        title: "Media and catalog performance",
+        text: "A focused delivery pass reduces listing-card and gallery payloads as well as repeat public reads.",
+        items: [
+          "Eight seeded images were compressed from roughly 18 MB to 1.1 MB, about 94% smaller",
+          "Cloudinary listing images use automatic format, quality, and width-specific delivery URLs",
+          "Public homepage, browse, category, and detail queries stay fresh for five minutes to avoid repeat database calls during navigation"
         ]
       },
       {
