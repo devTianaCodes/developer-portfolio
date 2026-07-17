@@ -7,12 +7,6 @@ import { siteConfig } from "@/content/site";
 
 export const metadata = { title: "About" };
 
-const workingStyle = [
-  "Responsive interfaces should feel clear on mobile before they scale up.",
-  "Frontend flows and backend APIs should be easy to explain in review.",
-  "UX decisions should make the product calmer, not just more decorated."
-];
-
 const skillAreas = [
   {
     title: "Full-stack development",
@@ -90,14 +84,6 @@ export default function AboutPage() {
             Junior Full-Stack Developer building responsive, user-focused web applications with React, TypeScript, Node.js, Express and MySQL. Hands-on experience delivering end-to-end projects, from mobile-first interfaces to REST APIs, authentication, payment workflows and database integration. A background in Java and Spring Boot, UX/UI and technical teaching brings a thoughtful approach to usability, problem-solving, collaboration and commitment to continuous learning.
           </p>
         </div>
-
-        <section className="grid gap-4 lg:grid-cols-3">
-          {workingStyle.map((item) => (
-            <div key={item} className="sharp-panel p-6">
-              <p className="text-sm leading-7 text-muted">{item}</p>
-            </div>
-          ))}
-        </section>
 
         <section className="grid gap-4 lg:grid-cols-3">
           {skillAreas.map((area) => (
