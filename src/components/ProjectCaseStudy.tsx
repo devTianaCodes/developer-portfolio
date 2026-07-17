@@ -258,8 +258,8 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             ) : null}
 
             <div className="self-end rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 md:h-[11.5rem] md:overflow-hidden">
-              <p className="text-[11px] font-bold uppercase tracking-[2px] text-[#262626]/62">Tech stack</p>
-              <div className="mt-3 flex max-h-[8.25rem] flex-wrap gap-2 overflow-hidden">
+              <p className="text-center text-[11px] font-bold uppercase tracking-[2px] text-[#262626]/62">Tech stack</p>
+              <div className="mt-3 flex max-h-[8.25rem] flex-wrap justify-center gap-2 overflow-hidden">
                 {project.techStack.map((item) => (
                   <ProjectTechBadge
                     key={item}
@@ -472,8 +472,8 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
 
         <section>
           <div className={panelClass}>
-            <p className="text-xs uppercase tracking-[0.3em] text-[var(--case-accent)]">Tech stack</p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <p className="text-center text-xs uppercase tracking-[0.3em] text-[var(--case-accent)]">Tech stack</p>
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
               {project.techStack.map((item) => (
                 <ProjectTechBadge key={item} tech={item} />
               ))}

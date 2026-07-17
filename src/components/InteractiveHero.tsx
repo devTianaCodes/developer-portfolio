@@ -64,7 +64,7 @@ export function InteractiveHero() {
             transition={{ delay: 0.15, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="flex min-w-0 w-full max-w-xl flex-col justify-between gap-6">
-              <div className="flex w-full min-w-0 flex-wrap items-center justify-between gap-x-2 gap-y-2">
+              <div className="flex w-full min-w-0 flex-wrap items-center justify-center gap-x-2 gap-y-2">
                 {siteConfig.stackBands.map((tech) => (
                   <ProjectTechBadge
                     key={tech}

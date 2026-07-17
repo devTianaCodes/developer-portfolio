@@ -108,7 +108,7 @@ export default function AboutPage() {
                 Tatiana Oblasser
               </h1>
               <p className="mt-3 font-sans text-xl font-medium leading-tight text-accent sm:text-2xl md:text-3xl">
-                Junior Full-Stack Developer
+                Full Stack Web Developer Jr.
               </p>
             </div>
 

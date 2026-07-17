@@ -64,7 +64,7 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
         </div>
 
         <div className="space-y-4">
-          <ul className="flex flex-wrap gap-2">
+          <ul className="flex flex-wrap justify-center gap-2">
             {project.techStack.map((tech) => (
               <li key={tech}><ProjectTechBadge tech={tech} compact /></li>
             ))}
