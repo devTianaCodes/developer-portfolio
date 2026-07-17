@@ -8,7 +8,7 @@ export type SocialLink = {
 export const siteConfig = {
   name: "Tiana Oblasser",
   shortName: "TO",
-  role: "Junior Full Stack Web Developer",
+  role: "Full Stack Web Developer Jr.",
   title: "Tiana Oblasser | Web Developer",
   description: "Full-stack web developer portfolio focused on React, Node.js, REST APIs, and user-centered interfaces.",
   location: "Italy-based",
@@ -36,12 +36,6 @@ export const siteConfig = {
     }
   ] satisfies SocialLink[],
   headline: "Full-stack web products with React, Node.js, REST APIs, and user-centered interface craft.",
-  subheadline:
-    "I build responsive, intuitive applications that connect polished frontend flows with Express, MySQL, Prisma, authentication, and practical backend logic.",
-  primaryCta: {
-    label: "View GitHub",
-    href: "https://github.com/devTianaCodes"
-  },
   secondaryCta: {
     label: "Explore Projects",
     href: "/projects"
