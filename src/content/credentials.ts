@@ -21,6 +21,15 @@ export type DegreeCredential = {
   category: "degree";
 };
 
+export type UxUiCredential = {
+  slug: string;
+  title: string;
+  issuer: "Interaction Design Foundation";
+  image: string;
+  imageAlt: string;
+  category: "ux-ui";
+};
+
 export const professionalCredentials = [
   {
     slug: "boolean-web-development",
@@ -93,3 +102,86 @@ export const degreeCredentials = [
     category: "degree"
   }
 ] satisfies readonly DegreeCredential[];
+
+export const uxUiCredentials = [
+  {
+    slug: "design-for-the-21st-century",
+    title: "Design for the 21st Century",
+    issuer: "Interaction Design Foundation",
+    image: "/media/credentials/ux-ui/course-certificate-design-for-the-21st-century.jpg",
+    imageAlt: "Design for the 21st Century course certificate awarded to Tatiana Oblasser",
+    category: "ux-ui"
+  },
+  {
+    slug: "design-thinking-the-ultimate-guide",
+    title: "Design Thinking: The Ultimate Guide",
+    issuer: "Interaction Design Foundation",
+    image: "/media/credentials/ux-ui/course-certificate-design-thinking-the-ultimate-guide.jpg",
+    imageAlt: "Design Thinking: The Ultimate Guide course certificate awarded to Tatiana Oblasser",
+    category: "ux-ui"
+  },
+  {
+    slug: "emotional-design",
+    title: "Emotional Design: How to Make Products People Will Love",
+    issuer: "Interaction Design Foundation",
+    image: "/media/credentials/ux-ui/course-certificate-emotional-design-how-to-make-products-people-will-love.jpg",
+    imageAlt: "Emotional Design course certificate awarded to Tatiana Oblasser",
+    category: "ux-ui"
+  },
+  {
+    slug: "gestalt-psychology-and-web-design",
+    title: "Gestalt Psychology and Web Design: The Ultimate Guide",
+    issuer: "Interaction Design Foundation",
+    image: "/media/credentials/ux-ui/course-certificate-gestalt-psychology-and-web-design-the-ultimate-guide.jpg",
+    imageAlt: "Gestalt Psychology and Web Design course certificate awarded to Tatiana Oblasser",
+    category: "ux-ui"
+  },
+  {
+    slug: "hci-foundations-of-ux-design",
+    title: "Human-Computer Interaction: The Foundations of UX Design",
+    issuer: "Interaction Design Foundation",
+    image: "/media/credentials/ux-ui/course-certificate-hci-foundations-of-ux-design.jpg",
+    imageAlt: "Human-Computer Interaction course certificate awarded to Tatiana Oblasser",
+    category: "ux-ui"
+  },
+  {
+    slug: "journey-mapping",
+    title: "Journey Mapping",
+    issuer: "Interaction Design Foundation",
+    image: "/media/credentials/ux-ui/course-certificate-journey-mapping.jpg",
+    imageAlt: "Journey Mapping course certificate awarded to Tatiana Oblasser",
+    category: "ux-ui"
+  },
+  {
+    slug: "mobile-user-experience-design",
+    title: "Mobile User Experience Design",
+    issuer: "Interaction Design Foundation",
+    image: "/media/credentials/ux-ui/course-certificate-mobile-user-experience-design.jpg",
+    imageAlt: "Mobile User Experience Design course certificate awarded to Tatiana Oblasser",
+    category: "ux-ui"
+  },
+  {
+    slug: "ui-design-patterns",
+    title: "UI Design Patterns for Successful Software",
+    issuer: "Interaction Design Foundation",
+    image: "/media/credentials/ux-ui/course-certificate-ui-design-patterns-for-successful-software.jpg",
+    imageAlt: "UI Design Patterns for Successful Software course certificate awarded to Tatiana Oblasser",
+    category: "ux-ui"
+  },
+  {
+    slug: "user-experience-beginners-guide",
+    title: "User Experience: The Beginner’s Guide",
+    issuer: "Interaction Design Foundation",
+    image: "/media/credentials/ux-ui/course-certificate-user-experience-the-beginner-s-guide.jpg",
+    imageAlt: "User Experience: The Beginner’s Guide course certificate awarded to Tatiana Oblasser",
+    category: "ux-ui"
+  },
+  {
+    slug: "user-research-methods",
+    title: "User Research: Methods and Best Practices",
+    issuer: "Interaction Design Foundation",
+    image: "/media/credentials/ux-ui/course-certificate-user-research-methods-and-best-practices.jpg",
+    imageAlt: "User Research: Methods and Best Practices course certificate awarded to Tatiana Oblasser",
+    category: "ux-ui"
+  }
+] satisfies readonly UxUiCredential[];

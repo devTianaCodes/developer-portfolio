@@ -1,6 +1,7 @@
 import { CredentialGallery, DegreeCredentialGallery } from "@/components/CredentialGallery";
 import { PageReveal } from "@/components/PageReveal";
-import { degreeCredentials, professionalCredentials } from "@/content/credentials";
+import { UxCertificateCarousel } from "@/components/UxCertificateCarousel";
+import { degreeCredentials, professionalCredentials, uxUiCredentials } from "@/content/credentials";
 
 export const metadata = {
   title: "Credentials"
@@ -18,6 +19,8 @@ export default function CredentialsPage() {
         <CredentialGallery credentials={professionalCredentials} />
 
         <DegreeCredentialGallery credentials={degreeCredentials} />
+
+        <UxCertificateCarousel credentials={uxUiCredentials} />
       </div>
     </PageReveal>
   );
