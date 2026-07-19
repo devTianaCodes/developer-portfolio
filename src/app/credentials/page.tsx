@@ -18,9 +18,9 @@ export default function CredentialsPage() {
 
         <CredentialGallery credentials={professionalCredentials} />
 
-        <DegreeCredentialGallery credentials={degreeCredentials} />
-
         <UxCertificateCarousel credentials={uxUiCredentials} />
+
+        <DegreeCredentialGallery credentials={degreeCredentials} />
       </div>
     </PageReveal>
   );
