@@ -11,6 +11,14 @@ export type CredentialEntry = {
   category: CredentialCategory;
 };
 
+export type DegreeCredential = {
+  slug: string;
+  level: "Bachelor’s degree" | "Master’s degree";
+  field: string;
+  specialization: string;
+  category: "degree";
+};
+
 export const professionalCredentials = [
   {
     slug: "boolean-web-development",
@@ -53,3 +61,27 @@ export const professionalCredentials = [
     category: "professional"
   }
 ] satisfies readonly CredentialEntry[];
+
+export const degreeCredentials = [
+  {
+    slug: "economic-sciences-business-administration",
+    level: "Bachelor’s degree",
+    field: "Economic Sciences",
+    specialization: "Business and Administration",
+    category: "degree"
+  },
+  {
+    slug: "economic-sciences-commercial-transactions",
+    level: "Master’s degree",
+    field: "Economic Sciences",
+    specialization: "Commercial Transaction Administration",
+    category: "degree"
+  },
+  {
+    slug: "education-sciences-languages",
+    level: "Bachelor’s degree",
+    field: "Education Sciences",
+    specialization: "Romanian Language and Literature and German Language",
+    category: "degree"
+  }
+] satisfies readonly DegreeCredential[];
