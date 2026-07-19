@@ -14,6 +14,14 @@ function wrapIndex(index: number, length: number) {
   return ((index % length) + length) % length;
 }
 
+function circularOffset(index: number, activeIndex: number, length: number) {
+  const rawOffset = index - activeIndex;
+
+  if (rawOffset > length / 2) return rawOffset - length;
+  if (rawOffset < -length / 2) return rawOffset + length;
+  return rawOffset;
+}
+
 export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProps) {
   const [{ activeIndex, direction }, setCarousel] = useState({ activeIndex: 0, direction: 1 });
   const reduceMotion = useReducedMotion();
@@ -32,7 +40,7 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
   function selectCredential(index: number) {
     setCarousel((current) => ({
       activeIndex: index,
-      direction: index >= current.activeIndex ? 1 : -1
+      direction: circularOffset(index, current.activeIndex, credentials.length) >= 0 ? 1 : -1
     }));
   }
 
@@ -46,39 +54,96 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
       <p className="section-label">UX/UI certificates</p>
 
       <div className="overflow-hidden sharp-panel">
-        <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 sm:aspect-[16/10] lg:aspect-[16/9]">
-          <AnimatePresence initial={false} custom={direction}>
-            <motion.div
-              key={activeCredential.slug}
-              custom={direction}
-              className="absolute inset-0"
-              drag={reduceMotion ? false : "x"}
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.12}
-              dragMomentum={false}
-              onDragEnd={handleDragEnd}
-              initial={reduceMotion ? false : { x: direction * 58 + "%", opacity: 0.82 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={reduceMotion ? undefined : { x: direction * -48 + "%", opacity: 0.68 }}
-              transition={reduceMotion ? { duration: 0 } : { type: "spring", stiffness: 360, damping: 38 }}
-            >
-              <Image
-                src={activeCredential.image}
-                alt={activeCredential.imageAlt}
-                fill
-                priority
-                className="select-none object-contain p-3 sm:p-6 lg:p-8"
-                sizes="(max-width: 768px) 96vw, 88vw"
-                draggable={false}
-              />
-            </motion.div>
-          </AnimatePresence>
+        <div className="relative aspect-[4/3] overflow-hidden bg-[linear-gradient(135deg,#f8fafc_0%,#e8eef5_50%,#f8fafc_100%)] sm:aspect-[16/10] lg:aspect-[16/9]">
+          <motion.div
+            className="absolute inset-0"
+            drag={reduceMotion ? false : "x"}
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.08}
+            dragMomentum={false}
+            onDragEnd={handleDragEnd}
+          >
+            <AnimatePresence initial={false}>
+              {credentials.map((credential, index) => {
+                const offset = circularOffset(index, activeIndex, credentials.length);
+                const isActive = offset === 0;
+                const isVisible = Math.abs(offset) <= 1;
+
+                if (!isVisible) return null;
+
+                return (
+                  <motion.button
+                    layout
+                    key={credential.slug}
+                    type="button"
+                    onClick={() => {
+                      if (!isActive) selectCredential(index);
+                    }}
+                    aria-label={isActive ? `Current certificate: ${credential.title}` : `Center ${credential.title}`}
+                    aria-current={isActive ? "true" : undefined}
+                    className={`absolute top-1/2 aspect-[4001/2933] -translate-y-1/2 overflow-hidden border border-line bg-white shadow-[0_24px_65px_rgba(15,23,42,0.20)] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 ${
+                      isActive
+                        ? "left-[11%] z-20 w-[78%] cursor-default sm:left-[18%] sm:w-[64%]"
+                        : offset < 0
+                          ? "-left-[36%] z-10 w-[72%] cursor-pointer sm:-left-[29%] sm:w-[58%]"
+                          : "-right-[36%] z-10 w-[72%] cursor-pointer sm:-right-[29%] sm:w-[58%]"
+                    }`}
+                    initial={
+                      reduceMotion
+                        ? false
+                        : {
+                            opacity: 0,
+                            scale: 0.82,
+                            x: offset < 0 ? -120 : offset > 0 ? 120 : direction * 80
+                          }
+                    }
+                    animate={{
+                      opacity: isActive ? 1 : 0.62,
+                      scale: isActive ? 1 : 0.88,
+                      x: 0
+                    }}
+                    exit={
+                      reduceMotion
+                        ? undefined
+                        : {
+                            opacity: 0,
+                            scale: 0.82,
+                            x: offset < 0 ? -120 : 120
+                          }
+                    }
+                    whileHover={isActive || reduceMotion ? undefined : { opacity: 0.78, scale: 0.9 }}
+                    transition={
+                      reduceMotion
+                        ? { duration: 0 }
+                        : {
+                            layout: { type: "spring", stiffness: 245, damping: 34, mass: 0.9 },
+                            opacity: { duration: 0.28 },
+                            scale: { type: "spring", stiffness: 245, damping: 34, mass: 0.9 },
+                            x: { type: "spring", stiffness: 245, damping: 34, mass: 0.9 }
+                          }
+                    }
+                  >
+                    <Image
+                      src={credential.image}
+                      alt={credential.imageAlt}
+                      fill
+                      priority={isActive}
+                      className="pointer-events-none select-none object-contain"
+                      sizes={isActive ? "(max-width: 640px) 78vw, 64vw" : "(max-width: 640px) 72vw, 58vw"}
+                      draggable={false}
+                    />
+                    {!isActive ? <span className="absolute inset-0 bg-slate-950/10" aria-hidden="true" /> : null}
+                  </motion.button>
+                );
+              })}
+            </AnimatePresence>
+          </motion.div>
 
           <button
             type="button"
             onClick={() => move(-1)}
             aria-label="Show previous UX/UI certificate"
-            className="absolute left-2 top-1/2 z-20 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-[3px] border-2 border-[#262626] bg-white/94 text-4xl leading-none text-[#262626] shadow-md transition hover:scale-105 hover:bg-[#262626] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 sm:left-5"
+            className="absolute left-2 top-1/2 z-30 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-[3px] border-2 border-[#262626] bg-white/94 text-4xl leading-none text-[#262626] shadow-md transition hover:scale-105 hover:bg-[#262626] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 sm:left-5"
           >
             <span aria-hidden="true">‹</span>
           </button>
@@ -86,7 +151,7 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
             type="button"
             onClick={() => move(1)}
             aria-label="Show next UX/UI certificate"
-            className="absolute right-2 top-1/2 z-20 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-[3px] border-2 border-[#262626] bg-white/94 text-4xl leading-none text-[#262626] shadow-md transition hover:scale-105 hover:bg-[#262626] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 sm:right-5"
+            className="absolute right-2 top-1/2 z-30 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-[3px] border-2 border-[#262626] bg-white/94 text-4xl leading-none text-[#262626] shadow-md transition hover:scale-105 hover:bg-[#262626] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 sm:right-5"
           >
             <span aria-hidden="true">›</span>
           </button>
