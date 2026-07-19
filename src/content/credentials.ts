@@ -16,6 +16,8 @@ export type DegreeCredential = {
   level: "Bachelor’s degree" | "Master’s degree";
   field: string;
   specialization: string;
+  image: string;
+  imageAlt: string;
   category: "degree";
 };
 
@@ -68,6 +70,8 @@ export const degreeCredentials = [
     level: "Bachelor’s degree",
     field: "Economic Sciences",
     specialization: "Business and Administration",
+    image: "/media/credentials/education/economic-sciences-bachelor-redacted.png",
+    imageAlt: "Privacy-redacted Bachelor’s degree diploma in Economic Sciences",
     category: "degree"
   },
   {
@@ -75,6 +79,8 @@ export const degreeCredentials = [
     level: "Master’s degree",
     field: "Economic Sciences",
     specialization: "Commercial Transaction Administration",
+    image: "/media/credentials/education/economic-sciences-master-redacted.png",
+    imageAlt: "Privacy-redacted Master’s degree diploma in Economic Sciences",
     category: "degree"
   },
   {
@@ -82,6 +88,8 @@ export const degreeCredentials = [
     level: "Bachelor’s degree",
     field: "Education Sciences",
     specialization: "Romanian Language and Literature and German Language",
+    image: "/media/credentials/education/education-sciences-bachelor-redacted.png",
+    imageAlt: "Privacy-redacted Bachelor’s degree diploma in Education Sciences",
     category: "degree"
   }
 ] satisfies readonly DegreeCredential[];
