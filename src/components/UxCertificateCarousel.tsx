@@ -10,6 +10,9 @@ type UxCertificateCarouselProps = {
   credentials: readonly UxUiCredential[];
 };
 
+const navigationButtonClass =
+  "absolute top-1/2 z-30 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-[3px] border-2 border-white bg-[#262626] text-3xl leading-none text-white shadow-[0_8px_24px_rgba(15,23,42,0.35)] transition hover:scale-105 hover:bg-white hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 sm:h-12 sm:w-12 sm:text-4xl";
+
 function wrapIndex(index: number, length: number) {
   return ((index % length) + length) % length;
 }
@@ -72,21 +75,15 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
                 if (!isVisible) return null;
 
                 return (
-                  <motion.button
+                  <motion.div
                     layout
                     key={credential.slug}
-                    type="button"
-                    onClick={() => {
-                      if (!isActive) selectCredential(index);
-                    }}
-                    aria-label={isActive ? `Current certificate: ${credential.title}` : `Center ${credential.title}`}
-                    aria-current={isActive ? "true" : undefined}
-                    className={`absolute top-1/2 aspect-[4001/2933] -translate-y-1/2 overflow-hidden border border-line bg-white shadow-[0_24px_65px_rgba(15,23,42,0.20)] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 ${
+                    className={`absolute inset-y-0 flex items-center ${
                       isActive
-                        ? "left-[11%] z-20 w-[78%] cursor-default sm:left-[18%] sm:w-[64%]"
+                        ? "left-[11%] z-20 w-[78%] sm:left-[18%] sm:w-[64%]"
                         : offset < 0
-                          ? "-left-[36%] z-10 w-[72%] cursor-pointer sm:-left-[29%] sm:w-[58%]"
-                          : "-right-[36%] z-10 w-[72%] cursor-pointer sm:-right-[29%] sm:w-[58%]"
+                          ? "-left-[36%] z-10 w-[72%] sm:-left-[29%] sm:w-[58%]"
+                          : "-right-[36%] z-10 w-[72%] sm:-right-[29%] sm:w-[58%]"
                     }`}
                     initial={
                       reduceMotion
@@ -123,17 +120,30 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
                           }
                     }
                   >
-                    <Image
-                      src={credential.image}
-                      alt={credential.imageAlt}
-                      fill
-                      priority={isActive}
-                      className="pointer-events-none select-none object-contain"
-                      sizes={isActive ? "(max-width: 640px) 78vw, 64vw" : "(max-width: 640px) 72vw, 58vw"}
-                      draggable={false}
-                    />
-                    {!isActive ? <span className="absolute inset-0 bg-slate-950/10" aria-hidden="true" /> : null}
-                  </motion.button>
+                    <button
+                      type="button"
+                      disabled={isActive}
+                      onClick={() => {
+                        if (!isActive) selectCredential(index);
+                      }}
+                      aria-label={isActive ? `Current certificate: ${credential.title}` : `Center ${credential.title}`}
+                      aria-current={isActive ? "true" : undefined}
+                      className={`relative aspect-[4001/2933] w-full overflow-hidden border border-line bg-white shadow-[0_24px_65px_rgba(15,23,42,0.20)] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 ${
+                        isActive ? "cursor-default" : "cursor-pointer"
+                      }`}
+                    >
+                      <Image
+                        src={credential.image}
+                        alt={credential.imageAlt}
+                        fill
+                        priority={isActive}
+                        className="pointer-events-none select-none object-contain"
+                        sizes={isActive ? "(max-width: 640px) 78vw, 64vw" : "(max-width: 640px) 72vw, 58vw"}
+                        draggable={false}
+                      />
+                      {!isActive ? <span className="absolute inset-0 bg-slate-950/10" aria-hidden="true" /> : null}
+                    </button>
+                  </motion.div>
                 );
               })}
             </AnimatePresence>
@@ -143,7 +153,7 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
             type="button"
             onClick={() => move(-1)}
             aria-label="Show previous UX/UI certificate"
-            className="absolute left-2 top-1/2 z-30 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-[3px] border-2 border-[#262626] bg-white/94 text-4xl leading-none text-[#262626] shadow-md transition hover:scale-105 hover:bg-[#262626] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 sm:left-5"
+            className={`${navigationButtonClass} left-[7%] sm:left-[14%]`}
           >
             <span aria-hidden="true">‹</span>
           </button>
@@ -151,7 +161,7 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
             type="button"
             onClick={() => move(1)}
             aria-label="Show next UX/UI certificate"
-            className="absolute right-2 top-1/2 z-30 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-[3px] border-2 border-[#262626] bg-white/94 text-4xl leading-none text-[#262626] shadow-md transition hover:scale-105 hover:bg-[#262626] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 sm:right-5"
+            className={`${navigationButtonClass} right-[7%] sm:right-[14%]`}
           >
             <span aria-hidden="true">›</span>
           </button>
