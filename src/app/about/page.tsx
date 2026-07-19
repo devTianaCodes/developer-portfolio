@@ -77,7 +77,11 @@ const trainingItems = [
   },
   {
     title: "University degrees",
-    detail: "Economic Sciences; Business Administration; Foreign Languages and Comparative Literature"
+    detail: [
+      "Economic Sciences",
+      "Business Administration",
+      "Foreign Languages and Comparative Literature"
+    ]
   }
 ];
 
@@ -209,19 +213,32 @@ export default function AboutPage() {
           </div>
 
           <div className="space-y-6 lg:grid lg:h-full lg:grid-rows-[1fr_auto] lg:gap-6 lg:space-y-0">
-            <div className="sharp-panel p-8">
+            <div className="sharp-panel p-8" data-testid="education-training">
               <p className="section-label">Education and training</p>
               <ul className="mt-5 space-y-3 text-sm leading-7 text-muted">
                 {trainingItems.map((item) => (
-                  <li key={item.title}>
-                    {item.href ? (
-                      <Link href={item.href} target="_blank" rel="noreferrer" className="font-semibold text-ink underline-offset-4 hover:text-accent hover:underline">
-                        {item.title}
-                      </Link>
+                  <li key={item.title} className={Array.isArray(item.detail) ? "grid grid-cols-[auto_minmax(0,1fr)] gap-x-4" : undefined}>
+                    <div>
+                      {item.href ? (
+                        <Link href={item.href} target="_blank" rel="noreferrer" className="font-semibold text-ink underline-offset-4 hover:text-accent hover:underline">
+                          {item.title}
+                        </Link>
+                      ) : (
+                        <span className="font-semibold text-ink">{item.title}</span>
+                      )}
+                    </div>
+
+                    {Array.isArray(item.detail) ? (
+                      <ul className="min-w-0 divide-y divide-line text-xs leading-5">
+                        {item.detail.map((degree) => (
+                          <li key={degree} className="py-1 first:pt-0 last:pb-0">
+                            {degree}
+                          </li>
+                        ))}
+                      </ul>
                     ) : (
-                      <span className="font-semibold text-ink">{item.title}</span>
+                      <span className="block text-xs leading-5">{item.detail}</span>
                     )}
-                    <span className="block text-xs leading-5">{item.detail}</span>
                   </li>
                 ))}
               </ul>
