@@ -175,7 +175,10 @@ export default function AboutPage() {
 
           <div className="sharp-panel p-8 lg:order-1">
             <p className="section-label">Public identity</p>
-            <h2 className="minimal-heading mt-3 inline-flex items-center gap-3 text-4xl"><GithubIcon className="h-8 w-8 text-accent" />{siteConfig.githubHandle}</h2>
+            <h2 className="minimal-heading mt-3 flex min-w-0 items-center gap-3 text-[1.65rem] sm:text-4xl">
+              <GithubIcon className="h-8 w-8 shrink-0 text-accent" />
+              <span className="min-w-0 break-all">{siteConfig.githubHandle}</span>
+            </h2>
             <p className="minimal-text mt-4 max-w-2xl">Review public code on GitHub, professional experience on LinkedIn, or connect directly by email.</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href={siteConfig.githubUrl} target="_blank" rel="noreferrer" className="sharp-button">
@@ -189,9 +192,6 @@ export default function AboutPage() {
               <Link href={siteConfig.emailUrl} className="sharp-button">
                 <SocialIcon kind="email" />
                 Email
-              </Link>
-              <Link href="https://cert.efset.org/SmrS7H?cid=em100a" target="_blank" rel="noreferrer" className="sharp-button">
-                English C2 certificate
               </Link>
             </div>
           </div>

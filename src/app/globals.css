@@ -4,7 +4,7 @@
 
 :root {
   --color-background: #e4f1ff;
-  --color-main-background: #a3bddd;
+  --color-main-background: #aac2e0;
   --color-panel: rgba(255, 255, 255, 0.82);
   --color-panel-strong: #ffffff;
   --color-ink: #111827;
@@ -102,10 +102,10 @@ body::-webkit-scrollbar,
   }
 
   .sharp-panel {
-    @apply rounded-[6px] border border-line bg-white/80 shadow-[0_18px_48px_rgba(15,23,42,0.08)];
+    @apply min-w-0 rounded-[6px] border border-line bg-white/80 shadow-[0_18px_48px_rgba(15,23,42,0.08)];
   }
 
   .sharp-panel-soft {
-    @apply rounded-[6px] border border-line bg-white/60;
+    @apply min-w-0 rounded-[6px] border border-line bg-white/60;
   }
 }
