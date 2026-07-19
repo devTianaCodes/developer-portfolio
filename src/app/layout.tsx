@@ -36,7 +36,7 @@ export default function RootLayout({
         <div className="relative min-h-screen overflow-hidden">
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
-            <main className="flex-1">
+            <main className="flex-1 bg-[var(--color-main-background)]">
               <div className="mx-auto max-w-[96rem] px-2.5 py-10 md:px-4 md:py-14">{children}</div>
             </main>
             <SiteFooter />
