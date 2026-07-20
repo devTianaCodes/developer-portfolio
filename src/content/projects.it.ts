@@ -747,6 +747,168 @@ const italianProjectTranslators: Partial<Record<ProjectSlug, ProjectTranslator>>
             : link.label
     }))
   }),
+  "sea-battle": (project) => ({
+    ...project,
+    tagline:
+      "Battaglia navale per giocatore singolo con IA adattiva, stile glassmorphism e attenzione all’accessibilità.",
+    summary:
+      "Una moderna esperienza di Battaglia navale per giocatore singolo, realizzata con React, Vite, Framer Motion e Zustand. Comprende introduzione, livelli di difficoltà, posizionamento delle navi, effetti, cronologia, pausa e un’interfaccia di supporto per un gioco curato nel browser.",
+    role: "Frontend interattivo e sistemi dell’interfaccia",
+    hook:
+      "Un gioco per browser visivamente ambizioso che combina sistemi dell’interfaccia, movimento e gioco guidato dall’IA.",
+    strengths: [
+      "Il gioco frontend più ambizioso dal punto di vista stilistico",
+      "IA adattiva e orchestrazione più ricca dell’interfaccia",
+      "Supporto all’accessibilità e modelli di finestre modali",
+      "Documentazione già pronta per la distribuzione su Vercel"
+    ],
+    challenge:
+      "Trasformare un semplice gioco da tavolo in un prodotto immersivo per browser, con sufficiente profondità dell’interfaccia, feedback e capacità responsive da risultare premium.",
+    solution:
+      "L’applicazione è suddivisa in componenti e hook mirati per IA, suono, comportamento delle finestre di dialogo, blocco dello scorrimento e flusso complessivo della partita. Questa separazione consente di distribuire un’esperienza articolata senza concentrare tutto in un unico componente.",
+    outcome:
+      "Sea Battle diventa il caso di studio visivo frontend puro più forte del portfolio e una demo live pulita distribuita gratuitamente su Vercel.",
+    features: [
+      "Avversario IA per giocatore singolo",
+      "Introduzione, impostazioni e finestre di pausa",
+      "Posizionamento delle navi e schede delle fasi del tabellone",
+      "Pannelli di cronologia, stato e informazioni sulla battaglia",
+      "Distribuzione responsive adatta all’hosting statico"
+    ],
+    architecture: [
+      "Sistema di componenti React supportato da hook personalizzati per flusso di gioco e IA",
+      "Framer Motion usato per rifinire l’interfaccia",
+      "Applicazione Vite statica con documentazione esistente per la distribuzione su Vercel"
+    ],
+    metrics: [
+      { label: "Sistemi di gioco basati su hook", value: "5+" },
+      { label: "Componenti dell’interfaccia", value: "15+" },
+      { label: "Modalità di distribuzione", value: "Statico live" }
+    ],
+    impactBullets: [
+      "Espande il portfolio oltre le applicazioni di prodotto verso una progettazione più ricca delle interazioni.",
+      "Mostra un sistema dell’interfaccia più evoluto, con movimento, stati modali e feedback di gioco.",
+      "Porta un linguaggio frontend più espressivo nell’insieme del portfolio."
+    ],
+    interviewAngles: [
+      "Come hook e confini tra componenti supportano un’esperienza interattiva più articolata.",
+      "Perché validi casi di studio frontend possono nascere dai sistemi di gioco, non soltanto dalle applicazioni di prodotto.",
+      "Come distribuzione statica e rifinitura dell’interfaccia rendono il progetto una demo live immediata per la valutazione del portfolio."
+    ],
+    repositories: project.repositories?.map((repository) => ({
+      ...repository,
+      label: "Repository del gioco"
+    })),
+    workflowIntro: {
+      eyebrow: "Flusso di gioco",
+      title: "Ciclo completo e responsive di Battaglia navale",
+      text: "Sea Battle è un sistema frontend compatto ma completo: regole, IA, stato, accessibilità, animazione e layout mobile lavorano insieme."
+    },
+    workflowHighlights: [
+      {
+        title: "Esperienza completa di Battaglia navale",
+        text: "Il gioco comprende l’intero ciclo atteso da un’implementazione giocabile di Battaglia navale per giocatore singolo.",
+        items: [
+          "Le griglie 10 x 10 del giocatore e dell’avversario usano la flotta standard: portaerei, corazzata, incrociatore, sottomarino e cacciatorpediniere",
+          "Sono inclusi posizionamento manuale, rotazione orizzontale e verticale, disposizione casuale della flotta, turni di tiro, rilevamento di colpi, errori, affondamenti e vittoria e rivelazione della flotta nemica",
+          "Le modalità IA Facile, Media e Difficile passano da un gioco casuale più indulgente a una strategia di ricerca e bersaglio più efficiente"
+        ]
+      },
+      {
+        title: "Gioco responsive e mobile-first",
+        text: "L’interfaccia affronta il difficile problema di mantenere due griglie leggibili, quadrate e facilmente toccabili su tutti i dispositivi.",
+        items: [
+          "La configurazione su telefono in verticale è semplificata attorno alle azioni chiare Casuale, Cancella, Gioca e Ruota nave",
+          "Il telefono in orizzontale usa regole dedicate per mantenere entrambi i tabelloni giocabili affiancati",
+          "Variabili CSS sensibili al viewport mantengono stabili le dimensioni del tabellone, mentre la rimozione del timer live evita oscillazioni dell’intestazione su mobile"
+        ]
+      },
+      {
+        title: "Modello di interazione accessibile",
+        text: "La griglia è costruita per essere giocabile e comprensibile anche oltre i clic del mouse.",
+        items: [
+          "Le celle espongono etichette ARIA descrittive con coordinate e stato",
+          "La navigazione da tastiera supporta le frecce, la conferma con Invio o Spazio ed Esc per i flussi modali",
+          "Le finestre di dialogo gestiscono il focus e bloccano lo scorrimento della pagina, mentre le regioni live annunciano lo stato della partita"
+        ]
+      }
+    ],
+    apiIntro: {
+      eyebrow: "Sistemi frontend",
+      title: "Superfici dell’architettura di gioco",
+      text: "Il progetto è un’applicazione frontend statica, quindi le superfici importanti sono stato, IA, rendering, persistenza e livelli di interazione del browser."
+    },
+    apiDomains: [
+      "GameShell",
+      "GameBoard",
+      "BoardCell",
+      "StatusBar",
+      "BattleActionBar",
+      "ShipPlacementPanel",
+      "ResultsModal",
+      "GameProvider",
+      "useSeaBattleGame",
+      "useGameContext",
+      "Logica del giocatore IA",
+      "Cronologia locale"
+    ],
+    qualityIntro: {
+      eyebrow: "Decisioni tecniche",
+      title: "Stato, rifinitura, accessibilità e test",
+      text: "Il valore nei colloqui deriva dalla separazione tra regole, interfaccia, IA, layout responsive, persistenza locale, animazione e accessibilità."
+    },
+    qualitySignals: [
+      {
+        title: "Separazione tra stato e logica",
+        text: "Il gioco è organizzato affinché i componenti dell’interfaccia non gestiscano direttamente ogni regola.",
+        items: [
+          "GameProvider e useGameContext racchiudono lo stato principale della partita",
+          "useSeaBattleGame gestisce ciclo della partita, transizioni di fase, disposizione della flotta, turni, cronologia, impostazioni e risultati",
+          "Regole del tabellone, posizionamento, selezione delle mosse dell’IA, formattazione di statistiche e cronologia, suono, dialoghi e blocco dello scorrimento sono separati in hook e utilità"
+        ]
+      },
+      {
+        title: "Animazione e rifinitura del prodotto",
+        text: "Il movimento sostiene il feedback di gioco e non è soltanto decorativo.",
+        items: [
+          "Framer Motion gestisce le transizioni di finestre, menu, risultati, piè di pagina e interfaccia",
+          "Le animazioni CSS comunicano colpi, errori, navi affondate, riflessione dell’avversario e momenti di vittoria",
+          "Le impostazioni consentono di controllare suono ed effetti ambientali senza affollare la schermata di battaglia"
+        ]
+      },
+      {
+        title: "Persistenza e risultati",
+        text: "Il gioco ricorda i progressi del giocatore e trasforma il risultato finale in un riepilogo utile.",
+        items: [
+          "La memorizzazione locale conserva cronologia delle partite, preferenze di suono ed effetti di sfondo e stato dell’introduzione",
+          "La finestra dei risultati mostra vittoria o sconfitta, precisione, mosse, colpi, errori, durata della missione, serie migliore, vittorie archiviate, precisione migliore e flotta nemica",
+          "Gioca ancora riporta alla selezione della difficoltà, permettendo di scegliere consapevolmente una sfida diversa"
+        ]
+      },
+      {
+        title: "Obiettivo dei test",
+        text: "I test si concentrano sulle regressioni delle regole principali che comprometterebbero l’esperienza.",
+        items: [
+          "I test con Node coprono posizionamento delle navi, completamento della flotta richiesta, prevenzione dei tiri duplicati e condizione di vittoria",
+          "La mappatura della navigazione da tastiera e la scorciatoia di rotazione sono coperte come regole di interazione",
+          "La convalida della produzione viene eseguita tramite npm run build"
+        ]
+      }
+    ],
+    media: project.media.map((asset, index) => ({
+      ...asset,
+      alt: `Schermata ${index + 1} di Sea Battle`
+    })),
+    links: project.links.map((link) => ({
+      ...link,
+      label:
+        link.kind === "live"
+          ? "Demo live"
+          : link.kind === "case-study"
+            ? "Caso di studio"
+            : link.label
+    }))
+  }),
   paytrack: (project) => ({
     ...project,
     tagline:
