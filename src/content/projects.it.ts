@@ -432,6 +432,173 @@ const italianProjectTranslators: Partial<Record<ProjectSlug, ProjectTranslator>>
       label: link.kind === "case-study" ? "Caso di studio" : link.label
     }))
   }),
+  paytrack: (project) => ({
+    ...project,
+    tagline:
+      "Gestore mobile-first degli abbonamenti per pagamenti ricorrenti, promemoria e maggiore chiarezza sulle spese.",
+    summary:
+      "Un’applicazione full stack per monitorare gli abbonamenti, che aiuta a comprendere costi ricorrenti, date di rinnovo, etichette dei metodi di pagamento, cronologia dei pagamenti e attività dei promemoria, senza trasformarsi in un prodotto bancario completo.",
+    role: "Prodotto full stack per la gestione degli abbonamenti",
+    hook:
+      "Un assistente tranquillo per le finanze personali che trasforma i pagamenti ricorrenti dimenticati in un flusso chiaro e mobile-first.",
+    strengths: [
+      "Progettazione del prodotto mobile-first",
+      "Gestione sicura dei dati collegati ai pagamenti",
+      "Analisi nella dashboard e promemoria dei rinnovi",
+      "Internazionalizzazione in sei lingue"
+    ],
+    challenge:
+      "Creare un gestore di abbonamenti mirato e più semplice di un’app bancaria, rappresentando comunque comportamenti realistici dei pagamenti ricorrenti, dati autenticati degli utenti e promemoria dei rinnovi.",
+    solution:
+      "L’applicazione combina un frontend React/Vite con un backend Express, Prisma e MySQL. Mantiene i metodi di pagamento come etichette sicure, usa l’autenticazione tramite cookie HTTP-only, convalida le richieste con Zod e organizza il prodotto attorno a dati della dashboard, gestione degli abbonamenti, cronologie dei pagamenti, promemoria e impostazioni.",
+    outcome:
+      "PayTrack aggiunge al portfolio un prodotto mobile-first legato alle finanze, mostrando architettura full stack, decisioni sicure sui dati, analisi, internazionalizzazione, attività pianificate e flussi di pagamento ricorrente.",
+    features: [
+      "Dashboard con spesa mensile, proiezione annuale, numero di abbonamenti attivi, rinnovi imminenti e distribuzione per categoria",
+      "Operazioni CRUD sugli abbonamenti con date di rinnovo, frequenza di fatturazione, categoria, stato, etichetta del metodo di pagamento e note",
+      "Cronologia manuale con importo, data, valuta, metodo e note del pagamento",
+      "Cronologia dei promemoria, controlli pianificati dei rinnovi e preferenze per ciascun abbonamento",
+      "Impostazioni per nome visualizzato, lingua, valuta predefinita, fuso orario, modalità scura e controlli personalizzati dei metodi di pagamento",
+      "Reimpostazione della password con token a scadenza e supporto per l’invio tramite e-mail"
+    ],
+    architecture: [
+      "Il frontend React comunica esclusivamente con endpoint REST JSON sotto /api",
+      "Il backend Express gestisce convalida, logica aziendale, autenticazione, attività dei promemoria e accesso ai dati tramite Prisma",
+      "Lo schema Prisma modella utenti, categorie, metodi di pagamento, abbonamenti, pagamenti, registri dei promemoria, preferenze e token per reimpostare la password",
+      "Su mobile la navigazione inferiore mostra etichette complete, mentre tablet e desktop adottano una navigazione laterale e riepiloghi più ampi",
+      "La configurazione di distribuzione supporta origini frontend esplicite, cookie tra siti e una gestione CORS più rigorosa"
+    ],
+    metrics: [
+      { label: "Lingue", value: "6" },
+      { label: "Domini API", value: "7" },
+      { label: "Finestre dei promemoria", value: "2" }
+    ],
+    impactBullets: [
+      "Mostra una progettazione full stack attorno a un problema quotidiano legato al denaro.",
+      "Dimostra come organizzare in sicurezza informazioni collegate ai pagamenti senza memorizzare dati completi delle carte.",
+      "Aggiunge al portfolio profondità responsive mobile-first e internazionalizzazione."
+    ],
+    interviewAngles: [
+      "In che modo il monitoraggio degli abbonamenti differisce dall’elaborazione reale dei pagamenti e perché usare soltanto etichette è più sicuro.",
+      "Perché i flussi di archiviazione e ripristino sono preferibili a un’eliminazione rischiosa con un solo clic per la cronologia finanziaria.",
+      "Come analisi della dashboard, attività dei promemoria e cronologie dei pagamenti lavorano insieme in un prodotto mirato."
+    ],
+    repositories: project.repositories?.map((repository, index) => ({
+      ...repository,
+      label: index === 0 ? "Repository frontend" : "Repository backend"
+    })),
+    workflowIntro: {
+      eyebrow: "Flusso degli abbonamenti",
+      title: "Pagamenti ricorrenti sotto controllo",
+      text: "PayTrack esprime al meglio il proprio valore come prodotto mobile-first che trasforma il disordine degli abbonamenti in decisioni chiare sui pagamenti ricorrenti."
+    },
+    workflowHighlights: [
+      {
+        title: "Dashboard e panoramica",
+        text: "La dashboard risponde rapidamente alla domanda principale: quanto si sta spendendo e quali rinnovi sono imminenti?",
+        items: [
+          "Spesa mensile, proiezione annuale, abbonamenti attivi, rinnovi imminenti e distribuzione delle spese vengono mostrati insieme",
+          "Gli abbonamenti sono raggruppati per categoria, rendendo più comprensibili i costi ripetuti",
+          "I layout responsive mantengono utile la dashboard su mobile, tablet e desktop"
+        ]
+      },
+      {
+        title: "Ciclo di vita dell’abbonamento",
+        text: "La gestione degli abbonamenti copre operazioni reali e ripetute, evitando scorciatoie distruttive.",
+        items: [
+          "Gli utenti possono creare, modificare, annullare, archiviare e ripristinare abbonamenti negli stati attivo, annullato e archiviato",
+          "L’archiviazione esclude gli abbonamenti dai totali attivi e dai promemoria senza distruggere immediatamente la cronologia",
+          "I controlli di gestione riuniscono le azioni importanti in un flusso più consapevole",
+          "I promemoria a sette giorni e a un giorno possono essere regolati per ciascun abbonamento"
+        ]
+      },
+      {
+        title: "Etichette e cronologia dei pagamenti",
+        text: "L’applicazione registra il contesto dei pagamenti senza gestire credenziali reali.",
+        items: [
+          "I metodi di pagamento sono semplici etichette, come Visa **** 4242, PayPal o conto bancario",
+          "La funzione per segnare un pagamento registra importo, data, valuta, metodo e note",
+          "Le cronologie mostrano totale pagato, numero di pagamenti, media, ultima data di pagamento, prossimo rinnovo e filtro per anno"
+        ]
+      }
+    ],
+    apiIntro: {
+      eyebrow: "Superficie del backend",
+      title: "Domini API per il monitoraggio degli abbonamenti",
+      text: "L’API REST separa autenticazione, impostazioni dell’account, abbonamenti, analisi della dashboard, metodi di pagamento, categorie e promemoria."
+    },
+    qualityIntro: {
+      eyebrow: "Decisioni tecniche",
+      title: "Autenticazione sicura, convalida, promemoria e i18n",
+      text: "Il progetto è più efficace se presentato come organizzazione sicura dei pagamenti ricorrenti, non come elaborazione dei pagamenti."
+    },
+    qualitySignals: [
+      {
+        title: "Autenticazione e proprietà",
+        text: "PayTrack protegge i dati dell’account tramite sessioni gestite dal backend e query limitate all’utente.",
+        items: [
+          "L’autenticazione JWT è conservata in cookie HTTP-only, quindi JavaScript nel frontend non gestisce direttamente i token di sessione",
+          "Le password vengono sottoposte a hash e non sono mai salvate in chiaro",
+          "Gli utenti possono accedere soltanto ai propri abbonamenti, metodi di pagamento, promemoria e dati del profilo",
+          "I token per reimpostare la password sono conservati sul server, scadono e vengono contrassegnati come usati dopo la conferma"
+        ]
+      },
+      {
+        title: "Convalida e sicurezza dei dati",
+        text: "L’applicazione mantiene utili le informazioni collegate ai pagamenti senza diventare un elaboratore di pagamenti.",
+        items: [
+          "Zod convalida i dati delle richieste nel backend prima dell’esecuzione della logica aziendale",
+          "I metodi di pagamento conservano soltanto etichette, mai numeri completi di carte o credenziali reali",
+          "L’eliminazione di un metodo di pagamento richiede una conferma prima di rimuovere l’etichetta salvata",
+          "Le azioni delicate usano conferme o archiviazione anziché una rimozione permanente immediata"
+        ]
+      },
+      {
+        title: "Sistema di promemoria e funzionalità",
+        text: "Le attività pianificate e le preferenze rendono l’MVP più simile a un vero assistente per gli abbonamenti.",
+        items: [
+          "node-cron esegue controlli pianificati sui rinnovi imminenti",
+          "Nodemailer supporta l’invio dei promemoria tramite e-mail quando SMTP è configurato",
+          "I registri mantengono una cronologia verificabile delle notifiche di rinnovo inviate",
+          "Le preferenze per ciascun abbonamento consentono di disattivare finestre specifiche dei promemoria"
+        ]
+      },
+      {
+        title: "Interfaccia responsive e internazionalizzata",
+        text: "Il frontend è pensato per un uso quotidiano e ripetuto su dispositivi e lingue differenti.",
+        items: [
+          "L’interfaccia nasce mobile-first con etichette di navigazione complete e si espande nei layout tablet e desktop",
+          "i18next supporta inglese, italiano, tedesco, francese, romeno e russo",
+          "Modalità scura, valuta predefinita, fuso orario e lingua permettono di personalizzare l’applicazione",
+          "Le ultime rifiniture del frontend hanno migliorato testi per l’accessibilità, chiarezza della navigazione e menu personalizzati nelle impostazioni"
+        ]
+      },
+      {
+        title: "Test e distribuzione più robusta",
+        text: "Gli aggiornamenti recenti di PayTrack hanno aggiunto controlli mirati nelle aree più esposte a regressioni.",
+        items: [
+          "I test frontend con node:test verificano il formato delle etichette dei metodi di pagamento e le parole complete della navigazione nelle varie lingue",
+          "I test backend coprono schemi di autenticazione e abbonamento, comportamento delle preferenze dei promemoria e origini CORS consentite",
+          "La configurazione dell’ambiente supporta più URL frontend per distribuzioni di anteprima e produzione"
+        ]
+      }
+    ],
+    media: project.media.map((asset, index) => ({
+      ...asset,
+      alt: [
+        "Dashboard desktop di PayTrack",
+        "Pagina desktop degli abbonamenti di PayTrack",
+        "Impostazioni desktop di PayTrack",
+        "Dashboard desktop di PayTrack in modalità chiara",
+        "Dashboard mobile di PayTrack",
+        "Impostazioni mobile di PayTrack"
+      ][index] ?? asset.alt
+    })),
+    links: project.links.map((link) => ({
+      ...link,
+      label: link.kind === "case-study" ? "Caso di studio" : link.label
+    }))
+  }),
   orchidcare: (project) => ({
     ...project,
     tagline:
