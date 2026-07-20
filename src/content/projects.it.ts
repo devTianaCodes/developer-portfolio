@@ -432,6 +432,159 @@ const italianProjectTranslators: Partial<Record<ProjectSlug, ProjectTranslator>>
       label: link.kind === "case-study" ? "Caso di studio" : link.label
     }))
   }),
+  "ai-comparator": (project) => ({
+    ...project,
+    tagline:
+      "SPA senza autenticazione per confrontare modelli di IA, con ricerca, filtri, preferiti e analisi affiancata.",
+    summary:
+      "Un progetto React e Vite sviluppato attorno ai requisiti del progetto finale Boolean: esplorare i modelli di IA, cercarli e filtrarli, consultarne i dettagli, confrontarne due affiancati e conservare una raccolta di preferiti senza esporre operazioni CRUD all’utente.",
+    role: "Flusso di prodotto frontend con integrazione REST nel backend",
+    hook:
+      "Uno strumento di confronto mirato che trasforma un’esercitazione didattica in un flusso di prodotto chiaro per valutare modelli di IA.",
+    strengths: [
+      "Percorso di esplorazione chiaro senza autenticazione",
+      "Controlli di ricerca, filtro per categoria e ordinamento",
+      "Flusso di confronto tra due modelli",
+      "Preferiti persistenti disponibili in tutta l’applicazione"
+    ],
+    challenge:
+      "Realizzare una SPA completa di confronto collegata a un backend REST generato, rispettando il vincolo secondo cui gli utenti non autenticati possono esplorare, confrontare e salvare preferiti, ma non creare, modificare o eliminare record.",
+    solution:
+      "Il frontend usa pagine React Router per elenco, dettagli, confronto e preferiti, racchiuse in un GlobalProvider per lo stato condiviso. Un hook personalizzato useModels centralizza il caricamento dalle API, la ricerca con ritardo riduce le richieste superflue, l’ordinamento memorizzato mantiene reattivo il catalogo e gli ID selezionati passano attraverso la rotta di confronto.",
+    outcome:
+      "Il progetto dimostra un flusso di prodotto completo in sola lettura, con dati reali dal backend, gestione dello stato spiegabile, navigazione basata sulle rotte e un’esperienza di confronto semplice da provare durante un colloquio.",
+    features: [
+      "Catalogo con ricerca ritardata per titolo, filtro per categoria e ordinamento alfabetico per titolo o categoria",
+      "Pagina di dettaglio con fornitore, modalità, finestra di contesto, fascia di prezzo, indice di intelligenza, punti di forza e descrizione",
+      "Confronto tra due modelli che carica gli ID selezionati dalla stringa di query e mostra i campi affiancati",
+      "Preferiti accessibili dall’intestazione e dalle schede, conservati in localStorage",
+      "Stati vuoti, di caricamento e di errore per elenco, dettagli, preferiti e confronto"
+    ],
+    architecture: [
+      "React Router separa elenco, dettaglio, preferiti e confronto all’interno di un DefaultLayout condiviso",
+      "GlobalContext conserva gli ID dei modelli preferiti e li sincronizza con localStorage",
+      "L’hook useModels gestisce caricamento dell’elenco, recupero del singolo modello, stato di caricamento ed errori API",
+      "ModelList concentra i controlli locali su ricerca, categoria, ordinamento e selezione per il confronto",
+      "Il backend genera endpoint REST dal tipo Model esportato in types.ts",
+      "La risorsa Model è conservata come dati JSON e convalidata tramite uno schema Zod generato",
+      "L’interfaccia esclude intenzionalmente creazione, modifica ed eliminazione per rispettare l’ambito dell’utente non autenticato"
+    ],
+    metrics: [
+      { label: "Schermate", value: "4" },
+      { label: "Risorsa API", value: "Model" },
+      { label: "Record iniziali", value: "10+" }
+    ],
+    impactBullets: [
+      "Mostra uso pratico di rotte React, integrazione API e coordinamento dello stato senza sovra-ingegnerizzazione.",
+      "Rende visibile la logica di confronto attraverso un vero flusso tra due modelli anziché una tabella statica.",
+      "Dimostra rispetto dei vincoli mantenendo l’interfaccia in sola lettura per gli utenti non autenticati."
+    ],
+    interviewAngles: [
+      "Come il frontend trasforma i requisiti dell’esercitazione in rotte e flussi utente.",
+      "Perché gli ID selezionati vengono passati nell’URL, rendendo la vista di confronto condivisibile e ricaricabile.",
+      "Come il backend usa una definizione tipizzata della risorsa per generare endpoint REST e convalidare i dati persistenti."
+    ],
+    repositories: project.repositories?.map((repository, index) => ({
+      ...repository,
+      label: index === 0 ? "Repository frontend" : "Repository backend"
+    })),
+    workflowIntro: {
+      eyebrow: "Flusso di confronto",
+      title: "Esplorare, selezionare, confrontare e salvare",
+      text: "Il punto di forza di AI Comparator è il percorso completo in sola lettura, dalla scoperta nel catalogo al supporto decisionale affiancato."
+    },
+    workflowHighlights: [
+      {
+        title: "Catalogo dei modelli",
+        text: "La pagina dell’elenco offre i controlli attesi da un prodotto di confronto.",
+        items: [
+          "La ricerca interroga i titoli tramite la stringa di query del backend dopo un ritardo di 500 ms",
+          "Le categorie derivano dai dati dei modelli, così il filtro resta allineato ai record disponibili",
+          "L’ordinamento supporta titolo e categoria nelle direzioni A–Z e Z–A ed è memorizzato con useMemo"
+        ]
+      },
+      {
+        title: "Selezione e confronto",
+        text: "Il flusso di confronto è intenzionalmente semplice e facile da comprendere.",
+        items: [
+          "Gli utenti selezionano esattamente due modelli dal catalogo prima di aprire la vista di confronto",
+          "La rotta legge gli ID selezionati dall’URL e recupera entrambi i record di dettaglio",
+          "I campi confrontabili includono fornitore, anno di rilascio, modalità, finestra di contesto, fascia di prezzo, indice di intelligenza, punti di forza e categoria"
+        ]
+      },
+      {
+        title: "Preferiti e analisi dei dettagli",
+        text: "L’applicazione mantiene vicine all’utente le azioni di consultazione ripetute senza aggiungere la complessità di un account.",
+        items: [
+          "I pulsanti dei preferiti sono disponibili nelle schede e nelle viste di dettaglio tramite GlobalContext",
+          "Gli ID preferiti restano in localStorage, quindi le selezioni persistono dopo l’aggiornamento della pagina",
+          "Una rotta dedicata mantiene i modelli salvati accessibili dall’intestazione",
+          "Le pagine di dettaglio mostrano la risorsa Model estesa, non soltanto i campi del catalogo"
+        ]
+      }
+    ],
+    apiIntro: {
+      eyebrow: "Superficie del backend",
+      title: "API REST generata su una risorsa Model",
+      text: "Il backend è il server di risorse in stile Boolean fornito con il corso, personalizzato tramite un tipo Model e dati JSON iniziali."
+    },
+    qualityIntro: {
+      eyebrow: "Decisioni di implementazione",
+      title: "Vincoli leggibili e stato spiegabile",
+      text: "Il progetto è più solido come implementazione chiara del comportamento richiesto che come esercizio basato su un framework pesante."
+    },
+    qualitySignals: [
+      {
+        title: "Rispetto dei requisiti",
+        text: "Il frontend mantiene in sola lettura l’esperienza dell’utente pubblico.",
+        items: [
+          "La SPA non espone controlli per creare, modificare o eliminare",
+          "I requisiti minimi principali sono rappresentati da rotte e stati espliciti dell’interfaccia",
+          "Il confronto resta limitato a due record per mantenere chiara la prima versione"
+        ]
+      },
+      {
+        title: "Struttura dello stato frontend",
+        text: "La recente riorganizzazione rende il flusso dei dati più semplice da spiegare e mantenere.",
+        items: [
+          "GlobalProvider avvolge le rotte, rendendo i preferiti disponibili nelle pagine di elenco, dettaglio e preferiti",
+          "useModels centralizza la logica delle richieste API per elenchi e singoli dettagli",
+          "ModelList combina il caricamento tramite query del backend con ordinamento locale e selezione di due modelli"
+        ]
+      },
+      {
+        title: "Modellazione dei dati",
+        text: "La risorsa Model comprende campi sufficienti a rendere significativo il confronto.",
+        items: [
+          "I campi obbligatori sono titolo e categoria, in linea con il contratto dell’esercitazione",
+          "I campi facoltativi aggiungono fornitore, anno di rilascio, modalità, finestra di contesto, fascia di prezzo, immagine, indice di intelligenza, punti di forza e descrizione",
+          "I dati JSON iniziali forniscono record reali da esplorare e confrontare"
+        ]
+      },
+      {
+        title: "Feedback per l’utente",
+        text: "L’applicazione gestisce gli stati più visibili delle API e delle rotte.",
+        items: [
+          "Le pagine di elenco, preferiti, dettagli e confronto mostrano feedback di caricamento ed errore",
+          "Il pannello di confronto comunica quando sono necessari due modelli",
+          "La pagina dei preferiti gestisce lo stato di raccolta vuota"
+        ]
+      }
+    ],
+    media: project.media.map((asset, index) => ({
+      ...asset,
+      alt: [
+        "Catalogo dei modelli di AI Comparator",
+        "Pagina dei preferiti di AI Comparator",
+        "Confronto tra modelli in AI Comparator",
+        "Pagina di dettaglio di un modello in AI Comparator"
+      ][index] ?? asset.alt
+    })),
+    links: project.links.map((link) => ({
+      ...link,
+      label: link.kind === "case-study" ? "Caso di studio" : link.label
+    }))
+  }),
   paytrack: (project) => ({
     ...project,
     tagline:
