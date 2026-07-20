@@ -105,11 +105,48 @@
     "nextProject": "Next project",
     "openProject": "Open {project} project",
     "centerProject": "Center {project}",
+    "projectImageAlt": "{project} project preview",
+    "fullStackType": "Full stack web application",
+    "gameType": "Web application game",
     "liveDemo": "Live demo",
     "repository": "Repository",
     "frontendRepository": "Frontend repository",
     "backendRepository": "Backend repository",
-    "gameRepository": "Game repository"
+    "gameRepository": "Game repository",
+    "projectCards": {
+      "chocolate": {
+        "tagline": "Premium e-commerce brand with a complete purchase and admin workflow.",
+        "mobileSummary": "E-commerce web app with catalog, cart, checkout, and admin operations."
+      },
+      "english4u": {
+        "tagline": "Self-paced English learning platform with learner journeys and admin CMS.",
+        "mobileSummary": "Learning platform with course journeys, quizzes, dashboards, and admin content tools."
+      },
+      "orchidcare": {
+        "tagline": "Care-focused orchid encyclopedia with searchable profiles, filters, favourites, and rare collection browsing.",
+        "mobileSummary": "Orchid encyclopedia with care filters, detail pages, favourites, and PostgreSQL data."
+      },
+      "petnest": {
+        "tagline": "Rescue-focused adoption platform with moderation, dashboards, and request flows.",
+        "mobileSummary": "Adoption workflow app with animal listings, profiles, favourites, and request flows."
+      },
+      "paytrack": {
+        "tagline": "Mobile-first subscription manager for recurring payments, reminders, and spending clarity.",
+        "mobileSummary": "Mobile-first subscription tracker with reminders, dashboard insights, and secure account flows."
+      },
+      "ai-comparator": {
+        "tagline": "Unauthenticated AI model comparison SPA with search, filters, favourites, and side-by-side analysis.",
+        "mobileSummary": "AI model comparison SPA with search, filters, favourites, and side-by-side analysis."
+      },
+      "brickdrop": {
+        "tagline": "Fast, focused browser game with modern polish and classic scoring pressure.",
+        "mobileSummary": "Playable puzzle game with clean controls, scoring, levels, and responsive browser play."
+      },
+      "sea-battle": {
+        "tagline": "Single-player Battleship with adaptive AI, glassmorphism styling, and accessibility touches.",
+        "mobileSummary": "Interactive Battleship game with board logic, turn flow, and polished browser gameplay."
+      }
+    }
   },
   "About": {
     "title": "About",

@@ -105,11 +105,48 @@
     "nextProject": "Progetto successivo",
     "openProject": "Apri il progetto {project}",
     "centerProject": "Porta {project} al centro",
+    "projectImageAlt": "Anteprima del progetto {project}",
+    "fullStackType": "Applicazione web full-stack",
+    "gameType": "Gioco web",
     "liveDemo": "Demo live",
     "repository": "Repository",
     "frontendRepository": "Repository frontend",
     "backendRepository": "Repository backend",
-    "gameRepository": "Repository del gioco"
+    "gameRepository": "Repository del gioco",
+    "projectCards": {
+      "chocolate": {
+        "tagline": "Brand e-commerce premium con un flusso completo di acquisto e gestione amministrativa.",
+        "mobileSummary": "Applicazione web e-commerce con catalogo, carrello, checkout e operazioni amministrative."
+      },
+      "english4u": {
+        "tagline": "Piattaforma per l'apprendimento autonomo dell'inglese, con percorsi didattici e CMS amministrativo.",
+        "mobileSummary": "Piattaforma formativa con percorsi, quiz, dashboard e strumenti amministrativi per i contenuti."
+      },
+      "orchidcare": {
+        "tagline": "Enciclopedia delle orchidee dedicata alla cura, con schede ricercabili, filtri, preferiti e una collezione di specie rare.",
+        "mobileSummary": "Enciclopedia delle orchidee con filtri di cura, schede dettagliate, preferiti e dati PostgreSQL."
+      },
+      "petnest": {
+        "tagline": "Piattaforma per le adozioni dedicata agli animali salvati, con moderazione, dashboard e flussi di richiesta.",
+        "mobileSummary": "Applicazione per l'adozione con annunci di animali, profili, preferiti e flussi di richiesta."
+      },
+      "paytrack": {
+        "tagline": "Gestore di abbonamenti mobile-first per pagamenti ricorrenti, promemoria e una visione chiara delle spese.",
+        "mobileSummary": "Gestore di abbonamenti mobile-first con promemoria, panoramica delle spese e flussi sicuri per l'account."
+      },
+      "ai-comparator": {
+        "tagline": "Applicazione single-page per il confronto di modelli di IA, accessibile senza autenticazione, con ricerca, filtri, preferiti e analisi affiancata.",
+        "mobileSummary": "Applicazione per il confronto di modelli di IA con ricerca, filtri, preferiti e analisi affiancata."
+      },
+      "brickdrop": {
+        "tagline": "Gioco per browser rapido e coinvolgente, con rifiniture moderne e la classica sfida del punteggio.",
+        "mobileSummary": "Puzzle giocabile con controlli intuitivi, punteggio, livelli e un'esperienza responsive nel browser."
+      },
+      "sea-battle": {
+        "tagline": "Battaglia navale per giocatore singolo con IA adattiva, stile glassmorphism e accorgimenti per l'accessibilità.",
+        "mobileSummary": "Battaglia navale interattiva con logica di gioco, gestione dei turni e un'esperienza rifinita nel browser."
+      }
+    }
   },
   "About": {
     "title": "Chi sono",

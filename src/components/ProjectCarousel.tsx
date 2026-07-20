@@ -2,12 +2,12 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { PanInfo } from "framer-motion";
 import { useTranslations } from "next-intl";
 import type { ProjectEntry } from "@/content/projects";
 import { sortProjectsForDisplay } from "@/content/projects";
+import { Link } from "@/i18n/navigation";
 import { classNames } from "@/lib/classNames";
 
 type ProjectCarouselProps = {
@@ -61,28 +61,19 @@ function circularOffset(index: number, activeIndex: number, length: number) {
   return raw;
 }
 
-const mobileSummaries: Partial<Record<ProjectEntry["slug"], string>> = {
-  chocolate: "E-commerce web app with catalog, cart, checkout, and admin operations.",
-  english4u: "Learning platform with course journeys, quizzes, dashboards, and admin content tools.",
-  orchidcare: "Orchid encyclopedia with care filters, detail pages, favourites, and PostgreSQL data.",
-  petnest: "Adoption workflow app with animal listings, profiles, favourites, and request flows.",
-  paytrack: "Mobile-first subscription tracker with reminders, dashboard insights, and secure account flows.",
-  "ai-comparator": "AI model comparison SPA with search, filters, favourites, and side-by-side analysis.",
-  brickdrop: "Playable puzzle game with clean controls, scoring, levels, and responsive browser play.",
-  "sea-battle": "Interactive Battleship game with board logic, turn flow, and polished browser gameplay."
-};
-
 function projectPanel(
   project: ProjectEntry,
   isActive: boolean,
   isHovered: boolean,
   shadeOpacity: number,
-  viewProjectLabel: string
+  viewProjectLabel: string,
+  projectTypeLabel: string,
+  mobileSummary: string,
+  tagline: string,
+  imageAlt: string
 ) {
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
   const heroSrc = hero?.optimizedSrc ?? hero?.poster ?? hero?.src;
-  const mobileSummary = mobileSummaries[project.slug] ?? project.tagline;
-  const projectTypeLabel = project.category === "game" ? "Web application game" : "Full stack web application";
 
   return (
     <>
@@ -100,7 +91,7 @@ function projectPanel(
         >
           <Image
             src={heroSrc}
-            alt={hero.alt}
+            alt={imageAlt}
             fill
             priority={isActive}
             loading={isActive ? undefined : "eager"}
@@ -129,7 +120,7 @@ function projectPanel(
             {mobileSummary}
           </p>
           <p className="mt-[12px] hidden max-w-xl font-sans text-[19px] font-normal leading-[1.45] text-[#262626]/82 md:line-clamp-2 md:block">
-            {project.tagline}
+            {tagline}
           </p>
         </div>
         <span
@@ -159,6 +150,40 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const tCommon = useTranslations("Common");
   const tProjects = useTranslations("Projects");
+  const localizedProjectCopy = {
+    chocolate: {
+      tagline: tProjects("projectCards.chocolate.tagline"),
+      mobileSummary: tProjects("projectCards.chocolate.mobileSummary")
+    },
+    english4u: {
+      tagline: tProjects("projectCards.english4u.tagline"),
+      mobileSummary: tProjects("projectCards.english4u.mobileSummary")
+    },
+    orchidcare: {
+      tagline: tProjects("projectCards.orchidcare.tagline"),
+      mobileSummary: tProjects("projectCards.orchidcare.mobileSummary")
+    },
+    petnest: {
+      tagline: tProjects("projectCards.petnest.tagline"),
+      mobileSummary: tProjects("projectCards.petnest.mobileSummary")
+    },
+    paytrack: {
+      tagline: tProjects("projectCards.paytrack.tagline"),
+      mobileSummary: tProjects("projectCards.paytrack.mobileSummary")
+    },
+    "ai-comparator": {
+      tagline: tProjects("projectCards.ai-comparator.tagline"),
+      mobileSummary: tProjects("projectCards.ai-comparator.mobileSummary")
+    },
+    brickdrop: {
+      tagline: tProjects("projectCards.brickdrop.tagline"),
+      mobileSummary: tProjects("projectCards.brickdrop.mobileSummary")
+    },
+    "sea-battle": {
+      tagline: tProjects("projectCards.sea-battle.tagline"),
+      mobileSummary: tProjects("projectCards.sea-battle.mobileSummary")
+    }
+  };
 
   if (!orderedProjects.length) return null;
 
@@ -223,6 +248,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
         <div className="relative hidden h-full xl:block">
           {orderedProjects.map((project, index) => {
+            const localizedCopy = localizedProjectCopy[project.slug];
             const offset = circularOffset(index, activeIndex, orderedProjects.length);
             const absOffset = Math.abs(offset);
             const isActive = offset === 0;
@@ -265,7 +291,17 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                     aria-label={tProjects("openProject", { project: project.name })}
                     className="group relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                   >
-                    {projectPanel(project, true, isHovered, 0, tCommon("viewProject"))}
+                    {projectPanel(
+                      project,
+                      true,
+                      isHovered,
+                      0,
+                      tCommon("viewProject"),
+                      project.category === "game" ? tProjects("gameType") : tProjects("fullStackType"),
+                      localizedCopy.mobileSummary,
+                      localizedCopy.tagline,
+                      tProjects("projectImageAlt", { project: project.name })
+                    )}
                   </Link>
                 ) : (
                   <button
@@ -275,7 +311,17 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                     aria-label={tProjects("centerProject", { project: project.name })}
                     tabIndex={absOffset === 1 ? 0 : -1}
                   >
-                    {projectPanel(project, false, isHovered, isHovered ? 0.18 : 0.45, tCommon("viewProject"))}
+                    {projectPanel(
+                      project,
+                      false,
+                      isHovered,
+                      isHovered ? 0.18 : 0.45,
+                      tCommon("viewProject"),
+                      project.category === "game" ? tProjects("gameType") : tProjects("fullStackType"),
+                      localizedCopy.mobileSummary,
+                      localizedCopy.tagline,
+                      tProjects("projectImageAlt", { project: project.name })
+                    )}
                   </button>
                 )}
               </motion.div>
@@ -305,7 +351,17 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                 aria-label={tProjects("openProject", { project: activeProject.name })}
                 className="group relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
               >
-                {projectPanel(activeProject, true, false, 0, tCommon("viewProject"))}
+                {projectPanel(
+                  activeProject,
+                  true,
+                  false,
+                  0,
+                  tCommon("viewProject"),
+                  activeProject.category === "game" ? tProjects("gameType") : tProjects("fullStackType"),
+                  localizedProjectCopy[activeProject.slug].mobileSummary,
+                  localizedProjectCopy[activeProject.slug].tagline,
+                  tProjects("projectImageAlt", { project: activeProject.name })
+                )}
               </Link>
             </motion.div>
           </AnimatePresence>
