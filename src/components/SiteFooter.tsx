@@ -9,7 +9,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-[96rem] gap-8 px-2.5 py-10 md:grid-cols-[1.15fr_0.85fr] md:px-4">
         <div className="space-y-3">
           <p className="section-label">Tiana Oblasser</p>
-          <h2 className="minimal-heading max-w-2xl text-3xl md:text-4xl">Sharp web products, built for review.</h2>
+          <h2 className="minimal-heading max-w-2xl text-3xl md:text-4xl">Building meaningful digital experiences.</h2>
           <p className="minimal-text max-w-xl text-sm">Selected full-stack apps, interactive games, and case studies with a GitHub-first identity.</p>
         </div>
 
