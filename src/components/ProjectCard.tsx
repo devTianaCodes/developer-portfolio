@@ -1,7 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import type { ProjectEntry } from "@/content/projects";
+import { Link } from "@/i18n/navigation";
 
 type ProjectCardProps = {
   project: ProjectEntry;
@@ -21,14 +22,25 @@ const toneClasses: Record<ProjectEntry["visualTone"], string> = {
 };
 
 export function ProjectCard({ project, prominent = false, tallMedia = false }: ProjectCardProps) {
+  const tCommon = useTranslations("Common");
+  const tHome = useTranslations("Home");
+  const tProjectCard = useTranslations("Home.projectCards");
+  const tProjects = useTranslations("Projects");
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
   const heroSrc = hero?.optimizedSrc ?? hero?.poster ?? hero?.src;
   const heightClass = prominent ? "min-h-[560px]" : "min-h-[500px]";
   const mediaAspect = tallMedia ? "aspect-[16/10]" : "aspect-[16/9]";
+  const localizedImpactBullets = [
+    tProjectCard(`${project.slug}.impactOne`)
+  ];
+
+  if (prominent) {
+    localizedImpactBullets.push(tProjectCard(`${project.slug}.impactTwo`));
+  }
 
   return (
     <article className={"group relative flex " + heightClass + " cursor-pointer flex-col overflow-hidden sharp-panel transition duration-300 hover:border-[#262626]/34 hover:shadow-[0_22px_58px_rgba(15,23,42,0.12)]"}>
-      <Link href={"/projects/" + project.slug} aria-label={"Open " + project.name + " case study"} className="absolute inset-0 z-10" />
+      <Link href={"/projects/" + project.slug} aria-label={tProjects("openProject", { project: project.name })} className="absolute inset-0 z-10" />
       {hero ? (
         <div className={"relative " + mediaAspect + " overflow-hidden bg-slate-900"}>
           <Image
@@ -51,13 +63,13 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
         <div className="space-y-4">
           <div className="space-y-2">
             <h3 className={(prominent ? "text-4xl" : "text-3xl") + " minimal-heading"}>{project.name}</h3>
-            <p className="section-label">{project.category === "game" ? "Playable build" : "Product app"}</p>
+            <p className="section-label">{project.category === "game" ? tHome("playableBuild") : tHome("productApp")}</p>
           </div>
 
-          <p className="minimal-text text-ink/86">{project.hook}</p>
+          <p className="minimal-text text-ink/86">{tProjectCard(`${project.slug}.hook`)}</p>
 
           <div className="grid gap-2">
-            {project.impactBullets.slice(0, prominent ? 2 : 1).map((item) => (
+            {localizedImpactBullets.map((item) => (
               <div key={item} className="sharp-panel-soft px-4 py-3 text-sm leading-6 text-muted">{item}</div>
             ))}
           </div>
@@ -71,7 +83,7 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
           </ul>
 
           <div className="relative z-20 flex flex-wrap justify-center gap-3 border-t border-line pt-4">
-            <Link href={"/projects/" + project.slug} className="sharp-button">View Project</Link>
+            <Link href={"/projects/" + project.slug} className="sharp-button">{tCommon("viewProject")}</Link>
           </div>
         </div>
       </div>

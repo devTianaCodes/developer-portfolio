@@ -37,9 +37,66 @@
     "heroLineOne": "Hai un progetto in mente?",
     "heroLineTwo": "Trasformiamolo in realtà",
     "selectedWork": "Progetti selezionati",
+    "selectedWorkDetail": "casi di studio tra prodotti digitali e giochi",
     "fullStackApps": "Applicazioni full-stack",
+    "fullStackAppsDetail": "commercio, formazione, adozioni, orchidee, abbonamenti e flussi IA",
     "liveDemos": "Demo live",
-    "projectsHeading": "Applicazioni orientate al prodotto e sistemi interattivi."
+    "liveDemosDetail": "giochi interattivi nel browser pronti da provare",
+    "projectsEyebrow": "Applicazioni web full-stack",
+    "projectsHeading": "Applicazioni orientate al prodotto e sistemi interattivi.",
+    "aboutEyebrow": "Profilo di Tiana",
+    "aboutTitle": "Competenze frontend con una visione full-stack.",
+    "aboutDescription": "Esperienze web guidate dal design nei settori del commercio, della formazione, delle adozioni, della cura delle piante, degli strumenti di IA e dei giochi per browser.",
+    "readProfile": "Leggi il profilo",
+    "githubEyebrow": "Credibilità del codice",
+    "githubTitle": "Lavoro pubblico, responsabilità chiara.",
+    "githubDescription": "GitHub mantiene il portfolio ancorato a codice reale, a una cronologia dei progetti visibile e a una chiara responsabilità sull'implementazione.",
+    "githubEntryDescription": "Un punto di accesso pubblico e ordinato per esaminare il codice e il contesto dei progetti.",
+    "openGithub": "Apri GitHub",
+    "productApp": "Applicazione digitale",
+    "playableBuild": "Progetto giocabile",
+    "projectCards": {
+      "chocolate": {
+        "hook": "Un caso di studio e-commerce in cui identità del brand, percorso cliente e operazioni backend hanno la stessa importanza.",
+        "impactOne": "Mostra la differenza tra una vetrina curata e un vero sistema di acquisto.",
+        "impactTwo": "Dimostra decisioni UI guidate dal brand senza rinunciare al rigore del backend."
+      },
+      "petnest": {
+        "hook": "Una piattaforma per le adozioni incentrata sulla fiducia, che bilancia la scoperta pubblica con la moderazione operativa.",
+        "impactOne": "Mostra come un'applicazione da portfolio possa rappresentare fiducia, moderazione e flussi utente complessi.",
+        "impactTwo": "Rafforza la credibilità nell'uso di TypeScript sia nel frontend sia nel backend."
+      },
+      "orchidcare": {
+        "hook": "Un prodotto pratico per la cura delle piante, dove dati ricercabili, informazioni di cura e un'esperienza di navigazione rilassante lavorano insieme.",
+        "impactOne": "Mostra una progettazione specifica per la cura delle piante, invece di proporre un'altra dashboard generica.",
+        "impactTwo": "Dimostra come i filtri frontend si colleghino alla gestione convalidata delle query nel backend."
+      },
+      "english4u": {
+        "hook": "Una piattaforma formativa concepita come un vero prodotto digitale, non come una semplice demo di lezioni.",
+        "impactOne": "Collega la progettazione del prodotto a un'esperienza formativa autonoma e realistica.",
+        "impactTwo": "Mostra come autenticazione, avanzamento, contenuti e struttura amministrativa lavorino insieme."
+      },
+      "paytrack": {
+        "hook": "Un assistente discreto per la finanza personale che trasforma i pagamenti ricorrenti dimenticati in un flusso chiaro e mobile-first.",
+        "impactOne": "Mostra una progettazione full-stack applicata a un problema finanziario reale e quotidiano.",
+        "impactTwo": "Dimostra un'organizzazione sicura delle informazioni relative ai pagamenti senza memorizzare i dati completi delle carte."
+      },
+      "ai-comparator": {
+        "hook": "Uno strumento di confronto mirato che trasforma un progetto formativo in un flusso chiaro per valutare modelli di IA.",
+        "impactOne": "Mostra routing React, integrazione API e coordinamento dello stato in modo pratico, senza complessità superflue.",
+        "impactTwo": "Rende visibile la logica di confronto attraverso un vero flusso tra due modelli, invece di una tabella statica."
+      },
+      "brickdrop": {
+        "hook": "Un gioco compatto che dimostra come una solida logica frontend possa diventare immediatamente giocabile.",
+        "impactOne": "Aggiunge interattività immediata al portfolio, oltre ai soli casi di studio statici.",
+        "impactTwo": "Mostra competenze di ingegneria frontend attraverso meccaniche, tempistiche e transizioni di stato."
+      },
+      "sea-battle": {
+        "hook": "Un gioco per browser visivamente ambizioso che combina sistemi di interfaccia, movimento e gioco guidato dall'IA.",
+        "impactOne": "Amplia il portfolio oltre le applicazioni digitali, introducendo un interaction design più ricco.",
+        "impactTwo": "Mostra un sistema UI più evoluto, con movimento, stati modali e feedback di gioco."
+      }
+    }
   },
   "Projects": {
     "title": "Progetti",

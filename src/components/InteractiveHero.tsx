@@ -9,15 +9,15 @@ import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import { siteConfig } from "@/content/site";
 import { Link } from "@/i18n/navigation";
 
-const proofMetrics = [
-  { label: "selected work", value: "8", detail: "case studies spanning product and play" },
-  { label: "full-stack apps", value: "6", detail: "commerce, learning, adoption, orchid care, subscription, and AI workflows" },
-  { label: "live demos", value: "2", detail: "interactive browser games ready to test" }
-];
-
 export function InteractiveHero() {
   const reduceMotion = useReducedMotion();
-  const t = useTranslations("Common");
+  const tCommon = useTranslations("Common");
+  const t = useTranslations("Home");
+  const proofMetrics = [
+    { label: t("selectedWork"), value: "8", detail: t("selectedWorkDetail") },
+    { label: t("fullStackApps"), value: "6", detail: t("fullStackAppsDetail") },
+    { label: t("liveDemos"), value: "2", detail: t("liveDemosDetail") }
+  ];
   const reveal = {
     initial: false,
     animate: { opacity: 1, y: 0 },
@@ -46,10 +46,10 @@ export function InteractiveHero() {
           >
             <h1 className="max-w-5xl font-sans text-[clamp(3rem,13vw,4.5rem)] font-normal leading-[0.98] tracking-[-0.025em] text-white [text-shadow:0_4px_28px_rgba(0,0,0,0.48)] lg:text-[clamp(3.5rem,4.25vw,4.5rem)]">
               <span className="block lg:whitespace-nowrap">
-                Have a project in mind?
+                {t("heroLineOne")}
               </span>
               <span className="mt-3 block sm:mt-4 lg:whitespace-nowrap">
-                Let&apos;s bring it to life
+                {t("heroLineTwo")}
               </span>
             </h1>
 
@@ -58,7 +58,7 @@ export function InteractiveHero() {
                 href={siteConfig.secondaryCta.href}
                 className="sharp-button-dark min-w-52 border-white bg-white px-[1.8em] py-[1.1em] text-base text-[#06152f] shadow-[0_12px_30px_rgba(0,0,0,0.24)] transition duration-200 hover:scale-105"
               >
-                {t("exploreProjects")}
+                {tCommon("exploreProjects")}
               </Link>
               <NextLink
                 href={siteConfig.githubUrl}

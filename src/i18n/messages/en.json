@@ -37,9 +37,66 @@
     "heroLineOne": "Have a project in mind?",
     "heroLineTwo": "Let's bring it to life",
     "selectedWork": "Selected work",
+    "selectedWorkDetail": "case studies spanning product and play",
     "fullStackApps": "Full-stack apps",
+    "fullStackAppsDetail": "commerce, learning, adoption, orchid care, subscription, and AI workflows",
     "liveDemos": "Live demos",
-    "projectsHeading": "Product-focused applications and playable systems."
+    "liveDemosDetail": "interactive browser games ready to test",
+    "projectsEyebrow": "Full-stack web apps",
+    "projectsHeading": "Product-focused applications and playable systems.",
+    "aboutEyebrow": "About Tiana",
+    "aboutTitle": "Frontend craft with full-stack range.",
+    "aboutDescription": "Design-led web experiences across commerce, education, adoption, plant care, AI tools, and browser games.",
+    "readProfile": "Read profile",
+    "githubEyebrow": "Code credibility",
+    "githubTitle": "Public work, clean ownership.",
+    "githubDescription": "GitHub keeps the portfolio grounded in real code, visible project history, and clear implementation ownership.",
+    "githubEntryDescription": "A clean public entry point for code review and project context.",
+    "openGithub": "Open GitHub",
+    "productApp": "Product app",
+    "playableBuild": "Playable build",
+    "projectCards": {
+      "chocolate": {
+        "hook": "A commerce case study where branding, customer flow, and backend operations all matter at the same time.",
+        "impactOne": "Shows the difference between a styled storefront and a real purchase system.",
+        "impactTwo": "Demonstrates brand-led UI decisions without losing backend rigor."
+      },
+      "petnest": {
+        "hook": "A trust-centered adoption platform that balances public discovery with operational moderation.",
+        "impactOne": "Shows how a portfolio app can model trust, moderation, and user workflow complexity.",
+        "impactTwo": "Adds strong TypeScript credibility across frontend and backend."
+      },
+      "orchidcare": {
+        "hook": "A practical plant-care product where searchable data, care metadata, and a calm browsing experience work together.",
+        "impactOne": "Shows care-specific product thinking instead of another general dashboard.",
+        "impactTwo": "Demonstrates how frontend filters connect to validated backend query handling."
+      },
+      "english4u": {
+        "hook": "A learning platform positioned like a real digital product, not just a lessons demo.",
+        "impactOne": "Connects product thinking to a realistic self-paced education experience.",
+        "impactTwo": "Shows how auth, progress, content, and admin structure work together."
+      },
+      "paytrack": {
+        "hook": "A calm personal finance assistant that turns forgotten recurring payments into a clear, mobile-first product flow.",
+        "impactOne": "Shows full-stack product thinking around a real everyday money problem.",
+        "impactTwo": "Demonstrates secure organization of sensitive-adjacent payment information without storing full card data."
+      },
+      "ai-comparator": {
+        "hook": "A focused comparison tool that turns a course assignment into a clean product workflow for evaluating AI models.",
+        "impactOne": "Shows practical React routing, API integration, and state coordination without overengineering.",
+        "impactTwo": "Makes comparison logic visible through a real two-model workflow instead of a static table."
+      },
+      "brickdrop": {
+        "hook": "A compact game build that proves strong frontend logic can be immediately playable.",
+        "impactOne": "Adds immediate interactivity to the portfolio instead of only static product case studies.",
+        "impactTwo": "Shows frontend engineering skill through mechanics, timing, and state transitions."
+      },
+      "sea-battle": {
+        "hook": "A visually ambitious browser game that combines interface systems, motion, and AI-driven play.",
+        "impactOne": "Expands the portfolio beyond product apps into richer interaction design.",
+        "impactTwo": "Shows a stronger UI system with motion, modal states, and gameplay feedback."
+      }
+    }
   },
   "Projects": {
     "title": "Projects",
