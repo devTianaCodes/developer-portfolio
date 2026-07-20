@@ -13,7 +13,7 @@ export type CredentialEntry = {
 
 export type DegreeCredential = {
   slug: string;
-  level: "Bachelor’s degree" | "Master’s degree";
+  level: string;
   field: string;
   specialization: string;
   image: string;

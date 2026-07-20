@@ -25,13 +25,12 @@
     "close": "Chiudi",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "email": "Email"
+    "email": "E-mail"
   },
   "Footer": {
     "eyebrow": "Tatiana Oblasser",
-    "headline": "Creare esperienze digitali significative.",
-    "description": "Applicazioni full-stack, giochi interattivi e casi di studio selezionati, con un'identità professionale centrata su GitHub.",
-    "deployment": "Valutazione professionale e distribuzione su Vercel"
+    "headline": "Esperienze digitali costruite con cura.",
+    "description": "Applicazioni full-stack, giochi interattivi e casi di studio selezionati, con un'identità professionale centrata su GitHub."
   },
   "Home": {
     "heroLineOne": "Hai un progetto in mente?",
@@ -267,15 +266,62 @@
     "eyebrow": "Certificazioni",
     "title": "Formazione continua",
     "professionalCertifications": "Certificazioni professionali",
-    "uxUiCertificates": "Certificati UX/UI",
+    "uxUiCertificates": "Certificazioni UX/UI",
     "higherEducation": "Formazione universitaria",
     "previousCertificate": "Certificato precedente",
-    "nextCertificate": "Certificato successivo"
+    "nextCertificate": "Certificato successivo",
+    "currentCertificate": "Certificato attuale: {title}",
+    "centerCertificate": "Porta {title} al centro",
+    "chooseCertificate": "Scegli una certificazione UX/UI",
+    "showCertificate": "Mostra {title}",
+    "uxCertificateImageAlt": "Certificato del corso {title} conseguito da Tatiana Oblasser",
+    "professional": {
+      "booleanWebDevelopment": {
+        "date": "28 giugno 2026",
+        "imageAlt": "Certificato del Web Development Master di Boolean conseguito da Tatiana Oblasser",
+        "description": "Ha completato un percorso di 600 ore in sviluppo full stack, dedicato a HTML, CSS, JavaScript, React, Node.js, Express e MySQL."
+      },
+      "booleanAiDays": {
+        "date": "12-14 maggio 2026",
+        "imageAlt": "Attestato di partecipazione ad AI Days di Boolean conseguito da Tatiana Oblasser",
+        "description": "Ha completato un percorso pratico di cinque ore sull’intelligenza artificiale, articolato in tre lezioni live e nello sviluppo di un progetto di IA."
+      },
+      "aulabHtmlCss": {
+        "date": "5 aprile 2024",
+        "imageAlt": "Certificato del corso HTML e CSS di Aulab conseguito da Tatiana Oblasser",
+        "description": "Ha completato il corso introduttivo di cinque giorni di Aulab, dedicato ai fondamenti di HTML e CSS."
+      },
+      "nttDataInspireHer": {
+        "date": "11-12 ottobre 2024",
+        "imageAlt": "Attestato di partecipazione a InspireHER di NTT DATA Italia conseguito da Tatiana Oblasser",
+        "description": "Ha completato InspireHER, il percorso di sviluppo personale di NTT DATA Italia incentrato sul riconoscimento e sulla valorizzazione del talento individuale."
+      }
+    },
+    "degrees": {
+      "economicSciencesBachelor": {
+        "level": "Laurea triennale",
+        "field": "Scienze Economiche",
+        "specialization": "Amministrazione aziendale",
+        "imageAlt": "Diploma di laurea triennale in Scienze Economiche con dati sensibili oscurati"
+      },
+      "economicSciencesMaster": {
+        "level": "Laurea magistrale",
+        "field": "Scienze Economiche",
+        "specialization": "Amministrazione delle transazioni commerciali",
+        "imageAlt": "Diploma di laurea magistrale in Scienze Economiche con dati sensibili oscurati"
+      },
+      "educationSciencesBachelor": {
+        "level": "Laurea triennale",
+        "field": "Scienze dell’Educazione",
+        "specialization": "Lingua e letteratura rumena e lingua tedesca",
+        "imageAlt": "Diploma di laurea triennale in Scienze dell’Educazione con dati sensibili oscurati"
+      }
+    }
   },
   "Contact": {
     "eyebrow": "Contatti",
-    "title": "Disponibile per opportunità frontend e full-stack.",
-    "description": "Esplora i progetti selezionati, contattami su LinkedIn oppure inviami un'email.",
+    "title": "Disponibile per opportunità frontend e full stack.",
+    "description": "Esplora i progetti selezionati, contattami su LinkedIn oppure scrivimi direttamente via e-mail.",
     "viewProjects": "Vedi i progetti"
   },
   "NotFound": {

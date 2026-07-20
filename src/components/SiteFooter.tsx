@@ -34,8 +34,8 @@ export function SiteFooter() {
           </NextLink>
           <Link href="/projects" className="block hover:text-accent">{tNavigation("projects")}</Link>
           <Link href="/about" className="block hover:text-accent">{tNavigation("about")}</Link>
+          <Link href="/credentials" className="block hover:text-accent">{tNavigation("credentials")}</Link>
           <Link href="/contact" className="block hover:text-accent">{tNavigation("contact")}</Link>
-          <p className="pt-3 text-xs uppercase tracking-[0.22em] text-muted">{t("deployment")}</p>
         </div>
       </div>
     </footer>

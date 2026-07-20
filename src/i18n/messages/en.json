@@ -30,8 +30,7 @@
   "Footer": {
     "eyebrow": "Tatiana Oblasser",
     "headline": "Building meaningful digital experiences.",
-    "description": "Selected full-stack apps, interactive games, and case studies with a GitHub-first identity.",
-    "deployment": "Professional review and Vercel deployment"
+    "description": "Selected full-stack apps, interactive games, and case studies with a GitHub-first identity."
   },
   "Home": {
     "heroLineOne": "Have a project in mind?",
@@ -270,7 +269,54 @@
     "uxUiCertificates": "UX/UI certificates",
     "higherEducation": "Higher education",
     "previousCertificate": "Previous certificate",
-    "nextCertificate": "Next certificate"
+    "nextCertificate": "Next certificate",
+    "currentCertificate": "Current certificate: {title}",
+    "centerCertificate": "Center {title}",
+    "chooseCertificate": "Choose a UX/UI certificate",
+    "showCertificate": "Show {title}",
+    "uxCertificateImageAlt": "{title} course certificate awarded to Tatiana Oblasser",
+    "professional": {
+      "booleanWebDevelopment": {
+        "date": "28 June 2026",
+        "imageAlt": "Boolean Web Development Master certificate awarded to Tatiana Oblasser",
+        "description": "Completed a 600-hour full-stack development program covering HTML, CSS, JavaScript, React, Node.js, Express, and MySQL."
+      },
+      "booleanAiDays": {
+        "date": "12-14 May 2026",
+        "imageAlt": "Boolean AI Days participation certificate awarded to Tatiana Oblasser",
+        "description": "Completed a five-hour practical AI program combining three live sessions with the development of an AI project."
+      },
+      "aulabHtmlCss": {
+        "date": "5 April 2024",
+        "imageAlt": "Aulab HTML and CSS course certificate awarded to Tatiana Oblasser",
+        "description": "Completed Aulab’s five-day introductory course covering the foundations of HTML and CSS."
+      },
+      "nttDataInspireHer": {
+        "date": "11-12 October 2024",
+        "imageAlt": "NTT DATA Italia InspireHER participation certificate awarded to Tatiana Oblasser",
+        "description": "Completed NTT DATA Italia’s InspireHER personal-development program focused on recognizing and strengthening individual talent."
+      }
+    },
+    "degrees": {
+      "economicSciencesBachelor": {
+        "level": "Bachelor’s degree",
+        "field": "Economic Sciences",
+        "specialization": "Business and Administration",
+        "imageAlt": "Privacy-redacted Bachelor’s degree diploma in Economic Sciences"
+      },
+      "economicSciencesMaster": {
+        "level": "Master’s degree",
+        "field": "Economic Sciences",
+        "specialization": "Commercial Transaction Administration",
+        "imageAlt": "Privacy-redacted Master’s degree diploma in Economic Sciences"
+      },
+      "educationSciencesBachelor": {
+        "level": "Bachelor’s degree",
+        "field": "Education Sciences",
+        "specialization": "Romanian Language and Literature and German Language",
+        "imageAlt": "Privacy-redacted Bachelor’s degree diploma in Education Sciences"
+      }
+    }
   },
   "Contact": {
     "eyebrow": "Contact",

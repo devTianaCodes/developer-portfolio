@@ -129,7 +129,11 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
                       onClick={() => {
                         if (!isActive) selectCredential(index);
                       }}
-                      aria-label={isActive ? `Current certificate: ${credential.title}` : `Center ${credential.title}`}
+                      aria-label={
+                        isActive
+                          ? tCredentials("currentCertificate", { title: credential.title })
+                          : tCredentials("centerCertificate", { title: credential.title })
+                      }
                       aria-current={isActive ? "true" : undefined}
                       className={`relative aspect-[4001/2933] w-full overflow-hidden border border-line bg-white shadow-[0_24px_65px_rgba(15,23,42,0.20)] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 ${
                         isActive ? "cursor-default" : "cursor-pointer"
@@ -188,13 +192,13 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
           </div>
 
           <div className="mt-6 flex items-center justify-between gap-4 border-t border-line pt-5">
-            <div className="flex min-w-0 gap-2 overflow-x-auto py-1" aria-label="Choose a UX/UI certificate">
+            <div className="flex min-w-0 gap-2 overflow-x-auto py-1" aria-label={tCredentials("chooseCertificate")}>
               {credentials.map((credential, index) => (
                 <button
                   key={credential.slug}
                   type="button"
                   onClick={() => selectCredential(index)}
-                  aria-label={`Show ${credential.title}`}
+                  aria-label={tCredentials("showCertificate", { title: credential.title })}
                   aria-current={index === activeIndex ? "true" : undefined}
                   className={`h-2.5 shrink-0 rounded-full transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
                     index === activeIndex ? "w-8 bg-[#262626]" : "w-2.5 bg-[#262626]/28 hover:bg-[#262626]/55"
