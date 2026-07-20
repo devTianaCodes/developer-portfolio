@@ -152,12 +152,116 @@
     "title": "Chi sono",
     "subtitle": "Sviluppatore Web Full Stack Jr.",
     "currentFocus": "Obiettivo attuale",
+    "currentFocusTitle": "Prodotti web completi, dal frontend al backend.",
+    "currentFocusDescription": "I progetti recenti includono un'applicazione e-commerce con Stripe e una piattaforma per le adozioni con dashboard, richieste, creazione di annunci e moderazione amministrativa.",
+    "chocolateDemo": "Demo Chocolate",
+    "petNestDemo": "Demo PetNest",
     "publicIdentity": "Identità professionale",
+    "publicIdentityDescription": "Consulta il codice pubblico su GitHub, l'esperienza professionale su LinkedIn oppure contattami direttamente via e-mail.",
     "professionalExperience": "Esperienza professionale",
+    "professionalExperienceTitle": "Docenza, sviluppo backend e comunicazione con il cliente.",
     "educationTraining": "Formazione",
     "languages": "Lingue",
     "introduction": "Sviluppatore Web Full Stack Junior orientato alla realizzazione di applicazioni web moderne, responsive e intuitive con React, Node.js, Express e MySQL. Esperienza nello sviluppo di interfacce mobile-first, API RESTful, gestione dei database e integrazione tra frontend e backend. Formazione precedente come Sviluppatore Java con competenze in programmazione orientata agli oggetti, Spring Boot e logica backend. Le certificazioni UX/UI contribuiscono a un approccio progettuale orientato all'utente e all'usabilità. Ottime capacità comunicative e collaborative, unite a una forte attitudine all'apprendimento continuo.",
-    "portraitAlt": "Ritratto di Tatiana Oblasser"
+    "portraitAlt": "Ritratto di Tatiana Oblasser",
+    "skillAreas": {
+      "frontend": {
+        "title": "Sviluppo frontend",
+        "text": "JavaScript, TypeScript, React, Next.js, interfacce responsive, accessibilità e sviluppo mobile-first."
+      },
+      "backend": {
+        "title": "Backend e API",
+        "text": "Node.js, Express, Python, API REST, CRUD, JSON, JWT, CORS, Multer, Nodemailer, Stripe e test delle API."
+      },
+      "javaData": {
+        "title": "Java e dati",
+        "text": "Java, Spring Boot, Maven, programmazione orientata agli oggetti, MySQL, PostgreSQL, Prisma ORM, Prisma Migrate, SQL e Postman."
+      }
+    },
+    "experience": {
+      "programmingLecturer": {
+        "role": "Docente di Fondamenti di Programmazione",
+        "meta": "CIOFS/FP Puglia, Giardini Digitali | Cosenza, Italia | Giugno - Agosto 2024",
+        "detail": "Insegna JavaScript, HTML/CSS, Python e Java con logica, algoritmi, esercizi pratici e basi dello sviluppo web. Segue progetti web, esercitazioni e presentazioni finali, collegando i concetti ad attività applicative concrete."
+      },
+      "backendIntern": {
+        "role": "Tirocinante sviluppatore lato server",
+        "meta": "TwentyFive | Rende, Italia | 2024",
+        "detail": "Sviluppo di punti di accesso API REST per un generatore di codici QR con Java, Spring Boot, Maven, JSON e Postman. Implementazione di personalizzazioni QR per loghi, colori, testi, sfondi e cornici secondo le richieste del cliente."
+      },
+      "javaIntern": {
+        "role": "Tirocinante Java Academy",
+        "meta": "TwentyFive | Rende, Italia | 2023",
+        "detail": "Sviluppo di funzionalità di commercio elettronico con Spring Boot, Maven, PostgreSQL e Postman, includendo prodotti, autenticazione, ordini e sicurezza."
+      },
+      "languageTutor": {
+        "role": "Docente e Tutor Linguistico",
+        "meta": "British Institutes | Cosenza, Italia | 2018 - Oggi",
+        "detail": "Lezioni di inglese, tedesco e russo e traduzioni professionali con comunicazione chiara e supporto agli studenti."
+      }
+    },
+    "training": {
+      "webDevelopment": {
+        "title": "Master a tempo pieno in sviluppo web - completato",
+        "detail": "Boolean | Settembre 2025 - Giugno 2026"
+      },
+      "aiDays": {
+        "title": "Progetto AI Days",
+        "detail": "Boolean | 12 - 14 Maggio 2026"
+      },
+      "chatbotAi": {
+        "title": "Percorso intensivo in sviluppo di chatbot e intelligenza artificiale",
+        "detail": "InspireHER, NTT DATA Italia | 2024"
+      },
+      "javaAcademy": {
+        "title": "Java Academy",
+        "detail": "TwentyFive | 2023 - 2024"
+      },
+      "javaMasterclass": {
+        "title": "Java 17 Masterclass",
+        "detail": "Udemy | 2023 - 2024"
+      },
+      "uxUi": {
+        "title": "Formazione in esperienza utente e interfaccia utente - completata",
+        "detail": "Interaction Design Foundation | 2022 - 2023"
+      },
+      "englishTest": {
+        "title": "EF Standard English Test - Livello C2",
+        "detail": "2023"
+      },
+      "universityDegrees": {
+        "title": "Formazione universitaria",
+        "economicSciences": "Scienze Economiche",
+        "businessAdministration": "Amministrazione aziendale",
+        "foreignLanguages": "Lingue straniere e Letteratura Comparata"
+      }
+    },
+    "languageItems": {
+      "english": {
+        "language": "Inglese",
+        "level": "C2 / Avanzato-Eccellente"
+      },
+      "italian": {
+        "language": "Italiano",
+        "level": "C1 / Eccellente"
+      },
+      "russian": {
+        "language": "Russo",
+        "level": "C2 / Madrelingua"
+      },
+      "romanian": {
+        "language": "Rumeno",
+        "level": "C2 / Madrelingua"
+      },
+      "german": {
+        "language": "Tedesco",
+        "level": "B2 / Intermedio avanzato"
+      },
+      "french": {
+        "language": "Francese",
+        "level": "B1-B2 / Intermedio"
+      }
+    }
   },
   "Credentials": {
     "eyebrow": "Certificazioni",

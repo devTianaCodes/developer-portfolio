@@ -152,12 +152,116 @@
     "title": "About",
     "subtitle": "Full Stack Web Developer Jr.",
     "currentFocus": "Current focus",
+    "currentFocusTitle": "End-to-end web products.",
+    "currentFocusDescription": "Recent work includes a Stripe-enabled e-commerce application and an adoption platform with dashboards, requests, listing creation, and admin moderation.",
+    "chocolateDemo": "Chocolate demo",
+    "petNestDemo": "PetNest demo",
     "publicIdentity": "Public identity",
+    "publicIdentityDescription": "Review public code on GitHub, professional experience on LinkedIn, or connect directly by email.",
     "professionalExperience": "Professional experience",
+    "professionalExperienceTitle": "Teaching, backend development, and client-facing communication.",
     "educationTraining": "Education and training",
     "languages": "Languages",
     "introduction": "Junior Full-Stack Developer building responsive, user-focused web applications with React, TypeScript, Node.js, Express and MySQL. Hands-on experience delivering end-to-end projects, from mobile-first interfaces to REST APIs, authentication, payment workflows and database integration. A background in Java and Spring Boot, UX/UI and technical teaching brings a thoughtful approach to usability, problem-solving, collaboration and commitment to continuous learning.",
-    "portraitAlt": "Tatiana Oblasser portrait"
+    "portraitAlt": "Tatiana Oblasser portrait",
+    "skillAreas": {
+      "frontend": {
+        "title": "Frontend development",
+        "text": "JavaScript, TypeScript, React, Next.js, responsive interfaces, accessibility, and mobile-first development."
+      },
+      "backend": {
+        "title": "Backend and APIs",
+        "text": "Node.js, Express, Python, REST APIs, CRUD, JSON, JWT, CORS, Multer, Nodemailer, Stripe, and API testing."
+      },
+      "javaData": {
+        "title": "Java and data",
+        "text": "Java, Spring Boot, Maven, object-oriented programming, MySQL, PostgreSQL, Prisma ORM, Prisma Migrate, SQL, and Postman."
+      }
+    },
+    "experience": {
+      "programmingLecturer": {
+        "role": "Lecturer in Fundamentals of Programming",
+        "meta": "CIOFS/FP Puglia, Giardini Digitali | Cosenza, Italy | June - August 2024",
+        "detail": "Teaching JavaScript, HTML/CSS, Python, and Java through logic, algorithms, practical exercises, and web development fundamentals. Supporting web projects, practical work, and final presentations by connecting concepts to concrete activities."
+      },
+      "backendIntern": {
+        "role": "Server-side Developer Intern",
+        "meta": "TwentyFive | Rende, Italy | 2024",
+        "detail": "Developed REST API endpoints for a QR-code generator with Java, Spring Boot, Maven, JSON, and Postman. Implemented QR customization for logos, colors, text, backgrounds, and frames according to client requirements."
+      },
+      "javaIntern": {
+        "role": "Java Academy Intern",
+        "meta": "TwentyFive | Rende, Italy | 2023",
+        "detail": "Developed e-commerce functionality with Spring Boot, Maven, PostgreSQL, and Postman, including products, authentication, orders, and security."
+      },
+      "languageTutor": {
+        "role": "Lecturer and Language Tutor",
+        "meta": "British Institutes | Cosenza, Italy | 2018 - Present",
+        "detail": "English, German, and Russian lessons and professional translations, with clear communication and student support."
+      }
+    },
+    "training": {
+      "webDevelopment": {
+        "title": "Full-time Web Development Master - completed",
+        "detail": "Boolean | September 2025 - June 2026"
+      },
+      "aiDays": {
+        "title": "AI Days Project",
+        "detail": "Boolean | 12 - 14 May 2026"
+      },
+      "chatbotAi": {
+        "title": "Intensive program in chatbot development and artificial intelligence",
+        "detail": "InspireHER, NTT DATA Italia | 2024"
+      },
+      "javaAcademy": {
+        "title": "Java Academy",
+        "detail": "TwentyFive | 2023 - 2024"
+      },
+      "javaMasterclass": {
+        "title": "Java 17 Masterclass",
+        "detail": "Udemy | 2023 - 2024"
+      },
+      "uxUi": {
+        "title": "User experience and user interface training - completed",
+        "detail": "Interaction Design Foundation | 2022 - 2023"
+      },
+      "englishTest": {
+        "title": "EF Standard English Test - C2 Proficient",
+        "detail": "2023"
+      },
+      "universityDegrees": {
+        "title": "University education",
+        "economicSciences": "Economic Sciences",
+        "businessAdministration": "Business Administration",
+        "foreignLanguages": "Foreign Languages and Comparative Literature"
+      }
+    },
+    "languageItems": {
+      "english": {
+        "language": "English",
+        "level": "C2 / Advanced-Proficient"
+      },
+      "italian": {
+        "language": "Italian",
+        "level": "C1 / Excellent"
+      },
+      "russian": {
+        "language": "Russian",
+        "level": "C2 / Native"
+      },
+      "romanian": {
+        "language": "Romanian",
+        "level": "C2 / Native"
+      },
+      "german": {
+        "language": "German",
+        "level": "B2 / Upper-intermediate"
+      },
+      "french": {
+        "language": "French",
+        "level": "B1-B2 / Intermediate"
+      }
+    }
   },
   "Credentials": {
     "eyebrow": "Credentials",

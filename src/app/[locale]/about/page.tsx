@@ -1,107 +1,117 @@
+import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { GithubIcon } from "@/components/GithubIcon";
 import { PageReveal } from "@/components/PageReveal";
 import { SocialIcon } from "@/components/SocialIcon";
 import { siteConfig } from "@/content/site";
+import { enabledLocales } from "@/i18n/config";
+import { Link } from "@/i18n/navigation";
 
-export const metadata = { title: "About" };
+type AboutPageProps = {
+  params: Promise<{ locale: (typeof enabledLocales)[number] }>;
+};
 
-const skillAreas = [
-  {
-    title: "Frontend development",
-    text: "JavaScript, TypeScript, React, Next.js, responsive interfaces, accessibility, and mobile-first implementation."
-  },
-  {
-    title: "Backend and APIs",
-    text: "Node.js, Express, Python, REST APIs, CRUD, JSON, JWT, CORS, Multer, Nodemailer, Stripe, and API testing."
-  },
-  {
-    title: "Java and data",
-    text: "Java, Spring Boot, Maven, OOP, MySQL, PostgreSQL, Prisma ORM, Prisma Migrate, SQL, and Postman."
-  }
-];
+export async function generateMetadata({ params }: AboutPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
 
-const experienceItems = [
-  {
-    role: "Lecturer in Fundamentals of Programming",
-    meta: "CIOFS/FP and Giardini Digitali | 2024",
-    detail: "Taught HTML/CSS, Python, and JavaScript through logic, algorithms, practical exercises, web projects, and final presentations."
-  },
-  {
-    role: "Backend Developer Intern",
-    meta: "TwentyFive | 2024",
-    detail: "Built REST API endpoints for a customizable QR-code generator with Java, Spring Boot, Maven, JSON, and Postman."
-  },
-  {
-    role: "Java Academy intern",
-    meta: "TwentyFive | 2023",
-    detail: "Built an e-commerce project with Java, Spring Boot, Maven, PostgreSQL, and Postman, covering products, authentication, orders, and security."
-  },
-  {
-    role: "Lecturer and Language Tutor",
-    meta: "British Institutes | 2018 - Present",
-    detail: "Tutored English and delivered professional translations with clear, learner-focused communication."
-  }
-];
-
-const trainingItems = [
-  {
-    title: "Web Development Master",
-    detail: "Boolean | Full-time | 2025 - 2026"
-  },
-  {
-    title: "AI Days Project",
-    detail: "Boolean | May 2026"
-  },
-  {
-    title: "Chatbot Development and Artificial Intelligence",
-    detail: "NTT DATA InspireHER | 2024"
-  },
-  {
-    title: "Java Academy",
-    detail: "TwentyFive | 2023 - 2024"
-  },
-  {
-    title: "Java 17 Masterclass",
-    detail: "Udemy | 2023 - 2024"
-  },
-  {
-    title: "UX/UI courses",
-    detail: "Interaction Design Foundation | 2022 - 2023"
-  },
-  {
-    title: "EF Standard English Test - C2 Proficient",
-    detail: "2023",
-    href: "https://cert.efset.org/SmrS7H?cid=em100a"
-  },
-  {
-    title: "University degrees",
-    detail: [
-      "Economic Sciences",
-      "Business Administration",
-      "Foreign Languages and Comparative Literature"
-    ]
-  }
-];
-
-const languageItems = [
-  { language: "English", level: "C2" },
-  { language: "Italian", level: "C1" },
-  { language: "Russian", level: "C2" },
-  { language: "Romanian", level: "C2" },
-  { language: "German", level: "B2" },
-  { language: "French", level: "B1-B2" }
-];
-
-const featuredProjectLinks = [
-  { label: "Chocolate demo", href: "https://chocolate-frontend-one.vercel.app" },
-  { label: "PetNest demo", href: "https://petnest-frontend.vercel.app" }
-];
+  return {
+    title: t("aboutTitle")
+  };
+}
 
 export default function AboutPage() {
   const t = useTranslations("About");
+  const tCommon = useTranslations("Common");
+  const skillAreas = [
+    {
+      title: t("skillAreas.frontend.title"),
+      text: t("skillAreas.frontend.text")
+    },
+    {
+      title: t("skillAreas.backend.title"),
+      text: t("skillAreas.backend.text")
+    },
+    {
+      title: t("skillAreas.javaData.title"),
+      text: t("skillAreas.javaData.text")
+    }
+  ];
+  const experienceItems = [
+    {
+      role: t("experience.programmingLecturer.role"),
+      meta: t("experience.programmingLecturer.meta"),
+      detail: t("experience.programmingLecturer.detail")
+    },
+    {
+      role: t("experience.backendIntern.role"),
+      meta: t("experience.backendIntern.meta"),
+      detail: t("experience.backendIntern.detail")
+    },
+    {
+      role: t("experience.javaIntern.role"),
+      meta: t("experience.javaIntern.meta"),
+      detail: t("experience.javaIntern.detail")
+    },
+    {
+      role: t("experience.languageTutor.role"),
+      meta: t("experience.languageTutor.meta"),
+      detail: t("experience.languageTutor.detail")
+    }
+  ];
+  const trainingItems = [
+    {
+      title: t("training.webDevelopment.title"),
+      detail: t("training.webDevelopment.detail")
+    },
+    {
+      title: t("training.aiDays.title"),
+      detail: t("training.aiDays.detail")
+    },
+    {
+      title: t("training.chatbotAi.title"),
+      detail: t("training.chatbotAi.detail")
+    },
+    {
+      title: t("training.javaAcademy.title"),
+      detail: t("training.javaAcademy.detail")
+    },
+    {
+      title: t("training.javaMasterclass.title"),
+      detail: t("training.javaMasterclass.detail")
+    },
+    {
+      title: t("training.uxUi.title"),
+      detail: t("training.uxUi.detail")
+    },
+    {
+      title: t("training.englishTest.title"),
+      detail: t("training.englishTest.detail"),
+      href: "https://cert.efset.org/SmrS7H?cid=em100a"
+    },
+    {
+      title: t("training.universityDegrees.title"),
+      detail: [
+        t("training.universityDegrees.economicSciences"),
+        t("training.universityDegrees.businessAdministration"),
+        t("training.universityDegrees.foreignLanguages")
+      ]
+    }
+  ];
+  const languageItems = [
+    { language: t("languageItems.english.language"), level: t("languageItems.english.level") },
+    { language: t("languageItems.italian.language"), level: t("languageItems.italian.level") },
+    { language: t("languageItems.russian.language"), level: t("languageItems.russian.level") },
+    { language: t("languageItems.romanian.language"), level: t("languageItems.romanian.level") },
+    { language: t("languageItems.german.language"), level: t("languageItems.german.level") },
+    { language: t("languageItems.french.language"), level: t("languageItems.french.level") }
+  ];
+  const featuredProjectLinks = [
+    { label: t("chocolateDemo"), href: "https://chocolate-frontend-one.vercel.app" },
+    { label: t("petNestDemo"), href: "https://petnest-frontend.vercel.app" }
+  ];
 
   return (
     <PageReveal>
@@ -161,10 +171,10 @@ export default function AboutPage() {
 
         <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="sharp-panel p-8 lg:order-2">
-            <p className="section-label">Current focus</p>
-            <h2 className="minimal-heading mt-3 text-4xl">End-to-end web products.</h2>
+            <p className="section-label">{t("currentFocus")}</p>
+            <h2 className="minimal-heading mt-3 text-4xl">{t("currentFocusTitle")}</h2>
             <p className="minimal-text mt-4">
-              Recent work includes a Stripe-enabled e-commerce product and an adoption platform with dashboards, requests, listing workflows, and admin moderation.
+              {t("currentFocusDescription")}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               {featuredProjectLinks.map((projectLink) => (
@@ -172,17 +182,17 @@ export default function AboutPage() {
                   {projectLink.label}
                 </Link>
               ))}
-              <Link href="/projects" className="sharp-button">All projects</Link>
+              <Link href="/projects" className="sharp-button">{tCommon("allProjects")}</Link>
             </div>
           </div>
 
           <div className="sharp-panel p-8 lg:order-1">
-            <p className="section-label">Public identity</p>
+            <p className="section-label">{t("publicIdentity")}</p>
             <h2 className="minimal-heading mt-3 flex min-w-0 items-center gap-3 text-[1.65rem] sm:text-4xl">
               <GithubIcon className="h-8 w-8 shrink-0 text-accent" />
               <span className="min-w-0 break-all">{siteConfig.githubHandle}</span>
             </h2>
-            <p className="minimal-text mt-4 max-w-2xl">Review public code on GitHub, professional experience on LinkedIn, or connect directly by email.</p>
+            <p className="minimal-text mt-4 max-w-2xl">{t("publicIdentityDescription")}</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href={siteConfig.githubUrl} target="_blank" rel="noreferrer" className="sharp-button">
                 <GithubIcon className="h-4 w-4" />
@@ -202,8 +212,8 @@ export default function AboutPage() {
 
         <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="sharp-panel p-8">
-            <p className="section-label">Professional experience</p>
-            <h2 className="minimal-heading mt-3 text-4xl">Teaching, backend practice, and client-facing communication.</h2>
+            <p className="section-label">{t("professionalExperience")}</p>
+            <h2 className="minimal-heading mt-3 text-4xl">{t("professionalExperienceTitle")}</h2>
             <div className="mt-6 space-y-5">
               {experienceItems.map((item) => (
                 <div key={item.role} className="border-t border-line pt-5 first:border-t-0 first:pt-0">
@@ -217,7 +227,7 @@ export default function AboutPage() {
 
           <div className="space-y-6 lg:grid lg:h-full lg:grid-rows-[1fr_auto] lg:gap-6 lg:space-y-0">
             <div className="sharp-panel p-8" data-testid="education-training">
-              <p className="section-label">Education and training</p>
+              <p className="section-label">{t("educationTraining")}</p>
               <ul className="mt-5 space-y-3 text-sm leading-7 text-muted">
                 {trainingItems.map((item) => (
                   <li key={item.title} className={Array.isArray(item.detail) ? "grid grid-cols-[auto_minmax(0,1fr)] gap-x-4" : undefined}>
@@ -248,7 +258,7 @@ export default function AboutPage() {
             </div>
 
             <div className="sharp-panel p-8">
-              <p className="section-label">Languages</p>
+              <p className="section-label">{t("languages")}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {languageItems.map((item) => (
                   <span key={item.language} className="border border-line bg-surface px-3 py-2 font-mono text-xs uppercase tracking-[0.18em] text-muted">
