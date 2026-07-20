@@ -296,6 +296,156 @@ const italianProjectTranslators: Partial<Record<ProjectSlug, ProjectTranslator>>
             ? "Caso di studio"
             : link.label
     }))
+  }),
+  orchidcare: (project) => ({
+    ...project,
+    tagline:
+      "Enciclopedia delle orchidee dedicata alla cura, con schede ricercabili, filtri, preferiti e una collezione di specie rare.",
+    summary:
+      "Un’applicazione full stack per la cura delle orchidee, realizzata con un frontend React e Vite e un’API Express e PostgreSQL. Consente di esplorare le schede delle orchidee, cercare e filtrare in base alle esigenze di cura, consultare pagine dettagliate, salvare preferiti in locale, scoprire specie rare e leggere una guida per principianti.",
+    role: "Prodotto full stack in TypeScript",
+    hook:
+      "Un prodotto pratico per la cura delle piante, in cui dati ricercabili, informazioni di coltivazione e un’esperienza di navigazione rilassante lavorano insieme.",
+    strengths: [
+      "Esperienza di consultazione chiara e ordinata",
+      "Client API e DTO del backend tipizzati",
+      "Ricerca e filtri basati sulle esigenze di cura",
+      "Dati iniziali PostgreSQL con attribuzione delle immagini"
+    ],
+    challenge:
+      "Realizzare un prodotto pubblico per la cura delle orchidee, accessibile ai principianti ma capace di rappresentare dati strutturati come luce, annaffiatura, umidità, temperatura, periodo di fioritura, rarità e tipo di crescita.",
+    solution:
+      "Il frontend organizza la scoperta delle orchidee nelle rotte homepage, esplorazione, dettaglio, preferiti, collezione rara e guida alla cura. Il backend distribuisce dati PostgreSQL normalizzati tramite una piccola API REST con filtri di ricerca convalidati, paginazione, ricerca per slug, metadati dei filtri, CORS, Helmet, registrazione delle richieste e risposte di errore controllate.",
+    outcome:
+      "OrchidCare aggiunge al portfolio un caso di studio mirato e basato sui dati: mostra un flusso tipizzato dal frontend al backend, query PostgreSQL, stato locale del client e una superficie di prodotto progettata attorno alle decisioni di cura anziché a operazioni CRUD generiche.",
+    features: [
+      "Esplorazione delle schede con ricerca, filtri e paginazione",
+      "Pagine dettagliate con origine, radici, fioritura e riepiloghi di cura",
+      "Salvataggio locale delle orchidee preferite con feedback per l’utente",
+      "Collezione dedicata alle orchidee rare",
+      "Guida alla cura pensata per chi inizia"
+    ],
+    architecture: [
+      "Frontend React Router con rotte per homepage, esplorazione, dettaglio, preferiti, collezione rara e guida alla cura",
+      "Client API tipizzato per le richieste JSON e la configurazione dell’URL di base",
+      "API Express suddivisa in rotte, controller, servizi, repository e gestori degli errori",
+      "PostgreSQL memorizza le orchidee e i relativi profili di cura in relazione uno a uno"
+    ],
+    metrics: [
+      { label: "Rotte frontend", value: "6" },
+      { label: "Endpoint API", value: "4" },
+      { label: "Database", value: "PostgreSQL" }
+    ],
+    impactBullets: [
+      "Dimostra una progettazione specifica per la cura delle piante anziché un’altra dashboard generica.",
+      "Mostra come i filtri del frontend si collegano alla gestione convalidata delle query nel backend.",
+      "Aggiunge un progetto full stack basato su PostgreSQL con un modello dei dati spiegato chiaramente."
+    ],
+    interviewAngles: [
+      "Come l’applicazione trasforma le esigenze di cura delle piante in dati strutturati e ricercabili.",
+      "Perché l’API espone sia i dati dell’elenco sia i metadati dei filtri per rendere più fluida l’esperienza di navigazione.",
+      "Come i preferiti locali supportano l’MVP, lasciando spazio a futuri account sincronizzati."
+    ],
+    repositories: project.repositories?.map((repository, index) => ({
+      ...repository,
+      label: index === 0 ? "Repository frontend" : "Repository backend"
+    })),
+    workflowIntro: {
+      eyebrow: "Flusso di OrchidCare",
+      title: "Decisioni di cura dalla ricerca al dettaglio",
+      text: "OrchidCare è strutturata attorno a chi desidera identificare le piante, confrontarne le esigenze, salvare i preferiti e imparare le nozioni di base senza creare un account."
+    },
+    workflowHighlights: [
+      {
+        title: "Esplorazione e filtri",
+        text: "La sezione principale dell’enciclopedia trasforma i dati sulla cura delle orchidee in uno strumento decisionale consultabile, anziché in una galleria statica.",
+        items: [
+          "È possibile cercare nomi e descrizioni e filtrare per difficoltà, luce, acqua, tipo di crescita e periodo di fioritura",
+          "La paginazione mantiene leggibile l’elenco, mentre il backend resta la fonte dei dati aggiornati sulle orchidee",
+          "I metadati dei filtri provengono dall’API, quindi le opzioni dell’interfaccia riflettono i dati realmente presenti in PostgreSQL"
+        ]
+      },
+      {
+        title: "Pagine di dettaglio dedicate alla cura",
+        text: "Il flusso di dettaglio è pensato per comprendere le esigenze pratiche della pianta, non soltanto per mostrare informazioni botaniche.",
+        items: [
+          "Ogni pagina include origine, radici, note sulla fioritura, riepilogo della cura, rarità, tipo di crescita e attribuzione dell’immagine",
+          "Le rotte basate su slug rendono le singole schede condivisibili e semplici da collegare al comportamento di ricerca dell’API",
+          "La guida completa le singole schede con argomenti per principianti come luce, umidità, concimazione, rinvaso e propagazione"
+        ]
+      },
+      {
+        title: "Collezione locale",
+        text: "L’MVP usa uno stato leggero nel client per i preferiti, mantenendo aperta la possibilità di collezioni autenticate in futuro.",
+        items: [
+          "L’hook `useFavoriteOrchids` salva le orchidee selezionate in localStorage, così i preferiti restano disponibili tra una visita e l’altra",
+          "Il feedback in finestra modale conferma il salvataggio e la rimozione senza interrompere la navigazione",
+          "Una rotta dedicata alla collezione rara riutilizza lo stesso flusso dell’API con il filtro `isRare`"
+        ]
+      }
+    ],
+    apiIntro: {
+      eyebrow: "Superficie del backend",
+      title: "API mirata per l’enciclopedia delle orchidee",
+      text: "L’API Express mantiene volutamente essenziale l’MVP pubblico, con endpoint dedicati allo stato del servizio, agli elenchi, ai dettagli basati su slug e ai metadati dei filtri."
+    },
+    qualityIntro: {
+      eyebrow: "Decisioni tecniche",
+      title: "Flusso tipizzato, convalida e rigore PostgreSQL",
+      text: "Il punto di forza di OrchidCare è l’incontro tra i filtri di cura del frontend, la convalida nel backend e un modello dei dati normalizzato."
+    },
+    qualitySignals: [
+      {
+        title: "Contratto tipizzato tra frontend e API",
+        text: "Il client React modella direttamente la struttura delle risposte API, così schede, pagine di dettaglio, filtri e paginazione usano DTO TypeScript espliciti.",
+        items: [
+          "I tipi DTO coprono elementi dell’elenco, dettagli, metadati dei filtri, paginazione e ogni filtro di cura supportato",
+          "Il client API tipizzato costruisce URLSearchParams per ricerca, difficoltà, luce, acqua, umidità, temperatura, tipo di crescita, fioritura, rarità, pagina e dimensione della pagina",
+          "Le rotte frontend corrispondono chiaramente al backend: l’esplorazione usa elenco e metadati, i dettagli usano lo slug e la collezione rara riutilizza i filtri dell’elenco"
+        ]
+      },
+      {
+        title: "Gestione convalidata delle query API",
+        text: "Il controller verifica i valori delle query prima che raggiungano il repository e restituisce risposte 400 o 404 controllate per gli input non validi.",
+        items: [
+          "I filtri enumerati sono limitati ai valori previsti per difficoltà, luce, annaffiatura, tipo di crescita e periodo di fioritura",
+          "Umidità e temperatura vengono interpretate come numeri finiti, mentre pagina e dimensione devono essere interi positivi",
+          "La dimensione della pagina è limitata a 40, gli slug devono rispettare il formato URL minuscolo previsto e i dettagli mancanti restituiscono un errore 404 strutturato"
+        ]
+      },
+      {
+        title: "Schema PostgreSQL e sicurezza delle query",
+        text: "Il livello database usa tabelle normalizzate, vincoli, indici e query `pg` parametrizzate per il modello pubblico delle orchidee.",
+        items: [
+          "Lo schema separa `orchids` dai record uno a uno di `orchid_care_profiles`, con eliminazione a cascata tramite chiave esterna",
+          "I vincoli proteggono formato dello slug, tipo di crescita, difficoltà, luce, annaffiatura, intervalli di umidità e temperatura, fioritura e completezza dei metadati delle immagini",
+          "Le query del repository usano parametri per ricerca e filtri, oltre a indici su slug, nomi, genere, tipo di crescita, difficoltà, luce, acqua e fioritura"
+        ]
+      },
+      {
+        title: "Sicurezza in esecuzione e configurazione ripetibile",
+        text: "L’app Express include middleware orientati alla produzione e script locali per il database, rendendo il progetto più semplice da eseguire e valutare.",
+        items: [
+          "Helmet, origine CORS configurata, parsing JSON, registrazione delle richieste e gestori centralizzati per pagine mancanti ed errori sono collegati a livello dell’applicazione",
+          "`db/schema.sql` e `db/seed.sql` permettono una configurazione PostgreSQL ripetibile tramite `npm run db:reset`",
+          "Gli script di build del frontend e del backend eseguono i controlli TypeScript prima di produrre contenuti pronti per la valutazione"
+        ]
+      }
+    ],
+    media: project.media.map((asset, index) => ({
+      ...asset,
+      alt: [
+        "Homepage di OrchidCare con sezione introduttiva e funzionalità in evidenza",
+        "Pagina di esplorazione di OrchidCare con ricerca, filtri di cura e schede delle orchidee",
+        "Pagina dei preferiti di OrchidCare con le orchidee salvate",
+        "Guida alla cura di OrchidCare con indicazioni per principianti sull’annaffiatura",
+        "Pagina di dettaglio di OrchidCare dedicata alla Queen of Sheba Orchid"
+      ][index] ?? asset.alt
+    })),
+    links: project.links.map((link) => ({
+      ...link,
+      label: link.kind === "case-study" ? "Caso di studio" : link.label
+    }))
   })
 };
 
