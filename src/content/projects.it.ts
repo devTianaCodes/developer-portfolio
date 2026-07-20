@@ -297,6 +297,141 @@ const italianProjectTranslators: Partial<Record<ProjectSlug, ProjectTranslator>>
             : link.label
     }))
   }),
+  english4u: (project) => ({
+    ...project,
+    tagline:
+      "Piattaforma per l’apprendimento autonomo dell’inglese, con percorsi per studenti e CMS amministrativo.",
+    summary:
+      "Un LMS pensato per il portfolio, realizzato con frontend React e backend Express/MySQL. Riunisce onboarding, dashboard dello studente, percorsi di corsi e lezioni, quiz, modalità di ripasso, impostazioni del profilo e raccolte amministrative basate sui ruoli.",
+    role: "Prodotto LMS full stack",
+    hook:
+      "Una piattaforma didattica concepita come un vero prodotto digitale, non come una semplice demo di lezioni.",
+    strengths: [
+      "Aree di prodotto chiare per studenti e amministratori",
+      "Software progettato specificamente per il portfolio",
+      "Ampia copertura delle rotte per un comportamento realistico dell’applicazione",
+      "Architettura full stack chiara per i flussi di studenti e amministratori"
+    ],
+    challenge:
+      "Creare un prodotto didattico pronto per i colloqui, capace di dimostrare sia la progettazione del prodotto sia il rigore nell’implementazione, senza sovraccaricare la prima versione con funzionalità ipotetiche.",
+    solution:
+      "Lo sviluppo si concentra sul nucleo dell’apprendimento: onboarding, dashboard, corsi, lezioni, quiz, flussi di ripasso e raccolte create dagli amministratori. Il caso di studio valorizza un ambito chiaro, l’utilità per lo studente e un percorso realistico dalla struttura MVP alla rifinitura per il portfolio.",
+    outcome:
+      "English4U resta un caso di studio solido perché combina profondità del prodotto, ricchezza delle rotte e una struttura full stack chiara per la valutazione tecnica.",
+    features: [
+      "Gestione delle rotte per ospiti, studenti e amministratori",
+      "Catalogo dei corsi, dettagli dei corsi e rotte delle lezioni",
+      "Flussi di quiz e ripasso",
+      "Dashboard, certificati, piano di studio, impostazioni e profilo",
+      "Raccolte amministrative per corsi, livelli, unità, lezioni, quiz e utenti"
+    ],
+    architecture: [
+      "Struttura React Router con protezioni delle rotte per esperienze ospite, studente e amministratore",
+      "Backend Express con API di autenticazione e contenuti",
+      "Confini chiari tra studenti, ospiti e amministratori mantengono comprensibile il prodotto mentre aumentano le rotte",
+      "Una superficie di rotte progettata per rimanere leggibile durante la crescita del prodotto didattico"
+    ],
+    metrics: [
+      { label: "Rotte dello studente", value: "10+" },
+      { label: "Raccolte amministrative", value: "6" },
+      { label: "Modalità del caso di studio", value: "Full stack" }
+    ],
+    impactBullets: [
+      "Collega la progettazione del prodotto a un’esperienza realistica di apprendimento autonomo.",
+      "Mostra come autenticazione, progressi, contenuti e struttura amministrativa lavorano insieme.",
+      "Presenta un prodotto didattico mirato, con valore per l’utente e un’implementazione ordinata."
+    ],
+    interviewAngles: [
+      "Come la struttura delle rotte separa le esperienze di ospiti, studenti e amministratori senza diventare disordinata.",
+      "Perché limitare la prima versione al nucleo dell’apprendimento ha reso il progetto più solido e credibile.",
+      "Come il prodotto diventa pronto per la demo attraverso rifinitura, contenuti iniziali e flussi gestiti dagli amministratori."
+    ],
+    repositories: project.repositories?.map((repository, index) => ({
+      ...repository,
+      label: index === 0 ? "Repository frontend" : "Repository backend"
+    })),
+    workflowIntro: {
+      eyebrow: "Flusso di apprendimento",
+      title: "Sistema dal test di livello al monitoraggio dei progressi",
+      text: "English4U esprime al meglio il proprio valore quando viene presentata come un percorso connesso dello studente, non come una raccolta di schermate isolate."
+    },
+    workflowHighlights: [
+      {
+        title: "Percorso personalizzato dello studente",
+        text: "L’applicazione accompagna lo studente dalla creazione dell’account al test iniziale, al livello consigliato, ai progressi nei corsi, ai quiz, al ripasso e alla pianificazione dello studio.",
+        items: [
+          "Il test iniziale consiglia percorsi A1 o A2 con indicatori di affidabilità, feedback sulle aree da migliorare, cronologia e confronto dell’andamento",
+          "La dashboard combina corso attuale, prossima lezione, continuità, lezioni completate, media dei quiz, attività settimanale e suggerimenti del tutor",
+          "Lezioni, quiz, riferimenti grammaticali, certificati, profilo, impostazioni e piano di studio sostengono il percorso attorno al flusso principale"
+        ]
+      },
+      {
+        title: "Logica di valutazione e ripasso",
+        text: "I flussi didattici includono valutazione e generazione del ripasso gestite dal backend, non soltanto esercizi statici nel frontend.",
+        items: [
+          "I dati dei quiz non espongono le risposte corrette prima dell’invio e il punteggio viene calcolato sul server",
+          "I tentativi possono essere salvati in MySQL e aggiornare media dei quiz, continuità e progressi dello studente",
+          "Le modalità di ripasso generano esercizi da errori, contenuti di riscaldamento, grammatica, vocabolario, test iniziale, progressi e tentativi recenti"
+        ]
+      },
+      {
+        title: "Amministrazione e gestione dei contenuti",
+        text: "Il progetto comprende flussi protetti di back office che dimostrano una progettazione basata sui ruoli oltre l’interfaccia dello studente.",
+        items: [
+          "Le raccolte amministrative comprendono corsi, livelli, unità, lezioni, quiz e utenti",
+          "I flussi di creazione, modifica ed eliminazione supportano selettori di relazione per corsi, unità e contenuti delle lezioni",
+          "Lo studio dei quiz limita ogni quiz a tre domande, mantenendo l’esperienza amministrativa intenzionalmente circoscritta e chiara nella demo"
+        ]
+      }
+    ],
+    apiIntro: {
+      eyebrow: "Superficie del backend",
+      title: "Domini API per l’apprendimento",
+      text: "L’API Express separa la scoperta pubblica, i flussi autenticati dello studente e le operazioni sui contenuti riservate agli amministratori."
+    },
+    qualityIntro: {
+      eyebrow: "Decisioni tecniche",
+      title: "Architettura, autenticazione e persistenza",
+      text: "Le scelte di implementazione rendono il progetto utile nei colloqui perché mostrano confini realistici tra interfaccia, API, autenticazione e dati."
+    },
+    qualitySignals: [
+      {
+        title: "Architettura frontend",
+        text: "L’app React è organizzata attorno a pagine di rotta, rotte protette, componenti riutilizzabili per interfaccia e layout e accesso centralizzato alle API.",
+        items: [
+          "React Router separa le rotte pubbliche, quelle autenticate degli studenti, quelle riservate agli ospiti e quelle amministrative",
+          "I componenti delle rotte vengono caricati in modo differito con React.lazy e Suspense per mantenere modulare l’applicazione",
+          "Le chiamate API sono centralizzate in src/services/api.js con una gestione coerente delle risposte"
+        ]
+      },
+      {
+        title: "Architettura backend",
+        text: "Il backend Express segue un flusso a livelli che mantiene separati controller, persistenza e logica di dominio.",
+        items: [
+          "Il flusso delle richieste segue rotta → controller → servizio/repository/funzione di supporto → database o contenuti dimostrativi",
+          "I moduli funzionali si trovano in src/modules, insieme a configurazione condivisa, pool del database, middleware, rotte e utilità",
+          "I moduli dashboard e ripasso combinano dati di test iniziale, progressi, tentativi dei quiz, piani di studio, lezioni e metadati grammaticali"
+        ]
+      },
+      {
+        title: "Sicurezza e persistenza",
+        text: "L’autenticazione e lo stato dello studente sono responsabilità del backend, non semplici controlli delle rotte nel frontend.",
+        items: [
+          "Le password vengono protette con bcryptjs, i JWT includono identità e ruolo e l’autenticazione può usare cookie HTTP-only o bearer token",
+          "I middleware del backend associano l’utente corrente e proteggono le rotte degli studenti e quelle riservate al ruolo amministratore",
+          "MySQL conserva utenti, ruoli, test iniziali, progressi nelle lezioni, tentativi dei quiz, continuità e piani di studio, mentre le raccolte dimostrative mantengono portabili i contenuti del catalogo"
+        ]
+      }
+    ],
+    media: project.media.map((asset, index) => ({
+      ...asset,
+      alt: `Schermata ${index + 1} di English4U`
+    })),
+    links: project.links.map((link) => ({
+      ...link,
+      label: link.kind === "case-study" ? "Caso di studio" : link.label
+    }))
+  }),
   orchidcare: (project) => ({
     ...project,
     tagline:
