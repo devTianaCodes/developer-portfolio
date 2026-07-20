@@ -585,6 +585,168 @@ const italianProjectTranslators: Partial<Record<ProjectSlug, ProjectTranslator>>
       label: link.kind === "case-study" ? "Caso di studio" : link.label
     }))
   }),
+  brickdrop: (project) => ({
+    ...project,
+    tagline:
+      "Gioco per browser rapido e mirato, con rifinitura moderna e la classica pressione del punteggio.",
+    summary:
+      "Un’implementazione di BrickDrop con React e Vite, dotata di eliminazione delle righe, progressione dei livelli, pezzi fantasma, selezione casuale a sacchetto, pausa e stile responsive. È la dimostrazione interattiva più immediata del portfolio.",
+    role: "Sviluppo frontend delle meccaniche di gioco",
+    hook:
+      "Un gioco compatto che dimostra come una solida logica frontend possa diventare immediatamente giocabile.",
+    strengths: [
+      "Logica di gioco autonoma",
+      "Transizioni di stato e punteggio chiare",
+      "Candidato ideale per una distribuzione live immediata",
+      "Forte contrasto rispetto ai progetti in stile applicazione"
+    ],
+    challenge:
+      "Ricreare un gioco familiare con una sensazione di gioco sufficientemente coinvolgente, mantenendo al tempo stesso il codice leggibile e compatto.",
+    solution:
+      "Tabellone, movimento dei pezzi, blocco, eliminazione delle righe e punteggio risiedono direttamente nel componente dell’applicazione. L’implementazione usa anteprime del pezzo fantasma, difficoltà crescente con i livelli e un sistema a sacchetto per rendere il gioco più curato.",
+    outcome:
+      "BrickDrop offre al portfolio un’esperienza live immediatamente verificabile e mostra una logica frontend compatta senza richiedere un’infrastruttura backend.",
+    features: [
+      "Punteggio per le righe eliminate e progressione dei livelli",
+      "Anteprima del pezzo fantasma",
+      "Flusso di pausa e riavvio",
+      "Selezione casuale dei pezzi con sistema a sacchetto",
+      "Area di gioco responsive nel browser"
+    ],
+    architecture: [
+      "Applicazione React a pagina singola con stato di gioco autonomo",
+      "Funzioni pure di supporto per posizionamento, rotazione, unione ed eliminazione delle righe",
+      "Output di build Vite già disponibile per l’anteprima statica"
+    ],
+    metrics: [
+      { label: "Dimensione del tabellone", value: "20 x 10" },
+      { label: "Set di tetramini", value: "7" },
+      { label: "Modalità di distribuzione", value: "Statico live" }
+    ],
+    impactBullets: [
+      "Aggiunge interazione immediata al portfolio, oltre ai casi di studio statici.",
+      "Mostra capacità di sviluppo frontend attraverso meccaniche, temporizzazione e transizioni di stato.",
+      "Crea una demo live semplice da provare per chi valuta il progetto."
+    ],
+    interviewAngles: [
+      "Come è organizzata la logica di gioco per restare leggibile e offrire comunque un’esperienza curata.",
+      "Perché pezzo fantasma, casualità a sacchetto e ritmo dei livelli migliorano un clone semplice.",
+      "Cosa cambia quando un progetto frontend viene ottimizzato per essere giocabile direttamente anziché per flussi aziendali."
+    ],
+    repositories: project.repositories?.map((repository) => ({
+      ...repository,
+      label: "Repository del gioco"
+    })),
+    workflowIntro: {
+      eyebrow: "Flusso di gioco",
+      title: "Sistema compatto di puzzle in tempo reale",
+      text: "BrickDrop è un gioco frontend piccolo ma completo che combina ciclo di gioco, collisioni, controlli responsive, persistenza e feedback curato."
+    },
+    workflowHighlights: [
+      {
+        title: "Logica principale dei blocchi in caduta",
+        text: "Il progetto implementa le meccaniche attese da un gioco giocabile di impilamento dei blocchi, senza fermarsi a un tabellone visivo.",
+        items: [
+          "Il gioco usa un tabellone standard 10 x 20 con sette tetramini: I, O, T, S, Z, J e L",
+          "Movimento, collisioni, rotazione, blocco, eliminazione delle righe, pausa, ripresa, caduta rapida e caduta controllata sono gestiti nel ciclo di gioco",
+          "Il punteggio supporta l’eliminazione di una, due, tre o quattro righe, con avanzamento di livello ogni 10 righe e velocità crescente"
+        ]
+      },
+      {
+        title: "Equità e supporto al giocatore",
+        text: "Piccole scelte nelle meccaniche rendono il clone più completo e piacevole.",
+        items: [
+          "Al posto di una selezione completamente casuale viene usato un sistema a sacchetto mescolato",
+          "Le nuove partite evitano di iniziare con i pezzi S o Z, migliorando la qualità percepita all’avvio",
+          "La proiezione del pezzo fantasma e l’anteprima del prossimo pezzo aiutano a pianificare anziché soltanto reagire"
+        ]
+      },
+      {
+        title: "Interazione mobile-first",
+        text: "Il mobile è trattato come un’esperienza di gioco specifica, non come un layout desktop compresso.",
+        items: [
+          "Il layout mobile dedica il 60% superiore dello schermo al tabellone e il 40% inferiore ai controlli",
+          "Grandi pulsanti skeuomorfici permettono di giocare con i pollici e supportano il movimento continuo tenendo premuti destra o sinistra",
+          "Pausa e ripresa usano colori specifici dello stato, mentre le azioni non valide vengono disabilitate durante pausa, eliminazione delle righe o stati non giocabili"
+        ]
+      }
+    ],
+    apiIntro: {
+      eyebrow: "Sistemi frontend",
+      title: "Superfici dell’architettura di gioco",
+      text: "BrickDrop è un gioco frontend statico, quindi le superfici tecniche importanti sono logica del tabellone, temporizzazione, input, persistenza e rendering responsive."
+    },
+    apiDomains: [
+      "Tabellone di gioco",
+      "Sacchetto dei tetramini",
+      "Anteprima del prossimo pezzo",
+      "Pezzo fantasma",
+      "Controlli delle collisioni",
+      "Eliminazione delle righe",
+      "Stato di punteggio e livello",
+      "Memorizzazione del record",
+      "Input da tastiera su desktop",
+      "Controlli touch su mobile",
+      "Schermata di benvenuto",
+      "Finestra di fine partita"
+    ],
+    qualityIntro: {
+      eyebrow: "Decisioni tecniche",
+      title: "Stato, temporizzazione, gioco responsive e rifinitura",
+      text: "Il valore nei colloqui deriva dalla capacità di spiegare come mantenere comprensibili stato in tempo reale, timer, input del browser e vincoli del layout mobile."
+    },
+    qualitySignals: [
+      {
+        title: "Gestione dello stato",
+        text: "L’implementazione mantiene poche dipendenze usando stato e riferimenti React per il gioco anziché una libreria esterna.",
+        items: [
+          "Tabellone, pezzo attivo, prossimo pezzo, stato, punteggio, livello, righe, record e stato di eliminazione sono separati",
+          "I riferimenti conservano timer, animazioni di eliminazione, movimento continuo e sacchetto corrente dei pezzi",
+          "localStorage conserva il record con la chiave BrickDrop_high_score tra le sessioni del browser"
+        ]
+      },
+      {
+        title: "Ciclo di gioco e temporizzazione",
+        text: "La temporizzazione è trattata come una parte centrale della sensazione di gioco.",
+        items: [
+          "La caduta automatica usa setInterval in base al livello attuale e accelera con l’aumento del livello",
+          "L’animazione di eliminazione usa un timeout prima di rimuovere le righe e generare il pezzo successivo",
+          "Su mobile il movimento continuo inizia con un timeout, poi ripete a intervalli più rapidi e viene interrotto al rilascio, all’annullamento, in pausa o a fine partita"
+        ]
+      },
+      {
+        title: "Collisioni e aggiornamento del tabellone",
+        text: "Le operazioni principali sul tabellone hanno nomi chiari e spiegabili, facilitando la revisione del progetto.",
+        items: [
+          "canPlace centralizza i controlli dei limiti e delle collisioni",
+          "mergePiece sovrappone il pezzo attivo al tabellone e clearLines rimuove le righe complete aggiungendo righe vuote in alto",
+          "La rotazione usa una trasformazione della matrice con semplici tentativi di correzione vicino alle pareti"
+        ]
+      },
+      {
+        title: "Rifinitura del prodotto e sviluppi futuri",
+        text: "Il progetto è abbastanza curato da risultare giocabile e conserva miglioramenti futuri ben definiti.",
+        items: [
+          "Le schermate di benvenuto e fine partita condividono lo stesso linguaggio visivo, con forme dei pezzi, punteggio, livello, righe e azioni per giocare ancora o uscire",
+          "Il sistema arcade scuro al neon usa pannelli effetto vetro, colori luminosi, lampi all’eliminazione delle righe e pulsanti mobile skeuomorfici",
+          "I prossimi passi includono test per collisioni, righe, rotazione e selezione iniziale, oltre a feedback aptico, suoni, classifica, supporto PWA e correzioni di rotazione più ricche"
+        ]
+      }
+    ],
+    media: project.media.map((asset, index) => ({
+      ...asset,
+      alt: `Schermata ${index + 1} di BrickDrop`
+    })),
+    links: project.links.map((link) => ({
+      ...link,
+      label:
+        link.kind === "live"
+          ? "Demo live"
+          : link.kind === "case-study"
+            ? "Caso di studio"
+            : link.label
+    }))
+  }),
   paytrack: (project) => ({
     ...project,
     tagline:
