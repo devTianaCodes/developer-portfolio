@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import type { CredentialEntry, DegreeCredential } from "@/content/credentials";
 
 type CredentialGalleryProps = {
@@ -33,6 +34,7 @@ function CertificateModal({ credential, onClose }: CertificateModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();
+  const tCommon = useTranslations("Common");
 
   useEffect(() => {
     const previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -107,7 +109,7 @@ function CertificateModal({ credential, onClose }: CertificateModalProps) {
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
-            aria-label="Close certificate viewer"
+            aria-label={tCommon("close")}
             className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-[3px] border-2 border-[#262626] text-2xl leading-none text-[#262626] transition hover:bg-[#262626] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
           >
             <span aria-hidden="true">×</span>
@@ -136,6 +138,8 @@ function CertificateModal({ credential, onClose }: CertificateModalProps) {
 export function CredentialGallery({ credentials }: CredentialGalleryProps) {
   const [activeCredential, setActiveCredential] = useState<ModalCredential | null>(null);
   const [portalReady, setPortalReady] = useState(false);
+  const tCommon = useTranslations("Common");
+  const tCredentials = useTranslations("Credentials");
 
   useEffect(() => {
     setPortalReady(true);
@@ -146,7 +150,7 @@ export function CredentialGallery({ credentials }: CredentialGalleryProps) {
   return (
     <>
       <section data-testid="professional-credentials" className="space-y-6">
-        <p className="section-label">Professional certifications</p>
+        <p className="section-label">{tCredentials("professionalCertifications")}</p>
 
         <div className="grid gap-5 md:grid-cols-2">
           {credentials.map((credential) => (
@@ -163,7 +167,7 @@ export function CredentialGallery({ credentials }: CredentialGalleryProps) {
                   })
                 }
                 className="group relative aspect-[16/10] w-full overflow-hidden border-b border-line bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
-                aria-label={`View ${credential.title} certificate`}
+                aria-label={`${tCommon("viewCertificate")}: ${credential.title}`}
               >
                 <Image
                   src={credential.image}
@@ -193,7 +197,7 @@ export function CredentialGallery({ credentials }: CredentialGalleryProps) {
                     }
                     className="sharp-button self-start"
                   >
-                    View certificate
+                    {tCommon("viewCertificate")}
                   </button>
                 </div>
               </div>
@@ -219,6 +223,8 @@ export function CredentialGallery({ credentials }: CredentialGalleryProps) {
 export function DegreeCredentialGallery({ credentials }: DegreeCredentialGalleryProps) {
   const [activeCredential, setActiveCredential] = useState<ModalCredential | null>(null);
   const [portalReady, setPortalReady] = useState(false);
+  const tCommon = useTranslations("Common");
+  const tCredentials = useTranslations("Credentials");
 
   useEffect(() => {
     setPortalReady(true);
@@ -229,7 +235,7 @@ export function DegreeCredentialGallery({ credentials }: DegreeCredentialGallery
   return (
     <>
       <section data-testid="higher-education-credentials" className="space-y-6">
-        <p className="section-label">Higher education</p>
+        <p className="section-label">{tCredentials("higherEducation")}</p>
 
         <div className="grid gap-5 md:grid-cols-3">
           {credentials.map((degree) => {
@@ -247,7 +253,7 @@ export function DegreeCredentialGallery({ credentials }: DegreeCredentialGallery
                   type="button"
                   onClick={() => setActiveCredential(modalCredential)}
                   className="group relative aspect-[4/3] w-full overflow-hidden border-b border-line bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
-                  aria-label={`View ${degree.level} in ${degree.field}`}
+                  aria-label={`${tCommon("viewCertificate")}: ${degree.level} - ${degree.field}`}
                 >
                   <Image
                     src={degree.image}
@@ -268,7 +274,7 @@ export function DegreeCredentialGallery({ credentials }: DegreeCredentialGallery
                       onClick={() => setActiveCredential(modalCredential)}
                       className="sharp-button self-start"
                     >
-                      View certificate
+                      {tCommon("viewCertificate")}
                     </button>
                   </div>
                 </div>

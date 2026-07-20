@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { PanInfo } from "framer-motion";
+import { useTranslations } from "next-intl";
 import type { ProjectEntry } from "@/content/projects";
 import { sortProjectsForDisplay } from "@/content/projects";
 import { classNames } from "@/lib/classNames";
@@ -71,7 +72,13 @@ const mobileSummaries: Partial<Record<ProjectEntry["slug"], string>> = {
   "sea-battle": "Interactive Battleship game with board logic, turn flow, and polished browser gameplay."
 };
 
-function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boolean, shadeOpacity: number) {
+function projectPanel(
+  project: ProjectEntry,
+  isActive: boolean,
+  isHovered: boolean,
+  shadeOpacity: number,
+  viewProjectLabel: string
+) {
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
   const heroSrc = hero?.optimizedSrc ?? hero?.poster ?? hero?.src;
   const mobileSummary = mobileSummaries[project.slug] ?? project.tagline;
@@ -131,7 +138,7 @@ function projectPanel(project: ProjectEntry, isActive: boolean, isHovered: boole
             isActive && "group-hover:bg-[#262626] group-hover:text-white"
           )}
         >
-          View Project
+          {viewProjectLabel}
         </span>
       </div>
 
@@ -150,6 +157,8 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const [{ activeIndex, direction }, setCarousel] = useState({ activeIndex: 0, direction: 1 });
   const reduceMotion = useReducedMotion();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const tCommon = useTranslations("Common");
+  const tProjects = useTranslations("Projects");
 
   if (!orderedProjects.length) return null;
 
@@ -198,7 +207,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
         <button
           type="button"
           onClick={() => move(-1)}
-          aria-label="Show previous project"
+          aria-label={tProjects("previousProject")}
           className="absolute left-4 top-1/2 z-[80] flex -translate-y-1/2 items-center justify-center px-2 py-5 text-5xl font-medium leading-none text-white/95 drop-shadow-[0_3px_12px_rgba(0,0,0,0.48)] transition hover:-translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:left-7 md:text-7xl"
         >
           <span aria-hidden="true">‹</span>
@@ -206,7 +215,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
         <button
           type="button"
           onClick={() => move(1)}
-          aria-label="Show next project"
+          aria-label={tProjects("nextProject")}
           className="absolute right-4 top-1/2 z-[80] flex -translate-y-1/2 items-center justify-center px-2 py-5 text-5xl font-medium leading-none text-white/95 drop-shadow-[0_3px_12px_rgba(0,0,0,0.48)] transition hover:translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:right-7 md:text-7xl"
         >
           <span aria-hidden="true">›</span>
@@ -253,20 +262,20 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                 {isActive ? (
                   <Link
                     href={"/projects/" + project.slug}
-                    aria-label={"Open " + project.name + " project"}
+                    aria-label={tProjects("openProject", { project: project.name })}
                     className="group relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                   >
-                    {projectPanel(project, true, isHovered, 0)}
+                    {projectPanel(project, true, isHovered, 0, tCommon("viewProject"))}
                   </Link>
                 ) : (
                   <button
                     type="button"
                     onClick={() => setActiveProject(index)}
                     className="group relative block h-full w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-                    aria-label={"Center " + project.name}
+                    aria-label={tProjects("centerProject", { project: project.name })}
                     tabIndex={absOffset === 1 ? 0 : -1}
                   >
-                    {projectPanel(project, false, isHovered, isHovered ? 0.18 : 0.45)}
+                    {projectPanel(project, false, isHovered, isHovered ? 0.18 : 0.45, tCommon("viewProject"))}
                   </button>
                 )}
               </motion.div>
@@ -293,10 +302,10 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
             >
               <Link
                 href={"/projects/" + activeProject.slug}
-                aria-label={"Open " + activeProject.name + " project"}
+                aria-label={tProjects("openProject", { project: activeProject.name })}
                 className="group relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
               >
-                {projectPanel(activeProject, true, false, 0)}
+                {projectPanel(activeProject, true, false, 0, tCommon("viewProject"))}
               </Link>
             </motion.div>
           </AnimatePresence>

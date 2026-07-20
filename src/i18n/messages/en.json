@@ -11,6 +11,7 @@
     "credentials": "Credentials",
     "contact": "Contact",
     "githubProfile": "GitHub profile",
+    "role": "Full Stack Web Developer Jr.",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
@@ -45,6 +46,8 @@
     "projectCount": "{current} / {total}",
     "previousProject": "Previous project",
     "nextProject": "Next project",
+    "openProject": "Open {project} project",
+    "centerProject": "Center {project}",
     "liveDemo": "Live demo",
     "repository": "Repository",
     "frontendRepository": "Frontend repository",
@@ -58,7 +61,9 @@
     "publicIdentity": "Public identity",
     "professionalExperience": "Professional experience",
     "educationTraining": "Education and training",
-    "languages": "Languages"
+    "languages": "Languages",
+    "introduction": "Junior Full-Stack Developer building responsive, user-focused web applications with React, TypeScript, Node.js, Express and MySQL. Hands-on experience delivering end-to-end projects, from mobile-first interfaces to REST APIs, authentication, payment workflows and database integration. A background in Java and Spring Boot, UX/UI and technical teaching brings a thoughtful approach to usability, problem-solving, collaboration and commitment to continuous learning.",
+    "portraitAlt": "Tatiana Oblasser portrait"
   },
   "Credentials": {
     "eyebrow": "Credentials",

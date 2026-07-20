@@ -11,6 +11,7 @@
     "credentials": "Certificazioni",
     "contact": "Contatti",
     "githubProfile": "Profilo GitHub",
+    "role": "Sviluppatore Web Full Stack Jr.",
     "openMenu": "Apri il menu",
     "closeMenu": "Chiudi il menu"
   },
@@ -45,6 +46,8 @@
     "projectCount": "{current} / {total}",
     "previousProject": "Progetto precedente",
     "nextProject": "Progetto successivo",
+    "openProject": "Apri il progetto {project}",
+    "centerProject": "Porta {project} al centro",
     "liveDemo": "Demo live",
     "repository": "Repository",
     "frontendRepository": "Repository frontend",
@@ -53,12 +56,14 @@
   },
   "About": {
     "title": "Chi sono",
-    "subtitle": "Sviluppatrice web full-stack junior",
+    "subtitle": "Sviluppatore Web Full Stack Jr.",
     "currentFocus": "Obiettivo attuale",
     "publicIdentity": "Identità professionale",
     "professionalExperience": "Esperienza professionale",
     "educationTraining": "Formazione",
-    "languages": "Lingue"
+    "languages": "Lingue",
+    "introduction": "Sviluppatore Web Full Stack Junior orientato alla realizzazione di applicazioni web moderne, responsive e intuitive con React, Node.js, Express e MySQL. Esperienza nello sviluppo di interfacce mobile-first, API RESTful, gestione dei database e integrazione tra frontend e backend. Formazione precedente come Sviluppatore Java con competenze in programmazione orientata agli oggetti, Spring Boot e logica backend. Le certificazioni UX/UI contribuiscono a un approccio progettuale orientato all'utente e all'usabilità. Ottime capacità comunicative e collaborative, unite a una forte attitudine all'apprendimento continuo.",
+    "portraitAlt": "Ritratto di Tatiana Oblasser"
   },
   "Credentials": {
     "eyebrow": "Certificazioni",

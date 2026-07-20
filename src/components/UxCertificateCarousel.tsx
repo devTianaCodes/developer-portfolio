@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { PanInfo } from "framer-motion";
+import { useTranslations } from "next-intl";
 import type { UxUiCredential } from "@/content/credentials";
 
 type UxCertificateCarouselProps = {
@@ -28,6 +29,8 @@ function circularOffset(index: number, activeIndex: number, length: number) {
 export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProps) {
   const [{ activeIndex, direction }, setCarousel] = useState({ activeIndex: 0, direction: 1 });
   const reduceMotion = useReducedMotion();
+  const tCommon = useTranslations("Common");
+  const tCredentials = useTranslations("Credentials");
 
   if (!credentials.length) return null;
 
@@ -54,7 +57,7 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
 
   return (
     <section data-testid="ux-certificate-carousel" className="space-y-6">
-      <p className="section-label">UX/UI certificates</p>
+      <p className="section-label">{tCredentials("uxUiCertificates")}</p>
 
       <div className="overflow-hidden sharp-panel">
         <div className="relative aspect-[4/3] overflow-hidden bg-[linear-gradient(135deg,#f8fafc_0%,#e8eef5_50%,#f8fafc_100%)] sm:aspect-[16/10] lg:aspect-[16/9]">
@@ -152,7 +155,7 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
           <button
             type="button"
             onClick={() => move(-1)}
-            aria-label="Show previous UX/UI certificate"
+            aria-label={tCredentials("previousCertificate")}
             className={`${navigationButtonClass} left-[7%] sm:left-[14%]`}
           >
             <span aria-hidden="true">‹</span>
@@ -160,7 +163,7 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
           <button
             type="button"
             onClick={() => move(1)}
-            aria-label="Show next UX/UI certificate"
+            aria-label={tCredentials("nextCertificate")}
             className={`${navigationButtonClass} right-[7%] sm:right-[14%]`}
           >
             <span aria-hidden="true">›</span>
@@ -180,7 +183,7 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
               rel="noreferrer"
               className="sharp-button shrink-0 self-start sm:self-auto"
             >
-              View certificate
+              {tCommon("viewCertificate")}
             </a>
           </div>
 

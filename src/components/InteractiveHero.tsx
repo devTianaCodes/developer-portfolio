@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import NextLink from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { GithubIcon } from "@/components/GithubIcon";
 import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import { siteConfig } from "@/content/site";
+import { Link } from "@/i18n/navigation";
 
 const proofMetrics = [
   { label: "selected work", value: "8", detail: "case studies spanning product and play" },
@@ -15,6 +17,7 @@ const proofMetrics = [
 
 export function InteractiveHero() {
   const reduceMotion = useReducedMotion();
+  const t = useTranslations("Common");
   const reveal = {
     initial: false,
     animate: { opacity: 1, y: 0 },
@@ -55,9 +58,9 @@ export function InteractiveHero() {
                 href={siteConfig.secondaryCta.href}
                 className="sharp-button-dark min-w-52 border-white bg-white px-[1.8em] py-[1.1em] text-base text-[#06152f] shadow-[0_12px_30px_rgba(0,0,0,0.24)] transition duration-200 hover:scale-105"
               >
-                Explore projects
+                {t("exploreProjects")}
               </Link>
-              <Link
+              <NextLink
                 href={siteConfig.githubUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -65,7 +68,7 @@ export function InteractiveHero() {
               >
                 <GithubIcon className="h-5 w-5" />
                 {siteConfig.githubHandle}
-              </Link>
+              </NextLink>
             </div>
           </motion.div>
 

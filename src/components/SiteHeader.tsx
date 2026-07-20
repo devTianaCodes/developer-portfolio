@@ -2,21 +2,23 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { LanguageSelector } from "@/components/LanguageSelector";
 import { siteConfig } from "@/content/site";
+import { Link, usePathname } from "@/i18n/navigation";
 
 const navItems = [
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  { href: "/credentials", label: "Credentials" },
-  { href: "/contact", label: "Contact" }
-];
+  { href: "/projects", labelKey: "projects" },
+  { href: "/about", labelKey: "about" },
+  { href: "/credentials", labelKey: "credentials" },
+  { href: "/contact", labelKey: "contact" }
+] as const;
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations("Navigation");
+  const tLocale = useTranslations("LocaleSwitcher");
 
   function isActiveRoute(href: string) {
     return pathname === href || pathname.startsWith(href + "/");
@@ -40,7 +42,7 @@ export function SiteHeader() {
           <span className="min-w-0">
             <span className="block truncate font-sans text-xl font-medium text-[#262626] sm:text-2xl">{siteConfig.name}</span>
             <span className="block text-[9px] uppercase tracking-[0.22em] text-[#262626]/62 sm:text-[11px] sm:tracking-[0.28em]">
-              {siteConfig.role}
+              {t("role")}
             </span>
           </span>
         </Link>
@@ -61,7 +63,7 @@ export function SiteHeader() {
                       : "after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-[#262626] after:transition-all hover:after:w-full"
                   }`}
                 >
-                  {item.label}
+                  {t(item.labelKey)}
                 </Link>
               );
             })}
@@ -73,7 +75,7 @@ export function SiteHeader() {
 
           <button
             type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-label={menuOpen ? t("closeMenu") : t("openMenu")}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
             className="inline-flex h-11 w-11 items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent text-[#262626] transition hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#262626]/40 lg:hidden"
@@ -95,7 +97,7 @@ export function SiteHeader() {
         <nav className="mx-auto flex max-w-[96rem] flex-col py-4">
           <div className="flex items-center justify-between border-b border-line px-1 pb-4">
             <span className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#262626]/65">
-              Language
+              {tLocale("label")}
             </span>
             <LanguageSelector />
           </div>
@@ -109,7 +111,7 @@ export function SiteHeader() {
                 isActiveRoute(item.href) ? "translate-x-1 font-semibold" : ""
               }`}
             >
-              {item.label}
+              {t(item.labelKey)}
             </Link>
           ))}
         </nav>
