@@ -147,6 +147,47 @@
       }
     }
   },
+  "ProjectCaseStudy": {
+    "categories": {
+      "fullStack": "full stack",
+      "frontend": "frontend",
+      "game": "game"
+    },
+    "deployment": {
+      "hybrid": "hybrid",
+      "media": "media",
+      "live": "live"
+    },
+    "logicMapAlt": "{project} logic flow map",
+    "repositoryRoot": "{label} root",
+    "techStack": "Tech stack",
+    "challengeEyebrow": "Challenge",
+    "challengeTitle": "What needed to work",
+    "solutionEyebrow": "Solution",
+    "solutionTitle": "How it was built",
+    "qualityEyebrow": "Engineering quality",
+    "qualityTitle": "Testing and coverage gates",
+    "qualityDescription": "The backend is presented as an interview-ready system with automated tests and measurable quality thresholds.",
+    "apiEyebrow": "Backend surface",
+    "apiTitle": "API domains",
+    "apiDescription": "The backend exposes dedicated REST domains for customer, commerce, admin, payment, and health workflows.",
+    "outcomeEyebrow": "Outcome",
+    "outcomeTitle": "Why this project stands out",
+    "repositoryRoots": "Repository roots",
+    "impactEyebrow": "What this demonstrates",
+    "impactTitle": "Project impact",
+    "featuresEyebrow": "Product walkthrough",
+    "featuresTitle": "Feature highlights",
+    "featuresDescription": "The case study surfaces how the experience works for a real user, admin, or player, rather than stopping at visuals.",
+    "architectureEyebrow": "Technical decisions",
+    "architectureTitle": "Architecture and implementation",
+    "architectureDescription": "These notes focus on why the structure matters, not only what technologies were chosen.",
+    "demoEyebrow": "Demo capture",
+    "demoTitle": "Video walkthrough",
+    "demoDescription": "Planned clips remain first-class so the page structure stays stable when final media is dropped in.",
+    "demoVideo": "Demo video",
+    "demoPlaceholder": "Clip placeholder ready for upload to Vercel-hosted media path."
+  },
   "About": {
     "title": "About",
     "subtitle": "Full Stack Web Developer Jr.",

@@ -147,6 +147,47 @@
       }
     }
   },
+  "ProjectCaseStudy": {
+    "categories": {
+      "fullStack": "full stack",
+      "frontend": "frontend",
+      "game": "gioco"
+    },
+    "deployment": {
+      "hybrid": "ibrido",
+      "media": "contenuti multimediali",
+      "live": "live"
+    },
+    "logicMapAlt": "Mappa del flusso logico di {project}",
+    "repositoryRoot": "Cartella principale {label}",
+    "techStack": "Stack tecnologico",
+    "challengeEyebrow": "Sfida",
+    "challengeTitle": "Cosa doveva funzionare",
+    "solutionEyebrow": "Soluzione",
+    "solutionTitle": "Come è stato realizzato",
+    "qualityEyebrow": "Qualità tecnica",
+    "qualityTitle": "Test e soglie di copertura",
+    "qualityDescription": "Il backend è presentato come un sistema pronto per il colloquio tecnico, con test automatizzati e soglie di qualità misurabili.",
+    "apiEyebrow": "Struttura del backend",
+    "apiTitle": "Domini API",
+    "apiDescription": "Il backend espone domini REST dedicati ai flussi del cliente, del commercio, dell’amministrazione, dei pagamenti e del monitoraggio del sistema.",
+    "outcomeEyebrow": "Risultato",
+    "outcomeTitle": "Perché questo progetto si distingue",
+    "repositoryRoots": "Cartelle principali dei repository",
+    "impactEyebrow": "Cosa dimostra",
+    "impactTitle": "Impatto del progetto",
+    "featuresEyebrow": "Percorso del prodotto",
+    "featuresTitle": "Funzionalità principali",
+    "featuresDescription": "Il caso di studio mostra come funziona l’esperienza per un utente, un amministratore o un giocatore reale, senza fermarsi all’aspetto visivo.",
+    "architectureEyebrow": "Decisioni tecniche",
+    "architectureTitle": "Architettura e implementazione",
+    "architectureDescription": "Queste note spiegano perché la struttura è importante, non soltanto quali tecnologie sono state scelte.",
+    "demoEyebrow": "Presentazione della demo",
+    "demoTitle": "Video dimostrativo",
+    "demoDescription": "Gli spezzoni pianificati rimangono elementi di primo piano, così la struttura della pagina resta stabile quando vengono aggiunti i contenuti multimediali definitivi.",
+    "demoVideo": "Video dimostrativo",
+    "demoPlaceholder": "Spazio predisposto per il caricamento del video nel percorso multimediale ospitato su Vercel."
+  },
   "About": {
     "title": "Chi sono",
     "subtitle": "Sviluppatore Web Full Stack Jr.",

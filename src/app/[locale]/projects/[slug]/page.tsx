@@ -3,9 +3,10 @@ import type { Metadata } from "next";
 import { PageReveal } from "@/components/PageReveal";
 import { ProjectCaseStudy } from "@/components/ProjectCaseStudy";
 import { getProjectBySlug, projects } from "@/content/projects";
+import { getItalianProject } from "@/content/projects.it";
 
 type ProjectPageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export async function generateStaticParams() {
@@ -13,7 +14,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const project = getProjectBySlug(slug);
 
   if (!project) {
@@ -22,23 +23,27 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     };
   }
 
+  const localizedProject = locale === "it" ? getItalianProject(project) : project;
+
   return {
-    title: project.name,
-    description: project.summary
+    title: localizedProject.name,
+    description: localizedProject.summary
   };
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const project = getProjectBySlug(slug);
 
   if (!project) {
     notFound();
   }
 
+  const localizedProject = locale === "it" ? getItalianProject(project) : project;
+
   return (
     <PageReveal>
-      <ProjectCaseStudy project={project} />
+      <ProjectCaseStudy project={localizedProject} />
     </PageReveal>
   );
 }

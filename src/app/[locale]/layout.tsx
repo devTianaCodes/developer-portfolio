@@ -1,32 +1,47 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { siteConfig } from "@/content/site";
 import { routing } from "@/i18n/routing";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://developer-portfolio.vercel.app"),
-  title: {
-    default: "Tiana Oblasser | Web Developer",
-    template: "%s | Tiana Oblasser"
-  },
-  description: siteConfig.description,
-  openGraph: {
-    title: "Tiana Oblasser | Web Developer",
-    description: siteConfig.description,
-    url: "https://developer-portfolio.vercel.app",
-    siteName: "Tiana Oblasser Portfolio",
-    type: "website"
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Tiana Oblasser | Web Developer",
-    description: siteConfig.description
-  }
+type LocaleParamsProps = {
+  params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({ params }: LocaleParamsProps): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!hasLocale(routing.locales, locale)) {
+    return {};
+  }
+
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+  const title = t("siteTitle");
+  const description = t("siteDescription");
+
+  return {
+    metadataBase: new URL("https://developer-portfolio.vercel.app"),
+    title: {
+      default: title,
+      template: "%s | Tatiana Oblasser"
+    },
+    description,
+    openGraph: {
+      title,
+      description,
+      url: "https://developer-portfolio.vercel.app",
+      siteName: title,
+      type: "website"
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description
+    }
+  };
+}
 
 type LocaleLayoutProps = Readonly<{
   children: React.ReactNode;

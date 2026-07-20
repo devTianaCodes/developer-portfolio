@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { GithubIcon } from "@/components/GithubIcon";
 import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import type { ProjectEntry } from "@/content/projects";
@@ -116,19 +117,16 @@ function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title: string
 }
 
 function repositoryLabel(label: string) {
-  return label
-    .replace(/^Frontend/, "front-end")
-    .replace(/^Backend/, "back-end")
-    .replace(/^Game/, "game")
-    .replace(/^Project/, "project");
+  return label.toLocaleLowerCase();
 }
 
 export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
+  const t = useTranslations("ProjectCaseStudy");
   const images = project.media.filter((item) => item.kind === "image");
   const videos = project.media.filter((item) => item.kind === "video");
   const actionLinks = project.links.filter((link) => link.kind !== "case-study");
   const liveLink = actionLinks.find((link) => link.kind === "live" && link.href);
-  const lowerHeroLiveButton = liveLink?.label === "Open Web App" && (project.slug === "chocolate" || project.slug === "petnest");
+  const lowerHeroLiveButton = Boolean(liveLink && (project.slug === "chocolate" || project.slug === "petnest"));
   const hasResourceBlock = Boolean(project.repositories || project.repositoryRoots);
   const logicMap = logicMaps[project.slug];
   const theme = caseStudyThemes[project.visualTone];
@@ -139,6 +137,18 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   } as CSSProperties;
   const panelClass = `rounded-[6px] border border-[color:var(--case-line)] ${theme.panel} p-8 shadow-[0_18px_48px_rgba(15,23,42,0.08)]`;
   const tileClass = `rounded-[6px] border border-[color:var(--case-line)] ${theme.tile} p-4 text-sm leading-7 text-muted`;
+  const categoryLabel =
+    project.category === "full-stack"
+      ? t("categories.fullStack")
+      : project.category === "frontend"
+        ? t("categories.frontend")
+        : t("categories.game");
+  const deploymentLabel =
+    project.deploymentMode === "hybrid"
+      ? t("deployment.hybrid")
+      : project.deploymentMode === "media"
+        ? t("deployment.media")
+        : t("deployment.live");
 
   return (
     <div style={themeStyle} className={`-mx-2.5 -my-10 overflow-hidden px-2.5 py-10 md:-mx-4 md:-my-14 md:px-4 md:py-14 ${theme.shell}`}>
@@ -148,13 +158,13 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             <div className="space-y-5">
               <div className="flex flex-wrap gap-3">
                 <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
-                  {project.category}
+                  {categoryLabel}
                 </span>
                 <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
                   {project.year}
                 </span>
                 <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
-                  {project.deploymentMode}
+                  {deploymentLabel}
                 </span>
               </div>
               <h1 className="max-w-full text-balance font-sans text-[clamp(2.45rem,13vw,4.35rem)] font-medium leading-[0.96] tracking-[-0.01em] md:text-7xl">{project.name}</h1>
@@ -178,7 +188,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
               <figure className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)] md:hidden">
                 <Image
                   src={logicMap.src}
-                  alt={`${project.name} logic flow map`}
+                  alt={t("logicMapAlt", { project: project.name })}
                   width={logicMap.width}
                   height={logicMap.height}
                   className="h-auto w-full object-cover"
@@ -212,7 +222,9 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                     <div className="hidden gap-3 sm:grid sm:grid-cols-2">
                       {project.repositoryRoots.map((root) => (
                         <div key={root.path} className="min-w-0 rounded-[4px] border border-[color:var(--case-line)] bg-white/30 px-3 py-2 sm:px-3">
-                          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#262626]/58">{root.label} root</p>
+                          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#262626]/58">
+                            {t("repositoryRoot", { label: root.label })}
+                          </p>
                           <p className="mt-1 break-words font-mono text-[11px] leading-5 text-[#262626]/78">{root.path}</p>
                         </div>
                       ))}
@@ -246,7 +258,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
               <figure className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)]">
                 <Image
                   src={logicMap.src}
-                  alt={`${project.name} logic flow map`}
+                  alt={t("logicMapAlt", { project: project.name })}
                   width={logicMap.width}
                   height={logicMap.height}
                   className="h-auto w-full object-cover"
@@ -258,7 +270,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             ) : null}
 
             <div className="self-end rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 md:h-[11.5rem] md:overflow-hidden">
-              <p className="text-center text-[11px] font-bold uppercase tracking-[2px] text-[#262626]/62">Tech stack</p>
+              <p className="text-center text-[11px] font-bold uppercase tracking-[2px] text-[#262626]/62">{t("techStack")}</p>
               <div className="mt-3 flex max-h-[8.25rem] flex-wrap justify-center gap-2 overflow-hidden">
                 {project.techStack.map((item) => (
                   <ProjectTechBadge
@@ -323,10 +335,10 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         ) : (
           <section className="grid gap-8 lg:grid-cols-2">
             <div className={panelClass}>
-              <SectionTitle eyebrow="Challenge" title="What needed to work" text={project.challenge} />
+              <SectionTitle eyebrow={t("challengeEyebrow")} title={t("challengeTitle")} text={project.challenge} />
             </div>
             <div className={panelClass}>
-              <SectionTitle eyebrow="Solution" title="How it was built" text={project.solution} />
+              <SectionTitle eyebrow={t("solutionEyebrow")} title={t("solutionTitle")} text={project.solution} />
             </div>
           </section>
         )}
@@ -336,11 +348,11 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             {project.qualitySignals ? (
               <div className={`space-y-6 ${panelClass}`}>
                 <SectionTitle
-                  eyebrow={project.qualityIntro?.eyebrow ?? "Engineering quality"}
-                  title={project.qualityIntro?.title ?? "Testing and coverage gates"}
+                  eyebrow={project.qualityIntro?.eyebrow ?? t("qualityEyebrow")}
+                  title={project.qualityIntro?.title ?? t("qualityTitle")}
                   text={
                     project.qualityIntro?.text ??
-                    "The backend is presented as an interview-ready system with automated tests and measurable quality thresholds."
+                    t("qualityDescription")
                   }
                 />
                 <div className="grid gap-4 md:grid-cols-2">
@@ -362,11 +374,11 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             {project.apiDomains ? (
               <div className={`space-y-5 ${panelClass}`}>
                 <SectionTitle
-                  eyebrow={project.apiIntro?.eyebrow ?? "Backend surface"}
-                  title={project.apiIntro?.title ?? "API domains"}
+                  eyebrow={project.apiIntro?.eyebrow ?? t("apiEyebrow")}
+                  title={project.apiIntro?.title ?? t("apiTitle")}
                   text={
                     project.apiIntro?.text ??
-                    "The backend exposes dedicated REST domains for customer, commerce, admin, payment, and health workflows."
+                    t("apiDescription")
                   }
                 />
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -382,8 +394,8 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         ) : (
           <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div className={`space-y-5 ${panelClass}`}>
-              <SectionTitle eyebrow="Outcome" title="Why this project stands out" text={project.outcome} />
-              <p className="text-sm uppercase tracking-[0.24em] text-muted">Repository roots</p>
+              <SectionTitle eyebrow={t("outcomeEyebrow")} title={t("outcomeTitle")} text={project.outcome} />
+              <p className="text-sm uppercase tracking-[0.24em] text-muted">{t("repositoryRoots")}</p>
               <p className="rounded-[6px] border border-[color:var(--case-line)] bg-white/72 px-4 py-4 font-mono text-sm text-muted">
                 {project.repoPath}
               </p>
@@ -391,8 +403,8 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
 
             <div className={`space-y-6 ${panelClass}`}>
               <div>
-                <p className="font-sans text-xs font-bold uppercase tracking-[2px] text-[var(--case-accent)]">What this demonstrates</p>
-                <h2 className="minimal-heading mt-3 text-4xl">Project impact</h2>
+                <p className="font-sans text-xs font-bold uppercase tracking-[2px] text-[var(--case-accent)]">{t("impactEyebrow")}</p>
+                <h2 className="minimal-heading mt-3 text-4xl">{t("impactTitle")}</h2>
               </div>
               <div className="grid gap-4">
                 {project.impactBullets.map((item) => (
@@ -407,9 +419,9 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
 
         <section className="space-y-6">
           <SectionTitle
-            eyebrow="Product walkthrough"
-            title="Feature highlights"
-            text="The case study surfaces how the experience works for a real user, admin, or player, rather than stopping at visuals."
+            eyebrow={t("featuresEyebrow")}
+            title={t("featuresTitle")}
+            text={t("featuresDescription")}
           />
           <div className="grid gap-4 md:grid-cols-2">
             {project.features.map((feature) => (
@@ -422,9 +434,9 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
 
         <section className="space-y-6">
           <SectionTitle
-            eyebrow="Technical decisions"
-            title="Architecture and implementation"
-            text="These notes focus on why the structure matters, not only what technologies were chosen."
+            eyebrow={t("architectureEyebrow")}
+            title={t("architectureTitle")}
+            text={t("architectureDescription")}
           />
           <div className="grid gap-4 lg:grid-cols-2">
             {project.architecture.map((item) => (
@@ -440,9 +452,9 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         {videos.length > 0 ? (
           <section className="space-y-6">
             <SectionTitle
-              eyebrow="Demo capture"
-              title="Video walkthrough"
-              text="Planned clips remain first-class so the page structure stays stable when final media is dropped in."
+              eyebrow={t("demoEyebrow")}
+              title={t("demoTitle")}
+              text={t("demoDescription")}
             />
             <div className="grid gap-6 lg:grid-cols-2">
               {videos.map((asset) => (
@@ -459,9 +471,9 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                     />
                   ) : null}
                   <div className="mt-4 space-y-2">
-                    <p className="text-xs uppercase tracking-[0.22em] text-[var(--case-accent)]">Demo video</p>
+                    <p className="text-xs uppercase tracking-[0.22em] text-[var(--case-accent)]">{t("demoVideo")}</p>
                     <p className="text-sm leading-7 text-muted">
-                      {asset.note ?? "Clip placeholder ready for upload to Vercel-hosted media path."}
+                      {asset.note ?? t("demoPlaceholder")}
                     </p>
                   </div>
                 </div>
@@ -472,7 +484,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
 
         <section>
           <div className={panelClass}>
-            <p className="text-center text-xs uppercase tracking-[0.3em] text-[var(--case-accent)]">Tech stack</p>
+            <p className="text-center text-xs uppercase tracking-[0.3em] text-[var(--case-accent)]">{t("techStack")}</p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               {project.techStack.map((item) => (
                 <ProjectTechBadge key={item} tech={item} />
