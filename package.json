@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev -p 5300",
     "build": "next build",
+    "i18n:check": "node scripts/check-translations.mjs",
+    "i18n:check:strict": "node scripts/check-translations.mjs --strict",
     "start": "next start",
     "lint": "next lint",
     "vercel:link": "vercel link",
@@ -19,6 +21,7 @@
   "dependencies": {
     "framer-motion": "^12.6.2",
     "next": "^15.1.0",
+    "next-intl": "^4.13.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

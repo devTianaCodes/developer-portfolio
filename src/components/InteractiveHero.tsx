@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { GithubIcon } from "@/components/GithubIcon";
 import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import { siteConfig } from "@/content/site";
 
@@ -49,12 +50,23 @@ export function InteractiveHero() {
               </span>
             </h1>
 
-            <Link
-              href={siteConfig.secondaryCta.href}
-              className="sharp-button-dark mt-[43px] border-white bg-white px-[1.8em] py-[1.1em] text-base text-[#06152f] shadow-[0_12px_30px_rgba(0,0,0,0.24)]"
-            >
-              Explore projects
-            </Link>
+            <div className="mt-[43px] flex flex-col items-center">
+              <Link
+                href={siteConfig.secondaryCta.href}
+                className="sharp-button-dark min-w-52 border-white bg-white px-[1.8em] py-[1.1em] text-base text-[#06152f] shadow-[0_12px_30px_rgba(0,0,0,0.24)] transition duration-200 hover:scale-105"
+              >
+                Explore projects
+              </Link>
+              <Link
+                href={siteConfig.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-[43px] inline-flex items-center gap-2 font-sans text-[1.1375rem] font-semibold tracking-[0.06em] text-white underline-offset-4 transition duration-200 hover:scale-105 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              >
+                <GithubIcon className="h-5 w-5" />
+                {siteConfig.githubHandle}
+              </Link>
+            </div>
           </motion.div>
 
           <motion.div

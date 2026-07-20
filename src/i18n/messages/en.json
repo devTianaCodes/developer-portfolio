@@ -1,0 +1,91 @@
+{
+  "LocaleSwitcher": {
+    "label": "Select language",
+    "english": "English",
+    "italian": "Italian",
+    "romanian": "Romanian"
+  },
+  "Navigation": {
+    "projects": "Projects",
+    "about": "About",
+    "credentials": "Credentials",
+    "contact": "Contact",
+    "githubProfile": "GitHub profile",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "Common": {
+    "viewProject": "View project",
+    "viewCertificate": "View certificate",
+    "exploreProjects": "Explore projects",
+    "allProjects": "All projects",
+    "previous": "Previous",
+    "next": "Next",
+    "close": "Close",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email"
+  },
+  "Footer": {
+    "eyebrow": "Tatiana Oblasser",
+    "headline": "Sharp web products, built for review.",
+    "description": "Selected full-stack apps, interactive games, and case studies with a GitHub-first identity.",
+    "deployment": "Professional review and Vercel deployment"
+  },
+  "Home": {
+    "heroLineOne": "Have a project in mind?",
+    "heroLineTwo": "Let's bring it to life",
+    "selectedWork": "Selected work",
+    "fullStackApps": "Full-stack apps",
+    "liveDemos": "Live demos",
+    "projectsHeading": "Product-focused applications and playable systems."
+  },
+  "Projects": {
+    "title": "Projects",
+    "projectCount": "{current} / {total}",
+    "previousProject": "Previous project",
+    "nextProject": "Next project",
+    "liveDemo": "Live demo",
+    "repository": "Repository",
+    "frontendRepository": "Frontend repository",
+    "backendRepository": "Backend repository",
+    "gameRepository": "Game repository"
+  },
+  "About": {
+    "title": "About",
+    "subtitle": "Full Stack Web Developer Jr.",
+    "currentFocus": "Current focus",
+    "publicIdentity": "Public identity",
+    "professionalExperience": "Professional experience",
+    "educationTraining": "Education and training",
+    "languages": "Languages"
+  },
+  "Credentials": {
+    "eyebrow": "Credentials",
+    "title": "Continuous learning",
+    "professionalCertifications": "Professional certifications",
+    "uxUiCertificates": "UX/UI certificates",
+    "higherEducation": "Higher education",
+    "previousCertificate": "Previous certificate",
+    "nextCertificate": "Next certificate"
+  },
+  "Contact": {
+    "eyebrow": "Contact",
+    "title": "Open to frontend and full-stack web work.",
+    "description": "Review the selected projects, connect on LinkedIn, or send a direct email.",
+    "viewProjects": "View projects"
+  },
+  "NotFound": {
+    "title": "Project not found.",
+    "description": "The project you are looking for is not part of the selected portfolio set.",
+    "backToProjects": "Back to projects"
+  },
+  "Metadata": {
+    "siteTitle": "Tiana Oblasser | Web Developer",
+    "siteDescription": "Full-stack web developer portfolio focused on React, Node.js, REST APIs, and user-centered interfaces.",
+    "projectsTitle": "Projects",
+    "aboutTitle": "About",
+    "credentialsTitle": "Credentials",
+    "contactTitle": "Contact"
+  }
+}

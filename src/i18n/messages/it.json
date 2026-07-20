@@ -1,0 +1,91 @@
+{
+  "LocaleSwitcher": {
+    "label": "Seleziona la lingua",
+    "english": "Inglese",
+    "italian": "Italiano",
+    "romanian": "Rumeno"
+  },
+  "Navigation": {
+    "projects": "Progetti",
+    "about": "Chi sono",
+    "credentials": "Certificazioni",
+    "contact": "Contatti",
+    "githubProfile": "Profilo GitHub",
+    "openMenu": "Apri il menu",
+    "closeMenu": "Chiudi il menu"
+  },
+  "Common": {
+    "viewProject": "Vedi progetto",
+    "viewCertificate": "Vedi certificato",
+    "exploreProjects": "Scopri i progetti",
+    "allProjects": "Tutti i progetti",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "close": "Chiudi",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email"
+  },
+  "Footer": {
+    "eyebrow": "Tatiana Oblasser",
+    "headline": "Prodotti web curati, pronti per essere valutati.",
+    "description": "Applicazioni full-stack, giochi interattivi e casi di studio selezionati, con un'identità professionale centrata su GitHub.",
+    "deployment": "Valutazione professionale e distribuzione su Vercel"
+  },
+  "Home": {
+    "heroLineOne": "Hai un progetto in mente?",
+    "heroLineTwo": "Trasformiamolo in realtà",
+    "selectedWork": "Progetti selezionati",
+    "fullStackApps": "Applicazioni full-stack",
+    "liveDemos": "Demo live",
+    "projectsHeading": "Applicazioni orientate al prodotto e sistemi interattivi."
+  },
+  "Projects": {
+    "title": "Progetti",
+    "projectCount": "{current} / {total}",
+    "previousProject": "Progetto precedente",
+    "nextProject": "Progetto successivo",
+    "liveDemo": "Demo live",
+    "repository": "Repository",
+    "frontendRepository": "Repository frontend",
+    "backendRepository": "Repository backend",
+    "gameRepository": "Repository del gioco"
+  },
+  "About": {
+    "title": "Chi sono",
+    "subtitle": "Sviluppatrice web full-stack junior",
+    "currentFocus": "Obiettivo attuale",
+    "publicIdentity": "Identità professionale",
+    "professionalExperience": "Esperienza professionale",
+    "educationTraining": "Formazione",
+    "languages": "Lingue"
+  },
+  "Credentials": {
+    "eyebrow": "Certificazioni",
+    "title": "Formazione continua",
+    "professionalCertifications": "Certificazioni professionali",
+    "uxUiCertificates": "Certificati UX/UI",
+    "higherEducation": "Formazione universitaria",
+    "previousCertificate": "Certificato precedente",
+    "nextCertificate": "Certificato successivo"
+  },
+  "Contact": {
+    "eyebrow": "Contatti",
+    "title": "Disponibile per opportunità frontend e full-stack.",
+    "description": "Esplora i progetti selezionati, contattami su LinkedIn oppure inviami un'email.",
+    "viewProjects": "Vedi i progetti"
+  },
+  "NotFound": {
+    "title": "Progetto non trovato.",
+    "description": "Il progetto che stai cercando non fa parte della selezione del portfolio.",
+    "backToProjects": "Torna ai progetti"
+  },
+  "Metadata": {
+    "siteTitle": "Tiana Oblasser | Sviluppatrice web",
+    "siteDescription": "Portfolio di una sviluppatrice web full-stack specializzata in React, Node.js, API REST e interfacce orientate all'utente.",
+    "projectsTitle": "Progetti",
+    "aboutTitle": "Chi sono",
+    "credentialsTitle": "Certificazioni",
+    "contactTitle": "Contatti"
+  }
+}

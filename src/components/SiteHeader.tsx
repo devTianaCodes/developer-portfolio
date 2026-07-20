@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { GithubIcon } from "@/components/GithubIcon";
+import { LanguageSelector } from "@/components/LanguageSelector";
 import { siteConfig } from "@/content/site";
 
 const navItems = [
@@ -45,7 +45,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-12 lg:gap-16">
+        <div className="flex items-center gap-8 xl:gap-12">
           <nav className="hidden items-center gap-5 lg:flex">
             {navItems.map((item) => {
               const active = isActiveRoute(item.href);
@@ -67,15 +67,9 @@ export function SiteHeader() {
             })}
           </nav>
 
-          <Link
-            href={siteConfig.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="hidden items-center gap-2 text-[0.98rem] leading-none text-[#262626] transition hover:scale-105 hover:text-[#262626] lg:inline-flex"
-          >
-            <GithubIcon className="h-4 w-4" />
-            {siteConfig.githubHandle}
-          </Link>
+          <div className="hidden lg:block">
+            <LanguageSelector />
+          </div>
 
           <button
             type="button"
@@ -99,6 +93,12 @@ export function SiteHeader() {
         }`}
       >
         <nav className="mx-auto flex max-w-[96rem] flex-col py-4">
+          <div className="flex items-center justify-between border-b border-line px-1 pb-4">
+            <span className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-[#262626]/65">
+              Language
+            </span>
+            <LanguageSelector />
+          </div>
           {navItems.map((item) => (
             <Link
               key={item.href}
