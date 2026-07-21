@@ -7,8 +7,7 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 
 const languages = [
   { code: "en", label: "EN", nameKey: "english", enabled: true },
-  { code: "it", label: "IT", nameKey: "italian", enabled: true },
-  { code: "ro", label: "RO", nameKey: "romanian", enabled: false }
+  { code: "it", label: "IT", nameKey: "italian", enabled: true }
 ] as const;
 
 type LanguageSelectorProps = {
