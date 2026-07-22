@@ -1702,7 +1702,7 @@ export const projects: ProjectEntry[] = [
   {
     slug: "sea-battle",
     name: "Sea Battle",
-    tagline: "Single-player Battleship with adaptive AI, glasmorphism styling, and accessibility touches.",
+    tagline: "Single-player Battleship with adaptive AI, glassmorphism styling, and accessibility touches.",
     summary:
       "A modern single-player Battleship experience built with React, Vite, Framer Motion, and Zustand. It includes onboarding, difficulty settings, ship placement, effects, history, pause states, and supporting UI for a polished browser game.",
     role: "Interactive frontend and UI systems",
