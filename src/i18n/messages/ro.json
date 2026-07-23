@@ -98,8 +98,54 @@
     }
   },
   "Projects": {
+    "title": "Proiecte",
+    "projectCount": "{current} / {total}",
+    "previousProject": "Proiectul anterior",
+    "nextProject": "Proiectul următor",
     "openProject": "Deschide proiectul {project}",
-    "projectImageAlt": "Previzualizarea proiectului {project}"
+    "centerProject": "Adu proiectul {project} în centru",
+    "projectImageAlt": "Previzualizarea proiectului {project}",
+    "fullStackType": "Aplicație web full-stack",
+    "gameType": "Joc web",
+    "liveDemo": "Demo live",
+    "repository": "Repository",
+    "frontendRepository": "Repository frontend",
+    "backendRepository": "Repository backend",
+    "gameRepository": "Repository-ul jocului",
+    "projectCards": {
+      "chocolate": {
+        "tagline": "Brand e-commerce premium, cu un flux complet de cumpărare și administrare.",
+        "mobileSummary": "Aplicație web e-commerce cu catalog, coș, checkout și operațiuni administrative."
+      },
+      "english4u": {
+        "tagline": "Platformă de învățare autonomă a limbii engleze, cu parcursuri pentru cursanți și CMS administrativ.",
+        "mobileSummary": "Platformă educațională cu parcursuri, quiz-uri, dashboarduri și instrumente administrative pentru conținut."
+      },
+      "orchidcare": {
+        "tagline": "Enciclopedie a orhideelor axată pe îngrijire, cu profiluri ușor de căutat, filtre, favorite și o colecție de specii rare.",
+        "mobileSummary": "Enciclopedie a orhideelor cu filtre de îngrijire, pagini detaliate, favorite și date PostgreSQL."
+      },
+      "petnest": {
+        "tagline": "Platformă de adopții dedicată animalelor salvate, cu moderare, dashboarduri și fluxuri de solicitare.",
+        "mobileSummary": "Aplicație pentru adopții cu anunțuri de animale, profiluri, favorite și fluxuri de solicitare."
+      },
+      "paytrack": {
+        "tagline": "Manager de abonamente mobile-first pentru plăți recurente, notificări și o imagine clară asupra cheltuielilor.",
+        "mobileSummary": "Manager de abonamente mobile-first cu notificări, informații despre cheltuieli și fluxuri sigure pentru cont."
+      },
+      "ai-comparator": {
+        "tagline": "Aplicație single-page fără autentificare pentru compararea modelelor de IA, cu căutare, filtre, favorite și analiză alăturată.",
+        "mobileSummary": "Aplicație pentru compararea modelelor de IA, cu căutare, filtre, favorite și analiză alăturată."
+      },
+      "brickdrop": {
+        "tagline": "Joc rapid și captivant pentru browser, cu finisaje moderne și presiunea clasică a punctajului.",
+        "mobileSummary": "Puzzle jucabil cu controale intuitive, punctaj, niveluri și o experiență responsive în browser."
+      },
+      "sea-battle": {
+        "tagline": "Battleship pentru un singur jucător, cu IA adaptivă, stil glassmorphism și atenție pentru accesibilitate.",
+        "mobileSummary": "Joc interactiv Battleship cu logica tablei, gestionarea turelor și o experiență rafinată în browser."
+      }
+    }
   },
   "ProjectCaseStudy": {
     "categories": {
