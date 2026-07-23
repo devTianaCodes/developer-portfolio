@@ -383,7 +383,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                 />
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   {project.apiDomains.map((domain) => (
-                    <p key={domain} className="rounded-[6px] border border-[color:var(--case-line)] bg-white/72 px-4 py-3 font-mono text-sm text-muted">
+                    <p key={domain} className="min-w-0 break-all rounded-[6px] border border-[color:var(--case-line)] bg-white/72 px-4 py-3 font-mono text-sm text-muted">
                       {domain}
                     </p>
                   ))}
