@@ -369,5 +369,13 @@
     "demoDescription": "Secvențele planificate rămân elemente principale, astfel încât structura paginii să fie stabilă când sunt adăugate materialele multimedia finale.",
     "demoVideo": "Videoclip demonstrativ",
     "demoPlaceholder": "Spațiu pregătit pentru încărcarea videoclipului în calea media găzduită pe Vercel."
+  },
+  "Metadata": {
+    "siteTitle": "Tiana Oblasser | Dezvoltatoare web",
+    "siteDescription": "Portofoliul unei dezvoltatoare web full-stack specializate în React, Node.js, API-uri REST și interfețe centrate pe utilizator.",
+    "projectsTitle": "Proiecte",
+    "aboutTitle": "Despre mine",
+    "credentialsTitle": "Certificări",
+    "contactTitle": "Contact"
   }
 }

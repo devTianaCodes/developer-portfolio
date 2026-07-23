@@ -6,6 +6,7 @@ import { PageReveal } from "@/components/PageReveal";
 import { UxCertificateCarousel } from "@/components/UxCertificateCarousel";
 import { degreeCredentials, professionalCredentials, uxUiCredentials } from "@/content/credentials";
 import { enabledLocales } from "@/i18n/config";
+import { createPageMetadata } from "@/i18n/metadata";
 
 type CredentialsPageProps = {
   params: Promise<{ locale: (typeof enabledLocales)[number] }>;
@@ -15,9 +16,12 @@ export async function generateMetadata({ params }: CredentialsPageProps): Promis
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
 
-  return {
-    title: t("credentialsTitle")
-  };
+  return createPageMetadata({
+    path: "/credentials",
+    locale,
+    title: t("credentialsTitle"),
+    description: t("siteDescription")
+  });
 }
 
 export default function CredentialsPage() {

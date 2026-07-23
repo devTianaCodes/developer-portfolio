@@ -4,6 +4,7 @@ import { PageReveal } from "@/components/PageReveal";
 import { ProjectCarousel } from "@/components/ProjectCarousel";
 import { projects } from "@/content/projects";
 import { enabledLocales } from "@/i18n/config";
+import { createPageMetadata } from "@/i18n/metadata";
 
 type ProjectsPageProps = {
   params: Promise<{ locale: (typeof enabledLocales)[number] }>;
@@ -13,9 +14,12 @@ export async function generateMetadata({ params }: ProjectsPageProps): Promise<M
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
 
-  return {
-    title: t("projectsTitle")
-  };
+  return createPageMetadata({
+    path: "/projects",
+    locale,
+    title: t("projectsTitle"),
+    description: t("siteDescription")
+  });
 }
 
 export default function ProjectsPage() {

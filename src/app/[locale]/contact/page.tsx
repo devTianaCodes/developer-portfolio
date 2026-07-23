@@ -6,6 +6,7 @@ import { PageReveal } from "@/components/PageReveal";
 import { SocialIcon } from "@/components/SocialIcon";
 import { siteConfig } from "@/content/site";
 import { enabledLocales } from "@/i18n/config";
+import { createPageMetadata } from "@/i18n/metadata";
 import { Link } from "@/i18n/navigation";
 
 type ContactPageProps = {
@@ -16,9 +17,12 @@ export async function generateMetadata({ params }: ContactPageProps): Promise<Me
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
 
-  return {
-    title: t("contactTitle")
-  };
+  return createPageMetadata({
+    path: "/contact",
+    locale,
+    title: t("contactTitle"),
+    description: t("siteDescription")
+  });
 }
 
 export default function ContactPage() {

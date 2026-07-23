@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { createPageMetadata, siteUrl } from "@/i18n/metadata";
 import { routing } from "@/i18n/routing";
 
 type LocaleParamsProps = {
@@ -20,21 +21,18 @@ export async function generateMetadata({ params }: LocaleParamsProps): Promise<M
   const t = await getTranslations({ locale, namespace: "Metadata" });
   const title = t("siteTitle");
   const description = t("siteDescription");
+  const localizedMetadata = createPageMetadata({ path: "/", locale, title, description });
 
   return {
-    metadataBase: new URL("https://developer-portfolio.vercel.app"),
+    ...localizedMetadata,
+    metadataBase: new URL(siteUrl),
     title: {
       default: title,
       template: "%s | Tatiana Oblasser"
     },
-    description,
-    openGraph: {
-      title,
-      description,
-      url: "https://developer-portfolio.vercel.app",
-      siteName: title,
-      type: "website"
-    },
+    openGraph: localizedMetadata.openGraph
+      ? { ...localizedMetadata.openGraph, siteName: title }
+      : undefined,
     twitter: {
       card: "summary_large_image",
       title,

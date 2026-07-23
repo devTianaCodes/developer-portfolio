@@ -7,6 +7,7 @@ import { PageReveal } from "@/components/PageReveal";
 import { SocialIcon } from "@/components/SocialIcon";
 import { siteConfig } from "@/content/site";
 import { enabledLocales } from "@/i18n/config";
+import { createPageMetadata } from "@/i18n/metadata";
 import { Link } from "@/i18n/navigation";
 
 type AboutPageProps = {
@@ -17,9 +18,12 @@ export async function generateMetadata({ params }: AboutPageProps): Promise<Meta
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
 
-  return {
-    title: t("aboutTitle")
-  };
+  return createPageMetadata({
+    path: "/about",
+    locale,
+    title: t("aboutTitle"),
+    description: t("siteDescription")
+  });
 }
 
 export default function AboutPage() {

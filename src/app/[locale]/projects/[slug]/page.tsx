@@ -5,6 +5,8 @@ import { ProjectCaseStudy } from "@/components/ProjectCaseStudy";
 import { getProjectBySlug, projects } from "@/content/projects";
 import { getItalianProject } from "@/content/projects.it";
 import { getRomanianProject } from "@/content/projects.ro";
+import { isLocale } from "@/i18n/config";
+import { createPageMetadata } from "@/i18n/metadata";
 
 type ProjectPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -20,7 +22,7 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const project = getProjectBySlug(slug);
 
-  if (!project) {
+  if (!project || !isLocale(locale)) {
     return {
       title: "Project",
     };
@@ -33,10 +35,12 @@ export async function generateMetadata({
         ? getRomanianProject(project)
         : project;
 
-  return {
+  return createPageMetadata({
+    path: `/projects/${slug}`,
+    locale,
     title: localizedProject.name,
-    description: localizedProject.summary,
-  };
+    description: localizedProject.summary
+  });
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
