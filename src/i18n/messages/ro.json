@@ -268,6 +268,62 @@
     "description": "Explorează proiectele selectate, contactează-mă pe LinkedIn sau trimite-mi un e-mail.",
     "viewProjects": "Vezi proiectele"
   },
+  "Credentials": {
+    "eyebrow": "Certificări",
+    "title": "Învățare continuă",
+    "professionalCertifications": "Certificări profesionale",
+    "uxUiCertificates": "Certificări UX/UI",
+    "higherEducation": "Studii universitare",
+    "previousCertificate": "Certificatul anterior",
+    "nextCertificate": "Certificatul următor",
+    "currentCertificate": "Certificatul actual: {title}",
+    "centerCertificate": "Adu {title} în centru",
+    "chooseCertificate": "Alege o certificare UX/UI",
+    "showCertificate": "Afișează {title}",
+    "uxCertificateImageAlt": "Certificatul cursului {title}, obținut de Tatiana Oblasser",
+    "professional": {
+      "booleanWebDevelopment": {
+        "date": "28 iunie 2026",
+        "imageAlt": "Certificatul Boolean Web Development Master, obținut de Tatiana Oblasser",
+        "description": "A finalizat un program de 600 de ore în dezvoltare full-stack, care a acoperit HTML, CSS, JavaScript, React, Node.js, Express și MySQL."
+      },
+      "booleanAiDays": {
+        "date": "12-14 mai 2026",
+        "imageAlt": "Certificatul de participare Boolean AI Days, obținut de Tatiana Oblasser",
+        "description": "A finalizat un program practic de cinci ore despre inteligența artificială, cu trei sesiuni live și dezvoltarea unui proiect de IA."
+      },
+      "aulabHtmlCss": {
+        "date": "5 aprilie 2024",
+        "imageAlt": "Certificatul cursului HTML și CSS Aulab, obținut de Tatiana Oblasser",
+        "description": "A finalizat cursul introductiv de cinci zile organizat de Aulab, dedicat noțiunilor fundamentale de HTML și CSS."
+      },
+      "nttDataInspireHer": {
+        "date": "11-12 octombrie 2024",
+        "imageAlt": "Certificatul de participare NTT DATA Italia InspireHER, obținut de Tatiana Oblasser",
+        "description": "A finalizat programul de dezvoltare personală InspireHER al NTT DATA Italia, axat pe recunoașterea și dezvoltarea talentului individual."
+      }
+    },
+    "degrees": {
+      "economicSciencesBachelor": {
+        "level": "Diplomă de licență",
+        "field": "Științe economice",
+        "specialization": "Afaceri și administrație",
+        "imageAlt": "Diplomă de licență în Științe economice, cu datele personale ascunse"
+      },
+      "economicSciencesMaster": {
+        "level": "Diplomă de master",
+        "field": "Științe economice",
+        "specialization": "Administrarea tranzacțiilor comerciale",
+        "imageAlt": "Diplomă de master în Științe economice, cu datele personale ascunse"
+      },
+      "educationSciencesBachelor": {
+        "level": "Diplomă de licență",
+        "field": "Științe ale educației",
+        "specialization": "Limba și literatura română și limba germană",
+        "imageAlt": "Diplomă de licență în Științe ale educației, cu datele personale ascunse"
+      }
+    }
+  },
   "NotFound": {
     "title": "Proiectul nu a fost găsit.",
     "description": "Proiectul pe care îl cauți nu face parte din selecția portofoliului.",
