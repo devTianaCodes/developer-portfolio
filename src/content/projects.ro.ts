@@ -131,6 +131,159 @@ const romanianProjectTranslators: Partial<
             : link.label,
     })),
   }),
+  "ai-comparator": (project) => ({
+    ...project,
+    tagline:
+      "SPA fără autentificare pentru compararea modelelor de IA, cu căutare, filtre, favorite și analiză alăturată.",
+    summary:
+      "Un proiect React și Vite dezvoltat în jurul cerințelor proiectului final Boolean: explorarea modelelor de IA, căutarea și filtrarea lor, consultarea detaliilor, compararea alăturată a două modele și păstrarea unei colecții de favorite, fără a expune utilizatorului operațiuni CRUD.",
+    role: "Flux de produs frontend cu integrare REST în backend",
+    hook: "Un instrument de comparație bine delimitat, care transformă un exercițiu educațional într-un flux de produs clar pentru evaluarea modelelor de IA.",
+    strengths: [
+      "Parcurs clar de explorare fără autentificare",
+      "Controale pentru căutare, filtrare după categorie și sortare",
+      "Flux de comparație între două modele",
+      "Favorite persistente disponibile în întreaga aplicație",
+    ],
+    challenge:
+      "Crearea unei SPA complete pentru comparație, conectată la un backend REST generat, respectând cerința ca utilizatorii neautentificați să poată explora, compara și salva favorite, dar nu să creeze, modifice sau șteargă înregistrări.",
+    solution:
+      "Frontendul folosește pagini React Router pentru listă, detalii, comparație și favorite, reunite într-un GlobalProvider pentru starea comună. Hookul personalizat useModels centralizează încărcarea din API, căutarea cu întârziere reduce cererile inutile, sortarea memorată păstrează catalogul receptiv, iar ID-urile selectate sunt transmise prin ruta de comparație.",
+    outcome:
+      "Proiectul demonstrează un flux de produs complet, doar pentru citire, cu date reale din backend, gestionare explicabilă a stării, navigare bazată pe rute și o experiență de comparație ușor de testat într-un interviu.",
+    features: [
+      "Catalog cu căutare întârziată după titlu, filtrare după categorie și sortare alfabetică după titlu sau categorie",
+      "Pagină de detaliu cu furnizor, modalitate, fereastră de context, interval de preț, indice de inteligență, puncte forte și descriere",
+      "Comparație între două modele care citește ID-urile selectate din query string și afișează câmpurile alăturat",
+      "Favorite accesibile din header și carduri, păstrate în localStorage",
+      "Stări goale, de încărcare și de eroare pentru listă, detalii, favorite și comparație",
+    ],
+    architecture: [
+      "React Router separă lista, detaliile, favoritele și comparația într-un DefaultLayout comun",
+      "GlobalContext păstrează ID-urile modelelor favorite și le sincronizează cu localStorage",
+      "Hookul useModels gestionează încărcarea listei, obținerea unui singur model, starea de încărcare și erorile API",
+      "ModelList concentrează controalele locale pentru căutare, categorie, sortare și selecția pentru comparație",
+      "Backendul generează endpointuri REST din tipul Model exportat în types.ts",
+      "Resursa Model este păstrată ca date JSON și validată printr-o schemă Zod generată",
+      "Interfața exclude intenționat crearea, modificarea și ștergerea pentru a respecta scopul utilizatorului neautentificat",
+    ],
+    metrics: [
+      { label: "Ecrane", value: "4" },
+      { label: "Resursă API", value: "Model" },
+      { label: "Înregistrări inițiale", value: "10+" },
+    ],
+    impactBullets: [
+      "Arată utilizarea practică a rutelor React, integrării API și coordonării stării fără supra-proiectare.",
+      "Face vizibilă logica de comparație printr-un flux real între două modele, nu printr-un tabel static.",
+      "Demonstrează respectarea cerințelor prin păstrarea interfeței în modul doar pentru citire pentru utilizatorii neautentificați.",
+    ],
+    interviewAngles: [
+      "Cum transformă frontendul cerințele exercițiului în rute și fluxuri de utilizator.",
+      "De ce ID-urile selectate sunt transmise în URL, făcând vizualizarea comparației distribuibilă și reîncărcabilă.",
+      "Cum folosește backendul o definiție tipizată a resursei pentru a genera endpointuri REST și a valida datele persistente.",
+    ],
+    repositories: project.repositories?.map((repository, index) => ({
+      ...repository,
+      label: index === 0 ? "Repository frontend" : "Repository backend",
+    })),
+    workflowIntro: {
+      eyebrow: "Fluxul de comparație",
+      title: "Explorează, selectează, compară și salvează",
+      text: "Punctul forte al AI Comparator este parcursul complet doar pentru citire, de la descoperirea în catalog la analiza alăturată pentru luarea unei decizii.",
+    },
+    workflowHighlights: [
+      {
+        title: "Catalogul modelelor",
+        text: "Pagina listei oferă controalele așteptate de la un produs de comparație.",
+        items: [
+          "Căutarea interoghează titlurile prin query stringul backendului după o întârziere de 500 ms",
+          "Categoriile sunt derivate din datele modelelor, astfel încât filtrul rămâne aliniat cu înregistrările disponibile",
+          "Sortarea acceptă titlul și categoria în direcțiile A–Z și Z–A și este memorată cu useMemo",
+        ],
+      },
+      {
+        title: "Selecție și comparație",
+        text: "Fluxul de comparație este intenționat simplu și ușor de înțeles.",
+        items: [
+          "Utilizatorii selectează exact două modele din catalog înainte de a deschide vizualizarea comparației",
+          "Ruta citește ID-urile selectate din URL și încarcă ambele înregistrări detaliate",
+          "Câmpurile comparabile includ furnizorul, anul lansării, modalitatea, fereastra de context, intervalul de preț, indicele de inteligență, punctele forte și categoria",
+        ],
+      },
+      {
+        title: "Favorite și analiza detaliilor",
+        text: "Aplicația păstrează la îndemână acțiunile repetate de consultare fără a adăuga complexitatea unui cont.",
+        items: [
+          "Butoanele pentru favorite sunt disponibile în carduri și vizualizările detaliate prin GlobalContext",
+          "ID-urile favorite rămân în localStorage, astfel încât selecțiile persistă după reîncărcarea paginii",
+          "O rută dedicată păstrează modelele salvate accesibile din header",
+          "Paginile de detaliu afișează resursa Model extinsă, nu doar câmpurile catalogului",
+        ],
+      },
+    ],
+    apiIntro: {
+      eyebrow: "Suprafața backendului",
+      title: "API REST generat pentru o resursă Model",
+      text: "Backendul este serverul de resurse în stil Boolean furnizat în cadrul cursului, personalizat printr-un tip Model și date JSON inițiale.",
+    },
+    qualityIntro: {
+      eyebrow: "Decizii de implementare",
+      title: "Cerințe lizibile și stare explicabilă",
+      text: "Proiectul este mai solid ca implementare clară a comportamentului cerut decât ca exercițiu bazat pe un framework complex.",
+    },
+    qualitySignals: [
+      {
+        title: "Respectarea cerințelor",
+        text: "Frontendul păstrează experiența utilizatorului public în modul doar pentru citire.",
+        items: [
+          "SPA-ul nu expune controale pentru creare, modificare sau ștergere",
+          "Cerințele minime principale sunt reprezentate prin rute și stări explicite ale interfeței",
+          "Comparația rămâne limitată la două înregistrări pentru a păstra clară prima versiune",
+        ],
+      },
+      {
+        title: "Structura stării în frontend",
+        text: "Reorganizarea recentă face fluxul datelor mai ușor de explicat și întreținut.",
+        items: [
+          "GlobalProvider învelește rutele, făcând favoritele disponibile în paginile de listă, detaliu și favorite",
+          "useModels centralizează logica cererilor API pentru liste și detalii individuale",
+          "ModelList combină încărcarea prin query din backend cu sortarea locală și selecția a două modele",
+        ],
+      },
+      {
+        title: "Modelarea datelor",
+        text: "Resursa Model conține suficiente câmpuri pentru ca comparația să fie relevantă.",
+        items: [
+          "Câmpurile obligatorii sunt titlul și categoria, în acord cu contractul exercițiului",
+          "Câmpurile opționale adaugă furnizor, an de lansare, modalitate, fereastră de context, interval de preț, imagine, indice de inteligență, puncte forte și descriere",
+          "Datele JSON inițiale oferă înregistrări reale pentru explorare și comparație",
+        ],
+      },
+      {
+        title: "Feedback pentru utilizator",
+        text: "Aplicația gestionează cele mai vizibile stări ale API-urilor și rutelor.",
+        items: [
+          "Paginile de listă, favorite, detalii și comparație afișează feedback de încărcare și eroare",
+          "Panoul de comparație comunică atunci când sunt necesare două modele",
+          "Pagina favoritelor gestionează starea colecției goale",
+        ],
+      },
+    ],
+    media: project.media.map((asset, index) => ({
+      ...asset,
+      alt:
+        [
+          "Catalogul modelelor din AI Comparator",
+          "Pagina favoritelor din AI Comparator",
+          "Comparația modelelor în AI Comparator",
+          "Pagina de detaliu a unui model în AI Comparator",
+        ][index] ?? asset.alt,
+    })),
+    links: project.links.map((link) => ({
+      ...link,
+      label: link.kind === "case-study" ? "Studiu de caz" : link.label,
+    })),
+  }),
   petnest: (project) => ({
     ...project,
     tagline:
@@ -568,6 +721,503 @@ const romanianProjectTranslators: Partial<
           "Pagina de favorite OrchidCare, cu orhideele salvate",
           "Ghidul de îngrijire OrchidCare, cu recomandări pentru începători despre udare",
           "Pagina de detaliu OrchidCare dedicată orhideei Queen of Sheba",
+        ][index] ?? asset.alt,
+    })),
+    links: project.links.map((link) => ({
+      ...link,
+      label: link.kind === "case-study" ? "Studiu de caz" : link.label,
+    })),
+  }),
+  brickdrop: (project) => ({
+    ...project,
+    tagline:
+      "Joc rapid și captivant pentru browser, cu finisaje moderne și presiunea clasică a punctajului.",
+    summary:
+      "O implementare BrickDrop cu React și Vite, care include eliminarea liniilor, progresia nivelurilor, piesă-fantomă, selecție aleatorie prin sistem bag, pauză și stil responsive. Este cea mai imediată demonstrație interactivă din portofoliu.",
+    role: "Dezvoltarea frontend a mecanicilor de joc",
+    hook: "Un joc compact care arată cum logica solidă de frontend poate deveni imediat jucabilă.",
+    strengths: [
+      "Logică de joc autonomă",
+      "Tranziții clare de stare și punctaj",
+      "Potrivit pentru o demonstrație live imediată",
+      "Contrast puternic față de proiectele de tip aplicație",
+    ],
+    challenge:
+      "Recrearea unui joc familiar cu o experiență suficient de captivantă, păstrând în același timp codul lizibil și compact.",
+    solution:
+      "Tabla, mișcarea pieselor, fixarea, eliminarea liniilor și punctajul sunt gestionate direct în componenta aplicației. Implementarea folosește previzualizarea piesei-fantomă, dificultate progresivă pe niveluri și un sistem bag pentru o experiență mai echilibrată.",
+    outcome:
+      "BrickDrop oferă portofoliului o experiență live imediat verificabilă și demonstrează logică frontend compactă fără a necesita infrastructură backend.",
+    features: [
+      "Punctaj pentru liniile eliminate și progresia nivelurilor",
+      "Previzualizarea piesei-fantomă",
+      "Fluxuri de pauză și reluare",
+      "Selecția aleatorie a pieselor prin sistem bag",
+      "Zonă de joc responsive în browser",
+    ],
+    architecture: [
+      "Aplicație React single-page cu stare de joc autonomă",
+      "Funcții auxiliare pure pentru poziționare, rotație, îmbinare și eliminarea liniilor",
+      "Build Vite disponibil pentru previzualizare statică",
+    ],
+    metrics: [
+      { label: "Dimensiunea tablei", value: "20 x 10" },
+      { label: "Set de tetromino-uri", value: "7" },
+      { label: "Tip de distribuție", value: "Static live" },
+    ],
+    impactBullets: [
+      "Adaugă interacțiune imediată portofoliului, dincolo de studiile de caz statice.",
+      "Demonstrează abilități de dezvoltare frontend prin mecanici, temporizare și tranziții de stare.",
+      "Creează un demo live simplu de testat pentru persoanele care evaluează proiectul.",
+    ],
+    interviewAngles: [
+      "Cum este organizată logica jocului pentru a rămâne lizibilă și a oferi totuși o experiență finisată.",
+      "De ce piesa-fantomă, aleatorizarea prin sistem bag și ritmul nivelurilor îmbunătățesc o clonă simplă.",
+      "Ce se schimbă atunci când un proiect frontend este optimizat pentru joc direct, nu pentru fluxuri de business.",
+    ],
+    repositories: project.repositories?.map((repository) => ({
+      ...repository,
+      label: "Repository-ul jocului",
+    })),
+    repositoryRoots: project.repositoryRoots?.map((root) => ({
+      ...root,
+      label: "Proiect",
+    })),
+    workflowIntro: {
+      eyebrow: "Fluxul jocului",
+      title: "Sistem compact de puzzle în timp real",
+      text: "BrickDrop este un joc frontend mic, dar complet, care combină ciclul de joc, coliziunile, controalele responsive, persistența și feedbackul atent realizat.",
+    },
+    workflowHighlights: [
+      {
+        title: "Logica principală a blocurilor în cădere",
+        text: "Proiectul implementează mecanicile așteptate de la un joc funcțional de stivuire a blocurilor, fără a se opri la o tablă vizuală.",
+        items: [
+          "Jocul folosește o tablă standard 10 x 20 cu șapte tetromino-uri: I, O, T, S, Z, J și L",
+          "Mișcarea, coliziunile, rotația, fixarea, eliminarea liniilor, pauza, reluarea, hard drop și soft drop sunt gestionate în ciclul jocului",
+          "Punctajul acoperă eliminarea uneia, a două, trei sau patru linii, cu avansarea nivelului la fiecare 10 linii și creșterea vitezei",
+        ],
+      },
+      {
+        title: "Echitate și sprijin pentru jucător",
+        text: "Alegerile mici de mecanică fac această clonă mai completă și plăcută.",
+        items: [
+          "În locul selecției complet aleatorii este folosit un sistem bag amestecat",
+          "Partidele noi evită să înceapă cu piesele S sau Z, îmbunătățind experiența inițială",
+          "Proiecția piesei-fantomă și previzualizarea piesei următoare ajută jucătorul să planifice, nu doar să reacționeze",
+        ],
+      },
+      {
+        title: "Interacțiune mobile-first",
+        text: "Versiunea mobilă este tratată ca o experiență de joc distinctă, nu ca un layout desktop comprimat.",
+        items: [
+          "Layoutul mobil alocă 60% din partea superioară tablei și 40% din partea inferioară controalelor",
+          "Butoanele skeuomorfice mari permit jocul cu degetele mari și susțin mișcarea continuă prin menținerea apăsată a comenzilor stânga sau dreapta",
+          "Pauza și reluarea folosesc culori specifice stării, iar acțiunile nevalide sunt dezactivate în timpul pauzei, eliminării liniilor sau stărilor nejucabile",
+        ],
+      },
+    ],
+    apiIntro: {
+      eyebrow: "Sisteme frontend",
+      title: "Suprafețele arhitecturii jocului",
+      text: "BrickDrop este un joc frontend static, astfel încât suprafețele tehnice importante sunt logica tablei, temporizarea, inputul, persistența și randarea responsive.",
+    },
+    apiDomains: [
+      "Tabla de joc",
+      "Sistem bag pentru tetromino-uri",
+      "Previzualizarea piesei următoare",
+      "Piesa-fantomă",
+      "Verificarea coliziunilor",
+      "Eliminarea liniilor",
+      "Starea punctajului și nivelului",
+      "Stocarea recordului",
+      "Input de la tastatură pe desktop",
+      "Controale touch pe mobil",
+      "Ecran de bun venit",
+      "Fereastră de final de joc",
+    ],
+    qualityIntro: {
+      eyebrow: "Decizii tehnice",
+      title: "Stare, temporizare, joc responsive și finisare",
+      text: "Valoarea pentru interviuri vine din explicarea modului în care starea în timp real, timerele, inputul din browser și constrângerile layoutului mobil rămân ușor de înțeles.",
+    },
+    qualitySignals: [
+      {
+        title: "Gestionarea stării",
+        text: "Implementarea păstrează puține dependențe, folosind starea și referințele React pentru joc în locul unei biblioteci externe.",
+        items: [
+          "Tabla, piesa activă, piesa următoare, starea, punctajul, nivelul, liniile, recordul și starea de eliminare sunt separate",
+          "Referințele păstrează timerele, animațiile de eliminare, mișcarea continuă și bagul curent de piese",
+          "localStorage păstrează recordul sub cheia BrickDrop_high_score între sesiunile browserului",
+        ],
+      },
+      {
+        title: "Ciclul jocului și temporizarea",
+        text: "Temporizarea este tratată ca o parte centrală a experienței de joc.",
+        items: [
+          "Căderea automată folosește setInterval în funcție de nivelul curent și accelerează pe măsură ce nivelul crește",
+          "Animația de eliminare folosește un timeout înainte de a elimina liniile și de a genera piesa următoare",
+          "Pe mobil, mișcarea continuă începe cu un timeout, apoi se repetă la intervale mai rapide și se oprește la eliberare, anulare, pauză sau finalul jocului",
+        ],
+      },
+      {
+        title: "Coliziuni și actualizarea tablei",
+        text: "Operațiunile principale asupra tablei au denumiri clare și ușor de explicat, simplificând evaluarea proiectului.",
+        items: [
+          "canPlace centralizează verificarea limitelor și coliziunilor",
+          "mergePiece suprapune piesa activă peste tablă, iar clearLines elimină liniile complete și adaugă linii goale în partea superioară",
+          "Rotația folosește o transformare a matricei cu încercări simple de corecție lângă pereți",
+        ],
+      },
+      {
+        title: "Finisarea produsului și dezvoltări viitoare",
+        text: "Proiectul este suficient de finisat pentru a fi jucabil și păstrează îmbunătățiri viitoare bine definite.",
+        items: [
+          "Ecranele de bun venit și final de joc folosesc același limbaj vizual, cu forme ale pieselor, punctaj, nivel, linii și acțiuni pentru a juca din nou sau a ieși",
+          "Sistemul arcade întunecat cu neon folosește panouri cu efect de sticlă, culori luminoase, flashuri la eliminarea liniilor și butoane mobile skeuomorfice",
+          "Pașii următori includ teste pentru coliziuni, linii, rotație și selecția inițială, plus feedback haptic, sunete, clasament, suport PWA și corecții de rotație mai complexe",
+        ],
+      },
+    ],
+    media: project.media.map((asset, index) => ({
+      ...asset,
+      alt: `Captură ${index + 1} din BrickDrop`,
+    })),
+    links: project.links.map((link) => ({
+      ...link,
+      label:
+        link.kind === "live"
+          ? "Demo live"
+          : link.kind === "case-study"
+            ? "Studiu de caz"
+            : link.label,
+    })),
+  }),
+  "sea-battle": (project) => ({
+    ...project,
+    tagline:
+      "Bătălie navală pentru un singur jucător, cu IA adaptivă, stil glassmorphism și atenție pentru accesibilitate.",
+    summary:
+      "O experiență modernă de bătălie navală pentru un singur jucător, realizată cu React, Vite, Framer Motion și Zustand. Include introducere, niveluri de dificultate, poziționarea navelor, efecte, istoric, pauză și o interfață de suport pentru un joc rafinat în browser.",
+    role: "Frontend interactiv și sisteme de interfață",
+    hook: "Un joc de browser ambițios vizual, care combină sisteme de interfață, animație și gameplay ghidat de IA.",
+    strengths: [
+      "Cel mai ambițios joc frontend din portofoliu din punct de vedere vizual",
+      "IA adaptivă și orchestrare mai complexă a interfeței",
+      "Suport pentru accesibilitate și modele de ferestre modale",
+      "Documentație pregătită pentru distribuire pe Vercel",
+    ],
+    challenge:
+      "Transformarea unui joc de masă simplu într-un produs captivant pentru browser, cu suficientă profunzime a interfeței, feedback și adaptabilitate responsive pentru a oferi o experiență premium.",
+    solution:
+      "Aplicația este împărțită în componente și hookuri specializate pentru IA, sunet, comportamentul dialogurilor, blocarea scrollului și fluxul complet al partidei. Această separare permite livrarea unei experiențe complexe fără a concentra totul într-o singură componentă.",
+    outcome:
+      "Sea Battle devine cel mai puternic studiu de caz vizual exclusiv frontend din portofoliu și un demo live bine finisat, distribuit gratuit pe Vercel.",
+    features: [
+      "Adversar IA pentru un singur jucător",
+      "Introducere, setări și ferestre de pauză",
+      "Poziționarea navelor și carduri pentru etapele tablei",
+      "Panouri pentru istoric, stare și informații despre luptă",
+      "Distribuire responsive potrivită pentru hosting static",
+    ],
+    architecture: [
+      "Sistem de componente React susținut de hookuri personalizate pentru fluxul jocului și IA",
+      "Framer Motion folosit pentru finisarea interfeței",
+      "Aplicație Vite statică, cu documentație existentă pentru distribuirea pe Vercel",
+    ],
+    metrics: [
+      { label: "Sisteme de joc bazate pe hookuri", value: "5+" },
+      { label: "Componente de interfață", value: "15+" },
+      { label: "Tip de distribuție", value: "Static live" },
+    ],
+    impactBullets: [
+      "Extinde portofoliul dincolo de aplicațiile de produs către o proiectare mai bogată a interacțiunilor.",
+      "Demonstrează un sistem de interfață mai evoluat, cu animație, stări modale și feedback de joc.",
+      "Aduce un limbaj frontend mai expresiv în ansamblul portofoliului.",
+    ],
+    interviewAngles: [
+      "Cum susțin hookurile și limitele dintre componente o experiență interactivă mai complexă.",
+      "De ce studiile de caz frontend solide pot porni din sisteme de joc, nu doar din aplicații de produs.",
+      "Cum distribuirea statică și finisarea interfeței transformă proiectul într-un demo live imediat pentru evaluarea portofoliului.",
+    ],
+    repositories: project.repositories?.map((repository) => ({
+      ...repository,
+      label: "Repository-ul jocului",
+    })),
+    repositoryRoots: project.repositoryRoots?.map((root) => ({
+      ...root,
+      label: "Proiect",
+    })),
+    workflowIntro: {
+      eyebrow: "Fluxul jocului",
+      title: "Ciclu complet și responsive de bătălie navală",
+      text: "Sea Battle este un sistem frontend compact, dar complet: regulile, IA, starea, accesibilitatea, animația și layoutul mobil funcționează împreună.",
+    },
+    workflowHighlights: [
+      {
+        title: "Experiență completă de bătălie navală",
+        text: "Jocul include întregul ciclu așteptat de la o implementare funcțională de bătălie navală pentru un singur jucător.",
+        items: [
+          "Grilele 10 x 10 ale jucătorului și adversarului folosesc flota standard: portavion, cuirasat, crucișător, submarin și distrugător",
+          "Sunt incluse poziționarea manuală, rotația orizontală și verticală, așezarea aleatorie a flotei, turele de tragere, detectarea loviturilor, ratărilor, scufundărilor și victoriei, plus dezvăluirea flotei inamice",
+          "Modurile IA Ușor, Mediu și Dificil evoluează de la un joc aleatoriu mai permisiv la o strategie mai eficientă de căutare și țintire",
+        ],
+      },
+      {
+        title: "Gameplay responsive și mobile-first",
+        text: "Interfața rezolvă problema dificilă de a păstra două grile lizibile, pătrate și ușor de atins pe toate dispozitivele.",
+        items: [
+          "Configurarea pe telefon în modul portret este simplificată în jurul acțiunilor clare Aleatoriu, Șterge, Joacă și Rotește nava",
+          "Telefonul în modul landscape folosește reguli dedicate pentru a păstra ambele table jucabile alăturat",
+          "Variabilele CSS dependente de viewport mențin stabile dimensiunile tablei, iar eliminarea timerului live previne oscilațiile headerului pe mobil",
+        ],
+      },
+      {
+        title: "Model de interacțiune accesibil",
+        text: "Grila este construită pentru a fi jucabilă și ușor de înțeles și dincolo de clicurile mouse-ului.",
+        items: [
+          "Celulele expun etichete ARIA descriptive cu coordonate și stare",
+          "Navigarea din tastatură acceptă săgețile, confirmarea cu Enter sau Space și Escape pentru fluxurile modale",
+          "Dialogurile gestionează focusul și blochează scrollul paginii, iar regiunile live anunță starea partidei",
+        ],
+      },
+    ],
+    apiIntro: {
+      eyebrow: "Sisteme frontend",
+      title: "Suprafețele arhitecturii jocului",
+      text: "Proiectul este o aplicație frontend statică, astfel încât suprafețele importante sunt starea, IA, randarea, persistența și nivelurile de interacțiune ale browserului.",
+    },
+    apiDomains: [
+      "GameShell",
+      "GameBoard",
+      "BoardCell",
+      "StatusBar",
+      "BattleActionBar",
+      "ShipPlacementPanel",
+      "ResultsModal",
+      "GameProvider",
+      "useSeaBattleGame",
+      "useGameContext",
+      "Logica jucătorului IA",
+      "Istoric local",
+    ],
+    qualityIntro: {
+      eyebrow: "Decizii tehnice",
+      title: "Stare, finisare, accesibilitate și testare",
+      text: "Valoarea pentru interviuri vine din separarea regulilor, interfeței, IA, layoutului responsive, persistenței locale, animației și accesibilității.",
+    },
+    qualitySignals: [
+      {
+        title: "Separarea stării de logică",
+        text: "Jocul este organizat astfel încât componentele interfeței să nu gestioneze direct fiecare regulă.",
+        items: [
+          "GameProvider și useGameContext conțin starea principală a partidei",
+          "useSeaBattleGame gestionează ciclul partidei, tranzițiile de fază, așezarea flotei, turele, istoricul, setările și rezultatele",
+          "Regulile tablei, poziționarea, alegerea mutărilor IA, formatarea statisticilor și istoricului, sunetul, dialogurile și blocarea scrollului sunt separate în hookuri și utilitare",
+        ],
+      },
+      {
+        title: "Animație și finisarea produsului",
+        text: "Mișcarea susține feedbackul de joc și nu este doar decorativă.",
+        items: [
+          "Framer Motion gestionează tranzițiile ferestrelor, meniurilor, rezultatelor, footerului și interfeței",
+          "Animațiile CSS comunică loviturile, ratările, navele scufundate, gândirea adversarului și momentele victoriei",
+          "Setările permit controlul sunetului și efectelor ambientale fără a aglomera ecranul de luptă",
+        ],
+      },
+      {
+        title: "Persistență și rezultate",
+        text: "Jocul reține progresul jucătorului și transformă rezultatul final într-un rezumat util.",
+        items: [
+          "Stocarea locală păstrează istoricul partidelor, preferințele pentru sunet și efectele de fundal, precum și starea introducerii",
+          "Fereastra rezultatelor afișează victoria sau înfrângerea, precizia, mutările, loviturile, ratările, durata misiunii, cea mai bună serie, victoriile salvate, cea mai bună precizie și flota inamică",
+          "Acțiunea Joacă din nou revine la selectarea dificultății, permițând alegerea conștientă a unei provocări diferite",
+        ],
+      },
+      {
+        title: "Obiectivul testelor",
+        text: "Testele se concentrează pe regresiile regulilor principale care ar compromite experiența.",
+        items: [
+          "Testele Node acoperă poziționarea navelor, completarea flotei necesare, prevenirea tragerilor duplicate și condiția de victorie",
+          "Maparea navigării din tastatură și comanda rapidă pentru rotație sunt acoperite ca reguli de interacțiune",
+          "Validarea pentru producție este executată prin npm run build",
+        ],
+      },
+    ],
+    media: project.media.map((asset, index) => ({
+      ...asset,
+      alt: `Captură ${index + 1} din Sea Battle`,
+    })),
+    links: project.links.map((link) => ({
+      ...link,
+      label:
+        link.kind === "live"
+          ? "Demo live"
+          : link.kind === "case-study"
+            ? "Studiu de caz"
+            : link.label,
+    })),
+  }),
+  paytrack: (project) => ({
+    ...project,
+    tagline:
+      "Manager de abonamente mobile-first pentru plăți recurente, notificări și o imagine clară asupra cheltuielilor.",
+    summary:
+      "O aplicație full-stack pentru monitorizarea abonamentelor, care ajută utilizatorii să înțeleagă costurile recurente, datele de reînnoire, etichetele metodelor de plată, istoricul plăților și activitatea notificărilor, fără a deveni un produs bancar complet.",
+    role: "Produs full-stack pentru gestionarea abonamentelor",
+    hook: "Un asistent calm pentru finanțele personale, care transformă plățile recurente uitate într-un flux clar și mobile-first.",
+    strengths: [
+      "Proiectare de produs mobile-first",
+      "Gestionarea sigură a datelor asociate plăților",
+      "Analiză în dashboard și notificări pentru reînnoiri",
+      "Internaționalizare în șase limbi",
+    ],
+    challenge:
+      "Crearea unui manager de abonamente bine delimitat și mai simplu decât o aplicație bancară, reprezentând totuși comportamente realiste ale plăților recurente, date autentificate ale utilizatorilor și notificări pentru reînnoiri.",
+    solution:
+      "Aplicația combină un frontend React/Vite cu un backend Express, Prisma și MySQL. Păstrează metodele de plată ca etichete sigure, folosește autentificare prin cookie-uri HTTP-only, validează cererile cu Zod și organizează produsul în jurul datelor din dashboard, gestionării abonamentelor, istoricului plăților, notificărilor și setărilor.",
+    outcome:
+      "PayTrack adaugă portofoliului un produs financiar mobile-first, demonstrând arhitectură full-stack, decizii sigure privind datele, analiză, internaționalizare, activități programate și fluxuri de plăți recurente.",
+    features: [
+      "Dashboard cu cheltuieli lunare, proiecție anuală, numărul abonamentelor active, reînnoiri apropiate și distribuție pe categorii",
+      "Operațiuni CRUD pentru abonamente, cu date de reînnoire, frecvența facturării, categorie, stare, eticheta metodei de plată și note",
+      "Istoric manual cu valoarea, data, moneda, metoda și notele plății",
+      "Istoricul notificărilor, verificări programate ale reînnoirilor și preferințe pentru fiecare abonament",
+      "Setări pentru numele afișat, limbă, moneda implicită, fus orar, mod întunecat și gestionarea metodelor de plată personalizate",
+      "Resetarea parolei cu token cu expirare și suport pentru livrare prin e-mail",
+    ],
+    architecture: [
+      "Frontendul React comunică exclusiv cu endpointuri REST JSON sub /api",
+      "Backendul Express gestionează validarea, logica de business, autentificarea, activitățile notificărilor și accesul la date prin Prisma",
+      "Schema Prisma modelează utilizatorii, categoriile, metodele de plată, abonamentele, plățile, jurnalele notificărilor, preferințele și tokenurile pentru resetarea parolei",
+      "Pe mobil, navigarea inferioară afișează etichete complete, iar tableta și desktopul folosesc navigare laterală și rezumate mai ample",
+      "Configurația de distribuire acceptă origini frontend explicite, cookie-uri cross-site și o gestionare CORS mai strictă",
+    ],
+    metrics: [
+      { label: "Limbi", value: "6" },
+      { label: "Domenii API", value: "7" },
+      { label: "Ferestre de notificare", value: "2" },
+    ],
+    impactBullets: [
+      "Demonstrează proiectarea full-stack în jurul unei probleme cotidiene legate de bani.",
+      "Arată cum pot fi organizate în siguranță informațiile asociate plăților fără a stoca date complete ale cardurilor.",
+      "Adaugă portofoliului profunzime responsive mobile-first și internaționalizare.",
+    ],
+    interviewAngles: [
+      "Cum diferă monitorizarea abonamentelor de procesarea reală a plăților și de ce folosirea exclusivă a etichetelor este mai sigură.",
+      "De ce fluxurile de arhivare și restaurare sunt preferabile unei ștergeri riscante cu un singur clic pentru istoricul financiar.",
+      "Cum funcționează împreună analiza dashboardului, activitățile notificărilor și istoricul plăților într-un produs bine delimitat.",
+    ],
+    repositories: project.repositories?.map((repository, index) => ({
+      ...repository,
+      label: index === 0 ? "Repository frontend" : "Repository backend",
+    })),
+    workflowIntro: {
+      eyebrow: "Fluxul abonamentelor",
+      title: "Plăți recurente sub control",
+      text: "PayTrack își exprimă cel mai bine valoarea ca produs mobile-first care transformă dezordinea abonamentelor în decizii clare despre plățile recurente.",
+    },
+    workflowHighlights: [
+      {
+        title: "Dashboard și prezentare generală",
+        text: "Dashboardul răspunde rapid la întrebarea principală: cât cheltuiește utilizatorul și ce reînnoiri se apropie?",
+        items: [
+          "Cheltuielile lunare, proiecția anuală, abonamentele active, reînnoirile apropiate și distribuția cheltuielilor sunt afișate împreună",
+          "Abonamentele sunt grupate pe categorii, făcând costurile repetate mai ușor de înțeles",
+          "Layouturile responsive păstrează dashboardul util pe mobil, tabletă și desktop",
+        ],
+      },
+      {
+        title: "Ciclul de viață al abonamentului",
+        text: "Gestionarea abonamentelor acoperă operațiuni reale și repetate, evitând scurtăturile distructive.",
+        items: [
+          "Utilizatorii pot crea, modifica, anula, arhiva și restaura abonamente cu stările activ, anulat și arhivat",
+          "Arhivarea exclude abonamentele din totalurile active și notificări fără a distruge imediat istoricul",
+          "Controalele de gestionare reunesc acțiunile importante într-un flux mai conștient",
+          "Notificările cu șapte zile și o zi înainte pot fi ajustate pentru fiecare abonament",
+        ],
+      },
+      {
+        title: "Etichete și istoricul plăților",
+        text: "Aplicația înregistrează contextul plăților fără a gestiona credențiale reale.",
+        items: [
+          "Metodele de plată sunt etichete simple, precum Visa **** 4242, PayPal sau cont bancar",
+          "Funcția de marcare a unei plăți înregistrează valoarea, data, moneda, metoda și notele",
+          "Istoricul afișează totalul plătit, numărul plăților, media, ultima dată a plății, următoarea reînnoire și filtrarea după an",
+        ],
+      },
+    ],
+    apiIntro: {
+      eyebrow: "Suprafața backendului",
+      title: "Domenii API pentru monitorizarea abonamentelor",
+      text: "API-ul REST separă autentificarea, setările contului, abonamentele, analiza dashboardului, metodele de plată, categoriile și notificările.",
+    },
+    qualityIntro: {
+      eyebrow: "Decizii tehnice",
+      title: "Autentificare sigură, validare, notificări și i18n",
+      text: "Proiectul este mai convingător atunci când este prezentat ca organizare sigură a plăților recurente, nu ca procesare a plăților.",
+    },
+    qualitySignals: [
+      {
+        title: "Autentificare și proprietatea datelor",
+        text: "PayTrack protejează datele contului prin sesiuni gestionate de backend și interogări limitate la utilizator.",
+        items: [
+          "Autentificarea JWT este păstrată în cookie-uri HTTP-only, astfel încât JavaScriptul din frontend nu gestionează direct tokenurile sesiunii",
+          "Parolele sunt stocate ca hash și niciodată în clar",
+          "Utilizatorii pot accesa doar propriile abonamente, metode de plată, notificări și date de profil",
+          "Tokenurile pentru resetarea parolei sunt păstrate pe server, expiră și sunt marcate ca utilizate după confirmare",
+        ],
+      },
+      {
+        title: "Validarea și siguranța datelor",
+        text: "Aplicația păstrează utile informațiile asociate plăților fără a deveni un procesator de plăți.",
+        items: [
+          "Zod validează datele cererilor în backend înainte de executarea logicii de business",
+          "Metodele de plată păstrează doar etichete, niciodată numere complete de card sau credențiale reale",
+          "Ștergerea unei metode de plată necesită confirmare înainte de eliminarea etichetei salvate",
+          "Acțiunile sensibile folosesc confirmări sau arhivare, nu eliminare permanentă imediată",
+        ],
+      },
+      {
+        title: "Sistemul de notificări și activități programate",
+        text: "Activitățile programate și preferințele fac MVP-ul mai apropiat de un asistent real pentru abonamente.",
+        items: [
+          "node-cron execută verificări programate pentru reînnoirile apropiate",
+          "Nodemailer permite trimiterea notificărilor prin e-mail atunci când SMTP este configurat",
+          "Jurnalele păstrează un istoric verificabil al notificărilor de reînnoire trimise",
+          "Preferințele fiecărui abonament permit dezactivarea anumitor ferestre de notificare",
+        ],
+      },
+      {
+        title: "Interfață responsive și internaționalizată",
+        text: "Frontendul este proiectat pentru utilizare cotidiană, repetată, pe dispozitive și în limbi diferite.",
+        items: [
+          "Interfața pornește mobile-first, cu etichete complete în navigare, și se extinde în layouturile pentru tabletă și desktop",
+          "i18next acceptă engleza, italiana, germana, franceza, româna și rusa",
+          "Modul întunecat, moneda implicită, fusul orar și limba permit personalizarea aplicației",
+          "Ultimele finisaje ale frontendului au îmbunătățit textele pentru accesibilitate, claritatea navigării și meniurile personalizate din setări",
+        ],
+      },
+      {
+        title: "Testare și distribuire mai robuste",
+        text: "Actualizările recente PayTrack au adăugat verificări țintite în zonele cele mai expuse regresiilor.",
+        items: [
+          "Testele frontend cu node:test verifică formatul etichetelor metodelor de plată și denumirile complete ale navigării în diferite limbi",
+          "Testele backend acoperă schemele de autentificare și abonament, comportamentul preferințelor pentru notificări și originile CORS permise",
+          "Configurația mediului acceptă mai multe URL-uri frontend pentru distribuiri de previzualizare și producție",
+        ],
+      },
+    ],
+    media: project.media.map((asset, index) => ({
+      ...asset,
+      alt:
+        [
+          "Dashboardul desktop PayTrack",
+          "Pagina desktop a abonamentelor PayTrack",
+          "Setările desktop PayTrack",
+          "Dashboardul desktop PayTrack în modul luminos",
+          "Dashboardul mobil PayTrack",
+          "Setările mobile PayTrack",
         ][index] ?? asset.alt,
     })),
     links: project.links.map((link) => ({
