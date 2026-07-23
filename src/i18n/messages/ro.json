@@ -1,1 +1,76 @@
-{}
+{
+  "LocaleSwitcher": {
+    "label": "Selectează limba",
+    "english": "Engleză",
+    "italian": "Italiană",
+    "romanian": "Română"
+  },
+  "Navigation": {
+    "projects": "Proiecte",
+    "about": "Despre mine",
+    "credentials": "Certificări",
+    "contact": "Contact",
+    "githubProfile": "Profil GitHub",
+    "role": "Dezvoltator Web Full Stack Jr.",
+    "openMenu": "Deschide meniul",
+    "closeMenu": "Închide meniul"
+  },
+  "Common": {
+    "viewProject": "Vezi proiectul",
+    "viewCertificate": "Vezi certificatul",
+    "exploreProjects": "Descoperă proiectele",
+    "allProjects": "Toate proiectele",
+    "previous": "Anterior",
+    "next": "Următor",
+    "close": "Închide",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "E-mail"
+  },
+  "Footer": {
+    "eyebrow": "Tatiana Oblasser",
+    "headline": "Experiențe digitale construite cu grijă.",
+    "description": "Aplicații full-stack selectate, jocuri interactive și studii de caz, cu o identitate profesională centrată pe GitHub."
+  },
+  "ProjectCaseStudy": {
+    "categories": {
+      "fullStack": "full stack",
+      "frontend": "frontend",
+      "game": "joc"
+    },
+    "deployment": {
+      "hybrid": "hibrid",
+      "media": "conținut multimedia",
+      "live": "live"
+    },
+    "logicMapAlt": "Harta fluxului logic pentru {project}",
+    "repositoryRoot": "Directorul principal {label}",
+    "techStack": "Stack tehnologic",
+    "challengeEyebrow": "Provocare",
+    "challengeTitle": "Ce trebuia să funcționeze",
+    "solutionEyebrow": "Soluție",
+    "solutionTitle": "Cum a fost realizat",
+    "qualityEyebrow": "Calitate tehnică",
+    "qualityTitle": "Testare și praguri de acoperire",
+    "qualityDescription": "Backendul este prezentat ca un sistem pregătit pentru interviul tehnic, cu teste automatizate și praguri de calitate măsurabile.",
+    "apiEyebrow": "Structura backendului",
+    "apiTitle": "Domenii API",
+    "apiDescription": "Backendul expune domenii REST dedicate fluxurilor pentru clienți, comerț, administrare, plăți și monitorizarea sistemului.",
+    "outcomeEyebrow": "Rezultat",
+    "outcomeTitle": "De ce se remarcă acest proiect",
+    "repositoryRoots": "Directoarele principale ale repository-urilor",
+    "impactEyebrow": "Ce demonstrează",
+    "impactTitle": "Impactul proiectului",
+    "featuresEyebrow": "Parcursul produsului",
+    "featuresTitle": "Funcționalități principale",
+    "featuresDescription": "Studiul de caz arată cum funcționează experiența pentru un utilizator, administrator sau jucător real, fără a se limita la partea vizuală.",
+    "architectureEyebrow": "Decizii tehnice",
+    "architectureTitle": "Arhitectură și implementare",
+    "architectureDescription": "Aceste note explică de ce este importantă structura, nu doar ce tehnologii au fost alese.",
+    "demoEyebrow": "Prezentarea demonstrației",
+    "demoTitle": "Prezentare video",
+    "demoDescription": "Secvențele planificate rămân elemente principale, astfel încât structura paginii să fie stabilă când sunt adăugate materialele multimedia finale.",
+    "demoVideo": "Videoclip demonstrativ",
+    "demoPlaceholder": "Spațiu pregătit pentru încărcarea videoclipului în calea media găzduită pe Vercel."
+  }
+}
