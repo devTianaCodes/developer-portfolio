@@ -45,7 +45,7 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
         <div className={"relative " + mediaAspect + " overflow-hidden bg-slate-900"}>
           <Image
             src={heroSrc}
-            alt={hero.alt}
+            alt={tProjects("projectImageAlt", { project: project.name })}
             fill
             quality={82}
             className="object-cover transition duration-700 group-hover:scale-[1.025]"

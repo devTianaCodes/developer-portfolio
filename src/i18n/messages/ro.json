@@ -32,6 +32,75 @@
     "headline": "Experiențe digitale construite cu grijă.",
     "description": "Aplicații full-stack selectate, jocuri interactive și studii de caz, cu o identitate profesională centrată pe GitHub."
   },
+  "Home": {
+    "heroLineOne": "Transformăm ideea ta",
+    "heroLineTwo": "într-o experiență digitală.",
+    "selectedWork": "Proiecte selectate",
+    "selectedWorkDetail": "studii de caz despre produse digitale și jocuri",
+    "fullStackApps": "Aplicații full-stack",
+    "fullStackAppsDetail": "comerț, educație, adopții, îngrijirea orhideelor, abonamente și fluxuri IA",
+    "liveDemos": "Demo-uri live",
+    "liveDemosDetail": "jocuri interactive în browser, gata de testat",
+    "projectsEyebrow": "Aplicații web full-stack",
+    "projectsHeading": "Aplicații orientate spre produs și sisteme interactive.",
+    "aboutEyebrow": "Despre Tiana",
+    "aboutTitle": "Măiestrie frontend și competențe full-stack.",
+    "aboutDescription": "Experiențe web ghidate de design în domeniile comerțului, educației, adopțiilor, îngrijirii plantelor, instrumentelor IA și jocurilor pentru browser.",
+    "readProfile": "Citește profilul",
+    "githubEyebrow": "Credibilitatea codului",
+    "githubTitle": "Proiecte publice, responsabilitate clară.",
+    "githubDescription": "GitHub menține portofoliul ancorat în cod real, într-un istoric vizibil al proiectelor și într-o responsabilitate clară pentru implementare.",
+    "githubEntryDescription": "Un punct public și bine organizat pentru evaluarea codului și a contextului proiectelor.",
+    "openGithub": "Deschide GitHub",
+    "productApp": "Aplicație digitală",
+    "playableBuild": "Versiune jucabilă",
+    "projectCards": {
+      "chocolate": {
+        "hook": "Un studiu de caz e-commerce în care identitatea brandului, parcursul clientului și operațiunile backend sunt la fel de importante.",
+        "impactOne": "Arată diferența dintre o vitrină stilizată și un sistem real de cumpărare.",
+        "impactTwo": "Demonstrează decizii UI ghidate de brand, fără a pierde rigoarea backendului."
+      },
+      "petnest": {
+        "hook": "O platformă de adopții centrată pe încredere, care echilibrează explorarea publică și moderarea operațională.",
+        "impactOne": "Arată cum o aplicație de portofoliu poate modela încrederea, moderarea și complexitatea fluxurilor utilizatorilor.",
+        "impactTwo": "Consolidează credibilitatea utilizării TypeScript atât în frontend, cât și în backend."
+      },
+      "orchidcare": {
+        "hook": "Un produs practic pentru îngrijirea plantelor, în care datele ușor de căutat, informațiile de îngrijire și o navigare relaxată funcționează împreună.",
+        "impactOne": "Demonstrează o gândire de produs specifică îngrijirii plantelor, în locul unei alte interfețe generale.",
+        "impactTwo": "Arată cum filtrele frontend se conectează la gestionarea validată a interogărilor din backend."
+      },
+      "english4u": {
+        "hook": "O platformă educațională concepută ca un produs digital real, nu doar ca o demonstrație de lecții.",
+        "impactOne": "Conectează gândirea de produs cu o experiență realistă de învățare în ritm propriu.",
+        "impactTwo": "Arată cum autentificarea, progresul, conținutul și structura administrativă funcționează împreună."
+      },
+      "paytrack": {
+        "hook": "Un asistent discret pentru finanțele personale, care transformă plățile recurente uitate într-un flux clar și mobile-first.",
+        "impactOne": "Demonstrează gândirea de produs full-stack aplicată unei probleme financiare reale și cotidiene.",
+        "impactTwo": "Arată organizarea sigură a informațiilor asociate plăților, fără stocarea datelor complete ale cardurilor."
+      },
+      "ai-comparator": {
+        "hook": "Un instrument de comparație bine definit, care transformă un proiect de curs într-un flux clar pentru evaluarea modelelor de IA.",
+        "impactOne": "Demonstrează în mod practic rutarea React, integrarea API și coordonarea stării, fără complexitate inutilă.",
+        "impactTwo": "Face vizibilă logica de comparație printr-un flux real între două modele, în locul unui tabel static."
+      },
+      "brickdrop": {
+        "hook": "Un joc compact care demonstrează cum o logică frontend solidă poate deveni imediat jucabilă.",
+        "impactOne": "Adaugă interactivitate imediată portofoliului, dincolo de studiile de caz statice.",
+        "impactTwo": "Demonstrează competențe de dezvoltare frontend prin mecanici, temporizare și tranziții de stare."
+      },
+      "sea-battle": {
+        "hook": "Un joc pentru browser ambițios vizual, care combină sisteme de interfață, mișcare și joc bazat pe IA.",
+        "impactOne": "Extinde portofoliul dincolo de aplicațiile digitale printr-un design al interacțiunii mai bogat.",
+        "impactTwo": "Prezintă un sistem UI mai avansat, cu mișcare, stări modale și feedback de joc."
+      }
+    }
+  },
+  "Projects": {
+    "openProject": "Deschide proiectul {project}",
+    "projectImageAlt": "Previzualizarea proiectului {project}"
+  },
   "ProjectCaseStudy": {
     "categories": {
       "fullStack": "full stack",
