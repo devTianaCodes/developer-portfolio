@@ -147,6 +147,132 @@
       }
     }
   },
+  "About": {
+    "title": "Despre mine",
+    "subtitle": "Dezvoltator Web Full Stack Jr.",
+    "currentFocus": "Obiectiv actual",
+    "currentFocusTitle": "Produse web complete, de la frontend la backend.",
+    "currentFocusDescription": "Proiectele recente includ o aplicație e-commerce cu Stripe și o platformă de adopții cu dashboarduri, cereri, creare de anunțuri și moderare administrativă.",
+    "chocolateDemo": "Demo Chocolate",
+    "petNestDemo": "Demo PetNest",
+    "publicIdentity": "Identitate profesională",
+    "publicIdentityDescription": "Consultă codul public pe GitHub, experiența profesională pe LinkedIn sau contactează-mă direct prin e-mail.",
+    "professionalExperience": "Experiență profesională",
+    "professionalExperienceTitle": "Predare, dezvoltare backend și comunicare cu clienții.",
+    "educationTraining": "Educație și formare",
+    "languages": "Limbi",
+    "introduction": "Dezvoltator Full-Stack Junior care creează aplicații web responsive și orientate spre utilizator cu React, TypeScript, Node.js, Express și MySQL. Experiență practică în realizarea proiectelor complete, de la interfețe mobile-first la API-uri REST, autentificare, fluxuri de plată și integrarea bazelor de date. Pregătirea în Java și Spring Boot, UX/UI și predare tehnică susține o abordare atentă a utilizabilității, rezolvării problemelor, colaborării și învățării continue.",
+    "portraitAlt": "Portretul Tatianei Oblasser",
+    "skillAreas": {
+      "frontend": {
+        "title": "Dezvoltare frontend",
+        "text": "JavaScript, TypeScript, React, Next.js, interfețe responsive, accesibilitate și dezvoltare mobile-first."
+      },
+      "backend": {
+        "title": "Backend și API-uri",
+        "text": "Node.js, Express, Python, API-uri REST, CRUD, JSON, JWT, CORS, Multer, Nodemailer, Stripe și testarea API-urilor."
+      },
+      "javaData": {
+        "title": "Java și date",
+        "text": "Java, Spring Boot, Maven, programare orientată pe obiecte, MySQL, PostgreSQL, Prisma ORM, Prisma Migrate, SQL și Postman."
+      }
+    },
+    "experience": {
+      "programmingLecturer": {
+        "role": "Lector în fundamentele programării",
+        "meta": "CIOFS/FP Puglia, Giardini Digitali | Cosenza, Italia | Iunie - August 2024",
+        "detail": "Predarea JavaScript, HTML/CSS, Python și Java prin logică, algoritmi, exerciții practice și noțiuni fundamentale de dezvoltare web. Sprijinirea proiectelor web, activităților practice și prezentărilor finale prin conectarea conceptelor la activități concrete."
+      },
+      "backendIntern": {
+        "role": "Stagiar dezvoltator server-side",
+        "meta": "TwentyFive | Rende, Italia | 2024",
+        "detail": "Dezvoltarea endpointurilor API REST pentru un generator de coduri QR cu Java, Spring Boot, Maven, JSON și Postman. Implementarea personalizării codurilor QR cu logo-uri, culori, texte, fundaluri și rame, conform cerințelor clientului."
+      },
+      "javaIntern": {
+        "role": "Stagiar Java Academy",
+        "meta": "TwentyFive | Rende, Italia | 2023",
+        "detail": "Dezvoltarea funcționalităților e-commerce cu Spring Boot, Maven, PostgreSQL și Postman, incluzând produse, autentificare, comenzi și securitate."
+      },
+      "languageTutor": {
+        "role": "Lector și profesor de limbi străine",
+        "meta": "British Institutes | Cosenza, Italia | 2018 - Prezent",
+        "detail": "Lecții de engleză, germană și rusă și traduceri profesionale, cu o comunicare clară și sprijin pentru cursanți."
+      }
+    },
+    "training": {
+      "webDevelopment": {
+        "title": "Master full-time în dezvoltare web - finalizat",
+        "detail": "Boolean | Septembrie 2025 - Iunie 2026"
+      },
+      "aiDays": {
+        "title": "Proiect AI Days",
+        "detail": "Boolean | 12 - 14 Mai 2026"
+      },
+      "chatbotAi": {
+        "title": "Program intensiv în dezvoltarea chatboturilor și inteligență artificială",
+        "detail": "InspireHER, NTT DATA Italia | 2024"
+      },
+      "javaAcademy": {
+        "title": "Java Academy",
+        "detail": "TwentyFive | 2023 - 2024"
+      },
+      "javaMasterclass": {
+        "title": "Java 17 Masterclass",
+        "detail": "Udemy | 2023 - 2024"
+      },
+      "uxUi": {
+        "title": "Formare în experiența utilizatorului și interfața cu utilizatorul - finalizată",
+        "detail": "Interaction Design Foundation | 2022 - 2023"
+      },
+      "englishTest": {
+        "title": "EF Standard English Test - C2 Proficient",
+        "detail": "2023"
+      },
+      "universityDegrees": {
+        "title": "Studii universitare",
+        "economicSciences": "Științe economice",
+        "businessAdministration": "Administrarea afacerilor",
+        "foreignLanguages": "Limbi străine și literatură comparată"
+      }
+    },
+    "languageItems": {
+      "english": {
+        "language": "Engleză",
+        "level": "C2 / Avansat-Excelent"
+      },
+      "italian": {
+        "language": "Italiană",
+        "level": "C1 / Excelent"
+      },
+      "russian": {
+        "language": "Rusă",
+        "level": "C2 / Limbă maternă"
+      },
+      "romanian": {
+        "language": "Română",
+        "level": "C2 / Limbă maternă"
+      },
+      "german": {
+        "language": "Germană",
+        "level": "B2 / Intermediar avansat"
+      },
+      "french": {
+        "language": "Franceză",
+        "level": "B1-B2 / Intermediar"
+      }
+    }
+  },
+  "Contact": {
+    "eyebrow": "Contact",
+    "title": "Disponibilă pentru oportunități frontend și full-stack.",
+    "description": "Explorează proiectele selectate, contactează-mă pe LinkedIn sau trimite-mi un e-mail.",
+    "viewProjects": "Vezi proiectele"
+  },
+  "NotFound": {
+    "title": "Proiectul nu a fost găsit.",
+    "description": "Proiectul pe care îl cauți nu face parte din selecția portofoliului.",
+    "backToProjects": "Înapoi la proiecte"
+  },
   "ProjectCaseStudy": {
     "categories": {
       "fullStack": "full stack",
