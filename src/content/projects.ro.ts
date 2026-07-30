@@ -581,15 +581,16 @@ const romanianProjectTranslators: Partial<
   orchidcare: (project) => ({
     ...project,
     tagline:
-      "Enciclopedie a orhideelor axată pe îngrijire, cu profiluri ușor de căutat, filtre, favorite și o colecție de specii rare.",
+      "Enciclopedie a orhideelor axată pe îngrijire, cu profiluri ușor de căutat, filtre climatice, favorite și descoperire ghidată.",
     summary:
-      "O aplicație full-stack pentru îngrijirea orhideelor, realizată cu frontend React și Vite și un API Express cu PostgreSQL. Permite explorarea profilurilor de orhidee, căutarea și filtrarea după nevoile de îngrijire, consultarea paginilor detaliate, salvarea locală a favoritelor, descoperirea speciilor rare și citirea unui ghid pentru începători.",
+      "O aplicație full-stack pentru îngrijirea orhideelor, realizată cu frontend React și Vite și un API Express cu PostgreSQL. Vizitatorii pot explora profiluri cu filtre de îngrijire și climatice sincronizate în URL, consulta indicatori rapizi, reveni la orhideele văzute recent, salva favorite local și deschide pagini de detaliu distribuibile cu temperaturi în Celsius sau Fahrenheit.",
     role: "Produs full-stack în TypeScript",
     hook: "Un produs practic pentru îngrijirea plantelor, în care datele ușor de căutat, informațiile de cultivare și o experiență calmă de navigare funcționează împreună.",
     strengths: [
       "Experiență de consultare clară și ordonată",
       "Client API și DTO-uri backend tipizate",
-      "Căutare și filtre bazate pe nevoile de îngrijire",
+      "Filtre climatice păstrate în URL",
+      "Favorite persistente și istoric al orhideelor vizualizate",
       "Date inițiale PostgreSQL cu atribuirea imaginilor",
     ],
     challenge:
@@ -597,11 +598,13 @@ const romanianProjectTranslators: Partial<
     solution:
       "Frontendul organizează descoperirea orhideelor prin rutele pentru pagina principală, explorare, detalii, favorite, colecția rară și ghidul de îngrijire. Backendul livrează date PostgreSQL normalizate printr-un API REST compact, cu filtre de căutare validate, paginare, căutare după slug, metadatele filtrelor, CORS, Helmet, jurnalizarea cererilor și răspunsuri controlate pentru erori.",
     outcome:
-      "OrchidCare adaugă portofoliului un studiu de caz bine delimitat și bazat pe date: demonstrează un flux tipizat de la frontend la backend, interogări PostgreSQL, stare locală în client și o suprafață de produs proiectată în jurul deciziilor de îngrijire, nu al operațiunilor CRUD generice.",
+      "OrchidCare adaugă portofoliului un studiu de caz bine delimitat și bazat pe date: combină un flux tipizat de la frontend la backend și interogări PostgreSQL cu filtre distribuibile, instrumente persistente de descoperire și un produs proiectat în jurul deciziilor reale de îngrijire, nu al operațiunilor CRUD generice.",
     features: [
-      "Explorarea profilurilor cu căutare, filtre și paginare",
-      "Pagini detaliate cu origine, rădăcini, înflorire și rezumate de îngrijire",
-      "Salvarea locală a orhideelor favorite, cu feedback pentru utilizator",
+      "Explorarea profilurilor cu căutare, filtre de îngrijire și climatice și paginare",
+      "Păstrarea filtrelor active în URL pentru căutări repetabile și distribuibile",
+      "Indicatori rapizi de îngrijire și o acțiune aleatorie pentru descoperirea unei orhidee",
+      "Istoricul orhideelor vizualizate și numărul favoritelor în navigare",
+      "Pagini de îngrijire distribuibile, cu rezumat rapid și selector Celsius/Fahrenheit",
       "Colecție dedicată orhideelor rare",
       "Ghid de îngrijire conceput pentru începători",
     ],
@@ -640,8 +643,8 @@ const romanianProjectTranslators: Partial<
         title: "Explorare și filtre",
         text: "Secțiunea principală a enciclopediei transformă datele despre îngrijirea orhideelor într-un instrument de decizie ușor de consultat, nu într-o galerie statică.",
         items: [
-          "Se pot căuta nume și descrieri și filtra rezultatele după dificultate, lumină, apă, tip de creștere și perioada de înflorire",
-          "Paginarea păstrează lista lizibilă, iar backendul rămâne sursa datelor actualizate despre orhidee",
+          "Se pot căuta nume și descrieri și filtra rezultatele după dificultate, lumină, apă, tip de creștere, perioada de înflorire, umiditate și temperatura camerei",
+          "Filtrele active și paginarea sunt reflectate în URL, astfel încât starea căutării rezistă la reîmprospătare și poate fi distribuită direct",
           "Metadatele filtrelor provin din API, astfel încât opțiunile interfeței reflectă datele existente în PostgreSQL",
         ],
       },
@@ -649,8 +652,8 @@ const romanianProjectTranslators: Partial<
         title: "Pagini de detaliu orientate spre îngrijire",
         text: "Fluxul de detaliu este conceput pentru înțelegerea nevoilor practice ale plantei, nu doar pentru afișarea informațiilor botanice.",
         items: [
-          "Fiecare pagină include originea, rădăcinile, note despre înflorire, rezumatul îngrijirii, raritatea, tipul de creștere și atribuirea imaginii",
-          "Rutele bazate pe slug fac profilurile ușor de distribuit și de conectat la comportamentul de căutare al API-ului",
+          "Fiecare pagină combină un rezumat rapid al îngrijirii cu originea, rădăcinile, note despre înflorire, raritatea, tipul de creștere și atribuirea imaginii",
+          "Rutele bazate pe slug pot fi copiate din interfață, iar selectorul Celsius/Fahrenheit adaptează temperaturile la preferințele vizitatorului",
           "Ghidul completează profilurile cu subiecte pentru începători precum lumina, umiditatea, fertilizarea, replantarea și propagarea",
         ],
       },
@@ -658,8 +661,8 @@ const romanianProjectTranslators: Partial<
         title: "Colecție locală",
         text: "MVP-ul folosește o stare simplă în client pentru favorite, păstrând deschisă posibilitatea colecțiilor autentificate în viitor.",
         items: [
-          "Hookul `useFavoriteOrchids` salvează orhideele selectate în localStorage, astfel încât favoritele rămân disponibile între vizite",
-          "Feedbackul într-o fereastră modală confirmă salvarea și eliminarea fără a întrerupe navigarea",
+          "Hookul `useFavoriteOrchids` salvează orhideele selectate în localStorage și păstrează totalul actualizat în navigare",
+          "Profilurile văzute recent oferă o cale rapidă de revenire, iar feedbackul modal confirmă modificările favoritelor fără a întrerupe navigarea",
           "O rută dedicată colecției rare reutilizează același flux API cu filtrul `isRare`",
         ],
       },
