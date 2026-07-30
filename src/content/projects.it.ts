@@ -1079,16 +1079,17 @@ const italianProjectTranslators: Partial<Record<ProjectSlug, ProjectTranslator>>
   orchidcare: (project) => ({
     ...project,
     tagline:
-      "Enciclopedia delle orchidee dedicata alla cura, con schede ricercabili, filtri, preferiti e una collezione di specie rare.",
+      "Enciclopedia delle orchidee dedicata alla cura, con schede ricercabili, filtri climatici, preferiti e scoperta guidata.",
     summary:
-      "Un’applicazione full stack per la cura delle orchidee, realizzata con un frontend React e Vite e un’API Express e PostgreSQL. Consente di esplorare le schede delle orchidee, cercare e filtrare in base alle esigenze di cura, consultare pagine dettagliate, salvare preferiti in locale, scoprire specie rare e leggere una guida per principianti.",
+      "Un’applicazione full stack per la cura delle orchidee, realizzata con un frontend React e Vite e un’API Express e PostgreSQL. Consente di esplorare le schede con filtri di cura e climatici sincronizzati nell’URL, consultare indicatori rapidi, ritrovare le orchidee viste di recente, salvare i preferiti in locale e aprire pagine di dettaglio condivisibili con temperature in Celsius o Fahrenheit.",
     role: "Prodotto full stack in TypeScript",
     hook:
       "Un prodotto pratico per la cura delle piante, in cui dati ricercabili, informazioni di coltivazione e un’esperienza di navigazione rilassante lavorano insieme.",
     strengths: [
       "Esperienza di consultazione chiara e ordinata",
       "Client API e DTO del backend tipizzati",
-      "Ricerca e filtri basati sulle esigenze di cura",
+      "Filtri climatici conservati nell’URL",
+      "Preferiti persistenti e cronologia delle orchidee visualizzate",
       "Dati iniziali PostgreSQL con attribuzione delle immagini"
     ],
     challenge:
@@ -1096,11 +1097,13 @@ const italianProjectTranslators: Partial<Record<ProjectSlug, ProjectTranslator>>
     solution:
       "Il frontend organizza la scoperta delle orchidee nelle rotte homepage, esplorazione, dettaglio, preferiti, collezione rara e guida alla cura. Il backend distribuisce dati PostgreSQL normalizzati tramite una piccola API REST con filtri di ricerca convalidati, paginazione, ricerca per slug, metadati dei filtri, CORS, Helmet, registrazione delle richieste e risposte di errore controllate.",
     outcome:
-      "OrchidCare aggiunge al portfolio un caso di studio mirato e basato sui dati: mostra un flusso tipizzato dal frontend al backend, query PostgreSQL, stato locale del client e una superficie di prodotto progettata attorno alle decisioni di cura anziché a operazioni CRUD generiche.",
+      "OrchidCare aggiunge al portfolio un caso di studio mirato e basato sui dati: unisce un flusso tipizzato dal frontend al backend e query PostgreSQL con filtri condivisibili, strumenti di scoperta persistenti e un prodotto progettato attorno a reali decisioni di cura anziché a operazioni CRUD generiche.",
     features: [
-      "Esplorazione delle schede con ricerca, filtri e paginazione",
-      "Pagine dettagliate con origine, radici, fioritura e riepiloghi di cura",
-      "Salvataggio locale delle orchidee preferite con feedback per l’utente",
+      "Esplorazione delle schede con ricerca, filtri di cura e climatici e paginazione",
+      "Conservazione dei filtri attivi nell’URL per ricerche ripetibili e condivisibili",
+      "Indicatori rapidi di cura e azione casuale per scoprire un’orchidea",
+      "Cronologia delle orchidee visualizzate e conteggio dei preferiti nella navigazione",
+      "Pagine di cura condivisibili con riepilogo immediato e selettore Celsius/Fahrenheit",
       "Collezione dedicata alle orchidee rare",
       "Guida alla cura pensata per chi inizia"
     ],
@@ -1139,8 +1142,8 @@ const italianProjectTranslators: Partial<Record<ProjectSlug, ProjectTranslator>>
         title: "Esplorazione e filtri",
         text: "La sezione principale dell’enciclopedia trasforma i dati sulla cura delle orchidee in uno strumento decisionale consultabile, anziché in una galleria statica.",
         items: [
-          "È possibile cercare nomi e descrizioni e filtrare per difficoltà, luce, acqua, tipo di crescita e periodo di fioritura",
-          "La paginazione mantiene leggibile l’elenco, mentre il backend resta la fonte dei dati aggiornati sulle orchidee",
+          "È possibile cercare nomi e descrizioni e filtrare per difficoltà, luce, acqua, tipo di crescita, periodo di fioritura, umidità e temperatura ambiente",
+          "I filtri attivi e la paginazione sono riportati nell’URL, così lo stato della ricerca resiste al refresh e può essere condiviso direttamente",
           "I metadati dei filtri provengono dall’API, quindi le opzioni dell’interfaccia riflettono i dati realmente presenti in PostgreSQL"
         ]
       },
@@ -1148,8 +1151,8 @@ const italianProjectTranslators: Partial<Record<ProjectSlug, ProjectTranslator>>
         title: "Pagine di dettaglio dedicate alla cura",
         text: "Il flusso di dettaglio è pensato per comprendere le esigenze pratiche della pianta, non soltanto per mostrare informazioni botaniche.",
         items: [
-          "Ogni pagina include origine, radici, note sulla fioritura, riepilogo della cura, rarità, tipo di crescita e attribuzione dell’immagine",
-          "Le rotte basate su slug rendono le singole schede condivisibili e semplici da collegare al comportamento di ricerca dell’API",
+          "Ogni pagina combina un riepilogo immediato della cura con origine, radici, note sulla fioritura, rarità, tipo di crescita e attribuzione dell’immagine",
+          "Le rotte basate su slug possono essere copiate dall’interfaccia, mentre il selettore Celsius/Fahrenheit adatta le temperature alle preferenze dell’utente",
           "La guida completa le singole schede con argomenti per principianti come luce, umidità, concimazione, rinvaso e propagazione"
         ]
       },
@@ -1157,8 +1160,8 @@ const italianProjectTranslators: Partial<Record<ProjectSlug, ProjectTranslator>>
         title: "Collezione locale",
         text: "L’MVP usa uno stato leggero nel client per i preferiti, mantenendo aperta la possibilità di collezioni autenticate in futuro.",
         items: [
-          "L’hook `useFavoriteOrchids` salva le orchidee selezionate in localStorage, così i preferiti restano disponibili tra una visita e l’altra",
-          "Il feedback in finestra modale conferma il salvataggio e la rimozione senza interrompere la navigazione",
+          "L’hook `useFavoriteOrchids` salva le orchidee selezionate in localStorage e mantiene il totale aggiornato nella navigazione",
+          "Le schede viste di recente creano un percorso rapido di ritorno, mentre il feedback modale conferma le modifiche ai preferiti senza interrompere la navigazione",
           "Una rotta dedicata alla collezione rara riutilizza lo stesso flusso dell’API con il filtro `isRare`"
         ]
       }
