@@ -797,9 +797,9 @@ export const projects: ProjectEntry[] = [
   {
     slug: "orchidcare",
     name: "OrchidCare",
-    tagline: "Care-focused orchid encyclopedia with searchable profiles, filters, favourites, and rare collection browsing.",
+    tagline: "Care-focused orchid encyclopedia with searchable profiles, climate-aware filters, favourites, and guided discovery.",
     summary:
-      "A full-stack orchid care app built with a React and Vite frontend plus an Express and PostgreSQL API. It lets visitors browse orchid profiles, search and filter by care needs, open detailed care pages, save local favourites, explore rare orchids, and read beginner care guidance.",
+      "A full-stack orchid care app built with a React and Vite frontend plus an Express and PostgreSQL API. Visitors can browse profiles with URL-synced care and climate filters, scan quick-care badges, revisit recently viewed orchids, save local favourites, and open shareable detail pages with Celsius and Fahrenheit guidance.",
     role: "Full-stack TypeScript product",
     category: "full-stack",
     deploymentMode: "media",
@@ -829,7 +829,8 @@ export const projects: ProjectEntry[] = [
     strengths: [
       "Clean encyclopedia browsing experience",
       "Typed API client and typed backend DTOs",
-      "Search and care-based filtering",
+      "Climate-aware filters preserved in the URL",
+      "Persistent favourites and recently viewed discovery",
       "PostgreSQL seed data with image attribution"
     ],
     challenge:
@@ -837,11 +838,13 @@ export const projects: ProjectEntry[] = [
     solution:
       "The frontend organizes orchid discovery into home, browse, detail, favourites, rare collection, and care guide routes. The backend serves normalized PostgreSQL data through a small REST API with validated query filters, pagination, slug lookup, filter metadata, CORS, Helmet, request logging, and controlled error responses.",
     outcome:
-      "OrchidCare adds a focused data-driven case study to the portfolio: it shows a typed frontend-to-backend flow, PostgreSQL querying, local client state, and a product surface designed around care decisions rather than generic CRUD.",
+      "OrchidCare adds a focused data-driven case study to the portfolio: it combines a typed frontend-to-backend flow and PostgreSQL querying with shareable filter state, persistent discovery tools, and a product surface designed around real care decisions rather than generic CRUD.",
     features: [
-      "Browse orchid profiles with search, filters, and pagination",
-      "Open detailed care pages with origin, roots, bloom, and care summaries",
-      "Save favourite orchids locally with user feedback",
+      "Browse profiles with search, care filters, climate filters, and pagination",
+      "Preserve active browse filters in the URL for repeatable and shareable searches",
+      "Scan quick-care badges or open a random orchid with the surprise action",
+      "Revisit recently viewed orchids and track saved favourites from the navigation",
+      "Open shareable care pages with an at-a-glance summary and Celsius/Fahrenheit toggle",
       "Explore a dedicated rare orchid collection",
       "Read a beginner-friendly orchid care guide"
     ],
@@ -884,8 +887,8 @@ export const projects: ProjectEntry[] = [
         title: "Browse and filter",
         text: "The main encyclopedia route turns orchid care metadata into a browsable decision surface instead of a static gallery.",
         items: [
-          "Visitors can search orchid names and descriptions while filtering by difficulty, light, water, growth type, and bloom season",
-          "Pagination keeps the listing readable while preserving the backend as the source for current orchid records",
+          "Visitors can search orchid names and descriptions while filtering by difficulty, light, water, growth type, bloom season, humidity, and room temperature",
+          "Active filters and pagination are reflected in the URL, so a browse state survives refreshes and can be shared directly",
           "Filter metadata comes from the API, so the UI options reflect the data that actually exists in PostgreSQL"
         ]
       },
@@ -893,8 +896,8 @@ export const projects: ProjectEntry[] = [
         title: "Care-focused detail pages",
         text: "The detail flow is built around practical care understanding, not only botanical display information.",
         items: [
-          "Each orchid detail page includes origin, roots, bloom notes, care summary, rarity, growth type, and image attribution",
-          "Slug-based routing keeps individual profiles shareable and easy to connect to API lookup behavior",
+          "Each detail page combines an at-a-glance care summary with origin, roots, bloom notes, rarity, growth type, and image attribution",
+          "Slug-based routes can be copied from the interface, while a Celsius/Fahrenheit toggle adapts temperature guidance to the visitor",
           "The care guide complements specific profiles with beginner topics such as light, humidity, feeding, repotting, and propagation"
         ]
       },
@@ -902,8 +905,8 @@ export const projects: ProjectEntry[] = [
         title: "Local collection flow",
         text: "The MVP uses lightweight client state for favourites while leaving room for future authenticated collections.",
         items: [
-          "The `useFavoriteOrchids` hook stores selected orchids in localStorage so favourites persist between browser visits",
-          "Favourite modal feedback confirms save and remove actions without interrupting browsing",
+          "The `useFavoriteOrchids` hook stores selected orchids in localStorage and keeps the current total visible in the navigation",
+          "Recently viewed profiles create a lightweight return path, while modal feedback confirms favourite changes without interrupting browsing",
           "A dedicated rare collection route reuses the same API list flow with `isRare` filtering for focused discovery"
         ]
       }
