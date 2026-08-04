@@ -31,14 +31,14 @@ export default function HomePage() {
               <div className="technology-parallax__flow">
                 <div className="technology-parallax__content">
                   <div className="technology-parallax__card">
-                    <p className="section-label">{t("aboutEyebrow")}</p>
+                    <p id="technology-about-title" className="section-label mx-auto w-full max-w-5xl">{t("aboutEyebrow")}</p>
 
-                    <div className="mx-auto mt-[1.1rem] flex w-full max-w-5xl items-center justify-between gap-[1.1rem] sm:gap-[2.2rem]">
-                      <h2 id="technology-about-title" className="minimal-heading min-w-0 text-3xl sm:text-4xl">
-                        {t("aboutTitle")}
-                      </h2>
+                    <div className="mx-auto mt-[1.1rem] grid w-full max-w-5xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:gap-8">
+                      <p className="minimal-text max-w-3xl text-sm leading-6 sm:text-base sm:leading-7">
+                        {t("aboutDescription")}
+                      </p>
 
-                      <Link href="/about" className="sharp-button shrink-0">
+                      <Link href="/about" className="sharp-button shrink-0 px-[1em] py-[0.85em] text-xs sm:px-[1.4em] sm:py-[1em] sm:text-sm">
                         {t("readProfile")}
                       </Link>
                     </div>

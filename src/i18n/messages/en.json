@@ -7,7 +7,7 @@
   },
   "Navigation": {
     "projects": "Projects",
-    "about": "About",
+    "about": "About me",
     "credentials": "Credentials",
     "contact": "Contact",
     "githubProfile": "GitHub profile",
@@ -44,11 +44,10 @@
     "projectsEyebrow": "Full-stack web apps",
     "projectsHeading": "Product-focused applications and playable systems.",
     "aboutEyebrow": "About Tiana",
-    "aboutTitle": "Frontend craft with full-stack range.",
-    "aboutDescription": "Design-led web experiences across commerce, education, adoption, plant care, AI tools, and browser games.",
+    "aboutDescription": "A product-minded Web Developer turning thoughtful design into reliable full-stack digital experiences.",
     "readProfile": "Read profile",
     "githubEyebrow": "Code credibility",
-    "githubTitle": "Public work, clean ownership.",
+    "githubTitle": "Designed with care. Built to perform.",
     "githubDescription": "GitHub keeps the portfolio grounded in real code, visible project history, and clear implementation ownership.",
     "githubEntryDescription": "A clean public entry point for code review and project context.",
     "openGithub": "Open GitHub",
@@ -189,7 +188,7 @@
     "demoPlaceholder": "Clip placeholder ready for upload to Vercel-hosted media path."
   },
   "About": {
-    "title": "About",
+    "title": "About me",
     "subtitle": "Full Stack Web Developer Jr.",
     "currentFocus": "Current focus",
     "currentFocusTitle": "End-to-end web products.",
@@ -374,7 +373,7 @@
     "siteTitle": "Tiana Oblasser | Web Developer",
     "siteDescription": "Full-stack web developer portfolio focused on React, Node.js, REST APIs, and user-centered interfaces.",
     "projectsTitle": "Projects",
-    "aboutTitle": "About",
+    "aboutTitle": "About me",
     "credentialsTitle": "Credentials",
     "contactTitle": "Contact"
   }
