@@ -32,7 +32,7 @@ export default function HomePage() {
                   <div className="technology-parallax__card">
                     <p className="section-label">{t("aboutEyebrow")}</p>
 
-                    <div className="mx-auto mt-4 flex w-full max-w-5xl items-center justify-between gap-4 sm:gap-8">
+                    <div className="mx-auto mt-[1.1rem] flex w-full max-w-5xl items-center justify-between gap-[1.1rem] sm:gap-[2.2rem]">
                       <h2 id="technology-about-title" className="minimal-heading min-w-0 text-3xl sm:text-4xl">
                         {t("aboutTitle")}
                       </h2>
@@ -42,11 +42,11 @@ export default function HomePage() {
                       </Link>
                     </div>
 
-                    <div className="mx-auto mt-8 w-full max-w-5xl">
+                    <div className="mx-auto mt-[2.2rem] w-full max-w-5xl">
                       <GithubCallout />
                     </div>
 
-                    <div className="mx-auto mt-8 max-w-5xl border-t border-line pt-6">
+                    <div className="mx-auto mt-[2.2rem] max-w-5xl border-t border-line pt-[1.65rem]">
                       <Image
                         src="/media/hero/technology-stack-banner.png"
                         alt="HTML, CSS, JavaScript, Node.js, Express, React, and MySQL logos"
