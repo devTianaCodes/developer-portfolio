@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import NextLink from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
@@ -25,19 +24,7 @@ export function InteractiveHero() {
   };
 
   return (
-    <section className="relative left-1/2 -mt-10 flex min-h-[74rem] w-screen -translate-x-1/2 items-center overflow-hidden bg-[#06152f] py-8 text-white shadow-[0_24px_70px_rgba(31,49,78,0.18)] sm:min-h-[55.5rem] md:-mt-14 md:min-h-[57.5rem] md:py-12 lg:min-h-[37.25rem]">
-      <Image
-        src="/media/hero/technology-network.png"
-        alt=""
-        fill
-        priority
-        quality={82}
-        sizes="100vw"
-        className="object-cover object-center"
-      />
-      <div className="absolute inset-0 bg-[#020817]/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#020817]/55 via-[#06152f]/20 to-transparent" />
-
+    <section className="hero-parallax relative -mt-10 flex items-center overflow-hidden py-8 text-white shadow-[0_24px_70px_rgba(31,49,78,0.18)] md:-mt-14 md:py-12">
       <div className="relative mx-auto min-w-0 max-w-[96rem] px-4 sm:px-5 md:px-8">
         <div className="grid min-w-0 gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch">
           <motion.div

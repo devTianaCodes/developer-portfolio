@@ -25,7 +25,7 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-white/95">
+    <header className="sticky top-0 z-40 border-b border-line bg-white">
       <div className="mx-auto flex max-w-[96rem] items-center justify-between gap-4 px-2.5 py-[0.675rem] md:px-4 lg:py-[0.9rem]">
         <Link href="/" className="group inline-flex min-w-0 items-center gap-4">
           <span className="relative h-[52px] w-[52px] shrink-0 self-center overflow-hidden rounded-full border-2 border-[#262626] bg-white shadow-[0_8px_20px_rgba(15,23,42,0.12)] transition group-hover:scale-[1.03] lg:h-[63px] lg:w-[63px]">
@@ -90,7 +90,7 @@ export function SiteHeader() {
       </div>
 
       <div
-        className={`border-t border-line bg-white/96 px-2.5 shadow-[0_18px_42px_rgba(15,23,42,0.12)] transition-[max-height,opacity] duration-300 md:px-4 lg:hidden ${
+        className={`border-t border-line bg-white px-2.5 shadow-[0_18px_42px_rgba(15,23,42,0.12)] transition-[max-height,opacity] duration-300 md:px-4 lg:hidden ${
           menuOpen ? "max-h-96 opacity-100" : "max-h-0 overflow-hidden opacity-0"
         }`}
       >

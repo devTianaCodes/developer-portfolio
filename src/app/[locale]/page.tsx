@@ -20,20 +20,17 @@ export default function HomePage() {
 
         <section aria-labelledby="technology-about-title" className="technology-parallax">
           <div className="technology-parallax__card">
-            <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 sm:gap-8">
-              <div className="min-w-0">
-                <p className="section-label">{t("aboutEyebrow")}</p>
-                <h2 id="technology-about-title" className="minimal-heading mt-4 text-3xl sm:text-4xl">
-                  {t("aboutTitle")}
-                </h2>
-              </div>
+            <p className="section-label">{t("aboutEyebrow")}</p>
 
-              <Link href="/about" className="sharp-button justify-self-end">
+            <div className="mt-4 flex items-center justify-between gap-4 sm:gap-8">
+              <h2 id="technology-about-title" className="minimal-heading min-w-0 text-3xl sm:text-4xl">
+                {t("aboutTitle")}
+              </h2>
+
+              <Link href="/about" className="sharp-button shrink-0">
                 {t("readProfile")}
               </Link>
             </div>
-
-            <p className="minimal-text mt-5 max-w-3xl">{t("aboutDescription")}</p>
 
             <div className="mx-auto mt-8 max-w-5xl border-t border-line pt-6">
               <Image
