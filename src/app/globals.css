@@ -122,6 +122,7 @@ body::-webkit-scrollbar,
     min-height: 125vh;
     min-height: 125svh;
     margin-left: calc(50% - 50vw);
+    background-color: #06152f;
   }
 
   .hero-parallax__background {
@@ -479,6 +480,14 @@ body::-webkit-scrollbar,
 }
 
 @media (max-width: 767px) {
+  .hero-parallax {
+    --home-carousel-card-top: 0rem;
+  }
+
+  .technology-marquee {
+    margin-bottom: 0;
+  }
+
   .project-carousel--immersive > div {
     height: calc(113.5vh - var(--site-header-height));
     height: calc(113.5svh - var(--site-header-height));
@@ -508,6 +517,10 @@ body::-webkit-scrollbar,
   .project-carousel-loop-card[data-loop-offset="2"] {
     left: 103%;
     width: 69%;
+  }
+
+  .technology-parallax {
+    margin-top: 0;
   }
 }
 
