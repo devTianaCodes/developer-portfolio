@@ -71,7 +71,8 @@ function projectPanel(
   projectTypeLabel: string,
   mobileSummary: string,
   tagline: string,
-  imageAlt: string
+  imageAlt: string,
+  deferImage = false
 ) {
   const hero = project.media.find((item) => item.featured) ?? project.media[0];
   const heroSrc = hero?.optimizedSrc ?? hero?.poster ?? hero?.src;
@@ -105,9 +106,8 @@ function projectPanel(
               src={heroSrc}
               alt={imageAlt}
               fill
-              priority={isActive}
-              loading={isActive ? undefined : "eager"}
-              unoptimized
+              priority={!deferImage && isActive}
+              loading={!deferImage && isActive ? undefined : "lazy"}
               quality={82}
               className={classNames(
                 "object-contain transition-transform duration-500 ease-out group-hover:scale-[1.025]",
@@ -359,7 +359,8 @@ export function ProjectCarousel({ projects, immersive = false }: ProjectCarousel
                         project.category === "game" ? tProjects("gameType") : tProjects("fullStackType"),
                         localizedCopy.mobileSummary,
                         localizedCopy.tagline,
-                        tProjects("projectImageAlt", { project: project.name })
+                        tProjects("projectImageAlt", { project: project.name }),
+                        true
                       )}
                     </Link>
                   ) : (
@@ -379,7 +380,8 @@ export function ProjectCarousel({ projects, immersive = false }: ProjectCarousel
                         project.category === "game" ? tProjects("gameType") : tProjects("fullStackType"),
                         localizedCopy.mobileSummary,
                         localizedCopy.tagline,
-                        tProjects("projectImageAlt", { project: project.name })
+                        tProjects("projectImageAlt", { project: project.name }),
+                        true
                       )}
                     </button>
                   )}
@@ -387,7 +389,7 @@ export function ProjectCarousel({ projects, immersive = false }: ProjectCarousel
               );
             })}
 
-            <div className="pointer-events-none absolute bottom-0 left-1/2 z-[70] -translate-x-1/2 rounded-full bg-black/45 px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-white/90 backdrop-blur-md">
+            <div className="pointer-events-none absolute bottom-0 left-1/2 z-[70] -translate-x-1/2 rounded-full bg-black/45 px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-white/90 md:backdrop-blur-md">
               {String(activeIndex + 1).padStart(2, "0")} / {String(orderedProjects.length).padStart(2, "0")}
             </div>
           </div>

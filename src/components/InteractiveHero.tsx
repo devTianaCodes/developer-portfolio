@@ -42,7 +42,7 @@ export function InteractiveHero() {
                 {proofMetrics.map((metric) => (
                   <div
                     key={metric.label}
-                    className="min-w-0 rounded-[6px] border border-white/80 bg-white/90 p-4 shadow-[0_12px_32px_rgba(0,12,32,0.22)] backdrop-blur-[3px]"
+                    className="min-w-0 rounded-[6px] border border-white/80 bg-white/90 p-4 shadow-[0_12px_32px_rgba(0,12,32,0.22)] md:backdrop-blur-[3px]"
                   >
                     <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#123457]/75">{metric.label}</p>
                     <div className="mt-3 flex min-w-0 items-baseline gap-3">

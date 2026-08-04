@@ -12,7 +12,7 @@ function TechnologyGroup({ duplicate = false }: { duplicate?: boolean }) {
           <ProjectTechBadge
             tech={tech}
             compact
-            className="whitespace-nowrap border-white/25 bg-white/95 px-3 py-2 text-[10px] text-black shadow-[0_8px_20px_rgba(0,8,28,0.16)] sm:px-4 sm:text-[11px]"
+            className="whitespace-nowrap border-white/25 bg-white/95 px-3 py-2 text-[10px] text-black shadow-none sm:px-4 sm:text-[11px] sm:shadow-[0_8px_20px_rgba(0,8,28,0.16)]"
           />
         </li>
       ))}
