@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { FeaturedProjectsRail } from "@/components/FeaturedProjectsRail";
 import { PageReveal } from "@/components/PageReveal";
-import { ProjectCarousel } from "@/components/ProjectCarousel";
-import { projects } from "@/content/projects";
 import { enabledLocales } from "@/i18n/config";
 import { createPageMetadata } from "@/i18n/metadata";
 
@@ -26,7 +25,7 @@ export default function ProjectsPage() {
   return (
     <PageReveal>
       <div className="space-y-10">
-        <ProjectCarousel projects={projects} />
+        <FeaturedProjectsRail />
       </div>
     </PageReveal>
   );

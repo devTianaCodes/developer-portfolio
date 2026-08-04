@@ -1,9 +1,10 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { FeaturedProjectsRail } from "@/components/FeaturedProjectsRail";
 import { GithubCallout } from "@/components/GithubCallout";
 import { InteractiveHero } from "@/components/InteractiveHero";
 import { PageReveal } from "@/components/PageReveal";
+import { ProjectCarousel } from "@/components/ProjectCarousel";
+import { projects } from "@/content/projects";
 import { Link } from "@/i18n/navigation";
 
 export default function HomePage() {
@@ -19,9 +20,7 @@ export default function HomePage() {
             <InteractiveHero />
 
             <section className="hero-parallax__projects">
-              <div className="mx-auto max-w-[96rem] px-2.5 md:px-4">
-                <FeaturedProjectsRail />
-              </div>
+              <ProjectCarousel projects={projects} immersive />
             </section>
           </div>
         </section>

@@ -12,6 +12,7 @@ import { classNames } from "@/lib/classNames";
 
 type ProjectCarouselProps = {
   projects: ProjectEntry[];
+  immersive?: boolean;
 };
 
 const pastelPanels: Record<ProjectEntry["visualTone"], string> = {
@@ -143,7 +144,7 @@ function projectPanel(
   );
 }
 
-export function ProjectCarousel({ projects }: ProjectCarouselProps) {
+export function ProjectCarousel({ projects, immersive = false }: ProjectCarouselProps) {
   const orderedProjects = useMemo(() => sortProjectsForDisplay(projects), [projects]);
   const [{ activeIndex, direction }, setCarousel] = useState({ activeIndex: 0, direction: 1 });
   const reduceMotion = useReducedMotion();
@@ -227,8 +228,21 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     : mobilePanelSpring;
 
   return (
-    <section data-testid="project-carousel" className="relative -mb-6 -mt-6 overflow-hidden p-1.5 md:mb-0 md:mt-0 md:px-4 md:py-0 lg:-mx-4 lg:px-0">
-      <div className="relative mx-auto h-[560px] max-w-[128rem] overflow-hidden bg-slate-950/20 md:h-[680px]">
+    <section
+      data-testid="project-carousel"
+      className={classNames(
+        "relative overflow-hidden",
+        immersive
+          ? "project-carousel--immersive m-0 p-0"
+          : "-mb-6 -mt-6 p-1.5 md:mb-0 md:mt-0 md:px-4 md:py-0 lg:-mx-4 lg:px-0"
+      )}
+    >
+      <div
+        className={classNames(
+          "relative mx-auto overflow-hidden bg-slate-950/20",
+          immersive ? "max-w-none" : "h-[560px] max-w-[128rem] md:h-[680px]"
+        )}
+      >
         <button
           type="button"
           onClick={() => move(-1)}

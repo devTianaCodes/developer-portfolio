@@ -14,7 +14,7 @@ export function FeaturedProjectsRail() {
     <section className="space-y-5">
       <div className="space-y-2">
         <p className="section-label text-accent">{t("projectsEyebrow")}</p>
-        <h3 className="minimal-heading text-3xl md:text-4xl">{t("projectsHeading")}</h3>
+        <h1 className="minimal-heading text-3xl md:text-4xl">{t("projectsHeading")}</h1>
       </div>
       <div className="grid gap-5 lg:grid-cols-3">
         {displayProjects.map((project) => (
