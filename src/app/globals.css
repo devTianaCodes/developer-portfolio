@@ -111,6 +111,10 @@ body::-webkit-scrollbar,
   }
 
   .hero-parallax {
+    --home-section-gap: 7.1875rem;
+    --home-carousel-card-top: 2.5rem;
+    --home-hero-top-gap: 7.90625rem;
+    --home-marquee-padding: clamp(0.99rem, 1.98vw, 1.485rem);
     position: relative;
     isolation: isolate;
     display: grid;
@@ -153,15 +157,14 @@ body::-webkit-scrollbar,
     position: relative;
     z-index: 1;
     display: flex;
-    min-height: 75vh;
-    min-height: 75svh;
-    align-items: center;
-    padding-top: 2.2rem;
-    padding-bottom: 2.2rem;
+    min-height: 0;
+    align-items: flex-start;
+    padding-top: var(--home-hero-top-gap);
+    padding-bottom: 0;
   }
 
   .hero-parallax__layout {
-    transform: translateY(-1rem);
+    transform: none;
   }
 
   .hero-parallax__flow {
@@ -185,8 +188,9 @@ body::-webkit-scrollbar,
     width: 100%;
     overflow: hidden;
     contain: layout paint;
-    padding-block: clamp(0.99rem, 1.98vw, 1.485rem);
-    margin-bottom: clamp(1.925rem, 4.4vw, 3.85rem);
+    margin-top: calc(var(--home-section-gap) - var(--home-marquee-padding));
+    margin-bottom: calc(var(--home-section-gap) - var(--home-marquee-padding) - var(--home-carousel-card-top) + 0.75rem);
+    padding-block: var(--home-marquee-padding);
   }
 
   .technology-marquee__track {
@@ -255,7 +259,7 @@ body::-webkit-scrollbar,
 
   .project-carousel-loop-card[data-loop-offset="0"] {
     left: 6%;
-    top: 7%;
+    top: var(--home-carousel-card-top);
     width: 88%;
     height: 86%;
   }
@@ -279,10 +283,9 @@ body::-webkit-scrollbar,
     isolation: isolate;
     display: grid;
     width: 100vw;
-    min-height: calc(100vh - var(--site-header-height));
-    min-height: calc(100svh - var(--site-header-height));
-    margin-top: 1.65rem;
-    margin-bottom: 5.01875rem;
+    min-height: 0;
+    margin-top: var(--home-section-gap);
+    margin-bottom: var(--home-section-gap);
     margin-left: calc(50% - 50vw);
     content-visibility: auto;
     contain-intrinsic-size: auto calc(100svh - var(--site-header-height));
@@ -292,11 +295,10 @@ body::-webkit-scrollbar,
     position: relative;
     z-index: 1;
     display: grid;
-    min-height: calc(100vh - var(--site-header-height));
-    min-height: calc(100svh - var(--site-header-height));
+    min-height: 0;
     align-items: center;
     justify-items: center;
-    padding: clamp(2.2rem, 6.6vw, 5.5rem) 1.1rem;
+    padding: 0 1.1rem;
   }
 
   .technology-parallax__flow {
@@ -401,19 +403,23 @@ body::-webkit-scrollbar,
 }
 
 @media (min-width: 768px) {
+  .hero-parallax {
+    --home-section-gap: 12.3125rem;
+    --home-carousel-card-top: 5rem;
+    --home-hero-top-gap: 13.54375rem;
+  }
+
   .project-carousel--immersive > div {
     height: calc(120vh - var(--site-header-height));
     height: calc(120svh - var(--site-header-height));
   }
 
   .hero-parallax__content {
-    align-items: flex-end;
-    padding-top: 3.3rem;
-    padding-bottom: 2.2rem;
+    padding-top: var(--home-hero-top-gap);
   }
 
   .hero-parallax__layout {
-    transform: translateY(-2rem);
+    transform: none;
   }
 
   .about-parallax__content {
@@ -451,11 +457,6 @@ body::-webkit-scrollbar,
     margin-inline: 0;
   }
 
-  .technology-parallax {
-    margin-top: 2.2rem;
-    margin-bottom: 5.84375rem;
-  }
-
 }
 
 @media (min-width: 640px) and (max-width: 767px) {
@@ -466,7 +467,6 @@ body::-webkit-scrollbar,
 
 @media (max-width: 767px) {
   .project-carousel-loop-card[data-loop-offset="0"] {
-    top: 5%;
     height: 80%;
   }
 }
@@ -476,17 +476,22 @@ body::-webkit-scrollbar,
     --site-header-height: calc(63px + 1.8rem + 2px);
   }
 
+  .hero-parallax {
+    --home-section-gap: 10.75rem;
+    --home-carousel-card-top: 3.5rem;
+    --home-hero-top-gap: 11.825rem;
+  }
+
   .about-parallax__content {
     min-height: 37.25rem;
   }
 
-  .technology-parallax {
-    margin-top: 2.475rem;
-    margin-bottom: 5.225rem;
+  .hero-parallax__content {
+    padding-top: var(--home-hero-top-gap);
   }
 
   .hero-parallax__layout {
-    transform: translateY(-40%);
+    transform: none;
   }
 }
 

@@ -13,7 +13,7 @@ export function InteractiveHero() {
   return (
     <div className="hero-parallax__content mx-auto min-w-0 max-w-[96rem] px-4 text-white sm:px-5 md:px-8">
       <div className="hero-parallax__layout grid w-full min-w-0 gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch">
-          <div className="flex min-w-0 flex-col items-center justify-center py-2 text-center lg:py-8">
+          <div className="flex min-w-0 flex-col items-center justify-start text-center lg:justify-center">
             <h1 className="max-w-5xl font-sans text-[clamp(3rem,13vw,4.5rem)] font-normal leading-[0.98] tracking-[-0.025em] text-white [text-shadow:0_4px_28px_rgba(0,0,0,0.48)] lg:text-[clamp(3.5rem,4.25vw,4.5rem)]">
               <span className="block lg:whitespace-nowrap">
                 {t("heroLineOne")}
