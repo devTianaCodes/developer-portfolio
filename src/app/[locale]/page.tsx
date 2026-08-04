@@ -30,7 +30,7 @@ export default function HomePage() {
             src="/media/hero/technology-stack-banner.webp"
             alt="HTML, CSS, JavaScript, Node.js, Express, React, and MySQL logos"
             width={1430}
-            height={155}
+            height={93}
             className="h-auto w-full"
             sizes="100vw"
           />
