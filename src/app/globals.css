@@ -12,6 +12,7 @@
   --color-accent: #315f9f;
   --color-accent-soft: #9db7d8;
   --color-line: rgba(51, 65, 85, 0.1);
+  --site-header-height: calc(52px + 1.35rem + 2px);
   --font-display: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
   --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
 }
@@ -112,6 +113,7 @@ body::-webkit-scrollbar,
   .hero-parallax {
     position: relative;
     isolation: isolate;
+    display: grid;
     width: 100vw;
     min-height: 125vh;
     min-height: 125svh;
@@ -120,16 +122,18 @@ body::-webkit-scrollbar,
 
   .hero-parallax__background {
     position: sticky;
-    top: 0;
+    top: var(--site-header-height);
     z-index: 0;
+    grid-area: 1 / 1;
+    align-self: start;
     width: 100%;
-    height: 100vh;
-    height: 100svh;
+    height: calc(100vh - var(--site-header-height));
+    height: calc(100svh - var(--site-header-height));
     background-color: #06152f;
     background-image:
       linear-gradient(90deg, rgba(2, 8, 23, 0.58), rgba(6, 21, 47, 0.2), rgba(2, 8, 23, 0.12)),
       linear-gradient(rgba(2, 8, 23, 0.2), rgba(2, 8, 23, 0.2)),
-      url("/media/hero/technology-network.webp");
+      url("/media/hero/home-hero-network.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -141,18 +145,34 @@ body::-webkit-scrollbar,
     position: relative;
     z-index: 1;
     display: flex;
-    min-height: 125vh;
-    min-height: 125svh;
-    margin-top: -100vh;
-    margin-top: -100svh;
+    min-height: 75vh;
+    min-height: 75svh;
     align-items: center;
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
 
+  .hero-parallax__flow {
+    position: relative;
+    z-index: 1;
+    grid-area: 1 / 1;
+    min-width: 0;
+  }
+
+  .hero-parallax__projects {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    background: var(--color-main-background);
+    padding-top: clamp(3rem, 7vw, 6rem);
+    padding-bottom: clamp(3rem, 7vw, 6rem);
+    box-shadow: 0 -22px 60px rgba(15, 23, 42, 0.14);
+  }
+
   .technology-parallax {
     position: relative;
     isolation: isolate;
+    display: grid;
     width: 100vw;
     min-height: 135vh;
     min-height: 135svh;
@@ -162,11 +182,13 @@ body::-webkit-scrollbar,
 
   .technology-parallax__background {
     position: sticky;
-    top: 0;
+    top: var(--site-header-height);
     z-index: 0;
+    grid-area: 1 / 1;
+    align-self: start;
     width: 100%;
-    height: 100vh;
-    height: 100svh;
+    height: calc(100vh - var(--site-header-height));
+    height: calc(100svh - var(--site-header-height));
     background-color: #06152f;
     background-image:
       linear-gradient(rgba(2, 8, 23, 0.32), rgba(2, 8, 23, 0.48)),
@@ -184,11 +206,16 @@ body::-webkit-scrollbar,
     display: grid;
     min-height: 135vh;
     min-height: 135svh;
-    margin-top: -100vh;
-    margin-top: -100svh;
     align-items: center;
     justify-items: center;
     padding: clamp(2rem, 6vw, 5rem) 1rem;
+  }
+
+  .technology-parallax__flow {
+    position: relative;
+    z-index: 1;
+    grid-area: 1 / 1;
+    min-width: 0;
   }
 
   .technology-parallax__card {
@@ -200,34 +227,103 @@ body::-webkit-scrollbar,
     padding: clamp(1.25rem, 3vw, 2.5rem);
     box-shadow: 0 28px 80px rgba(0, 0, 0, 0.3);
   }
+
+  .about-parallax {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+
+  .about-parallax__background {
+    position: sticky;
+    top: var(--site-header-height);
+    z-index: 0;
+    grid-area: 1 / 1;
+    align-self: start;
+    width: 100%;
+    height: calc(100vh - var(--site-header-height));
+    height: calc(100svh - var(--site-header-height));
+    overflow: hidden;
+    background: #4b73a5;
+    contain: paint;
+    will-change: transform;
+  }
+
+  .about-parallax__flow {
+    position: relative;
+    z-index: 1;
+    grid-area: 1 / 1;
+    min-width: 0;
+  }
+
+  .about-parallax__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height: 74rem;
+    align-items: center;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .about-parallax__after {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    background: var(--color-main-background);
+    box-shadow: 0 -22px 60px rgba(15, 23, 42, 0.14);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-parallax,
   .hero-parallax__content,
   .technology-parallax,
-  .technology-parallax__content {
+  .technology-parallax__content,
+  .about-parallax,
+  .about-parallax__content {
     min-height: 100vh;
     min-height: 100svh;
   }
 
   .hero-parallax__background,
-  .technology-parallax__background {
+  .technology-parallax__background,
+  .about-parallax__background {
     position: absolute;
     inset: 0;
     height: 100%;
     will-change: auto;
   }
 
-  .hero-parallax__content,
-  .technology-parallax__content {
-    margin-top: 0;
-  }
 }
 
 @media (min-width: 768px) {
   .hero-parallax__content {
     padding-top: 3rem;
     padding-bottom: 3rem;
+  }
+
+  .about-parallax__content {
+    min-height: 57.5rem;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .about-parallax__content {
+    min-height: 55.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --site-header-height: calc(63px + 1.8rem + 2px);
+  }
+
+  .about-parallax__content {
+    min-height: 37.25rem;
   }
 }

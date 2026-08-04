@@ -14,11 +14,8 @@ export function InteractiveHero() {
     { label: t("liveDemos"), value: "2", detail: t("liveDemosDetail") }
   ];
   return (
-    <section className="hero-parallax relative -mt-10 text-white shadow-[0_24px_70px_rgba(31,49,78,0.18)] md:-mt-14">
-      <div className="hero-parallax__background" aria-hidden="true" />
-
-      <div className="hero-parallax__content mx-auto min-w-0 max-w-[96rem] px-4 sm:px-5 md:px-8">
-        <div className="grid w-full min-w-0 gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch">
+    <div className="hero-parallax__content mx-auto min-w-0 max-w-[96rem] px-4 text-white sm:px-5 md:px-8">
+      <div className="grid w-full min-w-0 gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch">
           <div className="flex min-w-0 flex-col items-center justify-center py-2 text-center lg:py-8">
             <h1 className="max-w-5xl font-sans text-[clamp(3rem,13vw,4.5rem)] font-normal leading-[0.98] tracking-[-0.025em] text-white [text-shadow:0_4px_28px_rgba(0,0,0,0.48)] lg:text-[clamp(3.5rem,4.25vw,4.5rem)]">
               <span className="block lg:whitespace-nowrap">
@@ -65,12 +62,12 @@ export function InteractiveHero() {
                 {proofMetrics.map((metric) => (
                   <div
                     key={metric.label}
-                    className="min-w-0 rounded-[6px] border border-white/16 bg-[#031127]/90 p-4 shadow-[0_10px_30px_rgba(0,0,0,0.16)]"
+                    className="min-w-0 rounded-[6px] border border-white/80 bg-white/90 p-4 shadow-[0_12px_32px_rgba(0,12,32,0.22)] backdrop-blur-[3px]"
                   >
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-blue-100/72">{metric.label}</p>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#123457]/75">{metric.label}</p>
                     <div className="mt-3 flex min-w-0 items-baseline gap-3">
-                      <span className="font-sans text-[1.75rem] leading-none text-white">{metric.value}</span>
-                      <span className="min-w-0 flex-1 break-words text-sm leading-6 text-slate-200">{metric.detail}</span>
+                      <span className="font-sans text-[1.75rem] leading-none text-[#06152f]">{metric.value}</span>
+                      <span className="min-w-0 flex-1 break-words text-sm leading-6 text-[#173a5e]">{metric.detail}</span>
                     </div>
                   </div>
                 ))}
@@ -78,8 +75,7 @@ export function InteractiveHero() {
             </div>
           </div>
 
-        </div>
       </div>
-    </section>
+    </div>
   );
 }

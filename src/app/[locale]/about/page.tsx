@@ -119,8 +119,8 @@ export default function AboutPage() {
 
   return (
     <PageReveal>
-      <div className="space-y-10">
-        <section className="relative left-1/2 -mt-10 flex min-h-[74rem] w-screen -translate-x-1/2 items-center bg-[#4b73a5] py-10 text-white sm:min-h-[55.5rem] md:-mt-14 md:min-h-[57.5rem] md:py-14 lg:min-h-[37.25rem]">
+      <section className="about-parallax -mt-10 md:-mt-14">
+        <div className="about-parallax__background" aria-hidden="true">
           <Image
             src="/media/about/about-blue-background.png"
             alt=""
@@ -130,8 +130,11 @@ export default function AboutPage() {
             sizes="100vw"
             className="object-cover object-center opacity-90"
           />
+        </div>
 
-          <div className="relative z-10 mx-auto max-w-[96rem] space-y-8 px-2.5 md:px-4">
+        <div className="about-parallax__flow">
+          <div className="about-parallax__content text-white">
+            <div className="mx-auto max-w-[96rem] space-y-8 px-2.5 md:px-4">
             <div className="space-y-4">
               <p className="font-sans text-xs font-bold uppercase leading-[1.2] tracking-[2px] text-white">{t("title")}</p>
 
@@ -170,10 +173,12 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+            </div>
           </div>
-        </section>
 
-        <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="about-parallax__after">
+            <div className="mx-auto max-w-[96rem] space-y-10 px-2.5 pt-10 md:px-4">
+              <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="sharp-panel p-8 lg:order-2">
             <p className="section-label">{t("currentFocus")}</p>
             <h2 className="minimal-heading mt-3 text-4xl">{t("currentFocusTitle")}</h2>
@@ -212,9 +217,9 @@ export default function AboutPage() {
               </Link>
             </div>
           </div>
-        </section>
+              </section>
 
-        <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+              <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="sharp-panel p-8">
             <p className="section-label">{t("professionalExperience")}</p>
             <h2 className="minimal-heading mt-3 text-4xl">{t("professionalExperienceTitle")}</h2>
@@ -272,8 +277,11 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </section>
-      </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
     </PageReveal>
   );
 }
