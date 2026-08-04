@@ -485,18 +485,18 @@ body::-webkit-scrollbar,
   }
 
   .technology-marquee {
-    margin-bottom: 0;
+    margin-bottom: calc(var(--home-section-gap) - var(--home-marquee-padding) + 0.75rem);
   }
 
   .project-carousel--immersive > div {
-    height: calc(113.5vh - var(--site-header-height));
-    height: calc(113.5svh - var(--site-header-height));
+    height: calc(98vh - var(--site-header-height));
+    height: calc(98svh - var(--site-header-height));
   }
 
   .project-carousel-loop-card[data-loop-offset="0"] {
     left: -0.6%;
     width: 101.2%;
-    height: 80%;
+    height: calc(100% - 3.75rem);
   }
 
   .project-carousel-loop-card[data-loop-offset="-1"] {
@@ -520,7 +520,7 @@ body::-webkit-scrollbar,
   }
 
   .technology-parallax {
-    margin-top: 0;
+    margin-top: var(--home-section-gap);
   }
 }
 

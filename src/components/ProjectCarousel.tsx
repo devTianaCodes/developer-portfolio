@@ -54,7 +54,7 @@ const carouselEaseCss = `cubic-bezier(${carouselEase.join(",")})`;
 const carouselTransitionMs = 2800;
 const carouselTransitionSeconds = carouselTransitionMs / 1000;
 // With this ease curve, 45% elapsed is roughly 70% of the visual travel.
-const incomingShadeRevealMs = carouselTransitionMs * 0.45;
+const shadeHandoffMs = carouselTransitionMs * 0.45;
 const shadeRemovalSeconds = 0.85;
 const shadeApplicationSeconds = 1.1;
 const autoplayIntervalMs = 5000;
@@ -178,6 +178,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [shadeActiveIndex, setShadeActiveIndex] = useState(0);
   const [revealedActiveIndex, setRevealedActiveIndex] = useState(0);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const reduceMotion = useReducedMotion();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const tCommon = useTranslations("Common");
@@ -218,21 +219,31 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   };
 
   useEffect(() => {
-    if (reduceMotion || projects.length < 2) return;
+    const mobileViewport = window.matchMedia("(max-width: 767px)");
+    const syncViewport = () => setIsMobileViewport(mobileViewport.matches);
+
+    syncViewport();
+    mobileViewport.addEventListener("change", syncViewport);
+
+    return () => mobileViewport.removeEventListener("change", syncViewport);
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion || isMobileViewport || projects.length < 2) return;
 
     const intervalId = window.setInterval(() => {
       setActiveIndex((current) => wrapIndex(current - 1, projects.length));
     }, autoplayIntervalMs);
 
     return () => window.clearInterval(intervalId);
-  }, [projects.length, reduceMotion]);
+  }, [isMobileViewport, projects.length, reduceMotion]);
 
   useEffect(() => {
     if (reduceMotion || shadeActiveIndex === activeIndex) return;
 
     const timeoutId = window.setTimeout(() => {
       setShadeActiveIndex(activeIndex);
-    }, carouselTransitionMs);
+    }, shadeHandoffMs);
 
     return () => window.clearTimeout(timeoutId);
   }, [activeIndex, reduceMotion, shadeActiveIndex]);
@@ -242,7 +253,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
     const timeoutId = window.setTimeout(() => {
       setRevealedActiveIndex(activeIndex);
-    }, incomingShadeRevealMs);
+    }, shadeHandoffMs);
 
     return () => window.clearTimeout(timeoutId);
   }, [activeIndex, reduceMotion, revealedActiveIndex]);
