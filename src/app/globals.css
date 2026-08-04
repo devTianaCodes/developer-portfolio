@@ -131,16 +131,10 @@ body::-webkit-scrollbar,
     grid-area: 1 / 1;
     align-self: start;
     width: 100%;
-    height: 0;
-    overflow: visible;
-    pointer-events: none;
-  }
-
-  .hero-parallax__background::before {
-    display: block;
-    width: 100%;
     height: calc(100vh - var(--site-header-height));
     height: calc(100svh - var(--site-header-height));
+    overflow: hidden;
+    pointer-events: none;
     background-color: #06152f;
     background-image:
       linear-gradient(90deg, rgba(2, 8, 23, 0.58), rgba(6, 21, 47, 0.2), rgba(2, 8, 23, 0.12)),
@@ -150,7 +144,6 @@ body::-webkit-scrollbar,
     background-repeat: no-repeat;
     background-size: cover;
     contain: paint;
-    content: "";
   }
 
   .hero-parallax__content {
@@ -400,11 +393,6 @@ body::-webkit-scrollbar,
     will-change: auto;
   }
 
-  .hero-parallax__background::before {
-    height: 100%;
-    will-change: auto;
-  }
-
   .technology-marquee__track {
     animation: none !important;
     transform: none;
@@ -491,8 +479,35 @@ body::-webkit-scrollbar,
 }
 
 @media (max-width: 767px) {
+  .project-carousel--immersive > div {
+    height: calc(113.5vh - var(--site-header-height));
+    height: calc(113.5svh - var(--site-header-height));
+  }
+
   .project-carousel-loop-card[data-loop-offset="0"] {
+    left: -0.6%;
+    width: 101.2%;
     height: 80%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="-1"] {
+    left: -60%;
+    width: 69%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="1"] {
+    left: 91%;
+    width: 69%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="-2"] {
+    left: -72%;
+    width: 69%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="2"] {
+    left: 103%;
+    width: 69%;
   }
 }
 

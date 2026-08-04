@@ -17,7 +17,6 @@ type ProjectPanelProps = {
   project: CarouselProject;
   isActive: boolean;
   isHovered: boolean;
-  shadeOpacity: number;
   copy: {
     viewProject: string;
     projectType: string;
@@ -54,9 +53,13 @@ const carouselEase = [0.37, 0, 0.63, 1] as const;
 const carouselEaseCss = `cubic-bezier(${carouselEase.join(",")})`;
 const carouselTransitionMs = 2500;
 const carouselTransitionSeconds = carouselTransitionMs / 1000;
+// With the eased motion curve, 60% elapsed is roughly 70% of the visual travel.
+const incomingShadeRevealMs = carouselTransitionMs * 0.6;
+const shadeRemovalSeconds = 0.45;
+const shadeApplicationSeconds = 0.8;
 const autoplayIntervalMs = 5000;
 
-function ProjectPanel({ project, isActive, isHovered, shadeOpacity, copy }: ProjectPanelProps) {
+function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps) {
   return (
     <>
       <div className={classNames("absolute inset-0", pastelPanels[project.visualTone])} />
@@ -155,12 +158,6 @@ function ProjectPanel({ project, isActive, isHovered, shadeOpacity, copy }: Proj
         </span>
       </div>
 
-      <motion.div
-        className="pointer-events-none absolute inset-0 z-30 bg-slate-950"
-        initial={false}
-        animate={{ opacity: shadeOpacity }}
-        transition={{ duration: 1.8, ease: carouselEase }}
-      />
     </>
   );
 }
@@ -168,6 +165,7 @@ function ProjectPanel({ project, isActive, isHovered, shadeOpacity, copy }: Proj
 export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [shadeActiveIndex, setShadeActiveIndex] = useState(0);
+  const [revealedActiveIndex, setRevealedActiveIndex] = useState(0);
   const reduceMotion = useReducedMotion();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const tCommon = useTranslations("Common");
@@ -227,6 +225,16 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     return () => window.clearTimeout(timeoutId);
   }, [activeIndex, reduceMotion, shadeActiveIndex]);
 
+  useEffect(() => {
+    if (reduceMotion || revealedActiveIndex === activeIndex) return;
+
+    const timeoutId = window.setTimeout(() => {
+      setRevealedActiveIndex(activeIndex);
+    }, incomingShadeRevealMs);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [activeIndex, reduceMotion, revealedActiveIndex]);
+
   if (!projects.length) return null;
 
   function move(direction: -1 | 1) {
@@ -241,8 +249,6 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
         z: { duration: carouselTransitionSeconds, ease: carouselEase },
         boxShadow: { duration: carouselTransitionSeconds, ease: carouselEase }
       };
-  const effectiveShadeActiveIndex = reduceMotion ? activeIndex : shadeActiveIndex;
-
   return (
     <section data-testid="project-carousel" className="project-carousel--immersive relative m-0 overflow-hidden p-0">
       <div className="relative mx-auto max-w-none overflow-hidden bg-slate-950/20">
@@ -272,7 +278,9 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
             if (absOffset > 2) return null;
 
             const isActive = offset === 0;
-            const isShadeActive = index === effectiveShadeActiveIndex;
+            const isShadeFree = reduceMotion
+              ? index === activeIndex
+              : index === revealedActiveIndex || index === shadeActiveIndex;
             const isHovered = hoveredIndex === index;
             const panelCopy = {
               viewProject: tCommon("viewProject"),
@@ -321,7 +329,6 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                       project={project}
                       isActive
                       isHovered={isHovered}
-                      shadeOpacity={isShadeActive ? 0 : 0.56}
                       copy={panelCopy}
                     />
                   </Link>
@@ -336,11 +343,19 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                       project={project}
                       isActive={false}
                       isHovered={isHovered}
-                      shadeOpacity={isShadeActive ? 0 : 0.56}
                       copy={panelCopy}
                     />
                   </button>
                 )}
+                <motion.div
+                  className="pointer-events-none absolute inset-0 z-30 bg-slate-950"
+                  initial={false}
+                  animate={{ opacity: isShadeFree ? 0 : 0.56 }}
+                  transition={{
+                    duration: isShadeFree ? shadeRemovalSeconds : shadeApplicationSeconds,
+                    ease: carouselEase
+                  }}
+                />
               </motion.div>
             );
           })}
