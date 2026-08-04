@@ -49,14 +49,14 @@ const imageGlow: Record<CarouselProject["visualTone"], string> = {
 };
 
 const polishedEase = [0.25, 0.8, 0.25, 1] as const;
-const carouselEase = [0.37, 0, 0.63, 1] as const;
+const carouselEase = [0.4, 0, 0.2, 1] as const;
 const carouselEaseCss = `cubic-bezier(${carouselEase.join(",")})`;
-const carouselTransitionMs = 2500;
+const carouselTransitionMs = 2800;
 const carouselTransitionSeconds = carouselTransitionMs / 1000;
-// With the eased motion curve, 60% elapsed is roughly 70% of the visual travel.
-const incomingShadeRevealMs = carouselTransitionMs * 0.6;
-const shadeRemovalSeconds = 0.45;
-const shadeApplicationSeconds = 0.8;
+// With this ease curve, 45% elapsed is roughly 70% of the visual travel.
+const incomingShadeRevealMs = carouselTransitionMs * 0.45;
+const shadeRemovalSeconds = 0.85;
+const shadeApplicationSeconds = 1.1;
 const autoplayIntervalMs = 5000;
 
 function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps) {
@@ -67,7 +67,7 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
 
       <div
         className={classNames(
-          "project-carousel-card-content absolute inset-0 z-20 mx-auto flex h-full flex-col items-center justify-center text-center text-[#202124]",
+          "project-carousel-card-content absolute inset-0 z-20 mx-auto flex h-full flex-col items-center justify-center text-center text-[#202124] transition-[max-width,padding] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
           isActive
             ? "max-w-[88%] px-3 py-6 md:max-w-[86%] md:px-5 md:py-8"
             : "max-w-[92%] px-2 py-4 md:max-w-[90%] md:px-3 md:py-5"
@@ -76,7 +76,7 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
         {project.imageSrc ? (
           <motion.div
             className={classNames(
-              "relative w-full shrink-0",
+              "relative w-full shrink-0 transition-[height,max-height] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
               isActive ? "h-[42%] max-h-[23rem]" : "h-[48%] max-h-[16rem]"
             )}
             animate={{
@@ -84,7 +84,7 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
               y: isHovered ? -5 : 0
             }}
             transition={{
-              duration: isHovered ? 0.32 : 1.4,
+              duration: isHovered ? 0.32 : 2.2,
               ease: isHovered ? polishedEase : carouselEase
             }}
           >
@@ -95,7 +95,7 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
               loading="lazy"
               quality={82}
               className={classNames(
-                "object-contain transition-transform duration-500 ease-out group-hover:scale-[1.025]",
+                "object-contain transition-[transform,padding] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.025]",
                 isActive
                   ? "px-2 pb-2 md:px-4 md:pb-3 xl:drop-shadow-[0_24px_36px_rgba(16,24,40,0.2)]"
                   : "px-1 pb-2 md:px-2"
@@ -105,10 +105,10 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
           </motion.div>
         ) : null}
 
-        <div className={classNames("w-full shrink-0", isActive ? "mt-2 md:mt-3" : "mt-1.5 md:mt-2")}>
+        <div className={classNames("w-full shrink-0 transition-[margin] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)]", isActive ? "mt-2 md:mt-3" : "mt-1.5 md:mt-2")}>
           <h2
             className={classNames(
-              "max-w-xl text-balance font-sans font-medium text-[#262626]",
+              "max-w-xl text-balance font-sans font-medium text-[#262626] transition-[font-size,line-height] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
               isActive
                 ? "text-[1.84rem] leading-[1.18] md:text-[2.05rem]"
                 : "text-[1.05rem] leading-[1.15] md:text-[1.35rem] xl:text-[1.5rem]"
@@ -116,36 +116,45 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
           >
             {project.name}
           </h2>
-          <p
+          <motion.p
             className={classNames(
               "font-sans font-bold uppercase leading-[1.2] text-[#262626]/70",
               isActive
                 ? "mt-3 text-[11px] tracking-[1.8px] md:text-[12px]"
                 : "hidden xl:mt-2 xl:block xl:text-[10px] xl:tracking-[1.3px]"
             )}
+            initial={false}
+            animate={{ opacity: isActive ? 1 : 0.72, y: isActive ? 0 : 3 }}
+            transition={{ duration: 1.7, ease: carouselEase }}
           >
             {copy.projectType}
-          </p>
-          <p
+          </motion.p>
+          <motion.p
             className={classNames(
               "mt-3 line-clamp-3 max-w-xl font-sans text-[15px] font-normal leading-[1.38] text-[#262626]/82 md:hidden",
               !isActive && "hidden"
             )}
+            initial={false}
+            animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 8 }}
+            transition={{ duration: 1.5, ease: polishedEase }}
           >
             {copy.mobileSummary}
-          </p>
-          <p
+          </motion.p>
+          <motion.p
             className={classNames(
               "hidden max-w-xl font-sans font-normal text-[#262626]/82",
               isActive
                 ? "mt-3 text-[19px] leading-[1.45] md:line-clamp-2 md:block"
                 : "mt-2 text-[14px] leading-[1.35] xl:line-clamp-2 xl:block"
             )}
+            initial={false}
+            animate={{ opacity: isActive ? 1 : 0.76, y: isActive ? 0 : 5 }}
+            transition={{ duration: 1.6, ease: polishedEase }}
           >
             {copy.tagline}
-          </p>
+          </motion.p>
         </div>
-        <span
+        <motion.span
           className={classNames(
             "items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent font-sans font-bold leading-[1.2] tracking-[1px] text-[#262626] transition group-hover:scale-[1.03] group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)]",
             isActive
@@ -153,9 +162,12 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
               : "mt-3 hidden px-[0.9em] py-[0.65em] text-[12px] xl:mb-5 xl:inline-flex",
             isActive && "group-hover:bg-[#262626] group-hover:text-white"
           )}
+          initial={false}
+          animate={{ opacity: isActive ? 1 : 0.84, scale: isActive ? 1 : 0.96 }}
+          transition={{ duration: 1.6, ease: polishedEase }}
         >
           {copy.viewProject}
-        </span>
+        </motion.span>
       </div>
 
     </>
@@ -295,9 +307,10 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                 key={project.slug}
                 data-loop-offset={String(offset)}
                 className={classNames(
-                  "project-carousel-loop-card pointer-events-auto absolute overflow-hidden rounded-[10px] transition-[left,top,width,height]",
+                  "project-carousel-loop-card group pointer-events-auto absolute overflow-hidden rounded-[10px] transition-[left,top,width,height]",
                   pastelPanels[project.visualTone]
                 )}
+                data-active={isActive ? "true" : "false"}
                 initial={false}
                 animate={{
                   opacity: 1,
@@ -319,33 +332,25 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                 onFocus={() => setHoveredIndex(index)}
                 onBlur={() => setHoveredIndex(null)}
               >
+                <ProjectPanel
+                  project={project}
+                  isActive={isActive}
+                  isHovered={isHovered}
+                  copy={panelCopy}
+                />
                 {isActive ? (
                   <Link
                     href={`/projects/${project.slug}`}
                     aria-label={tProjects("openProject", { project: project.name })}
-                    className="group relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-                  >
-                    <ProjectPanel
-                      project={project}
-                      isActive
-                      isHovered={isHovered}
-                      copy={panelCopy}
-                    />
-                  </Link>
+                    className="absolute inset-0 z-40 block focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                  />
                 ) : (
                   <button
                     type="button"
                     onClick={() => setActiveIndex(index)}
-                    className="group relative block h-full w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                    className="absolute inset-0 z-40 block text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                     aria-label={tProjects("centerProject", { project: project.name })}
-                  >
-                    <ProjectPanel
-                      project={project}
-                      isActive={false}
-                      isHovered={isHovered}
-                      copy={panelCopy}
-                    />
-                  </button>
+                  />
                 )}
                 <motion.div
                   className="pointer-events-none absolute inset-0 z-30 bg-slate-950"
