@@ -66,7 +66,7 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body className="min-h-screen bg-background font-sans text-ink antialiased">
         <NextIntlClientProvider>
-          <div className="relative min-h-screen overflow-hidden">
+          <div className="relative min-h-screen overflow-x-clip">
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />
               <main className="flex-1 bg-[var(--color-main-background)]">

@@ -18,22 +18,34 @@ export default function HomePage() {
           <FeaturedProjectsRail />
         </section>
 
-        <section aria-label="Core web development technologies" className="-mx-2.5 overflow-hidden bg-white px-2.5 py-6 shadow-[0_18px_54px_rgba(15,23,42,0.08)] md:-mx-4 md:px-4">
-          <Image
-            src="/media/hero/technology-stack-banner.webp"
-            alt="HTML, CSS, JavaScript, Node.js, Express, React, and MySQL logos"
-            width={1430}
-            height={128}
-            className="h-auto w-full"
-            sizes="100vw"
-          />
-        </section>
+        <section aria-labelledby="technology-about-title" className="technology-parallax">
+          <div className="technology-parallax__card">
+            <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 sm:gap-8">
+              <div className="min-w-0">
+                <p className="section-label">{t("aboutEyebrow")}</p>
+                <h2 id="technology-about-title" className="minimal-heading mt-4 text-3xl sm:text-4xl">
+                  {t("aboutTitle")}
+                </h2>
+              </div>
 
-        <section className="sharp-panel p-8">
-          <p className="section-label">{t("aboutEyebrow")}</p>
-          <h2 className="minimal-heading mt-4 text-4xl">{t("aboutTitle")}</h2>
-          <p className="minimal-text mt-4 max-w-2xl">{t("aboutDescription")}</p>
-          <Link href="/about" className="sharp-button mt-6">{t("readProfile")}</Link>
+              <Link href="/about" className="sharp-button justify-self-end">
+                {t("readProfile")}
+              </Link>
+            </div>
+
+            <p className="minimal-text mt-5 max-w-3xl">{t("aboutDescription")}</p>
+
+            <div className="mx-auto mt-8 max-w-5xl border-t border-line pt-6">
+              <Image
+                src="/media/hero/technology-stack-banner.webp"
+                alt="HTML, CSS, JavaScript, Node.js, Express, React, and MySQL logos"
+                width={1430}
+                height={128}
+                className="h-auto w-full"
+                sizes="(max-width: 768px) 84vw, 1024px"
+              />
+            </div>
+          </div>
         </section>
 
         <GithubCallout />
