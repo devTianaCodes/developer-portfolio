@@ -11,7 +11,7 @@ export function SiteFooter() {
   const tCommon = useTranslations("Common");
 
   return (
-    <footer className="border-t border-line bg-white/95">
+    <footer className="relative z-30 border-t border-line bg-white/95">
       <div className="mx-auto grid max-w-[96rem] gap-8 px-2.5 py-10 md:grid-cols-[1.15fr_0.85fr] md:px-4">
         <div className="space-y-3">
           <p className="section-label">{t("eyebrow")}</p>

@@ -127,18 +127,27 @@ body::-webkit-scrollbar,
     grid-area: 1 / 1;
     align-self: start;
     width: 100%;
+    height: 0;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .hero-parallax__background::before {
+    display: block;
+    width: 100%;
     height: calc(100vh - var(--site-header-height));
     height: calc(100svh - var(--site-header-height));
     background-color: #06152f;
     background-image:
       linear-gradient(90deg, rgba(2, 8, 23, 0.58), rgba(6, 21, 47, 0.2), rgba(2, 8, 23, 0.12)),
       linear-gradient(rgba(2, 8, 23, 0.2), rgba(2, 8, 23, 0.2)),
-      url("/media/hero/home-hero-network.jpg");
+      url("/media/hero/technology-network.webp");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     contain: paint;
     will-change: transform;
+    content: "";
   }
 
   .hero-parallax__content {
@@ -163,14 +172,35 @@ body::-webkit-scrollbar,
     position: relative;
     z-index: 1;
     min-width: 0;
-    background: var(--color-main-background);
+    background: transparent;
     padding: 0;
-    box-shadow: 0 -22px 60px rgba(15, 23, 42, 0.14);
   }
 
   .project-carousel--immersive > div {
-    height: calc(100vh - var(--site-header-height));
-    height: calc(100svh - var(--site-header-height));
+    height: calc(120vh - var(--site-header-height));
+    height: calc(120svh - var(--site-header-height));
+    background: transparent;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="0"] {
+    left: 6%;
+    top: 7%;
+    width: 88%;
+    height: 86%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="-1"] {
+    left: -54%;
+    top: 14%;
+    width: 60%;
+    height: 64%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="1"] {
+    left: 94%;
+    top: 14%;
+    width: 60%;
+    height: 64%;
   }
 
   .technology-parallax {
@@ -178,38 +208,17 @@ body::-webkit-scrollbar,
     isolation: isolate;
     display: grid;
     width: 100vw;
-    min-height: 135vh;
-    min-height: 135svh;
+    min-height: calc(100vh - var(--site-header-height));
+    min-height: calc(100svh - var(--site-header-height));
     margin-left: calc(50% - 50vw);
-    box-shadow: 0 22px 64px rgba(15, 23, 42, 0.16);
-  }
-
-  .technology-parallax__background {
-    position: sticky;
-    top: var(--site-header-height);
-    z-index: 0;
-    grid-area: 1 / 1;
-    align-self: start;
-    width: 100%;
-    height: calc(100vh - var(--site-header-height));
-    height: calc(100svh - var(--site-header-height));
-    background-color: #06152f;
-    background-image:
-      linear-gradient(rgba(2, 8, 23, 0.32), rgba(2, 8, 23, 0.48)),
-      url("/media/hero/technology-network.webp");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    contain: paint;
-    will-change: transform;
   }
 
   .technology-parallax__content {
     position: relative;
     z-index: 1;
     display: grid;
-    min-height: 135vh;
-    min-height: 135svh;
+    min-height: calc(100vh - var(--site-header-height));
+    min-height: calc(100svh - var(--site-header-height));
     align-items: center;
     justify-items: center;
     padding: clamp(2rem, 6vw, 5rem) 1rem;
@@ -293,10 +302,14 @@ body::-webkit-scrollbar,
   }
 
   .hero-parallax__background,
-  .technology-parallax__background,
   .about-parallax__background {
     position: absolute;
     inset: 0;
+    height: 100%;
+    will-change: auto;
+  }
+
+  .hero-parallax__background::before {
     height: 100%;
     will-change: auto;
   }
@@ -314,6 +327,22 @@ body::-webkit-scrollbar,
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
   }
+
+  .project-carousel-loop-card[data-loop-offset="0"] {
+    left: 20%;
+    width: 60%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="-1"] {
+    left: 0;
+    width: 30%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="1"] {
+    left: 70%;
+    width: 30%;
+  }
+
 }
 
 @media (min-width: 640px) and (max-width: 767px) {
@@ -330,4 +359,22 @@ body::-webkit-scrollbar,
   .about-parallax__content {
     min-height: 37.25rem;
   }
+}
+
+@media (min-width: 1280px) {
+  .project-carousel-loop-card[data-loop-offset="0"] {
+    left: 30.5%;
+    width: 39%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="-1"] {
+    left: 0;
+    width: 30.5%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="1"] {
+    left: 69.5%;
+    width: 30.5%;
+  }
+
 }
