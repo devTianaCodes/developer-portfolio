@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { PanInfo } from "framer-motion";
 import { useTranslations } from "next-intl";
 import type { UxUiCredential } from "@/content/credentials";
+import { circularOffset, wrapIndex } from "@/lib/carousel";
 
 type UxCertificateCarouselProps = {
   credentials: readonly UxUiCredential[];
@@ -13,18 +14,6 @@ type UxCertificateCarouselProps = {
 
 const navigationButtonClass =
   "absolute top-1/2 z-30 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-[3px] border-2 border-white bg-[#262626] text-3xl leading-none text-white shadow-[0_8px_24px_rgba(15,23,42,0.35)] transition hover:scale-105 hover:bg-white hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 sm:h-12 sm:w-12 sm:text-4xl";
-
-function wrapIndex(index: number, length: number) {
-  return ((index % length) + length) % length;
-}
-
-function circularOffset(index: number, activeIndex: number, length: number) {
-  const rawOffset = index - activeIndex;
-
-  if (rawOffset > length / 2) return rawOffset - length;
-  if (rawOffset < -length / 2) return rawOffset + length;
-  return rawOffset;
-}
 
 export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProps) {
   const [{ activeIndex, direction }, setCarousel] = useState({ activeIndex: 0, direction: 1 });
@@ -143,7 +132,7 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
                         src={credential.image}
                         alt={credential.imageAlt}
                         fill
-                        priority={isActive}
+                        loading="lazy"
                         className="pointer-events-none select-none object-contain"
                         sizes={isActive ? "(max-width: 640px) 78vw, 64vw" : "(max-width: 640px) 72vw, 58vw"}
                         draggable={false}

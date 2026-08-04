@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { GithubIcon } from "@/components/GithubIcon";
 import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import type { ProjectEntry } from "@/content/projects";
+import { getPreferredMediaSrc } from "@/lib/projectMedia";
 
 type ProjectCaseStudyProps = {
   project: ProjectEntry;
@@ -192,7 +193,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                   width={logicMap.width}
                   height={logicMap.height}
                   className="h-auto w-full object-cover"
-                  priority
+                  loading="lazy"
                   quality={82}
                   sizes="100vw"
                 />
@@ -262,7 +263,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                   width={logicMap.width}
                   height={logicMap.height}
                   className="h-auto w-full object-cover"
-                  priority
+                  loading="lazy"
                   quality={82}
                   sizes="(max-width: 1024px) 100vw, 48vw"
                 />
@@ -288,18 +289,18 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         {images.length > 0 ? (
           <section className="space-y-5">
             <div className="grid gap-6 md:grid-cols-2">
-              {images.map((asset, index) => (
+              {images.map((asset) => (
                 <figure
                   key={asset.src}
                   className={`overflow-hidden rounded-[6px] border border-[color:var(--case-line)] ${theme.panel} shadow-[0_18px_48px_rgba(15,23,42,0.1)]`}
                 >
                   <Image
-                    src={asset.optimizedSrc ?? asset.poster ?? asset.src}
+                    src={getPreferredMediaSrc(asset)}
                     alt={asset.alt}
                     width={asset.width}
                     height={asset.height}
                     className="h-auto w-full object-cover"
-                    priority={index === 0}
+                    loading="lazy"
                     quality={82}
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />

@@ -1,12 +1,10 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { PageReveal } from "@/components/PageReveal";
 import { ProjectCaseStudy } from "@/components/ProjectCaseStudy";
 import { getProjectBySlug, projects } from "@/content/projects";
-import { getItalianProject } from "@/content/projects.it";
-import { getRomanianProject } from "@/content/projects.ro";
 import { isLocale } from "@/i18n/config";
 import { createPageMetadata } from "@/i18n/metadata";
+import { localizeProject } from "@/lib/localizeProject";
 
 type ProjectPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -28,12 +26,7 @@ export async function generateMetadata({
     };
   }
 
-  const localizedProject =
-    locale === "it"
-      ? getItalianProject(project)
-      : locale === "ro"
-        ? getRomanianProject(project)
-        : project;
+  const localizedProject = localizeProject(project, locale);
 
   return createPageMetadata({
     path: `/projects/${slug}`,
@@ -51,16 +44,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  const localizedProject =
-    locale === "it"
-      ? getItalianProject(project)
-      : locale === "ro"
-        ? getRomanianProject(project)
-        : project;
+  if (!isLocale(locale)) {
+    notFound();
+  }
 
-  return (
-    <PageReveal>
-      <ProjectCaseStudy project={localizedProject} />
-    </PageReveal>
-  );
+  const localizedProject = localizeProject(project, locale);
+
+  return <ProjectCaseStudy project={localizedProject} />;
 }

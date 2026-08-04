@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
-import { projects, sortProjectsForDisplay } from "@/content/projects";
+import { projects } from "@/content/projects";
+import { sortProjectsForDisplay } from "@/lib/projectOrdering";
 import { ProjectCard } from "./ProjectCard";
 
 export function FeaturedProjectsRail() {

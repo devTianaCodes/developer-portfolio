@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { GithubIcon } from "@/components/GithubIcon";
-import { PageReveal } from "@/components/PageReveal";
 import { SocialIcon } from "@/components/SocialIcon";
 import { siteConfig } from "@/content/site";
 import { enabledLocales } from "@/i18n/config";
@@ -30,8 +29,7 @@ export default function ContactPage() {
   const tCommon = useTranslations("Common");
 
   return (
-    <PageReveal>
-      <section className="space-y-6">
+    <section className="space-y-6">
         <div className="space-y-4">
           <p className="section-label">{t("eyebrow")}</p>
         </div>
@@ -58,7 +56,6 @@ export default function ContactPage() {
             <Link href="/projects" className="sharp-button justify-start">{t("viewProjects")}</Link>
           </div>
         </div>
-      </section>
-    </PageReveal>
+    </section>
   );
 }

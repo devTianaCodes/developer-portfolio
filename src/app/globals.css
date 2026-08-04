@@ -336,7 +336,6 @@ body::-webkit-scrollbar,
     overflow: hidden;
     background: #4b73a5;
     contain: paint;
-    will-change: transform;
   }
 
   .about-parallax__flow {
@@ -462,6 +461,13 @@ body::-webkit-scrollbar,
 @media (min-width: 640px) and (max-width: 767px) {
   .about-parallax__content {
     min-height: 55.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .project-carousel-loop-card[data-loop-offset="0"] {
+    top: 5%;
+    height: 80%;
   }
 }
 

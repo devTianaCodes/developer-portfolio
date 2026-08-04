@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import type { ProjectEntry } from "@/content/projects";
 import { Link } from "@/i18n/navigation";
+import { getPreferredMediaSrc, getProjectHeroMedia } from "@/lib/projectMedia";
 
 type ProjectCardProps = {
   project: ProjectEntry;
@@ -26,8 +27,8 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
   const tHome = useTranslations("Home");
   const tProjectCard = useTranslations("Home.projectCards");
   const tProjects = useTranslations("Projects");
-  const hero = project.media.find((item) => item.featured) ?? project.media[0];
-  const heroSrc = hero?.optimizedSrc ?? hero?.poster ?? hero?.src;
+  const hero = getProjectHeroMedia(project);
+  const heroSrc = hero ? getPreferredMediaSrc(hero) : "";
   const heightClass = prominent ? "min-h-[560px]" : "min-h-[500px]";
   const mediaAspect = tallMedia ? "aspect-[16/10]" : "aspect-[16/9]";
   const localizedImpactBullets = [

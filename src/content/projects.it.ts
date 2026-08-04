@@ -2,7 +2,7 @@ import type { ProjectEntry, ProjectSlug } from "@/content/projects";
 
 type ProjectTranslator = (project: ProjectEntry) => ProjectEntry;
 
-const italianProjectTranslators: Partial<Record<ProjectSlug, ProjectTranslator>> = {
+const italianProjectTranslators: Record<ProjectSlug, ProjectTranslator> = {
   chocolate: (project) => ({
     ...project,
     tagline: "Brand e-commerce premium con un flusso completo di acquisto e gestione amministrativa.",
@@ -1232,5 +1232,5 @@ const italianProjectTranslators: Partial<Record<ProjectSlug, ProjectTranslator>>
 };
 
 export function getItalianProject(project: ProjectEntry) {
-  return italianProjectTranslators[project.slug]?.(project) ?? project;
+  return italianProjectTranslators[project.slug](project);
 }

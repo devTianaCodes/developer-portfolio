@@ -286,10 +286,6 @@ function TechIcon({ type }: { type: TechIconKey }) {
   );
 }
 
-export function hasKnownTechIcon(tech: string) {
-  return Boolean(techIconKey(tech));
-}
-
 export function ProjectTechBadge({ tech, compact = false, className = "" }: ProjectTechBadgeProps) {
   const icon = techIconKey(tech);
   const size = compact ? "text-[9px]" : "text-xs";

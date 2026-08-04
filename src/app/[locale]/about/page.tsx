@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { GithubIcon } from "@/components/GithubIcon";
-import { PageReveal } from "@/components/PageReveal";
 import { SocialIcon } from "@/components/SocialIcon";
 import { siteConfig } from "@/content/site";
 import { enabledLocales } from "@/i18n/config";
@@ -118,8 +117,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <PageReveal>
-      <section className="about-parallax -mt-10 md:-mt-14">
+    <section className="about-parallax -mt-10 md:-mt-14">
         <div className="about-parallax__background" aria-hidden="true">
           <Image
             src="/media/about/about-blue-background.png"
@@ -281,7 +279,6 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
-    </PageReveal>
+    </section>
   );
 }

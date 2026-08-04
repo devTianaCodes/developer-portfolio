@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { CredentialGallery, DegreeCredentialGallery } from "@/components/CredentialGallery";
-import { PageReveal } from "@/components/PageReveal";
 import { UxCertificateCarousel } from "@/components/UxCertificateCarousel";
 import { degreeCredentials, professionalCredentials, uxUiCredentials } from "@/content/credentials";
 import { enabledLocales } from "@/i18n/config";
@@ -82,8 +81,7 @@ export default function CredentialsPage() {
   }));
 
   return (
-    <PageReveal>
-      <div className="space-y-10">
+    <div className="space-y-10">
         <section className="space-y-4">
           <p className="section-label">{t("eyebrow")}</p>
           <h1 className="minimal-heading max-w-5xl text-5xl md:text-6xl">{t("title")}</h1>
@@ -94,7 +92,6 @@ export default function CredentialsPage() {
         <UxCertificateCarousel credentials={localizedUxUiCredentials} />
 
         <DegreeCredentialGallery credentials={localizedDegreeCredentials} />
-      </div>
-    </PageReveal>
+    </div>
   );
 }

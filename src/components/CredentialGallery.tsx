@@ -28,6 +28,11 @@ type CertificateModalProps = {
   onClose: () => void;
 };
 
+type CertificateModalPortalProps = {
+  credential: ModalCredential | null;
+  onClose: () => void;
+};
+
 const modalTransition = { duration: 0.24, ease: [0.25, 0.8, 0.25, 1] } as const;
 
 function CertificateModal({ credential, onClose }: CertificateModalProps) {
@@ -135,15 +140,27 @@ function CertificateModal({ credential, onClose }: CertificateModalProps) {
   );
 }
 
-export function CredentialGallery({ credentials }: CredentialGalleryProps) {
-  const [activeCredential, setActiveCredential] = useState<ModalCredential | null>(null);
+function CertificateModalPortal({ credential, onClose }: CertificateModalPortalProps) {
   const [portalReady, setPortalReady] = useState(false);
-  const tCommon = useTranslations("Common");
-  const tCredentials = useTranslations("Credentials");
 
   useEffect(() => {
     setPortalReady(true);
   }, []);
+
+  if (!portalReady) return null;
+
+  return createPortal(
+    <AnimatePresence>
+      {credential ? <CertificateModal credential={credential} onClose={onClose} /> : null}
+    </AnimatePresence>,
+    document.body
+  );
+}
+
+export function CredentialGallery({ credentials }: CredentialGalleryProps) {
+  const [activeCredential, setActiveCredential] = useState<ModalCredential | null>(null);
+  const tCommon = useTranslations("Common");
+  const tCredentials = useTranslations("Credentials");
 
   if (!credentials.length) return null;
 
@@ -173,7 +190,7 @@ export function CredentialGallery({ credentials }: CredentialGalleryProps) {
                   src={credential.image}
                   alt={credential.imageAlt}
                   fill
-                  loading="eager"
+                  loading="lazy"
                   className="object-contain p-4 transition duration-300 group-hover:scale-[1.015] sm:p-6"
                   sizes="(max-width: 1024px) 96vw, 48vw"
                 />
@@ -206,29 +223,18 @@ export function CredentialGallery({ credentials }: CredentialGalleryProps) {
         </div>
       </section>
 
-      {portalReady
-        ? createPortal(
-            <AnimatePresence>
-              {activeCredential ? (
-                <CertificateModal credential={activeCredential} onClose={() => setActiveCredential(null)} />
-              ) : null}
-            </AnimatePresence>,
-            document.body
-          )
-        : null}
+      <CertificateModalPortal
+        credential={activeCredential}
+        onClose={() => setActiveCredential(null)}
+      />
     </>
   );
 }
 
 export function DegreeCredentialGallery({ credentials }: DegreeCredentialGalleryProps) {
   const [activeCredential, setActiveCredential] = useState<ModalCredential | null>(null);
-  const [portalReady, setPortalReady] = useState(false);
   const tCommon = useTranslations("Common");
   const tCredentials = useTranslations("Credentials");
-
-  useEffect(() => {
-    setPortalReady(true);
-  }, []);
 
   if (!credentials.length) return null;
 
@@ -284,16 +290,10 @@ export function DegreeCredentialGallery({ credentials }: DegreeCredentialGallery
         </div>
       </section>
 
-      {portalReady
-        ? createPortal(
-            <AnimatePresence>
-              {activeCredential ? (
-                <CertificateModal credential={activeCredential} onClose={() => setActiveCredential(null)} />
-              ) : null}
-            </AnimatePresence>,
-            document.body
-          )
-        : null}
+      <CertificateModalPortal
+        credential={activeCredential}
+        onClose={() => setActiveCredential(null)}
+      />
     </>
   );
 }

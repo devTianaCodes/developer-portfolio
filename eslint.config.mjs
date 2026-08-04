@@ -1,0 +1,26 @@
+import { FlatCompat } from "@eslint/eslintrc";
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const baseDirectory = dirname(fileURLToPath(import.meta.url));
+const compat = new FlatCompat({ baseDirectory });
+
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    ignores: [
+      ".next/**",
+      ".vercel/**",
+      "node_modules/**",
+      "public/**",
+      "*-docs/**",
+      "*-rules/**",
+      "*-scripts/**",
+      "docs-*/**",
+      "skills/**",
+      "next-env.d.ts"
+    ]
+  }
+];
+
+export default eslintConfig;

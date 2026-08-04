@@ -2,18 +2,19 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { GithubCallout } from "@/components/GithubCallout";
 import { InteractiveHero } from "@/components/InteractiveHero";
-import { PageReveal } from "@/components/PageReveal";
 import { ProjectCarousel } from "@/components/ProjectCarousel";
 import { TechnologyMarquee } from "@/components/TechnologyMarquee";
 import { projects } from "@/content/projects";
 import { Link } from "@/i18n/navigation";
+import { createCarouselProjects } from "@/lib/projectCarousel";
+
+const carouselProjects = createCarouselProjects(projects);
 
 export default function HomePage() {
   const t = useTranslations("Home");
 
   return (
-    <PageReveal>
-      <div className="-mb-10 md:-mb-14">
+    <div className="-mb-10 md:-mb-14">
         <section className="hero-parallax relative -mt-10 shadow-[0_24px_70px_rgba(31,49,78,0.18)] md:-mt-14">
           <div className="hero-parallax__background" aria-hidden="true" />
 
@@ -23,7 +24,7 @@ export default function HomePage() {
             <TechnologyMarquee />
 
             <section className="hero-parallax__projects">
-              <ProjectCarousel projects={projects} immersive />
+              <ProjectCarousel projects={carouselProjects} />
             </section>
 
             <section aria-labelledby="technology-about-title" className="technology-parallax">
@@ -62,7 +63,6 @@ export default function HomePage() {
             </section>
           </div>
         </section>
-      </div>
-    </PageReveal>
+    </div>
   );
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { FeaturedProjectsRail } from "@/components/FeaturedProjectsRail";
-import { PageReveal } from "@/components/PageReveal";
 import { enabledLocales } from "@/i18n/config";
 import { createPageMetadata } from "@/i18n/metadata";
 
@@ -23,10 +22,8 @@ export async function generateMetadata({ params }: ProjectsPageProps): Promise<M
 
 export default function ProjectsPage() {
   return (
-    <PageReveal>
-      <div className="space-y-10">
-        <FeaturedProjectsRail />
-      </div>
-    </PageReveal>
+    <div className="space-y-10">
+      <FeaturedProjectsRail />
+    </div>
   );
 }
