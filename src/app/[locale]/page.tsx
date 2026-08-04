@@ -4,6 +4,7 @@ import { GithubCallout } from "@/components/GithubCallout";
 import { InteractiveHero } from "@/components/InteractiveHero";
 import { PageReveal } from "@/components/PageReveal";
 import { ProjectCarousel } from "@/components/ProjectCarousel";
+import { TechnologyMarquee } from "@/components/TechnologyMarquee";
 import { projects } from "@/content/projects";
 import { Link } from "@/i18n/navigation";
 
@@ -19,6 +20,8 @@ export default function HomePage() {
           <div className="hero-parallax__flow">
             <InteractiveHero />
 
+            <TechnologyMarquee />
+
             <section className="hero-parallax__projects">
               <ProjectCarousel projects={projects} immersive />
             </section>
@@ -29,7 +32,7 @@ export default function HomePage() {
                   <div className="technology-parallax__card">
                     <p className="section-label">{t("aboutEyebrow")}</p>
 
-                    <div className="mt-4 flex items-center justify-between gap-4 sm:gap-8">
+                    <div className="mx-auto mt-4 flex w-full max-w-5xl items-center justify-between gap-4 sm:gap-8">
                       <h2 id="technology-about-title" className="minimal-heading min-w-0 text-3xl sm:text-4xl">
                         {t("aboutTitle")}
                       </h2>

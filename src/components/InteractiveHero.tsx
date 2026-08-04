@@ -1,7 +1,6 @@
 import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 import { GithubIcon } from "@/components/GithubIcon";
-import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import { siteConfig } from "@/content/site";
 import { Link } from "@/i18n/navigation";
 
@@ -15,7 +14,7 @@ export function InteractiveHero() {
   ];
   return (
     <div className="hero-parallax__content mx-auto min-w-0 max-w-[96rem] px-4 text-white sm:px-5 md:px-8">
-      <div className="grid w-full min-w-0 gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch">
+      <div className="hero-parallax__layout grid w-full min-w-0 gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch">
           <div className="flex min-w-0 flex-col items-center justify-center py-2 text-center lg:py-8">
             <h1 className="max-w-5xl font-sans text-[clamp(3rem,13vw,4.5rem)] font-normal leading-[0.98] tracking-[-0.025em] text-white [text-shadow:0_4px_28px_rgba(0,0,0,0.48)] lg:text-[clamp(3.5rem,4.25vw,4.5rem)]">
               <span className="block lg:whitespace-nowrap">
@@ -46,18 +45,7 @@ export function InteractiveHero() {
           </div>
 
           <div className="flex min-w-0 items-stretch justify-center lg:h-full lg:justify-end">
-            <div className="flex min-w-0 w-full max-w-xl flex-col justify-between gap-6">
-              <div className="flex w-full min-w-0 flex-wrap items-center justify-center gap-x-2 gap-y-2">
-                {siteConfig.stackBands.map((tech) => (
-                  <ProjectTechBadge
-                    key={tech}
-                    tech={tech}
-                    compact
-                    className="max-w-full border-white/18 bg-white/95 px-2 py-1.5 text-[8px] text-black shadow-[0_10px_24px_rgba(15,23,42,0.12)] sm:px-2.5 sm:text-[9px] xl:px-3 xl:text-[10px]"
-                  />
-                ))}
-              </div>
-
+            <div className="flex min-w-0 w-full max-w-xl flex-col justify-center gap-6 md:-translate-x-6 lg:-translate-x-8 xl:-translate-x-12">
               <div className="grid w-full gap-3">
                 {proofMetrics.map((metric) => (
                   <div

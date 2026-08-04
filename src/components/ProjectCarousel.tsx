@@ -81,48 +81,46 @@ function projectPanel(
       <div className={classNames("absolute inset-0", pastelPanels[project.visualTone])} />
       <div className={classNames("absolute inset-0 bg-gradient-to-b", imageGlow[project.visualTone])} />
 
-      {hero ? (
-        <motion.div
-          className={classNames(
-            "absolute inset-x-0 top-0 pt-0",
-            isActive
-              ? "h-[48%] px-7 sm:h-[50%] md:h-[53%] md:px-9 lg:top-[calc(6%-1.5rem)] lg:h-[55%]"
-              : "h-[58%] px-3 md:h-[46%] md:px-4 lg:top-0 lg:h-[48%]"
-          )}
-          animate={{
-            scale: isHovered ? 1.045 : isActive ? 1.014 : 0.99,
-            y: isHovered ? -10 : 0
-          }}
-          transition={{ duration: 0.24, ease: polishedEase }}
-        >
-          <Image
-            src={heroSrc}
-            alt={imageAlt}
-            fill
-            priority={isActive}
-            loading={isActive ? undefined : "eager"}
-            unoptimized
-            quality={82}
-            className={classNames(
-              "object-contain pt-0 transition-transform duration-500 ease-out group-hover:scale-[1.035]",
-              isActive
-                ? "px-7 pb-6 md:px-9 md:pb-8 xl:drop-shadow-[0_28px_42px_rgba(16,24,40,0.22)]"
-                : "px-2 pb-3 md:px-4 md:pb-4"
-            )}
-            sizes="(max-width: 640px) 82vw, (max-width: 1024px) 48vw, 34vw"
-          />
-        </motion.div>
-      ) : null}
-
       <div
         className={classNames(
-          "absolute inset-x-0 z-20 mx-auto flex flex-col items-center text-center text-[#202124]",
+          "project-carousel-card-content absolute inset-0 z-20 mx-auto flex h-full flex-col items-center justify-center text-center text-[#202124]",
           isActive
-            ? "bottom-[3.9rem] max-w-[82%] md:bottom-[2.9rem]"
-            : "bottom-5 max-w-[88%] md:bottom-6"
+            ? "max-w-[88%] px-3 py-6 md:max-w-[86%] md:px-5 md:py-8"
+            : "max-w-[92%] px-2 py-4 md:max-w-[90%] md:px-3 md:py-5"
         )}
       >
-        <div className={classNames("w-full", isActive && "-translate-y-[44px] md:translate-y-0")}>
+        {hero ? (
+          <motion.div
+            className={classNames(
+              "relative w-full shrink-0",
+              isActive ? "h-[42%] max-h-[23rem]" : "h-[48%] max-h-[16rem]"
+            )}
+            animate={{
+              scale: isHovered ? 1.035 : isActive ? 1.01 : 0.99,
+              y: isHovered ? -5 : 0
+            }}
+            transition={{ duration: 0.24, ease: polishedEase }}
+          >
+            <Image
+              src={heroSrc}
+              alt={imageAlt}
+              fill
+              priority={isActive}
+              loading={isActive ? undefined : "eager"}
+              unoptimized
+              quality={82}
+              className={classNames(
+                "object-contain transition-transform duration-500 ease-out group-hover:scale-[1.025]",
+                isActive
+                  ? "px-2 pb-2 md:px-4 md:pb-3 xl:drop-shadow-[0_24px_36px_rgba(16,24,40,0.2)]"
+                  : "px-1 pb-2 md:px-2"
+              )}
+              sizes="(max-width: 640px) 82vw, (max-width: 1024px) 48vw, 34vw"
+            />
+          </motion.div>
+        ) : null}
+
+        <div className={classNames("w-full shrink-0", isActive ? "mt-2 md:mt-3" : "mt-1.5 md:mt-2")}>
           <h2
             className={classNames(
               "max-w-xl text-balance font-sans font-medium text-[#262626]",
@@ -137,21 +135,21 @@ function projectPanel(
             className={classNames(
               "font-sans font-bold uppercase leading-[1.2] text-[#262626]/70",
               isActive
-                ? "mt-5 text-[11px] tracking-[1.8px] md:text-[12px]"
-                : "hidden md:mt-2 md:block md:text-[9px] md:tracking-[1.3px] xl:text-[10px]"
+                ? "mt-3 text-[11px] tracking-[1.8px] md:text-[12px]"
+                : "hidden xl:mt-2 xl:block xl:text-[10px] xl:tracking-[1.3px]"
             )}
           >
             {projectTypeLabel}
           </p>
-          <p className={classNames("mt-4 line-clamp-3 max-w-xl font-sans text-[15px] font-normal leading-[1.38] text-[#262626]/82 md:hidden", !isActive && "hidden")}>
+          <p className={classNames("mt-3 line-clamp-3 max-w-xl font-sans text-[15px] font-normal leading-[1.38] text-[#262626]/82 md:hidden", !isActive && "hidden")}>
             {mobileSummary}
           </p>
           <p
             className={classNames(
-              "hidden max-w-xl font-sans font-normal text-[#262626]/82 md:line-clamp-2 md:block",
+              "hidden max-w-xl font-sans font-normal text-[#262626]/82",
               isActive
-                ? "mt-[12px] text-[19px] leading-[1.45]"
-                : "mt-2 text-[12px] leading-[1.35] xl:text-[14px]"
+                ? "mt-3 text-[19px] leading-[1.45] md:line-clamp-2 md:block"
+                : "mt-2 text-[14px] leading-[1.35] xl:line-clamp-2 xl:block"
             )}
           >
             {tagline}
@@ -161,8 +159,8 @@ function projectPanel(
           className={classNames(
             "items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent font-sans font-bold leading-[1.2] tracking-[1px] text-[#262626] transition group-hover:scale-[1.03] group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)]",
             isActive
-              ? "-mt-3 inline-flex px-[1.25em] py-[0.85em] text-[13px] md:mt-[14px] md:text-[14px]"
-              : "mt-3 hidden px-[0.9em] py-[0.65em] text-[11px] md:inline-flex xl:text-[12px]",
+              ? "mt-5 inline-flex px-[1.25em] py-[0.85em] text-[13px] md:text-[14px]"
+              : "mt-3 hidden px-[0.9em] py-[0.65em] text-[12px] xl:inline-flex",
             isActive && "group-hover:bg-[#262626] group-hover:text-white"
           )}
         >
@@ -284,30 +282,30 @@ export function ProjectCarousel({ projects, immersive = false }: ProjectCarousel
           onClick={() => move(-1)}
           aria-label={tProjects("previousProject")}
           className={classNames(
-            "absolute top-1/2 z-[80] flex -translate-y-1/2 items-center justify-center font-medium leading-none text-white/95 transition hover:-translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
+            "absolute z-[80] flex -translate-y-1/2 items-center justify-center font-medium leading-none text-white/95 transition hover:-translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
             immersive
-              ? "left-3 h-12 w-12 text-[2.7rem] md:left-6 md:h-14 md:w-14 md:text-[3.6rem]"
-              : "left-4 px-2 py-5 text-5xl drop-shadow-[0_3px_12px_rgba(0,0,0,0.48)] md:left-7 md:text-7xl"
+              ? "left-1 top-[48%] h-16 w-16 touch-manipulation rounded-full text-[3.78rem] drop-shadow-[0_3px_8px_rgba(0,0,0,0.95)] md:left-6 md:h-20 md:w-20 md:text-[5.04rem] xl:left-[3.75rem]"
+              : "left-4 top-1/2 px-2 py-5 text-5xl drop-shadow-[0_3px_12px_rgba(0,0,0,0.48)] md:left-7 md:text-7xl"
           )}
         >
-          <span aria-hidden="true">‹</span>
+          <span aria-hidden="true" className={immersive ? "-translate-x-4 md:translate-x-0" : undefined}>‹</span>
         </button>
         <button
           type="button"
           onClick={() => move(1)}
           aria-label={tProjects("nextProject")}
           className={classNames(
-            "absolute top-1/2 z-[80] flex -translate-y-1/2 items-center justify-center font-medium leading-none text-white/95 transition hover:translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
+            "absolute z-[80] flex -translate-y-1/2 items-center justify-center font-medium leading-none text-white/95 transition hover:translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
             immersive
-              ? "right-3 h-12 w-12 text-[2.7rem] md:right-6 md:h-14 md:w-14 md:text-[3.6rem]"
-              : "right-4 px-2 py-5 text-5xl drop-shadow-[0_3px_12px_rgba(0,0,0,0.48)] md:right-7 md:text-7xl"
+              ? "right-1 top-[48%] h-16 w-16 touch-manipulation rounded-full text-[3.78rem] drop-shadow-[0_3px_8px_rgba(0,0,0,0.95)] md:right-6 md:h-20 md:w-20 md:text-[5.04rem] xl:right-[3.75rem]"
+              : "right-4 top-1/2 px-2 py-5 text-5xl drop-shadow-[0_3px_12px_rgba(0,0,0,0.48)] md:right-7 md:text-7xl"
           )}
         >
-          <span aria-hidden="true">›</span>
+          <span aria-hidden="true" className={immersive ? "translate-x-4 md:translate-x-0" : undefined}>›</span>
         </button>
 
         {immersive ? (
-          <div className="relative h-full overflow-hidden">
+          <div className="project-carousel-3d-stage relative h-full overflow-hidden">
             {orderedProjects.map((project, index) => {
               const localizedCopy = localizedProjectCopy[project.slug];
               const offset = circularOffset(index, activeIndex, orderedProjects.length);
@@ -332,12 +330,15 @@ export function ProjectCarousel({ projects, immersive = false }: ProjectCarousel
                     opacity: 1,
                     scale: isHovered ? 1.015 : 1,
                     y: isHovered ? (isActive ? -4 : -7) : 0,
+                    z: isActive ? (isHovered ? 72 : 56) : isHovered ? -8 : -34,
                     boxShadow: isActive
-                      ? "0 34px 90px rgba(0,8,28,0.52)"
-                      : "0 22px 62px rgba(0,8,28,0.4)"
+                      ? "0 42px 110px rgba(0,8,28,0.58)"
+                      : "0 28px 72px rgba(0,8,28,0.44)"
                   }}
                   transition={panelTransition}
-                  style={{ zIndex: isActive ? 40 : 25 - absOffset }}
+                  style={{
+                    zIndex: isActive ? 40 : 25 - absOffset
+                  }}
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   onFocus={() => setHoveredIndex(index)}
@@ -386,7 +387,7 @@ export function ProjectCarousel({ projects, immersive = false }: ProjectCarousel
               );
             })}
 
-            <div className="pointer-events-none absolute bottom-3 left-1/2 z-[70] -translate-x-1/2 rounded-full bg-black/45 px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-white/90 backdrop-blur-md">
+            <div className="pointer-events-none absolute bottom-0 left-1/2 z-[70] -translate-x-1/2 rounded-full bg-black/45 px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-white/90 backdrop-blur-md">
               {String(activeIndex + 1).padStart(2, "0")} / {String(orderedProjects.length).padStart(2, "0")}
             </div>
           </div>
