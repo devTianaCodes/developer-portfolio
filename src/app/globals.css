@@ -236,6 +236,7 @@ body::-webkit-scrollbar,
     isolation: isolate;
     backface-visibility: hidden;
     transform-style: preserve-3d;
+    will-change: left, top, width, height, transform;
   }
 
   .project-carousel-loop-card::after {
@@ -273,6 +274,20 @@ body::-webkit-scrollbar,
 
   .project-carousel-loop-card[data-loop-offset="1"] {
     left: 92%;
+    top: 16%;
+    width: 60%;
+    height: 64%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="-2"] {
+    left: -63%;
+    top: 16%;
+    width: 60%;
+    height: 64%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="2"] {
+    left: 103%;
     top: 16%;
     width: 60%;
     height: 64%;
@@ -443,6 +458,16 @@ body::-webkit-scrollbar,
     width: 30%;
   }
 
+  .project-carousel-loop-card[data-loop-offset="-2"] {
+    left: -32%;
+    width: 30%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="2"] {
+    left: 100%;
+    width: 30%;
+  }
+
   .project-carousel-loop-card[data-loop-offset="-1"] .project-carousel-card-content {
     right: auto;
     left: 6%;
@@ -508,6 +533,16 @@ body::-webkit-scrollbar,
 
   .project-carousel-loop-card[data-loop-offset="1"] {
     left: 66.5%;
+    width: 31%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="-2"] {
+    left: -34%;
+    width: 31%;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="2"] {
+    left: 103%;
     width: 31%;
   }
 

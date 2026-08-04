@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
@@ -50,12 +50,11 @@ const imageGlow: Record<CarouselProject["visualTone"], string> = {
 };
 
 const polishedEase = [0.25, 0.8, 0.25, 1] as const;
-const panelSpring = {
-  type: "spring",
-  stiffness: 220,
-  damping: 34,
-  mass: 0.95
-} as const;
+const carouselEase = [0.37, 0, 0.63, 1] as const;
+const carouselEaseCss = `cubic-bezier(${carouselEase.join(",")})`;
+const carouselTransitionMs = 2500;
+const carouselTransitionSeconds = carouselTransitionMs / 1000;
+const autoplayIntervalMs = 5000;
 
 function ProjectPanel({ project, isActive, isHovered, shadeOpacity, copy }: ProjectPanelProps) {
   return (
@@ -81,7 +80,10 @@ function ProjectPanel({ project, isActive, isHovered, shadeOpacity, copy }: Proj
               scale: isHovered ? 1.035 : isActive ? 1.01 : 0.99,
               y: isHovered ? -5 : 0
             }}
-            transition={{ duration: 0.24, ease: polishedEase }}
+            transition={{
+              duration: isHovered ? 0.32 : 1.4,
+              ease: isHovered ? polishedEase : carouselEase
+            }}
           >
             <Image
               src={project.imageSrc}
@@ -157,7 +159,7 @@ function ProjectPanel({ project, isActive, isHovered, shadeOpacity, copy }: Proj
         className="pointer-events-none absolute inset-0 z-30 bg-slate-950"
         initial={false}
         animate={{ opacity: shadeOpacity }}
-        transition={{ duration: 0.28, ease: polishedEase }}
+        transition={{ duration: 1.8, ease: carouselEase }}
       />
     </>
   );
@@ -165,6 +167,7 @@ function ProjectPanel({ project, isActive, isHovered, shadeOpacity, copy }: Proj
 
 export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [shadeActiveIndex, setShadeActiveIndex] = useState(0);
   const reduceMotion = useReducedMotion();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const tCommon = useTranslations("Common");
@@ -204,13 +207,41 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     }
   };
 
+  useEffect(() => {
+    if (reduceMotion || projects.length < 2) return;
+
+    const intervalId = window.setInterval(() => {
+      setActiveIndex((current) => wrapIndex(current - 1, projects.length));
+    }, autoplayIntervalMs);
+
+    return () => window.clearInterval(intervalId);
+  }, [projects.length, reduceMotion]);
+
+  useEffect(() => {
+    if (reduceMotion || shadeActiveIndex === activeIndex) return;
+
+    const timeoutId = window.setTimeout(() => {
+      setShadeActiveIndex(activeIndex);
+    }, carouselTransitionMs);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [activeIndex, reduceMotion, shadeActiveIndex]);
+
   if (!projects.length) return null;
 
   function move(direction: -1 | 1) {
     setActiveIndex((current) => wrapIndex(current + direction, projects.length));
   }
 
-  const panelTransition = reduceMotion ? { duration: 0 } : panelSpring;
+  const panelTransition = reduceMotion
+    ? { duration: 0 }
+    : {
+        scale: { duration: 0.45, ease: polishedEase },
+        y: { duration: 0.45, ease: polishedEase },
+        z: { duration: carouselTransitionSeconds, ease: carouselEase },
+        boxShadow: { duration: carouselTransitionSeconds, ease: carouselEase }
+      };
+  const effectiveShadeActiveIndex = reduceMotion ? activeIndex : shadeActiveIndex;
 
   return (
     <section data-testid="project-carousel" className="project-carousel--immersive relative m-0 overflow-hidden p-0">
@@ -238,9 +269,10 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
             const offset = circularOffset(index, activeIndex, projects.length);
             const absOffset = Math.abs(offset);
 
-            if (absOffset > 1) return null;
+            if (absOffset > 2) return null;
 
             const isActive = offset === 0;
+            const isShadeActive = index === effectiveShadeActiveIndex;
             const isHovered = hoveredIndex === index;
             const panelCopy = {
               viewProject: tCommon("viewProject"),
@@ -255,7 +287,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                 key={project.slug}
                 data-loop-offset={String(offset)}
                 className={classNames(
-                  "project-carousel-loop-card pointer-events-auto absolute overflow-hidden rounded-[10px] transition-[left,top,width,height] duration-500 ease-out",
+                  "project-carousel-loop-card pointer-events-auto absolute overflow-hidden rounded-[10px] transition-[left,top,width,height]",
                   pastelPanels[project.visualTone]
                 )}
                 initial={false}
@@ -269,7 +301,11 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                     : "0 28px 72px rgba(0,8,28,0.44)"
                 }}
                 transition={panelTransition}
-                style={{ zIndex: isActive ? 40 : 25 - absOffset }}
+                style={{
+                  zIndex: isActive ? 40 : 25 - absOffset,
+                  transitionDuration: reduceMotion ? "0ms" : `${carouselTransitionMs}ms`,
+                  transitionTimingFunction: carouselEaseCss
+                }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 onFocus={() => setHoveredIndex(index)}
@@ -285,7 +321,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                       project={project}
                       isActive
                       isHovered={isHovered}
-                      shadeOpacity={0}
+                      shadeOpacity={isShadeActive ? 0 : 0.56}
                       copy={panelCopy}
                     />
                   </Link>
@@ -300,7 +336,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                       project={project}
                       isActive={false}
                       isHovered={isHovered}
-                      shadeOpacity={0.56}
+                      shadeOpacity={isShadeActive ? 0 : 0.56}
                       copy={panelCopy}
                     />
                   </button>
