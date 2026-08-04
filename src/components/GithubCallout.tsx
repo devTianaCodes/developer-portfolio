@@ -16,7 +16,7 @@ export function GithubCallout() {
         </p>
       </div>
 
-      <div className="flex flex-col justify-end gap-6 md:justify-between md:rounded-[6px] md:border md:border-white/14 md:bg-white/8 md:p-6 md:backdrop-blur">
+      <div className="flex flex-col justify-end gap-6 md:justify-between md:rounded-[6px] md:border md:border-white/14 md:bg-white/10 md:p-6">
         <div className="hidden md:block">
           <p className="font-sans text-xs font-bold uppercase tracking-[2px] text-blue-100/76">GitHub</p>
           <p className="mt-3 inline-flex items-center gap-3 font-sans text-3xl font-medium"><GithubIcon className="h-7 w-7" />{siteConfig.githubHandle}</p>
