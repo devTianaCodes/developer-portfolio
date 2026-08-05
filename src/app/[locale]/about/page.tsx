@@ -146,7 +146,7 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                <div className="absolute right-0 top-0 aspect-square w-[80px] overflow-hidden rounded-full ring-[3.6px] ring-white shadow-[0_12px_30px_rgba(15,23,42,0.3)] sm:w-[92px] md:w-[112px] lg:right-3 lg:top-3 lg:w-[154px]">
+                <div className="absolute right-0 top-0 aspect-square w-[80px] -translate-x-[15px] overflow-hidden rounded-full ring-[3.6px] ring-white shadow-[0_12px_30px_rgba(15,23,42,0.3)] sm:w-[92px] md:w-[112px] lg:right-3 lg:top-3 lg:w-[154px]">
                   <Image
                     src="/media/profile/tiana-contact.jpg"
                     alt={t("portraitAlt")}
@@ -158,7 +158,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <p className="max-w-6xl font-sans text-base font-normal leading-7 text-white">
+              <p className="max-w-6xl text-justify font-sans text-base font-normal leading-7 text-white">
                 {t("introduction")}
               </p>
             </div>

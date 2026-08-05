@@ -11,7 +11,7 @@ export function GithubCallout() {
       <div className="space-y-4">
         <p className="font-sans text-xs font-bold uppercase tracking-[2px] text-blue-100/76">{t("githubEyebrow")}</p>
         <h2 className="font-sans text-4xl font-medium leading-tight md:text-5xl">{t("githubTitle")}</h2>
-        <p className="max-w-2xl text-base leading-7 text-slate-200">
+        <p className="max-w-2xl text-justify text-base leading-7 text-slate-200">
           {t("githubDescription")}
         </p>
       </div>

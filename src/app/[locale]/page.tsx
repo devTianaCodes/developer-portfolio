@@ -34,7 +34,7 @@ export default function HomePage() {
                     <p id="technology-about-title" className="section-label mx-auto w-full max-w-5xl">{t("aboutEyebrow")}</p>
 
                     <div className="mx-auto mt-[1.1rem] grid w-full max-w-5xl grid-cols-1 items-center gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:gap-8">
-                      <p className="minimal-text max-w-3xl text-sm leading-6 sm:text-base sm:leading-7">
+                      <p className="minimal-text max-w-3xl text-justify text-sm leading-6 sm:text-base sm:leading-7">
                         {t("aboutDescription")}
                       </p>
 
