@@ -289,10 +289,10 @@ body::-webkit-scrollbar,
 
   /* Inactive cards scale the same fixed canvas used by the active card. */
   .project-carousel-card-content {
-    --carousel-content-width: 68.2vw;
-    --carousel-content-height: calc(98vh - var(--site-header-height) - 3.75rem);
-    --carousel-content-height: calc(98svh - var(--site-header-height) - 3.75rem);
-    --carousel-content-scale: 0.7;
+    --carousel-content-width: 71.61vw;
+    --carousel-content-height: calc(102vh - var(--site-header-height) - 3.75rem);
+    --carousel-content-height: calc(102svh - var(--site-header-height) - 3.75rem);
+    --carousel-content-scale: 0.6667;
 
     top: 50%;
     right: auto;
@@ -508,15 +508,23 @@ body::-webkit-scrollbar,
   }
 
   .project-carousel--immersive > div {
-    height: calc(98vh - var(--site-header-height));
-    height: calc(98svh - var(--site-header-height));
+    height: calc(102vh - var(--site-header-height));
+    height: calc(102svh - var(--site-header-height));
   }
 
   .project-carousel-loop-card[data-loop-offset="0"] {
-    left: 11.25%;
+    left: 9.3125%;
     top: calc(var(--home-carousel-card-top) + 1.5rem);
-    width: 77.5%;
+    width: 81.375%;
     height: calc(100% - 5.25rem);
+  }
+
+  .project-carousel-loop-card[data-loop-offset="-2"],
+  .project-carousel-loop-card[data-loop-offset="-1"],
+  .project-carousel-loop-card[data-loop-offset="1"],
+  .project-carousel-loop-card[data-loop-offset="2"] {
+    top: 15.3%;
+    height: 61.25%;
   }
 
   .project-carousel-loop-card[data-loop-offset="-1"] {

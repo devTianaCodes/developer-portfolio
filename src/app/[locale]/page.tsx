@@ -33,12 +33,12 @@ export default function HomePage() {
                   <div className="technology-parallax__card">
                     <p id="technology-about-title" className="section-label mx-auto w-full max-w-5xl">{t("aboutEyebrow")}</p>
 
-                    <div className="mx-auto mt-[1.1rem] grid w-full max-w-5xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:gap-8">
+                    <div className="mx-auto mt-[1.1rem] grid w-full max-w-5xl grid-cols-1 items-center gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:gap-8">
                       <p className="minimal-text max-w-3xl text-sm leading-6 sm:text-base sm:leading-7">
                         {t("aboutDescription")}
                       </p>
 
-                      <Link href="/about" className="sharp-button shrink-0 px-[1em] py-[0.85em] text-xs sm:px-[1.4em] sm:py-[1em] sm:text-sm">
+                      <Link href="/about" className="sharp-button shrink-0 justify-self-center px-[1em] py-[0.85em] text-xs sm:px-[1.4em] sm:py-[1em] sm:text-sm md:justify-self-auto">
                         {t("readProfile")}
                       </Link>
                     </div>

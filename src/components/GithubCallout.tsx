@@ -22,7 +22,7 @@ export function GithubCallout() {
           <p className="mt-3 inline-flex items-center gap-3 font-sans text-3xl font-medium"><GithubIcon className="h-7 w-7" />{siteConfig.githubHandle}</p>
           <p className="mt-3 text-sm leading-7 text-slate-300">{t("githubEntryDescription")}</p>
         </div>
-        <NextLink href={siteConfig.githubUrl} target="_blank" rel="noreferrer" className="sharp-button-dark w-fit">
+        <NextLink href={siteConfig.githubUrl} target="_blank" rel="noreferrer" className="sharp-button-dark w-fit self-center md:self-auto">
           <GithubIcon className="h-4 w-4" />
           {t("openGithub")}
         </NextLink>

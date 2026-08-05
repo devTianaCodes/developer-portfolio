@@ -225,7 +225,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           aria-label={tProjects("previousProject")}
           className="absolute left-1 top-[48%] z-[80] flex h-16 w-16 -translate-y-1/2 touch-manipulation items-center justify-center rounded-full text-[3.78rem] font-medium leading-none text-white/95 drop-shadow-[0_3px_8px_rgba(0,0,0,0.95)] transition hover:-translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:left-6 md:h-20 md:w-20 md:text-[5.04rem] xl:left-[3.75rem]"
         >
-          <span aria-hidden="true" className="-translate-x-4 md:translate-x-0">‹</span>
+          <span aria-hidden="true" className="-translate-x-5 md:translate-x-0">‹</span>
         </button>
         <button
           type="button"
@@ -233,7 +233,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           aria-label={tProjects("nextProject")}
           className="absolute right-1 top-[48%] z-[80] flex h-16 w-16 -translate-y-1/2 touch-manipulation items-center justify-center rounded-full text-[3.78rem] font-medium leading-none text-white/95 drop-shadow-[0_3px_8px_rgba(0,0,0,0.95)] transition hover:translate-x-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 md:right-6 md:h-20 md:w-20 md:text-[5.04rem] xl:right-[3.75rem]"
         >
-          <span aria-hidden="true" className="translate-x-4 md:translate-x-0">›</span>
+          <span aria-hidden="true" className="translate-x-5 md:translate-x-0">›</span>
         </button>
 
         <div className="project-carousel-3d-stage relative h-full overflow-hidden">
