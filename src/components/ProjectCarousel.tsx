@@ -15,9 +15,8 @@ type ProjectCarouselProps = {
 
 type ProjectPanelProps = {
   project: CarouselProject;
-  isActive: boolean;
   isHovered: boolean;
-  isMobileViewport: boolean;
+  transitionMs: number;
   copy: {
     viewProject: string;
     projectType: string;
@@ -56,38 +55,26 @@ const desktopCarouselTransitionMs = 2800;
 const mobileCarouselTransitionMs = 1200;
 const autoplayIntervalMs = 5000;
 
-function ProjectPanel({ project, isActive, isHovered, isMobileViewport, copy }: ProjectPanelProps) {
-  const detailTransitionMs = isMobileViewport ? 900 : 2200;
-  const detailTransitionSeconds = isMobileViewport ? 0.8 : 1.6;
-
+function ProjectPanel({ project, isHovered, transitionMs, copy }: ProjectPanelProps) {
   return (
     <>
       <div className={classNames("absolute inset-0", pastelPanels[project.visualTone])} />
       <div className={classNames("absolute inset-0 bg-gradient-to-b", imageGlow[project.visualTone])} />
 
       <div
-        className={classNames(
-          "project-carousel-card-content absolute inset-0 z-20 mx-auto flex h-full flex-col items-center justify-center text-center text-[#202124] transition-[max-width,padding] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
-          isActive
-            ? "max-w-[88%] px-3 py-6 md:max-w-[86%] md:px-5 md:py-8"
-            : "max-w-[92%] px-2 py-4 md:max-w-[90%] md:px-3 md:py-5"
-        )}
-        style={{ transitionDuration: `${detailTransitionMs}ms` }}
+        className="project-carousel-card-content absolute z-20 flex flex-col items-center justify-center px-3 py-6 text-center text-[#202124] ease-[cubic-bezier(0.4,0,0.2,1)] md:px-5 md:py-8"
+        style={{ transitionDuration: `${transitionMs}ms` }}
       >
         {project.imageSrc ? (
           <motion.div
-            className={classNames(
-              "relative w-full shrink-0 transition-[height,max-height] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
-              isActive ? "h-[42%] max-h-[23rem]" : "h-[48%] max-h-[16rem]"
-            )}
-            style={{ transitionDuration: `${detailTransitionMs}ms` }}
+            className="relative h-[42%] max-h-[23rem] w-full shrink-0"
             animate={{
-              scale: isHovered ? 1.035 : isActive ? 1.01 : 0.99,
+              scale: isHovered ? 1.035 : 1.01,
               y: isHovered ? -5 : 0
             }}
             transition={{
-              duration: isHovered ? 0.32 : isMobileViewport ? 0.9 : 2.2,
-              ease: isHovered ? polishedEase : carouselEase
+              duration: 0.32,
+              ease: polishedEase
             }}
           >
             <Image
@@ -96,91 +83,29 @@ function ProjectPanel({ project, isActive, isHovered, isMobileViewport, copy }: 
               fill
               loading="lazy"
               quality={82}
-              className={classNames(
-                "object-contain transition-[transform,padding] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.025]",
-                isActive
-                  ? "px-2 pb-2 md:px-4 md:pb-3 xl:drop-shadow-[0_24px_36px_rgba(16,24,40,0.2)]"
-                  : "px-1 pb-2 md:px-2"
-              )}
-              style={{ transitionDuration: `${detailTransitionMs}ms` }}
+              className="object-contain px-2 pb-2 transition-transform duration-500 ease-out group-hover:scale-[1.025] md:px-4 md:pb-3 xl:drop-shadow-[0_24px_36px_rgba(16,24,40,0.2)]"
               sizes="(max-width: 640px) 82vw, (max-width: 1024px) 48vw, 34vw"
             />
           </motion.div>
         ) : null}
 
-        <div
-          className={classNames("w-full shrink-0 transition-[margin] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)]", isActive ? "mt-2 md:mt-3" : "mt-1.5 md:mt-2")}
-          style={{ transitionDuration: `${detailTransitionMs}ms` }}
-        >
-          <h2
-            className={classNames(
-              "max-w-xl text-balance font-sans font-medium text-[#262626] transition-[font-size,line-height] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
-              isActive
-                ? "text-[1.84rem] leading-[1.18] md:text-[2.05rem]"
-                : "text-[1.05rem] leading-[1.15] md:text-[1.35rem] xl:text-[1.5rem]"
-            )}
-            style={{ transitionDuration: `${detailTransitionMs}ms` }}
-          >
+        <div className="mt-2 w-full shrink-0 md:mt-3">
+          <h2 className="max-w-xl text-balance font-sans text-[1.84rem] font-medium leading-[1.18] text-[#262626] md:text-[2.05rem]">
             {project.name}
           </h2>
-          <motion.p
-            className={classNames(
-              "font-sans font-bold uppercase leading-[1.2] text-[#262626]/70 transition-[margin,font-size,letter-spacing] duration-[1700ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
-              isActive
-                ? "mt-3 text-[11px] tracking-[1.8px] md:text-[12px]"
-                : "mt-2 text-[9px] tracking-[1.2px] md:text-[10px] md:tracking-[1.3px]"
-            )}
-            initial={false}
-            animate={{ opacity: isActive ? 1 : 0.72, y: isActive ? 0 : 3 }}
-            style={{ transitionDuration: `${detailTransitionMs}ms` }}
-            transition={{ duration: isMobileViewport ? 0.8 : 1.7, ease: carouselEase }}
-          >
+          <p className="mt-3 font-sans text-[11px] font-bold uppercase leading-[1.2] tracking-[1.8px] text-[#262626]/70 md:text-[12px]">
             {copy.projectType}
-          </motion.p>
-          <motion.p
-            className={classNames(
-              "max-w-xl font-sans font-normal text-[#262626]/82 transition-[margin,font-size,line-height] duration-[1600ms] ease-[cubic-bezier(0.25,0.8,0.25,1)] md:hidden",
-              isActive
-                ? "mt-3 line-clamp-3 text-[15px] leading-[1.38]"
-                : "mt-2 line-clamp-2 text-[12px] leading-[1.32]"
-            )}
-            initial={false}
-            animate={{ opacity: isActive ? 1 : 0.76, y: isActive ? 0 : 5 }}
-            style={{ transitionDuration: `${detailTransitionMs}ms` }}
-            transition={{ duration: detailTransitionSeconds, ease: polishedEase }}
-          >
+          </p>
+          <p className="mt-3 line-clamp-3 max-w-xl font-sans text-[15px] font-normal leading-[1.38] text-[#262626]/82 md:hidden">
             {copy.mobileSummary}
-          </motion.p>
-          <motion.p
-            className={classNames(
-              "hidden max-w-xl font-sans font-normal text-[#262626]/82 transition-[margin,font-size,line-height] duration-[1600ms] ease-[cubic-bezier(0.25,0.8,0.25,1)] md:line-clamp-2",
-              isActive
-                ? "mt-3 text-[19px] leading-[1.45]"
-                : "mt-2 text-[14px] leading-[1.35]"
-            )}
-            initial={false}
-            animate={{ opacity: isActive ? 1 : 0.76, y: isActive ? 0 : 5 }}
-            style={{ transitionDuration: `${detailTransitionMs}ms` }}
-            transition={{ duration: detailTransitionSeconds, ease: polishedEase }}
-          >
+          </p>
+          <p className="mt-3 hidden max-w-xl font-sans text-[19px] font-normal leading-[1.45] text-[#262626]/82 md:line-clamp-2">
             {copy.tagline}
-          </motion.p>
+          </p>
         </div>
-        <motion.span
-          className={classNames(
-            "inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent font-sans font-bold leading-[1.2] tracking-[1px] text-[#262626] transition-[margin,padding,font-size,background-color,color,box-shadow] duration-[1600ms] ease-[cubic-bezier(0.25,0.8,0.25,1)] group-hover:scale-[1.03] group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)]",
-            isActive
-              ? "mb-6 mt-5 px-[1.25em] py-[0.85em] text-[13px] md:mb-8 md:text-[14px]"
-              : "mb-4 mt-3 px-[0.9em] py-[0.65em] text-[10px] md:mb-5 md:text-[12px]",
-            isActive && "group-hover:bg-[#262626] group-hover:text-white"
-          )}
-          initial={false}
-          animate={{ opacity: isActive ? 1 : 0.84, scale: isActive ? 1 : 0.96 }}
-          style={{ transitionDuration: `${detailTransitionMs}ms` }}
-          transition={{ duration: detailTransitionSeconds, ease: polishedEase }}
-        >
+        <span className="mb-6 mt-5 inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent px-[1.25em] py-[0.85em] font-sans text-[13px] font-bold leading-[1.2] tracking-[1px] text-[#262626] transition duration-300 group-hover:scale-[1.03] group-hover:bg-[#262626] group-hover:text-white group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)] md:mb-8 md:text-[14px]">
           {copy.viewProject}
-        </motion.span>
+        </span>
       </div>
 
     </>
@@ -364,9 +289,8 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
               >
                 <ProjectPanel
                   project={project}
-                  isActive={isActive}
                   isHovered={isHovered}
-                  isMobileViewport={isMobileViewport}
+                  transitionMs={transitionMs}
                   copy={panelCopy}
                 />
                 {isActive ? (

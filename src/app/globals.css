@@ -287,6 +287,30 @@ body::-webkit-scrollbar,
     height: 64%;
   }
 
+  /* Inactive cards scale the same fixed canvas used by the active card. */
+  .project-carousel-card-content {
+    --carousel-content-width: 68.2vw;
+    --carousel-content-height: calc(98vh - var(--site-header-height) - 3.75rem);
+    --carousel-content-height: calc(98svh - var(--site-header-height) - 3.75rem);
+    --carousel-content-scale: 0.7;
+
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    width: var(--carousel-content-width);
+    height: var(--carousel-content-height);
+    max-width: none;
+    margin: 0;
+    transform: translate(-50%, -50%) scale(var(--carousel-content-scale));
+    transform-origin: center;
+    transition-property: transform;
+  }
+
+  .project-carousel-loop-card[data-loop-offset="0"] .project-carousel-card-content {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
   .technology-parallax {
     position: relative;
     isolation: isolate;
@@ -457,18 +481,11 @@ body::-webkit-scrollbar,
     width: 30%;
   }
 
-  .project-carousel-loop-card[data-loop-offset="-1"] .project-carousel-card-content {
-    right: auto;
-    left: 6%;
-    width: 55%;
-    margin-inline: 0;
-  }
-
-  .project-carousel-loop-card[data-loop-offset="1"] .project-carousel-card-content {
-    right: 6%;
-    left: auto;
-    width: 55%;
-    margin-inline: 0;
+  .project-carousel-loop-card .project-carousel-card-content {
+    --carousel-content-width: 51.6vw;
+    --carousel-content-height: calc(103.2vh - var(--site-header-height));
+    --carousel-content-height: calc(103.2svh - var(--site-header-height));
+    --carousel-content-scale: 0.5;
   }
 
 }
@@ -574,13 +591,9 @@ body::-webkit-scrollbar,
     width: 31%;
   }
 
-  .project-carousel-loop-card[data-loop-offset="-1"] .project-carousel-card-content,
-  .project-carousel-loop-card[data-loop-offset="1"] .project-carousel-card-content {
-    right: 0;
-    left: 0;
-    width: auto;
-    max-width: 88%;
-    margin-inline: auto;
+  .project-carousel-loop-card .project-carousel-card-content {
+    --carousel-content-width: 33.54vw;
+    --carousel-content-scale: 0.795;
   }
 
 }
