@@ -357,6 +357,7 @@ body::-webkit-scrollbar,
     display: grid;
     width: 100vw;
     margin-left: calc(50% - 50vw);
+    background-color: #4b73a5;
   }
 
   .about-parallax__background {

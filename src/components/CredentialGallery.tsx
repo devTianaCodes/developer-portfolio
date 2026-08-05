@@ -199,8 +199,8 @@ export function CredentialGallery({ credentials }: CredentialGalleryProps) {
               <div className="flex flex-1 flex-col p-6">
                 <p className="section-label">{credential.issuer} · {credential.date}</p>
                 <h2 className="minimal-heading mt-3 text-2xl sm:text-3xl">{credential.title}</h2>
-                <p className="minimal-text mt-4 text-sm leading-7">{credential.description}</p>
-                <div className="mt-auto pt-6">
+                <p className="minimal-text mt-4 text-center text-sm leading-7 md:text-left">{credential.description}</p>
+                <div className="mt-auto flex justify-center pt-6 md:justify-start">
                   <button
                     type="button"
                     onClick={() =>
@@ -212,7 +212,7 @@ export function CredentialGallery({ credentials }: CredentialGalleryProps) {
                         description: credential.description
                       })
                     }
-                    className="sharp-button self-start"
+                    className="sharp-button"
                   >
                     {tCommon("viewCertificate")}
                   </button>
@@ -273,12 +273,12 @@ export function DegreeCredentialGallery({ credentials }: DegreeCredentialGallery
                 <div className="flex flex-1 flex-col p-6">
                   <p className="section-label">{degree.level}</p>
                   <h2 className="minimal-heading mt-3 text-2xl">{degree.field}</h2>
-                  <p className="mt-3 font-sans text-sm font-semibold leading-6 text-ink">{degree.specialization}</p>
-                  <div className="mt-auto pt-6">
+                  <p className="mt-3 text-center font-sans text-sm font-semibold leading-6 text-ink md:text-left">{degree.specialization}</p>
+                  <div className="mt-auto flex justify-center pt-6 md:justify-start">
                     <button
                       type="button"
                       onClick={() => setActiveCredential(modalCredential)}
-                      className="sharp-button self-start"
+                      className="sharp-button"
                     >
                       {tCommon("viewCertificate")}
                     </button>

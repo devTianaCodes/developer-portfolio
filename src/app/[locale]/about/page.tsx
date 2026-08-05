@@ -167,7 +167,7 @@ export default function AboutPage() {
               {skillAreas.map((area) => (
                 <div key={area.title} className="rounded-[6px] border border-white/20 bg-white/10 p-6 shadow-[0_18px_48px_rgba(15,23,42,0.12)]">
                   <p className="font-sans text-xs font-bold uppercase leading-[1.2] tracking-[2px] text-white">{area.title}</p>
-                  <p className="mt-4 text-sm leading-7 text-white">{area.text}</p>
+                  <p className="mt-4 text-justify text-sm leading-7 text-white">{area.text}</p>
                 </div>
               ))}
             </div>
@@ -175,7 +175,7 @@ export default function AboutPage() {
           </div>
 
           <div className="about-parallax__after">
-            <div className="mx-auto max-w-[96rem] space-y-10 px-2.5 pt-10 md:px-4">
+            <div className="mx-auto max-w-[96rem] space-y-10 px-2.5 md:px-4">
               <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="sharp-panel p-8 lg:order-2">
             <p className="section-label">{t("currentFocus")}</p>
@@ -183,7 +183,7 @@ export default function AboutPage() {
             <p className="minimal-text mt-4">
               {t("currentFocusDescription")}
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
               {featuredProjectLinks.map((projectLink) => (
                 <Link key={projectLink.href} href={projectLink.href} target="_blank" rel="noreferrer" className="sharp-button">
                   {projectLink.label}
@@ -200,7 +200,7 @@ export default function AboutPage() {
               <span className="min-w-0 break-all">{siteConfig.githubHandle}</span>
             </h2>
             <p className="minimal-text mt-4 max-w-2xl">{t("publicIdentityDescription")}</p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
               <Link href={siteConfig.githubUrl} target="_blank" rel="noreferrer" className="sharp-button">
                 <GithubIcon className="h-4 w-4" />
                 GitHub

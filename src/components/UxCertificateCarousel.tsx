@@ -164,7 +164,7 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
         </div>
 
         <div className="border-t border-line p-5 sm:p-7">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex flex-col items-center gap-5 text-center md:flex-row md:items-end md:justify-between md:text-left">
             <div className="min-w-0">
               <p className="section-label">{activeCredential.issuer}</p>
               <h2 className="minimal-heading mt-3 text-2xl sm:text-3xl">{activeCredential.title}</h2>
@@ -174,7 +174,7 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
               href={activeCredential.image}
               target="_blank"
               rel="noreferrer"
-              className="sharp-button shrink-0 self-start sm:self-auto"
+              className="sharp-button shrink-0 self-center md:self-auto"
             >
               {tCommon("viewCertificate")}
             </a>
