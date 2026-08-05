@@ -17,6 +17,7 @@ type ProjectPanelProps = {
   project: CarouselProject;
   isActive: boolean;
   isHovered: boolean;
+  isMobileViewport: boolean;
   copy: {
     viewProject: string;
     projectType: string;
@@ -51,15 +52,14 @@ const imageGlow: Record<CarouselProject["visualTone"], string> = {
 const polishedEase = [0.25, 0.8, 0.25, 1] as const;
 const carouselEase = [0.4, 0, 0.2, 1] as const;
 const carouselEaseCss = `cubic-bezier(${carouselEase.join(",")})`;
-const carouselTransitionMs = 2800;
-const carouselTransitionSeconds = carouselTransitionMs / 1000;
-// With this ease curve, 45% elapsed is roughly 70% of the visual travel.
-const shadeHandoffMs = carouselTransitionMs * 0.45;
-const shadeRemovalSeconds = 0.85;
-const shadeApplicationSeconds = 1.1;
+const desktopCarouselTransitionMs = 2800;
+const mobileCarouselTransitionMs = 1200;
 const autoplayIntervalMs = 5000;
 
-function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps) {
+function ProjectPanel({ project, isActive, isHovered, isMobileViewport, copy }: ProjectPanelProps) {
+  const detailTransitionMs = isMobileViewport ? 900 : 2200;
+  const detailTransitionSeconds = isMobileViewport ? 0.8 : 1.6;
+
   return (
     <>
       <div className={classNames("absolute inset-0", pastelPanels[project.visualTone])} />
@@ -72,6 +72,7 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
             ? "max-w-[88%] px-3 py-6 md:max-w-[86%] md:px-5 md:py-8"
             : "max-w-[92%] px-2 py-4 md:max-w-[90%] md:px-3 md:py-5"
         )}
+        style={{ transitionDuration: `${detailTransitionMs}ms` }}
       >
         {project.imageSrc ? (
           <motion.div
@@ -79,12 +80,13 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
               "relative w-full shrink-0 transition-[height,max-height] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
               isActive ? "h-[42%] max-h-[23rem]" : "h-[48%] max-h-[16rem]"
             )}
+            style={{ transitionDuration: `${detailTransitionMs}ms` }}
             animate={{
               scale: isHovered ? 1.035 : isActive ? 1.01 : 0.99,
               y: isHovered ? -5 : 0
             }}
             transition={{
-              duration: isHovered ? 0.32 : 2.2,
+              duration: isHovered ? 0.32 : isMobileViewport ? 0.9 : 2.2,
               ease: isHovered ? polishedEase : carouselEase
             }}
           >
@@ -100,12 +102,16 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
                   ? "px-2 pb-2 md:px-4 md:pb-3 xl:drop-shadow-[0_24px_36px_rgba(16,24,40,0.2)]"
                   : "px-1 pb-2 md:px-2"
               )}
+              style={{ transitionDuration: `${detailTransitionMs}ms` }}
               sizes="(max-width: 640px) 82vw, (max-width: 1024px) 48vw, 34vw"
             />
           </motion.div>
         ) : null}
 
-        <div className={classNames("w-full shrink-0 transition-[margin] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)]", isActive ? "mt-2 md:mt-3" : "mt-1.5 md:mt-2")}>
+        <div
+          className={classNames("w-full shrink-0 transition-[margin] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)]", isActive ? "mt-2 md:mt-3" : "mt-1.5 md:mt-2")}
+          style={{ transitionDuration: `${detailTransitionMs}ms` }}
+        >
           <h2
             className={classNames(
               "max-w-xl text-balance font-sans font-medium text-[#262626] transition-[font-size,line-height] duration-[2200ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
@@ -113,6 +119,7 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
                 ? "text-[1.84rem] leading-[1.18] md:text-[2.05rem]"
                 : "text-[1.05rem] leading-[1.15] md:text-[1.35rem] xl:text-[1.5rem]"
             )}
+            style={{ transitionDuration: `${detailTransitionMs}ms` }}
           >
             {project.name}
           </h2>
@@ -125,7 +132,8 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
             )}
             initial={false}
             animate={{ opacity: isActive ? 1 : 0.72, y: isActive ? 0 : 3 }}
-            transition={{ duration: 1.7, ease: carouselEase }}
+            style={{ transitionDuration: `${detailTransitionMs}ms` }}
+            transition={{ duration: isMobileViewport ? 0.8 : 1.7, ease: carouselEase }}
           >
             {copy.projectType}
           </motion.p>
@@ -138,7 +146,8 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
             )}
             initial={false}
             animate={{ opacity: isActive ? 1 : 0.76, y: isActive ? 0 : 5 }}
-            transition={{ duration: 1.6, ease: polishedEase }}
+            style={{ transitionDuration: `${detailTransitionMs}ms` }}
+            transition={{ duration: detailTransitionSeconds, ease: polishedEase }}
           >
             {copy.mobileSummary}
           </motion.p>
@@ -151,7 +160,8 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
             )}
             initial={false}
             animate={{ opacity: isActive ? 1 : 0.76, y: isActive ? 0 : 5 }}
-            transition={{ duration: 1.6, ease: polishedEase }}
+            style={{ transitionDuration: `${detailTransitionMs}ms` }}
+            transition={{ duration: detailTransitionSeconds, ease: polishedEase }}
           >
             {copy.tagline}
           </motion.p>
@@ -166,7 +176,8 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
           )}
           initial={false}
           animate={{ opacity: isActive ? 1 : 0.84, scale: isActive ? 1 : 0.96 }}
-          transition={{ duration: 1.6, ease: polishedEase }}
+          style={{ transitionDuration: `${detailTransitionMs}ms` }}
+          transition={{ duration: detailTransitionSeconds, ease: polishedEase }}
         >
           {copy.viewProject}
         </motion.span>
@@ -185,6 +196,12 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const tCommon = useTranslations("Common");
   const tProjects = useTranslations("Projects");
+  const transitionMs = isMobileViewport ? mobileCarouselTransitionMs : desktopCarouselTransitionMs;
+  const transitionSeconds = transitionMs / 1000;
+  // With this ease curve, 45% elapsed is roughly 70% of the visual travel.
+  const shadeHandoffMs = transitionMs * 0.45;
+  const shadeRemovalSeconds = isMobileViewport ? 0.4 : 0.85;
+  const shadeApplicationSeconds = isMobileViewport ? 0.5 : 1.1;
   const localizedProjectCopy = {
     chocolate: {
       tagline: tProjects("projectCards.chocolate.tagline"),
@@ -248,7 +265,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     }, shadeHandoffMs);
 
     return () => window.clearTimeout(timeoutId);
-  }, [activeIndex, reduceMotion, shadeActiveIndex]);
+  }, [activeIndex, reduceMotion, shadeActiveIndex, shadeHandoffMs]);
 
   useEffect(() => {
     if (reduceMotion || revealedActiveIndex === activeIndex) return;
@@ -258,7 +275,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     }, shadeHandoffMs);
 
     return () => window.clearTimeout(timeoutId);
-  }, [activeIndex, reduceMotion, revealedActiveIndex]);
+  }, [activeIndex, reduceMotion, revealedActiveIndex, shadeHandoffMs]);
 
   if (!projects.length) return null;
 
@@ -271,8 +288,8 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     : {
         scale: { duration: 0.45, ease: polishedEase },
         y: { duration: 0.45, ease: polishedEase },
-        z: { duration: carouselTransitionSeconds, ease: carouselEase },
-        boxShadow: { duration: carouselTransitionSeconds, ease: carouselEase }
+        z: { duration: transitionSeconds, ease: carouselEase },
+        boxShadow: { duration: transitionSeconds, ease: carouselEase }
       };
   return (
     <section data-testid="project-carousel" className="project-carousel--immersive relative m-0 overflow-hidden p-0">
@@ -337,7 +354,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                 transition={panelTransition}
                 style={{
                   zIndex: isActive ? 40 : 25 - absOffset,
-                  transitionDuration: reduceMotion ? "0ms" : `${carouselTransitionMs}ms`,
+                  transitionDuration: reduceMotion ? "0ms" : `${transitionMs}ms`,
                   transitionTimingFunction: carouselEaseCss
                 }}
                 onMouseEnter={() => setHoveredIndex(index)}
@@ -349,6 +366,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                   project={project}
                   isActive={isActive}
                   isHovered={isHovered}
+                  isMobileViewport={isMobileViewport}
                   copy={panelCopy}
                 />
                 {isActive ? (
