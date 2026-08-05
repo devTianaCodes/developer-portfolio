@@ -494,18 +494,18 @@ body::-webkit-scrollbar,
   }
 
   .project-carousel-loop-card[data-loop-offset="0"] {
-    left: 20%;
-    width: 60%;
+    left: 11.25%;
+    width: 77.5%;
     height: calc(100% - 3.75rem);
   }
 
   .project-carousel-loop-card[data-loop-offset="-1"] {
-    left: -50%;
+    left: -60%;
     width: 69%;
   }
 
   .project-carousel-loop-card[data-loop-offset="1"] {
-    left: 81%;
+    left: 91%;
     width: 69%;
   }
 
