@@ -262,7 +262,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                 key={project.slug}
                 data-loop-offset={String(offset)}
                 className={classNames(
-                  "project-carousel-loop-card group pointer-events-auto absolute overflow-hidden rounded-[10px] transition-[left,top,width,height]",
+                  "project-carousel-loop-card group pointer-events-auto absolute overflow-hidden rounded-[6px] transition-[left,top,width,height]",
                   pastelPanels[project.visualTone]
                 )}
                 data-active={isActive ? "true" : "false"}

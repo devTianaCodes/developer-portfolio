@@ -499,10 +499,12 @@ body::-webkit-scrollbar,
 @media (max-width: 767px) {
   .hero-parallax {
     --home-carousel-card-top: 0rem;
+    --home-mobile-adjacent-gap: calc(var(--home-section-gap) * 0.6);
   }
 
   .technology-marquee {
-    margin-bottom: calc(var(--home-section-gap) - var(--home-marquee-padding) + 0.75rem);
+    margin-top: calc(var(--home-mobile-adjacent-gap) - var(--home-marquee-padding));
+    margin-bottom: calc(var(--home-mobile-adjacent-gap) - var(--home-marquee-padding) - 0.8rem);
   }
 
   .project-carousel--immersive > div {
@@ -514,7 +516,7 @@ body::-webkit-scrollbar,
     left: 11.25%;
     top: calc(var(--home-carousel-card-top) + 1.5rem);
     width: 77.5%;
-    height: calc(100% - 3.75rem);
+    height: calc(100% - 5.25rem);
   }
 
   .project-carousel-loop-card[data-loop-offset="-1"] {
