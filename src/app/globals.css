@@ -357,7 +357,7 @@ body::-webkit-scrollbar,
     display: grid;
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    background-color: #4b73a5;
+    background-color: #06152f;
   }
 
   .about-parallax__background {
@@ -369,6 +369,7 @@ body::-webkit-scrollbar,
     width: 100%;
     height: calc(100vh - var(--site-header-height));
     height: calc(100svh - var(--site-header-height));
+    min-height: calc(100lvh - var(--site-header-height) + 2px);
     overflow: hidden;
     background: #4b73a5;
     contain: paint;
