@@ -118,10 +118,10 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
           </h2>
           <motion.p
             className={classNames(
-              "font-sans font-bold uppercase leading-[1.2] text-[#262626]/70",
+              "font-sans font-bold uppercase leading-[1.2] text-[#262626]/70 transition-[margin,font-size,letter-spacing] duration-[1700ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
               isActive
                 ? "mt-3 text-[11px] tracking-[1.8px] md:text-[12px]"
-                : "hidden xl:mt-2 xl:block xl:text-[10px] xl:tracking-[1.3px]"
+                : "mt-2 text-[9px] tracking-[1.2px] md:text-[10px] md:tracking-[1.3px]"
             )}
             initial={false}
             animate={{ opacity: isActive ? 1 : 0.72, y: isActive ? 0 : 3 }}
@@ -131,21 +131,23 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
           </motion.p>
           <motion.p
             className={classNames(
-              "mt-3 line-clamp-3 max-w-xl font-sans text-[15px] font-normal leading-[1.38] text-[#262626]/82 md:hidden",
-              !isActive && "hidden"
+              "max-w-xl font-sans font-normal text-[#262626]/82 transition-[margin,font-size,line-height] duration-[1600ms] ease-[cubic-bezier(0.25,0.8,0.25,1)] md:hidden",
+              isActive
+                ? "mt-3 line-clamp-3 text-[15px] leading-[1.38]"
+                : "mt-2 line-clamp-2 text-[12px] leading-[1.32]"
             )}
             initial={false}
-            animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 8 }}
-            transition={{ duration: 1.5, ease: polishedEase }}
+            animate={{ opacity: isActive ? 1 : 0.76, y: isActive ? 0 : 5 }}
+            transition={{ duration: 1.6, ease: polishedEase }}
           >
             {copy.mobileSummary}
           </motion.p>
           <motion.p
             className={classNames(
-              "hidden max-w-xl font-sans font-normal text-[#262626]/82",
+              "hidden max-w-xl font-sans font-normal text-[#262626]/82 transition-[margin,font-size,line-height] duration-[1600ms] ease-[cubic-bezier(0.25,0.8,0.25,1)] md:line-clamp-2",
               isActive
-                ? "mt-3 text-[19px] leading-[1.45] md:line-clamp-2 md:block"
-                : "mt-2 text-[14px] leading-[1.35] xl:line-clamp-2 xl:block"
+                ? "mt-3 text-[19px] leading-[1.45]"
+                : "mt-2 text-[14px] leading-[1.35]"
             )}
             initial={false}
             animate={{ opacity: isActive ? 1 : 0.76, y: isActive ? 0 : 5 }}
@@ -156,10 +158,10 @@ function ProjectPanel({ project, isActive, isHovered, copy }: ProjectPanelProps)
         </div>
         <motion.span
           className={classNames(
-            "items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent font-sans font-bold leading-[1.2] tracking-[1px] text-[#262626] transition group-hover:scale-[1.03] group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)]",
+            "inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent font-sans font-bold leading-[1.2] tracking-[1px] text-[#262626] transition-[margin,padding,font-size,background-color,color,box-shadow] duration-[1600ms] ease-[cubic-bezier(0.25,0.8,0.25,1)] group-hover:scale-[1.03] group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)]",
             isActive
-              ? "mb-6 mt-5 inline-flex px-[1.25em] py-[0.85em] text-[13px] md:mb-8 md:text-[14px]"
-              : "mt-3 hidden px-[0.9em] py-[0.65em] text-[12px] xl:mb-5 xl:inline-flex",
+              ? "mb-6 mt-5 px-[1.25em] py-[0.85em] text-[13px] md:mb-8 md:text-[14px]"
+              : "mb-4 mt-3 px-[0.9em] py-[0.65em] text-[10px] md:mb-5 md:text-[12px]",
             isActive && "group-hover:bg-[#262626] group-hover:text-white"
           )}
           initial={false}
