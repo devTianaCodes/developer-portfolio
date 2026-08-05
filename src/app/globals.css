@@ -512,17 +512,18 @@ body::-webkit-scrollbar,
 
   .project-carousel-loop-card[data-loop-offset="0"] {
     left: 11.25%;
+    top: calc(var(--home-carousel-card-top) + 1.5rem);
     width: 77.5%;
     height: calc(100% - 3.75rem);
   }
 
   .project-carousel-loop-card[data-loop-offset="-1"] {
-    left: -60%;
+    left: -57%;
     width: 69%;
   }
 
   .project-carousel-loop-card[data-loop-offset="1"] {
-    left: 91%;
+    left: 88%;
     width: 69%;
   }
 
