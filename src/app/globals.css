@@ -230,7 +230,7 @@ body::-webkit-scrollbar,
     isolation: isolate;
     backface-visibility: hidden;
     transform-style: preserve-3d;
-    will-change: left, top, width, height, transform;
+    will-change: transform;
   }
 
   .project-carousel-loop-card::after {

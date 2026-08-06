@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import type { CarouselProject } from "@/lib/projectCarousel";
 import { circularOffset, wrapIndex } from "@/lib/carousel";
@@ -113,10 +113,12 @@ function ProjectPanel({ project, isHovered, transitionMs, copy }: ProjectPanelPr
 }
 
 export function ProjectCarousel({ projects }: ProjectCarouselProps) {
+  const carouselRef = useRef<HTMLElement>(null);
+  const carouselInView = useInView(carouselRef, { margin: "200px 0px" });
   const [activeIndex, setActiveIndex] = useState(0);
-  const [shadeActiveIndex, setShadeActiveIndex] = useState(0);
-  const [revealedActiveIndex, setRevealedActiveIndex] = useState(0);
+  const [shadeFreeIndex, setShadeFreeIndex] = useState(0);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const [pageVisible, setPageVisible] = useState(true);
   const reduceMotion = useReducedMotion();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const tCommon = useTranslations("Common");
@@ -127,41 +129,6 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const shadeHandoffMs = transitionMs * 0.45;
   const shadeRemovalSeconds = isMobileViewport ? 0.4 : 0.85;
   const shadeApplicationSeconds = isMobileViewport ? 0.5 : 1.1;
-  const localizedProjectCopy = {
-    chocolate: {
-      tagline: tProjects("projectCards.chocolate.tagline"),
-      mobileSummary: tProjects("projectCards.chocolate.mobileSummary")
-    },
-    english4u: {
-      tagline: tProjects("projectCards.english4u.tagline"),
-      mobileSummary: tProjects("projectCards.english4u.mobileSummary")
-    },
-    orchidcare: {
-      tagline: tProjects("projectCards.orchidcare.tagline"),
-      mobileSummary: tProjects("projectCards.orchidcare.mobileSummary")
-    },
-    petnest: {
-      tagline: tProjects("projectCards.petnest.tagline"),
-      mobileSummary: tProjects("projectCards.petnest.mobileSummary")
-    },
-    paytrack: {
-      tagline: tProjects("projectCards.paytrack.tagline"),
-      mobileSummary: tProjects("projectCards.paytrack.mobileSummary")
-    },
-    "ai-comparator": {
-      tagline: tProjects("projectCards.ai-comparator.tagline"),
-      mobileSummary: tProjects("projectCards.ai-comparator.mobileSummary")
-    },
-    brickdrop: {
-      tagline: tProjects("projectCards.brickdrop.tagline"),
-      mobileSummary: tProjects("projectCards.brickdrop.mobileSummary")
-    },
-    "sea-battle": {
-      tagline: tProjects("projectCards.sea-battle.tagline"),
-      mobileSummary: tProjects("projectCards.sea-battle.mobileSummary")
-    }
-  };
-
   useEffect(() => {
     const mobileViewport = window.matchMedia("(max-width: 767px)");
     const syncViewport = () => setIsMobileViewport(mobileViewport.matches);
@@ -173,34 +140,40 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   }, []);
 
   useEffect(() => {
-    if (reduceMotion || isMobileViewport || projects.length < 2) return;
+    const syncVisibility = () => setPageVisible(document.visibilityState === "visible");
+
+    syncVisibility();
+    document.addEventListener("visibilitychange", syncVisibility);
+
+    return () => document.removeEventListener("visibilitychange", syncVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (
+      reduceMotion ||
+      isMobileViewport ||
+      !carouselInView ||
+      !pageVisible ||
+      hoveredIndex !== null ||
+      projects.length < 2
+    ) return;
 
     const intervalId = window.setInterval(() => {
       setActiveIndex((current) => wrapIndex(current - 1, projects.length));
     }, autoplayIntervalMs);
 
     return () => window.clearInterval(intervalId);
-  }, [isMobileViewport, projects.length, reduceMotion]);
+  }, [carouselInView, hoveredIndex, isMobileViewport, pageVisible, projects.length, reduceMotion]);
 
   useEffect(() => {
-    if (reduceMotion || shadeActiveIndex === activeIndex) return;
+    if (reduceMotion || shadeFreeIndex === activeIndex) return;
 
     const timeoutId = window.setTimeout(() => {
-      setShadeActiveIndex(activeIndex);
+      setShadeFreeIndex(activeIndex);
     }, shadeHandoffMs);
 
     return () => window.clearTimeout(timeoutId);
-  }, [activeIndex, reduceMotion, shadeActiveIndex, shadeHandoffMs]);
-
-  useEffect(() => {
-    if (reduceMotion || revealedActiveIndex === activeIndex) return;
-
-    const timeoutId = window.setTimeout(() => {
-      setRevealedActiveIndex(activeIndex);
-    }, shadeHandoffMs);
-
-    return () => window.clearTimeout(timeoutId);
-  }, [activeIndex, reduceMotion, revealedActiveIndex, shadeHandoffMs]);
+  }, [activeIndex, reduceMotion, shadeFreeIndex, shadeHandoffMs]);
 
   if (!projects.length) return null;
 
@@ -217,7 +190,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
         boxShadow: { duration: transitionSeconds, ease: carouselEase }
       };
   return (
-    <section data-testid="project-carousel" className="project-carousel--immersive relative m-0 overflow-hidden p-0">
+    <section ref={carouselRef} data-testid="project-carousel" className="project-carousel--immersive relative m-0 overflow-hidden p-0">
       <div className="relative mx-auto max-w-none overflow-hidden bg-slate-950/20">
         <button
           type="button"
@@ -238,7 +211,6 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
         <div className="project-carousel-3d-stage relative h-full overflow-hidden">
           {projects.map((project, index) => {
-            const localizedCopy = localizedProjectCopy[project.slug];
             const offset = circularOffset(index, activeIndex, projects.length);
             const absOffset = Math.abs(offset);
 
@@ -247,13 +219,13 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
             const isActive = offset === 0;
             const isShadeFree = reduceMotion
               ? index === activeIndex
-              : index === revealedActiveIndex || index === shadeActiveIndex;
+              : index === shadeFreeIndex;
             const isHovered = hoveredIndex === index;
             const panelCopy = {
               viewProject: tCommon("viewProject"),
               projectType: project.category === "game" ? tProjects("gameType") : tProjects("fullStackType"),
-              mobileSummary: localizedCopy.mobileSummary,
-              tagline: localizedCopy.tagline,
+              mobileSummary: tProjects(`projectCards.${project.slug}.mobileSummary`),
+              tagline: tProjects(`projectCards.${project.slug}.tagline`),
               imageAlt: tProjects("projectImageAlt", { project: project.name })
             };
 
