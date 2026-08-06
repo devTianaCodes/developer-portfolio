@@ -110,6 +110,16 @@ body::-webkit-scrollbar,
     @apply min-w-0 rounded-[6px] border border-line bg-white/60;
   }
 
+  .render-deferred-card {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 32rem;
+  }
+
+  .render-deferred-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 48rem;
+  }
+
   .hero-parallax {
     --home-section-gap: 7.1875rem;
     --home-carousel-card-top: 2.5rem;

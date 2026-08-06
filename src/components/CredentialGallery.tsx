@@ -240,7 +240,7 @@ export function DegreeCredentialGallery({ credentials }: DegreeCredentialGallery
 
   return (
     <>
-      <section data-testid="higher-education-credentials" className="space-y-6">
+      <section data-testid="higher-education-credentials" className="render-deferred-section space-y-6">
         <p className="section-label">{tCredentials("higherEducation")}</p>
 
         <div className="grid gap-5 md:grid-cols-3">

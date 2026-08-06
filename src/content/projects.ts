@@ -56,7 +56,6 @@ export type ProjectEntry = {
   role: string;
   category: "full-stack" | "frontend" | "game";
   deploymentMode: DeploymentMode;
-  repoPath: string;
   year: string;
   flagship?: boolean;
   visualTone:
@@ -106,8 +105,6 @@ export const projects: ProjectEntry[] = [
     role: "Full-stack product and frontend branding",
     category: "full-stack",
     deploymentMode: fullStackLiveUrls.chocolate ? "hybrid" : "media",
-    repoPath:
-      "/Users/parents/Developer/Project Chocolate Craft House/chocolate_frontend/client and /Users/parents/Developer/Project Chocolate Craft House/chocolate_backend/server",
     year: "2025",
     flagship: true,
     visualTone: "warm-luxury",
@@ -322,8 +319,6 @@ export const projects: ProjectEntry[] = [
     role: "Full-stack LMS product",
     category: "full-stack",
     deploymentMode: "hybrid",
-    repoPath:
-      "/Users/parents/Developer/Project English4U/english4u-frontend and /Users/parents/Developer/Project English4U/english4u-backend",
     year: "2025",
     flagship: true,
     visualTone: "clean-learning",
@@ -535,8 +530,6 @@ export const projects: ProjectEntry[] = [
     role: "Full-stack product with TypeScript and Prisma",
     category: "full-stack",
     deploymentMode: "hybrid",
-    repoPath:
-      "/Users/parents/Developer/PetNest/petNest-frontend and /Users/parents/Developer/PetNest/petNest-backend",
     year: "2025",
     visualTone: "soft-utility",
     hook: "A trust-centered adoption platform that balances public discovery with operational moderation.",
@@ -783,8 +776,6 @@ export const projects: ProjectEntry[] = [
     role: "Full-stack TypeScript product",
     category: "full-stack",
     deploymentMode: "media",
-    repoPath:
-      "/Users/parents/Developer/OrchidCare/orchid-frontend and /Users/parents/Developer/OrchidCare/orchid-backend",
     year: "2026",
     visualTone: "botanical-gold",
     hook: "A practical plant-care product where searchable data, care metadata, and a calm browsing experience work together.",
@@ -1006,8 +997,6 @@ export const projects: ProjectEntry[] = [
     role: "Full-stack subscription product",
     category: "full-stack",
     deploymentMode: "media",
-    repoPath:
-      "/Users/parents/Developer/PayTrack/payTrack-frontend and /Users/parents/Developer/PayTrack/payTrack-backend",
     year: "2026",
     visualTone: "finance-peach",
     hook: "A calm personal finance assistant that turns forgotten recurring payments into a clear, mobile-first product flow.",
@@ -1265,8 +1254,6 @@ export const projects: ProjectEntry[] = [
     role: "Frontend product workflow with REST backend integration",
     category: "full-stack",
     deploymentMode: "media",
-    repoPath:
-      "/Users/parents/Desktop/Boolean Specializzazione/ai-comparator-final-project/ai-comparator-front and /Users/parents/Desktop/Boolean Specializzazione/ai-comparator-final-project/ai-comparator-back",
     year: "2026",
     visualTone: "ai-lilac",
     hook: "A focused comparison tool that turns a course assignment into a clean product workflow for evaluating AI models.",
@@ -1483,7 +1470,6 @@ export const projects: ProjectEntry[] = [
     role: "Frontend gameplay engineering",
     category: "game",
     deploymentMode: "live",
-    repoPath: "/Users/parents/Developer/BrickDrop",
     year: "2025",
     visualTone: "arcade",
     hook: "A compact game build that proves strong frontend logic can be immediately playable.",
@@ -1691,7 +1677,6 @@ export const projects: ProjectEntry[] = [
     role: "Interactive frontend and UI systems",
     category: "game",
     deploymentMode: "live",
-    repoPath: "/Users/parents/Developer/sea-battle",
     year: "2025",
     visualTone: "naval-tech",
     hook: "A visually ambitious browser game that combines interface systems, motion, and AI-driven play.",

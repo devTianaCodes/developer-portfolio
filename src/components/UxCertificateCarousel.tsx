@@ -45,7 +45,7 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
   }
 
   return (
-    <section data-testid="ux-certificate-carousel" className="space-y-6">
+    <section data-testid="ux-certificate-carousel" className="render-deferred-section space-y-6">
       <p className="section-label">{tCredentials("uxUiCertificates")}</p>
 
       <div className="overflow-hidden sharp-panel">

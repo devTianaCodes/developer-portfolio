@@ -40,7 +40,7 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
   }
 
   return (
-    <article className={"group relative flex " + heightClass + " cursor-pointer flex-col overflow-hidden sharp-panel transition duration-300 hover:border-[#262626]/34 hover:shadow-[0_22px_58px_rgba(15,23,42,0.12)]"}>
+    <article className={"render-deferred-card group relative flex " + heightClass + " cursor-pointer flex-col overflow-hidden sharp-panel transition duration-300 hover:border-[#262626]/34 hover:shadow-[0_22px_58px_rgba(15,23,42,0.12)]"}>
       <Link href={"/projects/" + project.slug} aria-label={tProjects("openProject", { project: project.name })} className="absolute inset-0 z-10" />
       {hero ? (
         <div className={"relative " + mediaAspect + " overflow-hidden bg-slate-900"}>

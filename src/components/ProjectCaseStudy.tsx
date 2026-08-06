@@ -287,7 +287,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         </section>
 
         {images.length > 0 ? (
-          <section className="space-y-5">
+          <section className="render-deferred-section space-y-5">
             <div className="grid gap-6 md:grid-cols-2">
               {images.map((asset) => (
                 <figure
@@ -334,7 +334,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             </div>
           </section>
         ) : (
-          <section className="grid gap-8 lg:grid-cols-2">
+          <section className="render-deferred-section grid gap-8 lg:grid-cols-2">
             <div className={panelClass}>
               <SectionTitle eyebrow={t("challengeEyebrow")} title={t("challengeTitle")} text={project.challenge} />
             </div>
@@ -345,7 +345,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         )}
 
         {project.apiDomains || project.qualitySignals ? (
-          <section className="space-y-8">
+          <section className="render-deferred-section space-y-8">
             {project.qualitySignals ? (
               <div className={`space-y-6 ${panelClass}`}>
                 <SectionTitle
@@ -393,13 +393,9 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             ) : null}
           </section>
         ) : (
-          <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <section className="render-deferred-section grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div className={`space-y-5 ${panelClass}`}>
               <SectionTitle eyebrow={t("outcomeEyebrow")} title={t("outcomeTitle")} text={project.outcome} />
-              <p className="text-sm uppercase tracking-[0.24em] text-muted">{t("repositoryRoots")}</p>
-              <p className="rounded-[6px] border border-[color:var(--case-line)] bg-white/72 px-4 py-4 font-mono text-sm text-muted">
-                {project.repoPath}
-              </p>
             </div>
 
             <div className={`space-y-6 ${panelClass}`}>
@@ -418,7 +414,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
           </section>
         )}
 
-        <section className="space-y-6">
+        <section className="render-deferred-section space-y-6">
           <SectionTitle
             eyebrow={t("featuresEyebrow")}
             title={t("featuresTitle")}
@@ -433,7 +429,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
           </div>
         </section>
 
-        <section className="space-y-6">
+        <section className="render-deferred-section space-y-6">
           <SectionTitle
             eyebrow={t("architectureEyebrow")}
             title={t("architectureTitle")}
@@ -451,7 +447,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
 
 
         {videos.length > 0 ? (
-          <section className="space-y-6">
+          <section className="render-deferred-section space-y-6">
             <SectionTitle
               eyebrow={t("demoEyebrow")}
               title={t("demoTitle")}
