@@ -1,8 +1,6 @@
-import NextLink from "next/link";
 import { useTranslations } from "next-intl";
-import { GithubIcon } from "@/components/GithubIcon";
-import { SocialIcon } from "@/components/SocialIcon";
-import { siteConfig } from "@/content/site";
+import { SocialLinks } from "@/components/SocialLinks";
+import { siteConfig, siteNavigation } from "@/content/site";
 import { Link } from "@/i18n/navigation";
 
 export function SiteFooter() {
@@ -21,26 +19,17 @@ export function SiteFooter() {
           </div>
 
           <div className="mt-7 flex flex-col items-start gap-3 text-sm text-muted">
-            <NextLink href={siteConfig.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-accent">
-              <GithubIcon className="h-4 w-4" />
-              {siteConfig.githubHandle}
-            </NextLink>
-            <NextLink href={siteConfig.linkedInUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-accent">
-              <SocialIcon kind="linkedin" />
-              {tCommon("linkedin")}
-            </NextLink>
-            <NextLink href={siteConfig.emailUrl} className="inline-flex items-center gap-2 hover:text-accent">
-              <SocialIcon kind="email" />
-              {siteConfig.email}
-            </NextLink>
+            <SocialLinks
+              linkClassName="inline-flex items-center gap-2 hover:text-accent"
+              labels={{ github: siteConfig.githubHandle, linkedin: tCommon("linkedin"), email: siteConfig.email }}
+            />
           </div>
         </div>
 
         <div className="flex flex-col gap-3 text-sm text-muted md:pt-[1.65rem]">
-          <Link href="/projects" className="block hover:text-accent">{tNavigation("projects")}</Link>
-          <Link href="/about" className="block hover:text-accent">{tNavigation("about")}</Link>
-          <Link href="/credentials" className="block hover:text-accent">{tNavigation("credentials")}</Link>
-          <Link href="/contact" className="block hover:text-accent">{tNavigation("contact")}</Link>
+          {siteNavigation.map((item) => (
+            <Link key={item.href} href={item.href} className="block hover:text-accent">{tNavigation(item.labelKey)}</Link>
+          ))}
         </div>
       </div>
     </footer>

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { GithubIcon } from "@/components/GithubIcon";
-import { SocialIcon } from "@/components/SocialIcon";
+import { SocialLinks } from "@/components/SocialLinks";
 import { siteConfig } from "@/content/site";
 import { enabledLocales } from "@/i18n/config";
 import { createPageMetadata } from "@/i18n/metadata";
@@ -41,18 +40,7 @@ export default function ContactPage() {
           </div>
 
           <div className="flex flex-wrap gap-3 pt-5 lg:flex-nowrap">
-            <Link href={siteConfig.githubUrl} target="_blank" rel="noreferrer" className="sharp-button justify-start">
-              <GithubIcon className="h-4 w-4" />
-              {siteConfig.githubHandle}
-            </Link>
-            <Link href={siteConfig.linkedInUrl} target="_blank" rel="noreferrer" className="sharp-button justify-start">
-              <SocialIcon kind="linkedin" />
-              LinkedIn
-            </Link>
-            <Link href={siteConfig.emailUrl} className="sharp-button justify-start">
-              <SocialIcon kind="email" />
-              {tCommon("email")}
-            </Link>
+            <SocialLinks linkClassName="sharp-button justify-start" labels={{ github: siteConfig.githubHandle, email: tCommon("email") }} />
             <Link href="/projects" className="sharp-button justify-start">{t("viewProjects")}</Link>
           </div>
         </div>

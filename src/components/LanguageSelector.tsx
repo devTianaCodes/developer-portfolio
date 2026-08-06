@@ -2,14 +2,15 @@
 
 import { useTransition } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { enabledLocales, type Locale } from "@/i18n/config";
 import { classNames } from "@/lib/classNames";
 import { usePathname, useRouter } from "@/i18n/navigation";
 
-const languages = [
-  { code: "en", label: "EN", nameKey: "english", enabled: true },
-  { code: "it", label: "IT", nameKey: "italian", enabled: true },
-  { code: "ro", label: "RO", nameKey: "romanian", enabled: true }
-] as const;
+const languageMetadata: Record<Locale, { label: string; nameKey: "english" | "italian" | "romanian" }> = {
+  en: { label: "EN", nameKey: "english" },
+  it: { label: "IT", nameKey: "italian" },
+  ro: { label: "RO", nameKey: "romanian" }
+};
 
 type LanguageSelectorProps = {
   className?: string;
@@ -32,33 +33,31 @@ export function LanguageSelector({ className }: LanguageSelectorProps) {
       )}
       data-testid="language-selector"
     >
-      {languages.map((language) => {
-        const active = language.code === locale;
+      {enabledLocales.map((code) => {
+        const language = languageMetadata[code];
+        const active = code === locale;
         const languageName = t(language.nameKey);
 
         return (
           <button
-            key={language.code}
+            key={code}
             type="button"
             aria-label={languageName}
             aria-pressed={active}
-            aria-disabled={!language.enabled}
-            disabled={!language.enabled || isPending}
+            disabled={isPending}
             title={languageName}
             onClick={() => {
-              if (!language.enabled || active) return;
+              if (active) return;
 
               startTransition(() => {
-                router.replace(pathname, { locale: language.code });
+                router.replace(pathname, { locale: code });
               });
             }}
             className={classNames(
               "relative font-sans text-[0.78rem] font-medium leading-none tracking-[0.08em] text-[#262626] transition hover:scale-105 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:bg-[#262626]",
               active
                 ? "scale-105 after:w-full"
-                : language.enabled
-                  ? "cursor-pointer after:w-0 after:transition-all hover:after:w-full"
-                  : "cursor-not-allowed text-[#262626]/45 after:w-0"
+                : "cursor-pointer after:w-0 after:transition-all hover:after:w-full"
             )}
           >
             {language.label}

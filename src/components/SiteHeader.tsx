@@ -4,15 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { LanguageSelector } from "@/components/LanguageSelector";
-import { siteConfig } from "@/content/site";
+import { siteConfig, siteNavigation } from "@/content/site";
 import { Link, usePathname } from "@/i18n/navigation";
-
-const navItems = [
-  { href: "/projects", labelKey: "projects" },
-  { href: "/about", labelKey: "about" },
-  { href: "/credentials", labelKey: "credentials" },
-  { href: "/contact", labelKey: "contact" }
-] as const;
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -49,7 +42,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-8 xl:gap-12">
           <nav className="hidden items-center gap-5 lg:flex">
-            {navItems.map((item) => {
+            {siteNavigation.map((item) => {
               const active = isActiveRoute(item.href);
 
               return (
@@ -90,6 +83,8 @@ export function SiteHeader() {
       </div>
 
       <div
+        aria-hidden={!menuOpen}
+        inert={!menuOpen}
         className={`border-t border-line bg-white px-2.5 shadow-[0_18px_42px_rgba(15,23,42,0.12)] transition-[max-height,opacity] duration-300 md:px-4 lg:hidden ${
           menuOpen ? "max-h-96 opacity-100" : "max-h-0 overflow-hidden opacity-0"
         }`}
@@ -101,7 +96,7 @@ export function SiteHeader() {
             </span>
             <LanguageSelector />
           </div>
-          {navItems.map((item) => (
+          {siteNavigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { GithubIcon } from "@/components/GithubIcon";
-import { SocialIcon } from "@/components/SocialIcon";
+import { SocialLinks } from "@/components/SocialLinks";
 import { siteConfig } from "@/content/site";
 import { enabledLocales } from "@/i18n/config";
 import { createPageMetadata } from "@/i18n/metadata";
@@ -201,18 +201,7 @@ export default function AboutPage() {
             </h2>
             <p className="minimal-text mt-4 max-w-2xl">{t("publicIdentityDescription")}</p>
             <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
-              <Link href={siteConfig.githubUrl} target="_blank" rel="noreferrer" className="sharp-button">
-                <GithubIcon className="h-4 w-4" />
-                GitHub
-              </Link>
-              <Link href={siteConfig.linkedInUrl} target="_blank" rel="noreferrer" className="sharp-button">
-                <SocialIcon kind="linkedin" />
-                LinkedIn
-              </Link>
-              <Link href={siteConfig.emailUrl} className="sharp-button">
-                <SocialIcon kind="email" />
-                Email
-              </Link>
+              <SocialLinks linkClassName="sharp-button" />
             </div>
           </div>
               </section>

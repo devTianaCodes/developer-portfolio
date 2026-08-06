@@ -2,8 +2,14 @@ export type SocialLink = {
   label: string;
   href: string;
   kind: "github" | "email" | "linkedin";
-  primary?: boolean;
 };
+
+export const siteNavigation = [
+  { href: "/projects", labelKey: "projects" },
+  { href: "/about", labelKey: "about" },
+  { href: "/credentials", labelKey: "credentials" },
+  { href: "/contact", labelKey: "contact" }
+] as const;
 
 export const siteConfig = {
   name: "Tiana Oblasser",
@@ -21,8 +27,7 @@ export const siteConfig = {
     {
       label: "GitHub",
       href: "https://github.com/devTianaCodes",
-      kind: "github",
-      primary: true
+      kind: "github"
     },
     {
       label: "LinkedIn",
@@ -34,7 +39,7 @@ export const siteConfig = {
       href: "mailto:oblasser.tatiana@gmail.com",
       kind: "email"
     }
-  ] satisfies SocialLink[],
+  ] satisfies readonly SocialLink[],
   headline: "Full-stack web products with React, Node.js, REST APIs, and user-centered interface craft.",
   secondaryCta: {
     label: "Explore Projects",
