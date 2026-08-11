@@ -381,7 +381,15 @@ body::-webkit-scrollbar,
     height: calc(100svh - var(--site-header-height));
     min-height: calc(100lvh - var(--site-header-height) + 2px);
     overflow: hidden;
-    background: #4b73a5;
+    pointer-events: none;
+    background-color: #020817;
+    background-image:
+      linear-gradient(90deg, rgba(2, 8, 23, 0.34), rgba(2, 8, 23, 0.08)),
+      linear-gradient(rgba(2, 8, 23, 0.08), rgba(2, 8, 23, 0.2)),
+      url("/media/about/about-network-background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     contain: paint;
   }
 

@@ -118,17 +118,7 @@ export default function AboutPage() {
 
   return (
     <section className="about-parallax -mt-10 md:-mt-14">
-        <div className="about-parallax__background" aria-hidden="true">
-          <Image
-            src="/media/about/about-blue-background.png"
-            alt=""
-            fill
-            priority
-            quality={82}
-            sizes="100vw"
-            className="object-cover object-center opacity-90"
-          />
-        </div>
+        <div className="about-parallax__background" aria-hidden="true" />
 
         <div className="about-parallax__flow">
           <div className="about-parallax__content text-white">
