@@ -50,7 +50,7 @@ export default function HomePage() {
                     <div className="mx-auto mt-[2.2rem] max-w-5xl border-t border-line pt-[1.65rem]">
                       <Image
                         src="/media/hero/technology-stack-banner.png"
-                        alt="HTML, CSS, JavaScript, Node.js, Express, React, and MySQL logos"
+                        alt={t("technologyBannerAlt")}
                         width={1430}
                         height={222}
                         className="h-auto w-full"

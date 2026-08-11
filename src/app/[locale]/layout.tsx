@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { createPageMetadata, siteUrl } from "@/i18n/metadata";
@@ -61,11 +61,19 @@ export default async function LocaleLayout({
   }
 
   setRequestLocale(locale);
+  const messages = await getMessages();
+  const clientMessages = {
+    Common: messages.Common,
+    Credentials: messages.Credentials,
+    LocaleSwitcher: messages.LocaleSwitcher,
+    Navigation: messages.Navigation,
+    Projects: messages.Projects
+  };
 
   return (
     <html lang={locale}>
       <body className="min-h-screen bg-background font-sans text-ink antialiased">
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={clientMessages}>
           <div className="relative min-h-screen overflow-x-clip">
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />

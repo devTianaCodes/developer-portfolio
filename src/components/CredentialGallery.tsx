@@ -157,61 +157,96 @@ function CertificateModalPortal({ credential, onClose }: CertificateModalPortalP
   );
 }
 
-export function CredentialGallery({ credentials }: CredentialGalleryProps) {
+type GalleryCredential = ModalCredential & {
+  slug: string;
+  buttonLabel: string;
+};
+
+type CredentialGalleryVariant = "professional" | "degree";
+
+const galleryStyles: Record<
+  CredentialGalleryVariant,
+  {
+    section: string;
+    grid: string;
+    imageAspect: string;
+    image: string;
+    imageSizes: string;
+    title: string;
+    description: string;
+  }
+> = {
+  professional: {
+    section: "",
+    grid: "md:grid-cols-2",
+    imageAspect: "aspect-[16/10]",
+    image: "p-4 sm:p-6",
+    imageSizes: "(max-width: 767px) 96vw, 48vw",
+    title: "text-2xl sm:text-3xl",
+    description: "minimal-text mt-4 text-center text-sm leading-7 md:text-left"
+  },
+  degree: {
+    section: "render-deferred-section",
+    grid: "md:grid-cols-3",
+    imageAspect: "aspect-[4/3]",
+    image: "p-3",
+    imageSizes: "(max-width: 767px) 96vw, 32vw",
+    title: "text-2xl",
+    description: "mt-3 text-center font-sans text-sm font-semibold leading-6 text-ink md:text-left"
+  }
+};
+
+type CredentialGallerySectionProps = {
+  credentials: readonly GalleryCredential[];
+  dataTestId: string;
+  sectionLabel: string;
+  variant: CredentialGalleryVariant;
+};
+
+function CredentialGallerySection({
+  credentials,
+  dataTestId,
+  sectionLabel,
+  variant
+}: CredentialGallerySectionProps) {
   const [activeCredential, setActiveCredential] = useState<ModalCredential | null>(null);
   const tCommon = useTranslations("Common");
-  const tCredentials = useTranslations("Credentials");
+  const styles = galleryStyles[variant];
 
   if (!credentials.length) return null;
 
   return (
     <>
-      <section data-testid="professional-credentials" className="space-y-6">
-        <p className="section-label">{tCredentials("professionalCertifications")}</p>
+      <section data-testid={dataTestId} className={`${styles.section} space-y-6`}>
+        <p className="section-label">{sectionLabel}</p>
 
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className={`grid gap-5 ${styles.grid}`}>
           {credentials.map((credential) => (
             <article key={credential.slug} className="flex min-w-0 flex-col overflow-hidden sharp-panel">
               <button
                 type="button"
-                onClick={() =>
-                  setActiveCredential({
-                    eyebrow: `${credential.issuer} · ${credential.date}`,
-                    title: credential.title,
-                    image: credential.image,
-                    imageAlt: credential.imageAlt,
-                    description: credential.description
-                  })
-                }
-                className="group relative aspect-[16/10] w-full overflow-hidden border-b border-line bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
-                aria-label={`${tCommon("viewCertificate")}: ${credential.title}`}
+                onClick={() => setActiveCredential(credential)}
+                className={`group relative w-full overflow-hidden border-b border-line bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent ${styles.imageAspect}`}
+                aria-label={`${tCommon("viewCertificate")}: ${credential.buttonLabel}`}
               >
                 <Image
                   src={credential.image}
                   alt={credential.imageAlt}
                   fill
                   loading="lazy"
-                  className="object-contain p-4 transition duration-300 group-hover:scale-[1.015] sm:p-6"
-                  sizes="(max-width: 1024px) 96vw, 48vw"
+                  className={`object-contain transition duration-300 group-hover:scale-[1.015] ${styles.image}`}
+                  sizes={styles.imageSizes}
                 />
               </button>
 
               <div className="flex flex-1 flex-col p-6">
-                <p className="section-label">{credential.issuer} · {credential.date}</p>
-                <h2 className="minimal-heading mt-3 text-2xl sm:text-3xl">{credential.title}</h2>
-                <p className="minimal-text mt-4 text-center text-sm leading-7 md:text-left">{credential.description}</p>
+                <p className="section-label">{credential.eyebrow}</p>
+                <h2 className={`minimal-heading mt-3 ${styles.title}`}>{credential.title}</h2>
+                <p className={styles.description}>{credential.description}</p>
                 <div className="mt-auto flex justify-center pt-6 md:justify-start">
                   <button
                     type="button"
-                    onClick={() =>
-                      setActiveCredential({
-                        eyebrow: `${credential.issuer} · ${credential.date}`,
-                        title: credential.title,
-                        image: credential.image,
-                        imageAlt: credential.imageAlt,
-                        description: credential.description
-                      })
-                    }
+                    onClick={() => setActiveCredential(credential)}
                     className="sharp-button"
                   >
                     {tCommon("viewCertificate")}
@@ -231,69 +266,46 @@ export function CredentialGallery({ credentials }: CredentialGalleryProps) {
   );
 }
 
-export function DegreeCredentialGallery({ credentials }: DegreeCredentialGalleryProps) {
-  const [activeCredential, setActiveCredential] = useState<ModalCredential | null>(null);
-  const tCommon = useTranslations("Common");
+export function CredentialGallery({ credentials }: CredentialGalleryProps) {
   const tCredentials = useTranslations("Credentials");
-
-  if (!credentials.length) return null;
+  const galleryCredentials = credentials.map((credential) => ({
+    slug: credential.slug,
+    eyebrow: `${credential.issuer} · ${credential.date}`,
+    title: credential.title,
+    image: credential.image,
+    imageAlt: credential.imageAlt,
+    description: credential.description,
+    buttonLabel: credential.title
+  }));
 
   return (
-    <>
-      <section data-testid="higher-education-credentials" className="render-deferred-section space-y-6">
-        <p className="section-label">{tCredentials("higherEducation")}</p>
+    <CredentialGallerySection
+      credentials={galleryCredentials}
+      dataTestId="professional-credentials"
+      sectionLabel={tCredentials("professionalCertifications")}
+      variant="professional"
+    />
+  );
+}
 
-        <div className="grid gap-5 md:grid-cols-3">
-          {credentials.map((degree) => {
-            const modalCredential = {
-              eyebrow: degree.level,
-              title: degree.field,
-              image: degree.image,
-              imageAlt: degree.imageAlt,
-              description: degree.specialization
-            };
+export function DegreeCredentialGallery({ credentials }: DegreeCredentialGalleryProps) {
+  const tCredentials = useTranslations("Credentials");
+  const galleryCredentials = credentials.map((degree) => ({
+    slug: degree.slug,
+    eyebrow: degree.level,
+    title: degree.field,
+    image: degree.image,
+    imageAlt: degree.imageAlt,
+    description: degree.specialization,
+    buttonLabel: `${degree.level} - ${degree.field}`
+  }));
 
-            return (
-              <article key={degree.slug} className="flex min-w-0 flex-col overflow-hidden sharp-panel">
-                <button
-                  type="button"
-                  onClick={() => setActiveCredential(modalCredential)}
-                  className="group relative aspect-[4/3] w-full overflow-hidden border-b border-line bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
-                  aria-label={`${tCommon("viewCertificate")}: ${degree.level} - ${degree.field}`}
-                >
-                  <Image
-                    src={degree.image}
-                    alt={degree.imageAlt}
-                    fill
-                    className="object-contain p-3 transition duration-300 group-hover:scale-[1.015]"
-                    sizes="(max-width: 768px) 96vw, 32vw"
-                  />
-                </button>
-
-                <div className="flex flex-1 flex-col p-6">
-                  <p className="section-label">{degree.level}</p>
-                  <h2 className="minimal-heading mt-3 text-2xl">{degree.field}</h2>
-                  <p className="mt-3 text-center font-sans text-sm font-semibold leading-6 text-ink md:text-left">{degree.specialization}</p>
-                  <div className="mt-auto flex justify-center pt-6 md:justify-start">
-                    <button
-                      type="button"
-                      onClick={() => setActiveCredential(modalCredential)}
-                      className="sharp-button"
-                    >
-                      {tCommon("viewCertificate")}
-                    </button>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <CertificateModalPortal
-        credential={activeCredential}
-        onClose={() => setActiveCredential(null)}
-      />
-    </>
+  return (
+    <CredentialGallerySection
+      credentials={galleryCredentials}
+      dataTestId="higher-education-credentials"
+      sectionLabel={tCredentials("higherEducation")}
+      variant="degree"
+    />
   );
 }

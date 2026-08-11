@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import type { ProjectEntry } from "@/content/projects";
+import { projectCardOverlays } from "@/lib/projectThemes";
 import { Link } from "@/i18n/navigation";
 import { getPreferredMediaSrc, getProjectHeroMedia } from "@/lib/projectMedia";
 
@@ -9,17 +10,6 @@ type ProjectCardProps = {
   project: ProjectEntry;
   prominent?: boolean;
   tallMedia?: boolean;
-};
-
-const toneClasses: Record<ProjectEntry["visualTone"], string> = {
-  "warm-luxury": "from-[rgba(39,23,18,0.78)] via-[rgba(116,60,38,0.2)] to-transparent",
-  "clean-learning": "from-[rgba(15,23,42,0.72)] via-[rgba(37,99,235,0.18)] to-transparent",
-  "soft-utility": "from-[rgba(15,54,50,0.72)] via-[rgba(49,95,159,0.14)] to-transparent",
-  "botanical-gold": "from-[rgba(86,70,30,0.58)] via-[rgba(196,164,76,0.1)] to-transparent",
-  "finance-peach": "from-[rgba(16,24,40,0.78)] via-[rgba(255,107,95,0.22)] to-transparent",
-  "ai-lilac": "from-[rgba(99,61,75,0.58)] via-[rgba(205,112,137,0.18)] to-transparent",
-  arcade: "from-[rgba(32,54,86,0.82)] via-[rgba(49,95,159,0.2)] to-transparent",
-  "naval-tech": "from-[rgba(3,16,28,0.82)] via-[rgba(49,95,159,0.14)] to-transparent"
 };
 
 export function ProjectCard({ project, prominent = false, tallMedia = false }: ProjectCardProps) {
@@ -41,7 +31,6 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
 
   return (
     <article className={"render-deferred-card group relative flex " + heightClass + " cursor-pointer flex-col overflow-hidden sharp-panel transition duration-300 hover:border-[#262626]/34 hover:shadow-[0_22px_58px_rgba(15,23,42,0.12)]"}>
-      <Link href={"/projects/" + project.slug} aria-label={tProjects("openProject", { project: project.name })} className="absolute inset-0 z-10" />
       {hero ? (
         <div className={"relative " + mediaAspect + " overflow-hidden bg-slate-900"}>
           <Image
@@ -56,7 +45,7 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
                 : "(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 31vw"
             }
           />
-          <div className={"absolute inset-0 bg-gradient-to-t " + toneClasses[project.visualTone]} />
+          <div className={"absolute inset-0 bg-gradient-to-t " + projectCardOverlays[project.visualTone]} />
         </div>
       ) : null}
 
@@ -83,8 +72,14 @@ export function ProjectCard({ project, prominent = false, tallMedia = false }: P
             ))}
           </ul>
 
-          <div className="relative z-20 flex flex-wrap justify-center gap-3 border-t border-line pt-4">
-            <Link href={"/projects/" + project.slug} className="sharp-button">{tCommon("viewProject")}</Link>
+          <div className="flex flex-wrap justify-center gap-3 border-t border-line pt-4">
+            <Link
+              href={"/projects/" + project.slug}
+              aria-label={tProjects("openProject", { project: project.name })}
+              className="sharp-button after:absolute after:inset-0 after:z-10"
+            >
+              {tCommon("viewProject")}
+            </Link>
           </div>
         </div>
       </div>

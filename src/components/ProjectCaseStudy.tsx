@@ -5,106 +5,12 @@ import { useTranslations } from "next-intl";
 import { GithubIcon } from "@/components/GithubIcon";
 import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import type { ProjectEntry } from "@/content/projects";
+import { projectPresentations, type ProjectLogicMap } from "@/content/projectPresentation";
 import { getPreferredMediaSrc } from "@/lib/projectMedia";
+import { projectCaseStudyThemes, projectSurfaces } from "@/lib/projectThemes";
 
 type ProjectCaseStudyProps = {
   project: ProjectEntry;
-};
-
-type CaseTheme = {
-  shell: string;
-  hero: string;
-  panel: string;
-  tile: string;
-  accent: string;
-  accentSoft: string;
-  line: string;
-};
-
-const caseStudyThemes: Record<ProjectEntry["visualTone"], CaseTheme> = {
-  "warm-luxury": {
-    shell: "bg-[#e6c9bc]",
-    hero: "bg-[#d7ad9b] text-[#262626]",
-    panel: "bg-[rgba(255,248,244,0.78)]",
-    tile: "bg-[rgba(255,241,234,0.68)]",
-    accent: "#7a3f2a",
-    accentSoft: "#d8aa95",
-    line: "rgba(122,63,42,0.22)"
-  },
-  "clean-learning": {
-    shell: "bg-[#d9e8ff]",
-    hero: "bg-[#c6dcff] text-[#262626]",
-    panel: "bg-[rgba(247,251,255,0.76)]",
-    tile: "bg-[rgba(235,244,255,0.7)]",
-    accent: "#2d67b8",
-    accentSoft: "#9fc3f2",
-    line: "rgba(45,103,184,0.2)"
-  },
-  "soft-utility": {
-    shell: "bg-[#dcefe6]",
-    hero: "bg-[#c8e6d8] text-[#262626]",
-    panel: "bg-[rgba(250,255,252,0.76)]",
-    tile: "bg-[rgba(235,248,240,0.68)]",
-    accent: "#2f765d",
-    accentSoft: "#a6d7ba",
-    line: "rgba(47,118,93,0.2)"
-  },
-  "botanical-gold": {
-    shell: "bg-[#f8edc6]",
-    hero: "bg-[#f2e2ad] text-[#262626]",
-    panel: "bg-[rgba(255,254,244,0.84)]",
-    tile: "bg-[rgba(252,246,221,0.76)]",
-    accent: "#7d6814",
-    accentSoft: "#e5cf82",
-    line: "rgba(125,104,20,0.15)"
-  },
-  "finance-peach": {
-    shell: "bg-[#f4d8c8]",
-    hero: "bg-[#f0c2aa] text-[#101828]",
-    panel: "bg-[rgba(255,250,246,0.8)]",
-    tile: "bg-[rgba(255,239,229,0.72)]",
-    accent: "#c65345",
-    accentSoft: "#f3a88c",
-    line: "rgba(198,83,69,0.18)"
-  },
-  "ai-lilac": {
-    shell: "bg-[#f6e4ea]",
-    hero: "bg-[#f1d4df] text-[#262626]",
-    panel: "bg-[rgba(255,249,251,0.84)]",
-    tile: "bg-[rgba(250,231,238,0.7)]",
-    accent: "#9b6475",
-    accentSoft: "#dba2b2",
-    line: "rgba(155,100,117,0.18)"
-  },
-  arcade: {
-    shell: "bg-[#e2dcff]",
-    hero: "bg-[#d3c9ff] text-[#262626]",
-    panel: "bg-[rgba(250,250,255,0.78)]",
-    tile: "bg-[rgba(241,238,255,0.7)]",
-    accent: "#5547b8",
-    accentSoft: "#b9aff2",
-    line: "rgba(85,71,184,0.2)"
-  },
-  "naval-tech": {
-    shell: "bg-[#d8edf7]",
-    hero: "bg-[#c2e0ef] text-[#262626]",
-    panel: "bg-[rgba(248,252,255,0.78)]",
-    tile: "bg-[rgba(230,242,251,0.7)]",
-    accent: "#1f6d94",
-    accentSoft: "#93c9e3",
-    line: "rgba(31,109,148,0.2)"
-  }
-};
-
-const logicMaps: Partial<Record<ProjectEntry["slug"], { src: string; width: number; height: number }>> = {
-  chocolate: { src: "/media/projects/chocolate/logic-map.png", width: 1536, height: 1024 },
-  english4u: { src: "/media/projects/english4u/logic-map.png", width: 1536, height: 1024 },
-  orchidcare: { src: "/media/projects/orchidcare/logic-map.webp", width: 1536, height: 1024 },
-  petnest: { src: "/media/projects/petnest/logic-map.png", width: 1672, height: 941 },
-  paytrack: { src: "/media/projects/paytrack/logic-map.png", width: 1536, height: 1024 },
-  "ai-comparator": { src: "/media/projects/ai-comparator/logic-map.png", width: 1536, height: 1024 },
-  brickdrop: { src: "/media/projects/brickdrop/logic-map.png", width: 1536, height: 1024 },
-  "sea-battle": { src: "/media/projects/sea-battle/logic-map.png", width: 1672, height: 941 }
 };
 
 function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title: string; text: string }) {
@@ -114,6 +20,33 @@ function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title: string
       <h2 className="minimal-heading text-4xl md:text-5xl">{title}</h2>
       <p className="minimal-text max-w-3xl">{text}</p>
     </div>
+  );
+}
+
+function LogicMapFigure({
+  logicMap,
+  alt,
+  className,
+  sizes
+}: {
+  logicMap: ProjectLogicMap;
+  alt: string;
+  className: string;
+  sizes: string;
+}) {
+  return (
+    <figure className={className}>
+      <Image
+        src={logicMap.src}
+        alt={alt}
+        width={logicMap.width}
+        height={logicMap.height}
+        className="h-auto w-full object-cover"
+        priority
+        quality={82}
+        sizes={sizes}
+      />
+    </figure>
   );
 }
 
@@ -127,10 +60,13 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   const videos = project.media.filter((item) => item.kind === "video");
   const actionLinks = project.links.filter((link) => link.kind !== "case-study");
   const liveLink = actionLinks.find((link) => link.kind === "live" && link.href);
-  const lowerHeroLiveButton = Boolean(liveLink && (project.slug === "chocolate" || project.slug === "petnest"));
+  const presentation = projectPresentations[project.slug];
+  const lowerHeroLiveButton = Boolean(liveLink && presentation.lowerHeroLiveButton);
   const hasResourceBlock = Boolean(project.repositories || project.repositoryRoots);
-  const logicMap = logicMaps[project.slug];
-  const theme = caseStudyThemes[project.visualTone];
+  const logicMap = presentation.logicMap;
+  const logicMapAlt = t("logicMapAlt", { project: project.name });
+  const theme = projectCaseStudyThemes[project.visualTone];
+  const surface = projectSurfaces[project.visualTone];
   const themeStyle = {
     "--case-accent": theme.accent,
     "--case-accent-soft": theme.accentSoft,
@@ -152,10 +88,10 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         : t("deployment.live");
 
   return (
-    <div style={themeStyle} className={`-mx-2.5 -my-10 overflow-hidden px-2.5 py-10 md:-mx-4 md:-my-14 md:px-4 md:py-14 ${theme.shell}`}>
+    <div style={themeStyle} className={`-mx-2.5 -my-10 overflow-hidden px-2.5 py-10 md:-mx-4 md:-my-14 md:px-4 md:py-14 ${surface}`}>
       <div className="mx-auto max-w-[96rem] space-y-6 md:space-y-16">
-        <section className={`grid gap-8 overflow-hidden rounded-[6px] border border-[color:var(--case-line)] p-4 shadow-[0_32px_100px_rgba(15,23,42,0.12)] sm:p-5 md:grid-cols-2 md:items-stretch md:p-8 ${theme.hero}`}>
-          <div className="flex min-w-0 flex-col gap-5">
+        <section className={`grid gap-5 overflow-hidden rounded-[6px] border border-[color:var(--case-line)] p-4 shadow-[0_32px_100px_rgba(15,23,42,0.12)] sm:p-5 md:grid-cols-2 md:grid-rows-[auto_11.5rem] md:items-stretch md:gap-x-8 md:gap-y-4 md:p-8 ${theme.hero}`}>
+          <div className="flex min-w-0 flex-col gap-5 md:col-start-1 md:row-start-1">
             <div className="space-y-5">
               <div className="flex flex-wrap gap-3">
                 <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
@@ -184,56 +120,48 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                 </Link>
               </div>
             ) : null}
+          </div>
 
-            {logicMap ? (
-              <figure className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)] md:hidden">
-                <Image
-                  src={logicMap.src}
-                  alt={t("logicMapAlt", { project: project.name })}
-                  width={logicMap.width}
-                  height={logicMap.height}
-                  className="h-auto w-full object-cover"
-                  loading="lazy"
-                  quality={82}
-                  sizes="100vw"
-                />
-              </figure>
+          <LogicMapFigure
+            logicMap={logicMap}
+            alt={logicMapAlt}
+            className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)] md:col-start-2 md:row-start-1"
+            sizes="(max-width: 767px) 100vw, 48vw"
+          />
+
+          <div className="space-y-5 md:col-start-1 md:row-start-2">
+            {hasResourceBlock ? (
+              <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4 md:h-[11.5rem] md:overflow-hidden">
+                {project.repositories ? (
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {project.repositories.map((repo) => (
+                      <Link
+                        key={repo.href}
+                        href={repo.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group inline-flex min-w-0 w-full items-center gap-2 px-3 text-sm font-semibold lowercase tracking-[0.02em] text-[#262626]/74 underline-offset-4 transition hover:text-[var(--case-accent)] hover:underline"
+                      >
+                        <GithubIcon className="h-4 w-4 transition group-hover:scale-110" />
+                        {repositoryLabel(repo.label)}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+                {project.repositoryRoots ? (
+                  <div className="hidden gap-3 sm:grid sm:grid-cols-2">
+                    {project.repositoryRoots.map((root) => (
+                      <div key={root.path} className="min-w-0 rounded-[4px] border border-[color:var(--case-line)] bg-white/30 px-3 py-2 sm:px-3">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#262626]/58">
+                          {t("repositoryRoot", { label: root.label })}
+                        </p>
+                        <p className="mt-1 break-words font-mono text-[11px] leading-5 text-[#262626]/78">{root.path}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
             ) : null}
-
-            <div className="space-y-5 md:mt-auto">
-              {hasResourceBlock ? (
-                <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4 md:h-[11.5rem] md:overflow-hidden">
-                  {project.repositories ? (
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      {project.repositories.map((repo) => (
-                        <Link
-                          key={repo.href}
-                          href={repo.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="group inline-flex min-w-0 w-full items-center gap-2 px-3 text-sm font-semibold lowercase tracking-[0.02em] text-[#262626]/74 underline-offset-4 transition hover:text-[var(--case-accent)] hover:underline"
-                        >
-                          <GithubIcon className="h-4 w-4 transition group-hover:scale-110" />
-                          {repositoryLabel(repo.label)}
-                        </Link>
-                      ))}
-                    </div>
-                  ) : null}
-                  {project.repositoryRoots ? (
-                    <div className="hidden gap-3 sm:grid sm:grid-cols-2">
-                      {project.repositoryRoots.map((root) => (
-                        <div key={root.path} className="min-w-0 rounded-[4px] border border-[color:var(--case-line)] bg-white/30 px-3 py-2 sm:px-3">
-                          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#262626]/58">
-                            {t("repositoryRoot", { label: root.label })}
-                          </p>
-                          <p className="mt-1 break-words font-mono text-[11px] leading-5 text-[#262626]/78">{root.path}</p>
-                        </div>
-                      ))}
-                    </div>
-                  ) : null}
-                </div>
-              ) : null}
-            </div>
 
             {actionLinks.length > 0 ? (
               <div className="flex flex-wrap justify-start gap-3 md:hidden">
@@ -254,34 +182,17 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             ) : null}
           </div>
 
-          <div className="hidden min-w-0 grid-rows-[auto_11.5rem] gap-4 md:grid md:justify-self-stretch">
-            {logicMap ? (
-              <figure className="overflow-hidden rounded-[6px] border border-[color:var(--case-line)] bg-white/70 shadow-[0_18px_54px_rgba(15,23,42,0.1)]">
-                <Image
-                  src={logicMap.src}
-                  alt={t("logicMapAlt", { project: project.name })}
-                  width={logicMap.width}
-                  height={logicMap.height}
-                  className="h-auto w-full object-cover"
-                  loading="lazy"
-                  quality={82}
-                  sizes="(max-width: 1024px) 100vw, 48vw"
+          <div className="hidden min-w-0 self-end rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 md:col-start-2 md:row-start-2 md:block md:h-[11.5rem] md:overflow-hidden">
+            <p className="text-center text-[11px] font-bold uppercase tracking-[2px] text-[#262626]/62">{t("techStack")}</p>
+            <div className="mt-3 flex max-h-[8.25rem] flex-wrap justify-center gap-2 overflow-hidden">
+              {project.techStack.map((item) => (
+                <ProjectTechBadge
+                  key={item}
+                  tech={item}
+                  compact
+                  className="border-[color:var(--case-line)] bg-white/78 text-[#262626]"
                 />
-              </figure>
-            ) : null}
-
-            <div className="self-end rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 md:h-[11.5rem] md:overflow-hidden">
-              <p className="text-center text-[11px] font-bold uppercase tracking-[2px] text-[#262626]/62">{t("techStack")}</p>
-              <div className="mt-3 flex max-h-[8.25rem] flex-wrap justify-center gap-2 overflow-hidden">
-                {project.techStack.map((item) => (
-                  <ProjectTechBadge
-                    key={item}
-                    tech={item}
-                    compact
-                    className="border-[color:var(--case-line)] bg-white/78 text-[#262626]"
-                  />
-                ))}
-              </div>
+              ))}
             </div>
           </div>
         </section>

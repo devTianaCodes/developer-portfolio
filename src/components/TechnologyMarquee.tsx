@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { ProjectTechBadge } from "@/components/ProjectTechBadge";
 import { siteConfig } from "@/content/site";
 
@@ -21,8 +22,10 @@ function TechnologyGroup({ duplicate = false }: { duplicate?: boolean }) {
 }
 
 export function TechnologyMarquee() {
+  const t = useTranslations("Home");
+
   return (
-    <div className="technology-marquee" aria-label="Technology stack">
+    <div className="technology-marquee" aria-label={t("technologyStack")}>
       <div className="technology-marquee__track">
         <TechnologyGroup />
         <TechnologyGroup duplicate />

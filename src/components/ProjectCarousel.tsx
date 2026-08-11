@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { projectCarouselGlows, projectSurfaces } from "@/lib/projectThemes";
 import type { CarouselProject } from "@/lib/projectCarousel";
 import { circularOffset, wrapIndex } from "@/lib/carousel";
 import { Link } from "@/i18n/navigation";
@@ -26,28 +27,6 @@ type ProjectPanelProps = {
   };
 };
 
-const pastelPanels: Record<CarouselProject["visualTone"], string> = {
-  "warm-luxury": "bg-[#e6c9bc]",
-  "clean-learning": "bg-[#d9e8ff]",
-  "soft-utility": "bg-[#dcefe6]",
-  "botanical-gold": "bg-[#f8edc6]",
-  "finance-peach": "bg-[#f4d8c8]",
-  "ai-lilac": "bg-[#f6e4ea]",
-  arcade: "bg-[#e2dcff]",
-  "naval-tech": "bg-[#d8edf7]"
-};
-
-const imageGlow: Record<CarouselProject["visualTone"], string> = {
-  "warm-luxury": "from-[#7a3f2a]/16 via-transparent to-[#f5e4d6]/50",
-  "clean-learning": "from-[#2d67b8]/14 via-transparent to-[#f4f8ff]/56",
-  "soft-utility": "from-[#2f765d]/14 via-transparent to-[#f4fff8]/56",
-  "botanical-gold": "from-[#cdb365]/9 via-transparent to-[#fffbea]/72",
-  "finance-peach": "from-[#ff6b5f]/18 via-transparent to-[#fff3e8]/60",
-  "ai-lilac": "from-[#c98298]/16 via-transparent to-[#fff6f8]/64",
-  arcade: "from-[#5547b8]/14 via-transparent to-[#f7f3ff]/56",
-  "naval-tech": "from-[#1f6d94]/14 via-transparent to-[#f5fbff]/56"
-};
-
 const polishedEase = [0.25, 0.8, 0.25, 1] as const;
 const carouselEase = [0.4, 0, 0.2, 1] as const;
 const carouselEaseCss = `cubic-bezier(${carouselEase.join(",")})`;
@@ -56,10 +35,13 @@ const mobileCarouselTransitionMs = 1200;
 const autoplayIntervalMs = 5000;
 
 function ProjectPanel({ project, isHovered, transitionMs, copy }: ProjectPanelProps) {
+  const surface = projectSurfaces[project.visualTone];
+  const glow = projectCarouselGlows[project.visualTone];
+
   return (
     <>
-      <div className={classNames("absolute inset-0", pastelPanels[project.visualTone])} />
-      <div className={classNames("absolute inset-0 bg-gradient-to-b", imageGlow[project.visualTone])} />
+      <div className={classNames("absolute inset-0", surface)} />
+      <div className={classNames("absolute inset-0 bg-gradient-to-b", glow)} />
 
       <div
         className="project-carousel-card-content absolute z-20 flex flex-col items-center justify-center px-3 py-6 text-center text-[#202124] ease-[cubic-bezier(0.4,0,0.2,1)] md:px-5 md:py-8"
@@ -235,7 +217,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                 data-loop-offset={String(offset)}
                 className={classNames(
                   "project-carousel-loop-card group pointer-events-auto absolute overflow-hidden rounded-[6px] transition-[left,top,width,height]",
-                  pastelPanels[project.visualTone]
+                  projectSurfaces[project.visualTone]
                 )}
                 data-active={isActive ? "true" : "false"}
                 initial={false}
