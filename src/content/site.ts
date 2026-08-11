@@ -5,8 +5,8 @@ export type SocialLink = {
 };
 
 export const siteNavigation = [
-  { href: "/projects", labelKey: "projects" },
   { href: "/about", labelKey: "about" },
+  { href: "/projects", labelKey: "projects" },
   { href: "/credentials", labelKey: "credentials" },
   { href: "/contact", labelKey: "contact" }
 ] as const;
