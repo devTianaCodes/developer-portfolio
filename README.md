@@ -1,16 +1,37 @@
 # Developer Portfolio
 
-Modern editorial-style portfolio for Tiana Oblasser and the five selected projects inside `/Users/parents/Developer`.
+Multilingual developer portfolio for Tatiana Oblasser, built around detailed case studies, professional credentials, and immediately testable browser experiences.
 
 ## Scope
 
-- Portfolio shell: `Next.js` + `TypeScript` + `Tailwind CSS`
-- Featured case studies:
-  - `Chocolate Craft House`
-  - `English4U`
-  - `PetNest`
-  - `BrickDrop`
-  - `Sea Battle`
+- Portfolio shell: `Next.js 15`, `React 19`, strict `TypeScript`, `Tailwind CSS`, `Framer Motion`, and `next-intl`
+- Locales: English, Italian, and Romanian
+- Main routes: Home, About, Projects, Credentials, and Contact
+- Eight project case studies:
+  - Chocolate Craft House
+  - English4U
+  - PetNest
+  - OrchidCare
+  - PayTrack
+  - AI Comparator
+  - BrickDrop
+  - Sea Battle
+- Six full-stack product case studies and two bundled browser-game demos
+- Four professional certificates, ten UX/UI certificates, and three privacy-redacted higher-education credentials
+
+## Experience
+
+The site combines responsive project galleries, localized case-study content, accessible certificate dialogs, smooth project and UX/UI carousels, metadata for every locale, and static generation for all public pages. Project names remain stable across languages while descriptive content, navigation, metadata, and supporting interface copy are localized.
+
+## Project structure
+
+- `src/app`: App Router pages, layouts, metadata, sitemap, and robots configuration
+- `src/components`: reusable interface and interactive components
+- `src/content`: typed portfolio, credential, and localized project content
+- `src/i18n`: locale routing, messages, navigation, and metadata helpers
+- `src/lib`: pure project, carousel, media, and localization helpers
+- `public/media`: portfolio images and credential media
+- `public/demos`: bundled BrickDrop and Sea Battle builds
 
 ## Commands
 
