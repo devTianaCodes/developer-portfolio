@@ -69,12 +69,19 @@ Project media lives in `public/media/projects/*`, credentials in `public/media/c
 
 ## Deployment
 
-Phase 1 target:
+The portfolio is deployed as a statically generated Next.js application on Vercel. The two interactive games are bundled under `/demos/brickdrop.html` and `/demos/sea-battle.html`; project case studies and repository links remain available independently of optional full-stack demo URLs.
 
-- Deploy this portfolio to Vercel free.
-- Deploy `BrickDrop` and `Sea Battle` as separate static Vercel projects.
-- Deploy `Chocolate Craft House` and `PetNest` as browse-only full-stack demos.
-- Keep `English4U` as a case study.
+Deployment commands:
+
+```bash
+npm run vercel:link
+npm run vercel:pull
+npm run vercel:build
+npm run vercel:preview
+npm run vercel:prod
+```
+
+Preview and production deployment require explicit authorization. A normal commit or push does not itself authorize a release.
 
 Detailed deployment steps live in [DEPLOYMENT.md](./DEPLOYMENT.md).
 
@@ -87,4 +94,4 @@ NEXT_PUBLIC_CHOCOLATE_WEB_APP_URL=https://...
 NEXT_PUBLIC_PETNEST_WEB_APP_URL=https://...
 ```
 
-Leave a variable empty until that app is safely deployed. Empty values keep the portfolio focused on the case study and repository links.
+The content model includes safe public fallback URLs for both applications. Override them only when a reviewed replacement deployment is ready.
