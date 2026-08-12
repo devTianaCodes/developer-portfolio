@@ -1,80 +1,105 @@
 # Vercel Deployment
 
-This portfolio is a standard `Next.js` app and does not need a custom `vercel.json` for the first launch.
+The portfolio is a Next.js 15 App Router application deployed from the repository root. Vercel detects the framework automatically; no custom `vercel.json` is currently required.
 
-## Recommended production path
+## Prerequisites
 
-Use the Vercel dashboard to import the repository, then keep CLI deployment available for previews and local linking.
+- Node.js `>=20.16.0` using the version declared in `.nvmrc`
+- Dependencies installed from the committed `package-lock.json`
+- Access to the existing Vercel project when deploying from the CLI
+- Explicit authorization before creating a preview or production deployment
 
-### Dashboard import
+Never commit `.env.local`, Vercel credentials, deployment tokens, or generated secret values.
 
-1. Push the repository to GitHub.
-2. In Vercel, choose **Add New Project**.
-3. Import the GitHub repository that contains `developer-portfolio`.
-4. Keep the detected framework as `Next.js`.
-5. Keep the root directory as the repository root if this portfolio lives in its own repo.
-6. Add the optional full-stack live app URL variables only after those demos are deployed.
-7. Deploy.
+## Pre-deployment verification
 
-### Local CLI workflow
-
-After installing dependencies and using Node 20 LTS locally:
+Run the complete repository gate before creating a deployment:
 
 ```bash
 nvm use
+npm ci
+npm run i18n:check:strict
+npm run lint
+npm run build
+```
+
+For UI or content changes, also check the affected English, Italian, and Romanian routes at mobile, tablet, and desktop widths. Verify keyboard and focus behavior, reduced motion, images, external links, and horizontal overflow.
+
+## Vercel dashboard workflow
+
+1. Push the approved commit to the repository’s `main` branch.
+2. In Vercel, open the linked portfolio project or import the GitHub repository.
+3. Keep the framework preset as `Next.js` and the root directory as the repository root.
+4. Confirm that the production branch is `main`.
+5. Add or update optional public environment variables only when a reviewed replacement live application is available.
+6. Deploy and verify the generated preview or production URL before considering the release complete.
+
+## Vercel CLI workflow
+
+Use the existing npm scripts rather than calling project-local binaries directly:
+
+```bash
 npm run vercel:link
 npm run vercel:pull
+npm run vercel:build
 npm run vercel:preview
 npm run vercel:prod
 ```
 
-## Full-stack live app URLs
+- `vercel:link` connects the checkout to the intended Vercel project.
+- `vercel:pull` refreshes local project metadata and development environment settings.
+- `vercel:build` reproduces the Vercel build locally.
+- `vercel:preview` creates a preview deployment.
+- `vercel:prod` creates a production deployment.
 
-The portfolio supports public live links for the selected full-stack projects through build-time environment variables:
+Linking and pulling configuration are local setup operations. Preview and production commands publish externally and always require explicit authorization.
+
+## Optional full-stack application URLs
+
+The portfolio can expose reviewed Chocolate Craft House and PetNest deployments through public build-time variables:
 
 ```bash
-NEXT_PUBLIC_CHOCOLATE_WEB_APP_URL=
-NEXT_PUBLIC_PETNEST_WEB_APP_URL=
+NEXT_PUBLIC_CHOCOLATE_WEB_APP_URL=https://...
+NEXT_PUBLIC_PETNEST_WEB_APP_URL=https://...
 ```
 
-Keep a value empty until that app is safely deployed. When a value is present, the related project card and case-study hero show `Open Web App`.
+These values are intentionally public because `NEXT_PUBLIC_*` variables are included in browser-delivered code. Never store API credentials, database URLs, JWT secrets, payment keys, or private service endpoints in them.
 
-## Full-stack demo deployment path
+The content model has safe public fallback URLs for both projects. Override a fallback only after the replacement application has passed a focused live check. When changing either value, create a new deployment because Next.js resolves public variables at build time.
 
-Use Vercel for each Vite frontend and Railway for each Express API plus MySQL database.
+## Bundled game demos
 
-### Chocolate Craft House
+BrickDrop and Sea Battle are distributed with this portfolio rather than as separate Vercel projects:
 
-- Backend source: `ChocolateCraftHouse/chocolate_backend/server`
-- Frontend source: `ChocolateCraftHouse/chocolate_frontend/client`
-- Railway backend env: `CLIENT_URL`, MySQL `DB_*`, JWT secrets, `JWT_ACCESS_EXPIRES`, `JWT_REFRESH_EXPIRES`, placeholder/test `STRIPE_SECRET_KEY`, placeholder/test `STRIPE_WEBHOOK_SECRET`.
-- Seed: run `npm run seed:demo` after the Railway MySQL variables are set.
-- Vercel frontend env: `VITE_API_URL=<railway-api-url>/api`.
-- Portfolio env after frontend deploy: `NEXT_PUBLIC_CHOCOLATE_WEB_APP_URL=<vercel-frontend-url>`.
+- `/demos/brickdrop.html`
+- `/demos/sea-battle.html`
 
-### PetNest
+Their generated assets live under `public/demos/*/assets/`. Update those files only by rebuilding the corresponding source application and copying the resulting bundle; do not hand-edit generated assets.
 
-- Backend source: `PetNest/petNest-backend`
-- Frontend source: `PetNest/petNest-frontend`
-- Railway backend env: `CLIENT_URL`, `DATABASE_URL`, JWT secrets, `EMAIL_FROM`, `APP_BASE_URL`; leave Cloudinary empty for browse-only v1.
-- Seed: run `npm run prisma:generate`, `npm run build`, `npx prisma db push`, then `npm run prisma:seed`.
-- Vercel frontend env: `VITE_API_URL=<railway-api-url>/api`.
-- Portfolio env after frontend deploy: `NEXT_PUBLIC_PETNEST_WEB_APP_URL=<vercel-frontend-url>`.
+## Preview verification
 
-## Current deployment assumptions
+Before promoting or accepting a deployment, verify:
 
-- Node version: `>=20.16.0`
-- Framework preset: `Next.js`
-- Full-stack live app URL variables are optional and public
-- Media assets are shipped from `public/media`
+- Home, About, Projects, Credentials, and Contact load successfully.
+- All eight project case studies load in English, Italian, and Romanian.
+- Locale switching preserves the equivalent route.
+- BrickDrop and Sea Battle demo routes load and remain playable.
+- Credential images are redacted and certificate dialogs work with keyboard controls.
+- Project and UX/UI certificate carousels move correctly and respect reduced motion.
+- Canonical URLs, language alternates, `robots.txt`, and `sitemap.xml` use the production origin.
+- No images are broken, no page overflows horizontally, and the browser console has no unresolved errors.
+- Optional external application and repository links reach the intended public destinations.
 
-## Launch checklist
+## Production checklist
 
-- Add final full-stack frontend URLs to the portfolio Vercel environment after deployment.
-- Add a custom domain later if needed; the first launch can use the free `.vercel.app` domain.
-- Capture and replace the planned demo videos in `public/media/projects/*`.
+- Confirm the exact commit intended for release is present on `main`.
+- Confirm strict translations, lint, and production build are green for that commit.
+- Review Vercel environment changes without exposing their values in logs or documentation.
+- Deploy only after explicit authorization.
+- Open the production URL and repeat the preview smoke checks.
+- Confirm the Vercel deployment reports the same Git commit.
+- Keep the previous successful deployment available for rollback until verification is complete.
 
-## Notes
+## Related full-stack deployments
 
-- Full-stack demos should stay browse-only for v1: no real payments, no real email sending, no public admin credentials, and no public uploads.
-- Vercel and Railway CLI credentials are account-local; do not commit deployment tokens or generated secret values.
+The portfolio documents sibling applications but does not own their runtime infrastructure. Deploy their frontends, APIs, and databases from their own repositories and follow their project-specific instructions. Keep public demonstrations non-destructive: no real payments, email delivery, public administrator credentials, or unreviewed user uploads.
