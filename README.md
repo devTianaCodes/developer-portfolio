@@ -33,25 +33,39 @@ The site combines responsive project galleries, localized case-study content, ac
 - `public/media`: portfolio images and credential media
 - `public/demos`: bundled BrickDrop and Sea Battle builds
 
-## Commands
+## Local development
 
 ```bash
 nvm use
-npm install
+npm ci
 npm run dev
-npm run build
-npm run vercel:link
-npm run vercel:preview
-npm run vercel:prod
 ```
 
-## Media
+The development server runs at [http://localhost:5300](http://localhost:5300).
 
-Portfolio media lives in `public/media/projects/*`.
+## Quality checks
 
-- Ready assets are already wired into the project.
-- Planned video captures are represented with poster assets and notes.
-- The existing `demo-showcase` workspace remains the recommended local launcher for future screenshot and clip capture.
+Run the repository gates in this order before handoff:
+
+```bash
+npm run i18n:check:strict
+npm run lint
+npm run build
+```
+
+UI changes also require focused browser checks at narrow mobile, tablet, and desktop widths. Verify all enabled locales, keyboard and focus behavior, reduced motion, missing media, broken links, and horizontal overflow on affected routes.
+
+The repository does not yet include an automated test runner. Do not claim unit-test coverage until one is introduced; the current executable proof is strict localization validation, ESLint, the production build, and focused browser behavior checks.
+
+## Content and media
+
+Project media lives in `public/media/projects/*`, credentials in `public/media/credentials/*`, and shared site assets in their corresponding `public/media/*` folders.
+
+- Keep project slugs, locale overlays, media paths, and project-presentation entries structurally aligned.
+- Add every UI message to English, Italian, and Romanian catalogs.
+- Keep higher-education documents privacy-redacted.
+- Do not edit generated demo assets under `public/demos/*/assets/` manually.
+- Do not commit temporary browser screenshots, traces, or planning documents.
 
 ## Deployment
 
