@@ -250,7 +250,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           <span aria-hidden="true" className="translate-x-5 md:translate-x-0">›</span>
         </button>
         <motion.div
-          className="project-carousel-3d-stage relative h-full overflow-hidden"
+          className="project-carousel-3d-stage relative h-[calc(100%-6rem)] overflow-hidden"
           drag={reduceMotion ? false : "x"}
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.05}
