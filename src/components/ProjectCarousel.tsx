@@ -250,7 +250,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           <span aria-hidden="true" className="translate-x-5 md:translate-x-0">›</span>
         </button>
         <motion.div
-          className="project-carousel-3d-stage relative h-[calc(100%-6rem)] overflow-hidden"
+          className="project-carousel-3d-stage relative h-full overflow-hidden"
           drag={reduceMotion ? false : "x"}
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.05}
@@ -357,7 +357,9 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
         </motion.div>
 
-        <div className="absolute bottom-3 left-1/2 z-[80] flex -translate-x-1/2 flex-col items-center gap-2 md:bottom-5">
+      </div>
+
+      <div className="flex flex-col items-center gap-2 py-3 md:py-4">
           {!reduceMotion ? (
             <button
               type="button"
@@ -384,7 +386,6 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           >
             {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
           </div>
-        </div>
       </div>
     </section>
   );
