@@ -13,7 +13,7 @@ type UxCertificateCarouselProps = {
 };
 
 const navigationButtonClass =
-  "absolute top-1/2 z-30 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-[3px] border-2 border-white bg-[#262626] text-3xl leading-none text-white shadow-[0_8px_24px_rgba(15,23,42,0.35)] transition hover:scale-105 hover:bg-white hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 sm:h-12 sm:w-12 sm:text-4xl";
+  "absolute top-1/2 z-30 inline-flex h-11 w-11 -translate-y-1/2 touch-manipulation items-center justify-center rounded-[3px] border-2 border-white bg-[#262626] text-3xl leading-none text-white shadow-[0_8px_24px_rgba(15,23,42,0.35)] transition hover:scale-105 hover:bg-white hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 sm:h-12 sm:w-12 sm:text-4xl";
 
 export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProps) {
   const [{ activeIndex, direction }, setCarousel] = useState({ activeIndex: 0, direction: 1 });
@@ -44,9 +44,35 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
     if (info.offset.x > 54 || info.velocity.x > 360) move(-1);
   }
 
+  function handleKeyDown(event: React.KeyboardEvent<HTMLElement>) {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      move(-1);
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      move(1);
+    }
+  }
+
   return (
-    <section data-testid="ux-certificate-carousel" className="render-deferred-section space-y-6">
+    <section
+      data-testid="ux-certificate-carousel"
+      aria-label={tCredentials("carouselLabel")}
+      aria-roledescription={tCommon("carousel")}
+      className="render-deferred-section space-y-6"
+      onKeyDown={handleKeyDown}
+    >
       <p className="section-label">{tCredentials("uxUiCertificates")}</p>
+
+      <p className="sr-only" aria-live="polite" aria-atomic="true">
+        {tCredentials("activeCertificateAnnouncement", {
+          title: activeCredential.title,
+          current: activeIndex + 1,
+          total: credentials.length
+        })}
+      </p>
 
       <div className="overflow-hidden sharp-panel">
         <div className="relative aspect-[4/3] overflow-hidden bg-[linear-gradient(135deg,#f8fafc_0%,#e8eef5_50%,#f8fafc_100%)] sm:aspect-[16/10] lg:aspect-[16/9]">
@@ -70,6 +96,13 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
                   <motion.div
                     layout
                     key={credential.slug}
+                    role="group"
+                    aria-roledescription={tCommon("slide")}
+                    aria-label={tCredentials("certificateSlide", {
+                      title: credential.title,
+                      current: index + 1,
+                      total: credentials.length
+                    })}
                     className={`absolute inset-y-0 flex items-center ${
                       isActive
                         ? "left-[11%] z-20 w-[78%] sm:left-[18%] sm:w-[64%]"
@@ -181,18 +214,29 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
           </div>
 
           <div className="mt-6 flex items-center justify-between gap-4 border-t border-line pt-5">
-            <div className="flex min-w-0 gap-2 overflow-x-auto py-1" aria-label={tCredentials("chooseCertificate")}>
+            <div
+              role="group"
+              className="flex min-w-0 gap-0.5 overflow-x-auto py-1"
+              aria-label={tCredentials("chooseCertificate")}
+            >
               {credentials.map((credential, index) => (
                 <button
                   key={credential.slug}
                   type="button"
                   onClick={() => selectCredential(index)}
                   aria-label={tCredentials("showCertificate", { title: credential.title })}
-                  aria-current={index === activeIndex ? "true" : undefined}
-                  className={`h-2.5 shrink-0 rounded-full transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
-                    index === activeIndex ? "w-8 bg-[#262626]" : "w-2.5 bg-[#262626]/28 hover:bg-[#262626]/55"
-                  }`}
-                />
+                  aria-pressed={index === activeIndex}
+                  className="group inline-flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`h-2.5 rounded-full transition-[width,background-color] ${
+                      index === activeIndex
+                        ? "w-8 bg-[#262626]"
+                        : "w-2.5 bg-[#262626]/50 group-hover:bg-[#262626]/75"
+                    }`}
+                  />
+                </button>
               ))}
             </div>
             <p className="shrink-0 font-sans text-xs font-bold tracking-[0.16em] text-muted">

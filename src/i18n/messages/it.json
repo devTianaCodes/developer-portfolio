@@ -26,7 +26,9 @@
     "close": "Chiudi",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "email": "E-mail"
+    "email": "E-mail",
+    "carousel": "carosello",
+    "slide": "diapositiva"
   },
   "Footer": {
     "eyebrow": "Tatiana Oblasser",
@@ -106,6 +108,9 @@
     "nextProject": "Progetto successivo",
     "openProject": "Apri il progetto {project}",
     "centerProject": "Porta {project} al centro",
+    "carouselLabel": "Progetti in evidenza",
+    "projectSlide": "{project}, progetto {current} di {total}",
+    "activeProjectAnnouncement": "Progetto visualizzato: {project}, {current} di {total}",
     "projectImageAlt": "Anteprima del progetto {project}",
     "fullStackType": "Applicazione web full-stack",
     "gameType": "Gioco web",
@@ -317,6 +322,9 @@
     "centerCertificate": "Porta {title} al centro",
     "chooseCertificate": "Scegli una certificazione UX/UI",
     "showCertificate": "Mostra {title}",
+    "carouselLabel": "Galleria dei certificati UX/UI",
+    "certificateSlide": "{title}, certificato {current} di {total}",
+    "activeCertificateAnnouncement": "Certificato visualizzato: {title}, {current} di {total}",
     "uxCertificateImageAlt": "Certificato del corso {title} conseguito da Tatiana Oblasser",
     "professional": {
       "booleanWebDevelopment": {

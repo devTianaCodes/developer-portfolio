@@ -26,7 +26,9 @@
     "close": "Close",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "email": "Email"
+    "email": "Email",
+    "carousel": "carousel",
+    "slide": "slide"
   },
   "Footer": {
     "eyebrow": "Tatiana Oblasser",
@@ -106,6 +108,9 @@
     "nextProject": "Next project",
     "openProject": "Open {project} project",
     "centerProject": "Center {project}",
+    "carouselLabel": "Featured projects",
+    "projectSlide": "{project}, project {current} of {total}",
+    "activeProjectAnnouncement": "Now showing {project}, project {current} of {total}",
     "projectImageAlt": "{project} project preview",
     "fullStackType": "Full stack web application",
     "gameType": "Web application game",
@@ -317,6 +322,9 @@
     "centerCertificate": "Center {title}",
     "chooseCertificate": "Choose a UX/UI certificate",
     "showCertificate": "Show {title}",
+    "carouselLabel": "UX/UI certificate gallery",
+    "certificateSlide": "{title}, certificate {current} of {total}",
+    "activeCertificateAnnouncement": "Now showing {title}, certificate {current} of {total}",
     "uxCertificateImageAlt": "{title} course certificate awarded to Tatiana Oblasser",
     "professional": {
       "booleanWebDevelopment": {

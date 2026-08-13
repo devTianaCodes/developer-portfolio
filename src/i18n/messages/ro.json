@@ -26,7 +26,9 @@
     "close": "Închide",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "email": "E-mail"
+    "email": "E-mail",
+    "carousel": "carusel",
+    "slide": "diapozitiv"
   },
   "Footer": {
     "eyebrow": "Tatiana Oblasser",
@@ -106,6 +108,9 @@
     "nextProject": "Proiectul următor",
     "openProject": "Deschide proiectul {project}",
     "centerProject": "Adu proiectul {project} în centru",
+    "carouselLabel": "Proiecte evidențiate",
+    "projectSlide": "{project}, proiectul {current} din {total}",
+    "activeProjectAnnouncement": "Acum este afișat {project}, proiectul {current} din {total}",
     "projectImageAlt": "Previzualizarea proiectului {project}",
     "fullStackType": "Aplicație web full-stack",
     "gameType": "Joc web",
@@ -282,6 +287,9 @@
     "centerCertificate": "Adu {title} în centru",
     "chooseCertificate": "Alege o certificare UX/UI",
     "showCertificate": "Afișează {title}",
+    "carouselLabel": "Galeria certificatelor UX/UI",
+    "certificateSlide": "{title}, certificatul {current} din {total}",
+    "activeCertificateAnnouncement": "Acum este afișat {title}, certificatul {current} din {total}",
     "uxCertificateImageAlt": "Certificatul cursului {title}, obținut de Tatiana Oblasser",
     "professional": {
       "booleanWebDevelopment": {

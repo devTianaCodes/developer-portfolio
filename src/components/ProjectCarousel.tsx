@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useInView, useReducedMotion } from "framer-motion";
+import type { PanInfo } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { projectCarouselGlows, projectSurfaces } from "@/lib/projectThemes";
 import type { CarouselProject } from "@/lib/projectCarousel";
@@ -65,6 +66,7 @@ function ProjectPanel({ project, isHovered, transitionMs, copy }: ProjectPanelPr
               fill
               loading="lazy"
               quality={82}
+              draggable={false}
               className="object-contain px-2 pb-2 transition-transform duration-500 ease-out group-hover:scale-[1.025] md:px-4 md:pb-3 xl:drop-shadow-[0_24px_36px_rgba(16,24,40,0.2)]"
               sizes="(max-width: 640px) 82vw, (max-width: 1024px) 48vw, 34vw"
             />
@@ -96,6 +98,7 @@ function ProjectPanel({ project, isHovered, transitionMs, copy }: ProjectPanelPr
 
 export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const carouselRef = useRef<HTMLElement>(null);
+  const announceNextChangeRef = useRef(false);
   const carouselInView = useInView(carouselRef, { margin: "200px 0px" });
   const [activeIndex, setActiveIndex] = useState(0);
   const [shadeFreeIndex, setShadeFreeIndex] = useState(0);
@@ -103,6 +106,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const [pageVisible, setPageVisible] = useState(true);
   const reduceMotion = useReducedMotion();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [announcement, setAnnouncement] = useState("");
   const tCommon = useTranslations("Common");
   const tProjects = useTranslations("Projects");
   const transitionMs = isMobileViewport ? mobileCarouselTransitionMs : desktopCarouselTransitionMs;
@@ -157,10 +161,46 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     return () => window.clearTimeout(timeoutId);
   }, [activeIndex, reduceMotion, shadeFreeIndex, shadeHandoffMs]);
 
+  useEffect(() => {
+    if (!announceNextChangeRef.current) return;
+
+    announceNextChangeRef.current = false;
+    setAnnouncement(
+      tProjects("activeProjectAnnouncement", {
+        project: projects[activeIndex].name,
+        current: activeIndex + 1,
+        total: projects.length
+      })
+    );
+  }, [activeIndex, projects, tProjects]);
+
   if (!projects.length) return null;
 
-  function move(direction: -1 | 1) {
+  function move(direction: -1 | 1, announce = true) {
+    announceNextChangeRef.current = announce;
     setActiveIndex((current) => wrapIndex(current + direction, projects.length));
+  }
+
+  function selectProject(index: number) {
+    announceNextChangeRef.current = true;
+    setActiveIndex(index);
+  }
+
+  function handleKeyDown(event: React.KeyboardEvent<HTMLElement>) {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      move(-1);
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      move(1);
+    }
+  }
+
+  function handleDragEnd(_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
+    if (info.offset.x < -54 || info.velocity.x < -360) move(1);
+    if (info.offset.x > 54 || info.velocity.x > 360) move(-1);
   }
 
   const panelTransition = reduceMotion
@@ -172,7 +212,17 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
         boxShadow: { duration: transitionSeconds, ease: carouselEase }
       };
   return (
-    <section ref={carouselRef} data-testid="project-carousel" className="project-carousel--immersive relative m-0 overflow-hidden p-0">
+    <section
+      ref={carouselRef}
+      data-testid="project-carousel"
+      aria-label={tProjects("carouselLabel")}
+      aria-roledescription={tCommon("carousel")}
+      className="project-carousel--immersive relative m-0 touch-pan-y overflow-hidden p-0"
+      onKeyDown={handleKeyDown}
+    >
+      <p className="sr-only" aria-live="polite" aria-atomic="true">
+        {announcement}
+      </p>
       <div className="relative mx-auto max-w-none overflow-hidden bg-slate-950/20">
         <button
           type="button"
@@ -191,7 +241,14 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           <span aria-hidden="true" className="translate-x-5 md:translate-x-0">›</span>
         </button>
 
-        <div className="project-carousel-3d-stage relative h-full overflow-hidden">
+        <motion.div
+          className="project-carousel-3d-stage relative h-full overflow-hidden"
+          drag={reduceMotion ? false : "x"}
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.05}
+          dragMomentum={false}
+          onDragEnd={handleDragEnd}
+        >
           {projects.map((project, index) => {
             const offset = circularOffset(index, activeIndex, projects.length);
             const absOffset = Math.abs(offset);
@@ -214,6 +271,13 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
             return (
               <motion.div
                 key={project.slug}
+                role="group"
+                aria-roledescription={tCommon("slide")}
+                aria-label={tProjects("projectSlide", {
+                  project: project.name,
+                  current: index + 1,
+                  total: projects.length
+                })}
                 data-loop-offset={String(offset)}
                 className={classNames(
                   "project-carousel-loop-card group pointer-events-auto absolute overflow-hidden rounded-[6px] transition-[left,top,width,height]",
@@ -250,13 +314,14 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                 {isActive ? (
                   <Link
                     href={`/projects/${project.slug}`}
+                    draggable={false}
                     aria-label={tProjects("openProject", { project: project.name })}
                     className="absolute inset-0 z-40 block focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                   />
                 ) : (
                   <button
                     type="button"
-                    onClick={() => setActiveIndex(index)}
+                    onClick={() => selectProject(index)}
                     className="absolute inset-0 z-40 block text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                     aria-label={tProjects("centerProject", { project: project.name })}
                   />
@@ -274,10 +339,16 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
             );
           })}
 
-          <div className="project-carousel-counter pointer-events-none absolute bottom-0 left-1/2 z-[70] -translate-x-1/2 rounded-full bg-black/45 px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-white/90 md:backdrop-blur-md">
+          <div
+            aria-label={tProjects("projectCount", {
+              current: activeIndex + 1,
+              total: projects.length
+            })}
+            className="project-carousel-counter pointer-events-none absolute bottom-0 left-1/2 z-[70] -translate-x-1/2 rounded-full bg-black/65 px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-white md:backdrop-blur-md"
+          >
             {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
