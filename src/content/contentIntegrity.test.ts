@@ -11,18 +11,7 @@ import { projectSlugs } from "./projects/types";
 import { siteConfig, siteNavigation } from "./site";
 import { enabledLocales } from "@/i18n/config";
 import { localizeProject } from "@/lib/localizeProject";
-
-function findDuplicates(values: readonly string[]) {
-  const seen = new Set<string>();
-  const duplicates = new Set<string>();
-
-  for (const value of values) {
-    if (seen.has(value)) duplicates.add(value);
-    seen.add(value);
-  }
-
-  return [...duplicates].sort();
-}
+import { findDuplicates } from "@/test/findDuplicates";
 
 function describeStructure(value: unknown): unknown {
   if (Array.isArray(value)) {

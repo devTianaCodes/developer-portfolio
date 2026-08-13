@@ -1,9 +1,10 @@
 import { ImageResponse } from "next/og";
 import { getTranslations } from "next-intl/server";
-import { isLocale } from "@/i18n/config";
+import { defaultLocale, isLocale } from "@/i18n/config";
+import { siteUrl, socialImageSize } from "@/i18n/metadata";
 
 export const alt = "Tatiana Oblasser developer portfolio";
-export const size = { width: 1200, height: 630 };
+export const size = socialImageSize;
 export const contentType = "image/png";
 
 type OpenGraphImageProps = {
@@ -12,7 +13,7 @@ type OpenGraphImageProps = {
 
 export default async function OpenGraphImage({ params }: OpenGraphImageProps) {
   const { locale } = await params;
-  const resolvedLocale = isLocale(locale) ? locale : "en";
+  const resolvedLocale = isLocale(locale) ? locale : defaultLocale;
   const tMetadata = await getTranslations({ locale: resolvedLocale, namespace: "Metadata" });
   const tNavigation = await getTranslations({ locale: resolvedLocale, namespace: "Navigation" });
 
@@ -81,7 +82,7 @@ export default async function OpenGraphImage({ params }: OpenGraphImageProps) {
           }}
         >
           <span>React · Next.js · Node.js · REST APIs</span>
-          <span>developer-portfolio.vercel.app</span>
+          <span>{new URL(siteUrl).host}</span>
         </div>
       </div>
     ),

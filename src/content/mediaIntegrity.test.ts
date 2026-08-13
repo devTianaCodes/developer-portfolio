@@ -11,6 +11,8 @@ import {
 } from "./credentials";
 import { projectPresentations } from "./projectPresentation";
 import { projects } from "./projects";
+import type { MediaAsset } from "./projects/types";
+import { findDuplicates } from "@/test/findDuplicates";
 
 type ImageDimensions = {
   width: number;
@@ -28,10 +30,6 @@ const sourceDirectory = fileURLToPath(new URL("../", import.meta.url));
 function getPublicFilePath(publicPath: string) {
   assert.match(publicPath, /^\//, `Public asset path must begin with a slash: ${publicPath}`);
   return fileURLToPath(new URL(`.${publicPath}`, new URL("../../public/", import.meta.url)));
-}
-
-function findDuplicates(values: readonly string[]) {
-  return [...new Set(values.filter((value, index) => values.indexOf(value) !== index))].sort();
 }
 
 async function findReferencedPublicAssets(directory: string): Promise<string[]> {
@@ -54,7 +52,7 @@ async function findReferencedPublicAssets(directory: string): Promise<string[]> 
 }
 
 const projectAssets: AssetReference[] = projects.flatMap((project) =>
-  project.media.flatMap((asset) => [
+  (project.media as readonly MediaAsset[]).flatMap((asset) => [
     {
       path: asset.src,
       expectedDimensions:

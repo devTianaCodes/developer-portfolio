@@ -1,7 +1,11 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import type { MediaAsset } from "@/content/projects";
-import { getPreferredMediaSrc, getProjectHeroMedia } from "./projectMedia";
+import {
+  getPreferredMediaSrc,
+  getProjectHeroMedia,
+  getProjectStructuredImageSrc
+} from "./projectMedia";
 
 const baseAsset = {
   kind: "image",
@@ -40,5 +44,19 @@ describe("project media selection", () => {
 
     assert.equal(getProjectHeroMedia({ media: [first] }), first);
     assert.equal(getProjectHeroMedia({ media: [] }), undefined);
+  });
+
+  it("selects the first publishable image for structured data", () => {
+    assert.equal(
+      getProjectStructuredImageSrc({
+        media: [
+          { ...baseAsset, src: "/planned.png", status: "capture-planned" },
+          { ...baseAsset, kind: "video", src: "/demo.mp4" },
+          { ...baseAsset, src: "/ready.png", optimizedSrc: "/ready.webp", status: "ready" }
+        ]
+      }),
+      "/ready.webp"
+    );
+    assert.equal(getProjectStructuredImageSrc({ media: [] }), undefined);
   });
 });

@@ -7,3 +7,11 @@ export function getPreferredMediaSrc(asset: MediaAsset) {
 export function getProjectHeroMedia(project: Pick<ProjectEntry, "media">) {
   return project.media.find((asset) => asset.featured) ?? project.media[0];
 }
+
+export function getProjectStructuredImageSrc(project: Pick<ProjectEntry, "media">) {
+  const image = project.media.find(
+    (asset) => asset.kind === "image" && asset.status !== "capture-planned"
+  );
+
+  return image ? getPreferredMediaSrc(image) : undefined;
+}

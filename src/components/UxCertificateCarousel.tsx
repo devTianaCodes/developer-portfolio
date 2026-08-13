@@ -6,7 +6,12 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { PanInfo } from "framer-motion";
 import { useTranslations } from "next-intl";
 import type { UxUiCredential } from "@/content/credentials";
-import { circularOffset, wrapIndex } from "@/lib/carousel";
+import {
+  circularOffset,
+  getArrowDirection,
+  getSwipeDirection,
+  wrapIndex
+} from "@/lib/carousel";
 
 type UxCertificateCarouselProps = {
   credentials: readonly UxUiCredential[];
@@ -40,20 +45,16 @@ export function UxCertificateCarousel({ credentials }: UxCertificateCarouselProp
   }
 
   function handleDragEnd(_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) {
-    if (info.offset.x < -54 || info.velocity.x < -360) move(1);
-    if (info.offset.x > 54 || info.velocity.x > 360) move(-1);
+    const direction = getSwipeDirection(info.offset.x, info.velocity.x);
+    if (direction) move(direction);
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLElement>) {
-    if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      move(-1);
-    }
+    const direction = getArrowDirection(event.key);
+    if (!direction) return;
 
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      move(1);
-    }
+    event.preventDefault();
+    move(direction);
   }
 
   return (

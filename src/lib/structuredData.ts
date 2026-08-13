@@ -2,6 +2,7 @@ import type { ProjectEntry } from "@/content/projects";
 import type { Locale } from "@/i18n/config";
 import { getLocalizedUrl, siteUrl } from "@/i18n/metadata";
 import { siteConfig } from "@/content/site";
+import { getProjectStructuredImageSrc } from "@/lib/projectMedia";
 
 export type StructuredDataValue = Record<string, unknown>;
 
@@ -53,9 +54,7 @@ export function createProjectStructuredData(
   locale: Locale
 ): StructuredDataValue {
   const url = getLocalizedUrl(`/projects/${project.slug}`, locale);
-  const image = project.media.find(
-    (asset) => asset.kind === "image" && asset.status !== "capture-planned"
-  );
+  const imageSrc = getProjectStructuredImageSrc(project);
   const relatedLinks = [
     ...(project.repositories?.map((repository) => repository.href) ?? []),
     ...project.links.flatMap((link) => (link.href?.startsWith("https://") ? [link.href] : []))
@@ -71,7 +70,7 @@ export function createProjectStructuredData(
     url,
     inLanguage: locale,
     dateCreated: project.year,
-    image: image ? `${siteUrl}${image.optimizedSrc ?? image.src}` : undefined,
+    image: imageSrc ? `${siteUrl}${imageSrc}` : undefined,
     author: { "@id": personId },
     keywords: project.techStack,
     sameAs: [...new Set(relatedLinks)],

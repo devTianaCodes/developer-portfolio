@@ -1,12 +1,14 @@
-import type { ProjectEntry } from "./types";
+type SluggedEntry = Readonly<{ slug: string }>;
 
-export type ProjectRegistry = Readonly<{
-  entries: readonly ProjectEntry[];
-  getBySlug: (slug: string) => ProjectEntry | undefined;
+export type ProjectRegistry<Entry extends SluggedEntry> = Readonly<{
+  entries: readonly Entry[];
+  getBySlug: (slug: string) => Entry | undefined;
 }>;
 
-export function createProjectRegistry(entries: readonly ProjectEntry[]): ProjectRegistry {
-  const entriesBySlug = new Map<string, ProjectEntry>();
+export function createProjectRegistry<Entry extends SluggedEntry>(
+  entries: readonly Entry[]
+): ProjectRegistry<Entry> {
+  const entriesBySlug = new Map<string, Entry>();
 
   for (const entry of entries) {
     if (entriesBySlug.has(entry.slug)) {
