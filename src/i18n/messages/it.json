@@ -106,6 +106,8 @@
     "projectCount": "{current} / {total}",
     "previousProject": "Progetto precedente",
     "nextProject": "Progetto successivo",
+    "pauseCarousel": "Metti in pausa la rotazione automatica dei progetti",
+    "resumeCarousel": "Riprendi la rotazione automatica dei progetti",
     "openProject": "Apri il progetto {project}",
     "centerProject": "Porta {project} al centro",
     "carouselLabel": "Progetti in evidenza",

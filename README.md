@@ -51,12 +51,14 @@ Run the repository gates in this order before handoff:
 npm run i18n:check:strict
 npm run media:check
 npm run lint
+npm run typecheck
+npm test
 npm run build
 ```
 
 UI changes also require focused browser checks at narrow mobile, tablet, and desktop widths. Verify all enabled locales, keyboard and focus behavior, reduced motion, missing media, broken links, and horizontal overflow on affected routes.
 
-The repository does not yet include an automated test runner. Do not claim unit-test coverage until one is introduced; the current executable proof is strict localization validation, ESLint, the production build, and focused browser behavior checks.
+The repository uses Node's test runner for content, localization, metadata, carousel, and media integrity checks. The complete local gate matches CI: strict localization and media validation, ESLint, typechecking, tests, and a production build.
 
 ## Content and media
 

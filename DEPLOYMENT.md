@@ -19,7 +19,10 @@ Run the complete repository gate before creating a deployment:
 nvm use
 npm ci
 npm run i18n:check:strict
+npm run media:check
 npm run lint
+npm run typecheck
+npm test
 npm run build
 ```
 

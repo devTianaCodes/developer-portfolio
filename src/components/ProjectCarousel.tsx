@@ -109,6 +109,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const [shadeFreeIndex, setShadeFreeIndex] = useState(0);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [pageVisible, setPageVisible] = useState(true);
+  const [autoplayEnabled, setAutoplayEnabled] = useState(true);
   const reduceMotion = useReducedMotion();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [announcement, setAnnouncement] = useState("");
@@ -142,6 +143,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   useEffect(() => {
     if (
       reduceMotion ||
+      !autoplayEnabled ||
       isMobileViewport ||
       !carouselInView ||
       !pageVisible ||
@@ -154,7 +156,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     }, autoplayIntervalMs);
 
     return () => window.clearInterval(intervalId);
-  }, [carouselInView, hoveredIndex, isMobileViewport, pageVisible, projects.length, reduceMotion]);
+  }, [autoplayEnabled, carouselInView, hoveredIndex, isMobileViewport, pageVisible, projects.length, reduceMotion]);
 
   useEffect(() => {
     if (reduceMotion || shadeFreeIndex === activeIndex) return;
@@ -241,6 +243,17 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
         >
           <span aria-hidden="true" className="translate-x-5 md:translate-x-0">›</span>
         </button>
+        {!isMobileViewport && !reduceMotion ? (
+          <button
+            type="button"
+            onClick={() => setAutoplayEnabled((enabled) => !enabled)}
+            aria-pressed={!autoplayEnabled}
+            aria-label={tProjects(autoplayEnabled ? "pauseCarousel" : "resumeCarousel")}
+            className="absolute bottom-4 right-4 z-[80] inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/60 bg-black/65 text-lg font-bold text-white transition hover:scale-105 hover:bg-black/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 md:bottom-6 md:right-6"
+          >
+            <span aria-hidden="true">{autoplayEnabled ? "Ⅱ" : "▶"}</span>
+          </button>
+        ) : null}
 
         <motion.div
           className="project-carousel-3d-stage relative h-full overflow-hidden"

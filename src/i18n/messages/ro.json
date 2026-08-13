@@ -106,6 +106,8 @@
     "projectCount": "{current} / {total}",
     "previousProject": "Proiectul anterior",
     "nextProject": "Proiectul următor",
+    "pauseCarousel": "Oprește rotația automată a proiectelor",
+    "resumeCarousel": "Reia rotația automată a proiectelor",
     "openProject": "Deschide proiectul {project}",
     "centerProject": "Adu proiectul {project} în centru",
     "carouselLabel": "Proiecte evidențiate",
