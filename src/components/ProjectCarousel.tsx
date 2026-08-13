@@ -357,35 +357,34 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
         </motion.div>
 
-      </div>
-
-      <div className="flex flex-col items-center gap-2 py-3 md:py-4">
-        <div
-          aria-label={tProjects("projectCount", {
-            current: activeIndex + 1,
-            total: projects.length
-          })}
-          className="project-carousel-counter pointer-events-none rounded-full bg-white px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-black shadow-sm"
-        >
-          {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
-        </div>
-
-        {!reduceMotion ? (
-          <button
-            type="button"
-            onClick={() => setAutoplayEnabled((enabled) => !enabled)}
-            aria-pressed={!autoplayEnabled}
-            aria-label={tProjects(autoplayEnabled ? "pauseCarousel" : "resumeCarousel")}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-lg font-bold text-black shadow-sm transition hover:scale-105 hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/70"
-          >
-            <span
-              aria-hidden="true"
-              className={classNames(!autoplayEnabled && "translate-x-[2px] translate-y-[1px]")}
+        <div className="absolute bottom-3 left-1/2 z-[80] flex -translate-x-1/2 flex-col items-center gap-2 md:bottom-5">
+          {!reduceMotion ? (
+            <button
+              type="button"
+              onClick={() => setAutoplayEnabled((enabled) => !enabled)}
+              aria-pressed={!autoplayEnabled}
+              aria-label={tProjects(autoplayEnabled ? "pauseCarousel" : "resumeCarousel")}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-lg font-bold text-black shadow-sm transition hover:scale-105 hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/70"
             >
-              {autoplayEnabled ? "Ⅱ" : "▶"}
-            </span>
-          </button>
-        ) : null}
+              <span
+                aria-hidden="true"
+                className={classNames(!autoplayEnabled && "translate-x-[2px] translate-y-[1px]")}
+              >
+                {autoplayEnabled ? "Ⅱ" : "▶"}
+              </span>
+            </button>
+          ) : null}
+
+          <div
+            aria-label={tProjects("projectCount", {
+              current: activeIndex + 1,
+              total: projects.length
+            })}
+            className="project-carousel-counter pointer-events-none rounded-full bg-white px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-black shadow-sm"
+          >
+            {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+          </div>
+        </div>
       </div>
     </section>
   );
