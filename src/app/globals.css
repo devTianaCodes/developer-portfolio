@@ -483,7 +483,7 @@ body::-webkit-scrollbar,
     --home-hero-top-gap: 13.54375rem;
   }
 
-  .project-carousel--immersive > div {
+  .project-carousel-viewport {
     height: calc(120vh - var(--site-header-height));
     height: calc(120svh - var(--site-header-height));
   }
@@ -553,7 +553,7 @@ body::-webkit-scrollbar,
     margin-bottom: calc(var(--home-mobile-adjacent-gap) - var(--home-marquee-padding) - 0.8rem);
   }
 
-  .project-carousel--immersive > div {
+  .project-carousel-viewport {
     height: calc(102vh - var(--site-header-height));
     height: calc(102svh - var(--site-header-height));
   }
@@ -593,8 +593,18 @@ body::-webkit-scrollbar,
     width: 69%;
   }
 
+  .project-carousel-3d-stage,
+  .project-carousel-loop-card {
+    transform-style: flat;
+  }
+
+  .project-carousel-loop-card {
+    backface-visibility: visible;
+    will-change: left, top, width, height;
+  }
+
   .technology-parallax {
-    margin-top: var(--home-section-gap);
+    margin-top: var(--home-mobile-adjacent-gap);
   }
 }
 

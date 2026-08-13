@@ -37,7 +37,7 @@ const polishedEase = [0.25, 0.8, 0.25, 1] as const;
 const carouselEase = [0.4, 0, 0.2, 1] as const;
 const carouselEaseCss = `cubic-bezier(${carouselEase.join(",")})`;
 const desktopCarouselTransitionMs = 2800;
-const mobileCarouselTransitionMs = 1200;
+const mobileCarouselTransitionMs = 700;
 const autoplayIntervalMs = 5000;
 
 function ProjectPanel({ project, isHovered, transitionMs, copy }: ProjectPanelProps) {
@@ -206,6 +206,13 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
   const panelTransition = reduceMotion
     ? { duration: 0 }
+    : isMobileViewport
+      ? {
+          scale: { duration: 0.3, ease: polishedEase },
+          y: { duration: 0.3, ease: polishedEase },
+          z: { duration: 0 },
+          boxShadow: { duration: 0.3, ease: polishedEase }
+        }
     : {
         scale: { duration: 0.45, ease: polishedEase },
         y: { duration: 0.45, ease: polishedEase },
@@ -290,7 +297,15 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
                   opacity: 1,
                   scale: isHovered ? 1.015 : 1,
                   y: isHovered ? (isActive ? -4 : -7) : 0,
-                  z: isActive ? (isHovered ? 72 : 56) : isHovered ? -8 : -34,
+                  z: isMobileViewport
+                    ? 0
+                    : isActive
+                      ? isHovered
+                        ? 72
+                        : 56
+                      : isHovered
+                        ? -8
+                        : -34,
                   boxShadow: isActive
                     ? "0 42px 110px rgba(0,8,28,0.58)"
                     : "0 28px 72px rgba(0,8,28,0.44)"
