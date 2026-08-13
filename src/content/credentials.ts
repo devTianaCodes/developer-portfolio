@@ -66,7 +66,7 @@ export const professionalCredentials = [
     title: "InspireHER",
     issuer: "NTT DATA Italia",
     date: "11–12 October 2024",
-    image: "/media/credentials/professional/ntt-data-inspireher.png",
+    image: "/media/credentials/professional/ntt-data-inspireher.webp",
     imageAlt: "NTT DATA Italia InspireHER participation certificate awarded to Tatiana Oblasser",
     description: "Completed NTT DATA Italia’s InspireHER personal-development program focused on recognizing and strengthening individual talent.",
     category: "professional"
@@ -79,7 +79,7 @@ export const degreeCredentials = [
     level: "Bachelor’s degree",
     field: "Economic Sciences",
     specialization: "Business and Administration",
-    image: "/media/credentials/education/economic-sciences-bachelor-redacted.png",
+    image: "/media/credentials/education/economic-sciences-bachelor-redacted.webp",
     imageAlt: "Privacy-redacted Bachelor’s degree diploma in Economic Sciences",
     category: "degree"
   },
@@ -88,7 +88,7 @@ export const degreeCredentials = [
     level: "Master’s degree",
     field: "Economic Sciences",
     specialization: "Commercial Transaction Administration",
-    image: "/media/credentials/education/economic-sciences-master-redacted.png",
+    image: "/media/credentials/education/economic-sciences-master-redacted.webp",
     imageAlt: "Privacy-redacted Master’s degree diploma in Economic Sciences",
     category: "degree"
   },

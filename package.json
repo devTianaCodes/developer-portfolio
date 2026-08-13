@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev -p 5300",
     "build": "next build",
+    "media:check": "node scripts/check-media-budget.mjs",
     "i18n:check": "node scripts/check-translations.mjs",
     "i18n:check:strict": "node scripts/check-translations.mjs --strict",
     "start": "next start",

@@ -49,6 +49,7 @@ Run the repository gates in this order before handoff:
 
 ```bash
 npm run i18n:check:strict
+npm run media:check
 npm run lint
 npm run build
 ```
