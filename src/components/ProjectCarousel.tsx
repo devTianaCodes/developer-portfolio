@@ -359,7 +359,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
       </div>
 
-      <div className="flex flex-col items-center gap-2 py-3 md:py-4">
+      <div className="flex flex-col items-center gap-4 py-3 md:py-4">
           {!reduceMotion ? (
             <button
               type="button"
@@ -382,7 +382,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
               current: activeIndex + 1,
               total: projects.length
             })}
-            className="project-carousel-counter pointer-events-none rounded-full bg-white px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-black shadow-sm"
+            className="project-carousel-counter pointer-events-none rounded-[3px] border-2 border-[#262626] bg-white px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-black shadow-sm"
           >
             {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
           </div>
