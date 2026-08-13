@@ -36,6 +36,31 @@ a {
   text-decoration: none;
 }
 
+:where(a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 3px solid #ffffff !important;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--color-accent);
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 200;
+  transform: translateY(calc(-100% - 1rem));
+  border: 2px solid #ffffff;
+  border-radius: 3px;
+  background: #262626;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  font-weight: 700;
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
 img {
   display: block;
 }

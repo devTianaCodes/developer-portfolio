@@ -13,7 +13,8 @@
     "githubProfile": "Profil GitHub",
     "role": "Dezvoltator Web Full Stack Jr.",
     "openMenu": "Deschide meniul",
-    "closeMenu": "Închide meniul"
+    "closeMenu": "Închide meniul",
+    "skipToContent": "Sari la conținutul principal"
   },
   "Common": {
     "viewProject": "Vezi proiectul",

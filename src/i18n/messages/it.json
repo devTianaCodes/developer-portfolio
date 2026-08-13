@@ -13,7 +13,8 @@
     "githubProfile": "Profilo GitHub",
     "role": "Sviluppatore Web Full Stack Jr.",
     "openMenu": "Apri il menu",
-    "closeMenu": "Chiudi il menu"
+    "closeMenu": "Chiudi il menu",
+    "skipToContent": "Vai al contenuto principale"
   },
   "Common": {
     "viewProject": "Vedi progetto",

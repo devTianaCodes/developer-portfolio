@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { LanguageSelector } from "@/components/LanguageSelector";
@@ -9,6 +9,8 @@ import { Link, usePathname } from "@/i18n/navigation";
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
   const pathname = usePathname();
   const t = useTranslations("Navigation");
   const tLocale = useTranslations("LocaleSwitcher");
@@ -16,6 +18,23 @@ export function SiteHeader() {
   function isActiveRoute(href: string) {
     return pathname === href || pathname.startsWith(href + "/");
   }
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    firstMobileLinkRef.current?.focus();
+
+    function closeMenuWithKeyboard(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+
+      event.preventDefault();
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
+    }
+
+    document.addEventListener("keydown", closeMenuWithKeyboard);
+    return () => document.removeEventListener("keydown", closeMenuWithKeyboard);
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-white">
@@ -53,7 +72,7 @@ export function SiteHeader() {
                   className={`relative text-[0.98rem] font-medium leading-none text-[#262626] transition hover:scale-105 hover:text-[#262626] ${
                     active
                       ? "scale-105 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:bg-[#262626]"
-                      : "after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-[#262626] after:transition-all hover:after:w-full"
+                      : "after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-0 after:bg-[#262626] after:transition-[width] hover:after:w-full"
                   }`}
                 >
                   {t(item.labelKey)}
@@ -67,9 +86,11 @@ export function SiteHeader() {
           </div>
 
           <button
+            ref={menuButtonRef}
             type="button"
             aria-label={menuOpen ? t("closeMenu") : t("openMenu")}
             aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
             onClick={() => setMenuOpen((open) => !open)}
             className="inline-flex h-11 w-11 items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent text-[#262626] transition hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#262626]/40 lg:hidden"
           >
@@ -83,6 +104,7 @@ export function SiteHeader() {
       </div>
 
       <div
+        id="mobile-navigation"
         aria-hidden={!menuOpen}
         inert={!menuOpen}
         className={`border-t border-line bg-white px-2.5 shadow-[0_18px_42px_rgba(15,23,42,0.12)] transition-[max-height,opacity] duration-300 md:px-4 lg:hidden ${
@@ -96,8 +118,9 @@ export function SiteHeader() {
             </span>
             <LanguageSelector />
           </div>
-          {siteNavigation.map((item) => (
+          {siteNavigation.map((item, index) => (
             <Link
+              ref={index === 0 ? firstMobileLinkRef : undefined}
               key={item.href}
               href={item.href}
               aria-current={isActiveRoute(item.href) ? "page" : undefined}

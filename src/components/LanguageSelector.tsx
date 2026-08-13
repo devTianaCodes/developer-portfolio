@@ -57,7 +57,7 @@ export function LanguageSelector({ className }: LanguageSelectorProps) {
               "relative font-sans text-[0.78rem] font-medium leading-none tracking-[0.08em] text-[#262626] transition hover:scale-105 after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:bg-[#262626]",
               active
                 ? "scale-105 after:w-full"
-                : "cursor-pointer after:w-0 after:transition-all hover:after:w-full"
+                : "cursor-pointer after:w-0 after:transition-[width] hover:after:w-full"
             )}
           >
             {language.label}

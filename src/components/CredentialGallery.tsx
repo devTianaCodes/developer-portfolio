@@ -39,6 +39,7 @@ function CertificateModal({ credential, onClose }: CertificateModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();
+  const descriptionId = useId();
   const tCommon = useTranslations("Common");
 
   useEffect(() => {
@@ -48,7 +49,10 @@ function CertificateModal({ credential, onClose }: CertificateModalProps) {
     closeButtonRef.current?.focus();
 
     function handleDocumentKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") onClose();
+      if (event.key !== "Escape") return;
+
+      event.preventDefault();
+      onClose();
     }
 
     document.addEventListener("keydown", handleDocumentKeyDown);
@@ -83,7 +87,7 @@ function CertificateModal({ credential, onClose }: CertificateModalProps) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/80 p-2.5 backdrop-blur-[2px] sm:p-5"
+      className="fixed inset-0 z-[100] flex items-center justify-center overscroll-contain bg-slate-950/80 p-2.5 backdrop-blur-[2px] sm:p-5"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -97,8 +101,9 @@ function CertificateModal({ credential, onClose }: CertificateModalProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
+        aria-describedby={descriptionId}
         data-testid="credential-modal"
-        className="flex max-h-[calc(100vh-1.25rem)] w-full max-w-6xl flex-col overflow-hidden rounded-[6px] border border-white/24 bg-white shadow-[0_32px_100px_rgba(0,0,0,0.45)] sm:max-h-[calc(100vh-2.5rem)]"
+        className="flex max-h-[calc(100vh-1.25rem)] w-full max-w-6xl flex-col overflow-hidden overscroll-contain rounded-[6px] border border-white/24 bg-white shadow-[0_32px_100px_rgba(0,0,0,0.45)] sm:max-h-[calc(100vh-2.5rem)]"
         initial={{ opacity: 0, y: 18, scale: 0.985 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 12, scale: 0.99 }}
@@ -132,7 +137,7 @@ function CertificateModal({ credential, onClose }: CertificateModalProps) {
           />
         </div>
 
-        <p className="border-t border-line px-4 py-4 text-sm leading-6 text-muted sm:px-6">
+        <p id={descriptionId} className="border-t border-line px-4 py-4 text-sm leading-6 text-muted sm:px-6">
           {credential.description}
         </p>
       </motion.div>

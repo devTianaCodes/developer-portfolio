@@ -62,6 +62,7 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const tNavigation = await getTranslations({ locale, namespace: "Navigation" });
   const clientMessages = {
     Common: messages.Common,
     Credentials: messages.Credentials,
@@ -74,10 +75,17 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body className="min-h-screen bg-background font-sans text-ink antialiased">
         <NextIntlClientProvider messages={clientMessages}>
+          <a href="#main-content" className="skip-link">
+            {tNavigation("skipToContent")}
+          </a>
           <div className="relative min-h-screen overflow-x-clip">
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />
-              <main className="flex-1 bg-[var(--color-main-background)]">
+              <main
+                id="main-content"
+                tabIndex={-1}
+                className="flex-1 bg-[var(--color-main-background)]"
+              >
                 <div className="mx-auto max-w-[96rem] px-2.5 py-10 md:px-4 md:py-14">{children}</div>
               </main>
               <SiteFooter />
