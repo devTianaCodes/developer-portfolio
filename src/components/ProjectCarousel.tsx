@@ -150,7 +150,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     ) return;
 
     const intervalId = window.setInterval(() => {
-      setActiveIndex((current) => wrapIndex(current - 1, projects.length));
+      setActiveIndex((current) => wrapIndex(current + 1, projects.length));
     }, autoplayIntervalMs);
 
     return () => window.clearInterval(intervalId);
