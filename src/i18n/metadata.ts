@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { defaultLocale, enabledLocales, type Locale } from "./config";
 
 export const siteUrl = "https://developer-portfolio.vercel.app";
+export const socialImagePath = "/opengraph-image";
+export const socialImageSize = { width: 1200, height: 630 } as const;
 
 const openGraphLocales: Record<Locale, string> = {
   en: "en_US",
@@ -51,6 +53,13 @@ export function createPageMetadata({
   title,
   description
 }: PageMetadataOptions): Metadata {
+  const url = getLocalizedUrl(path, locale);
+  const image = {
+    url: getLocalizedUrl(socialImagePath, locale),
+    ...socialImageSize,
+    alt: title
+  };
+
   return {
     title,
     description,
@@ -58,9 +67,19 @@ export function createPageMetadata({
     openGraph: {
       title,
       description,
-      url: getLocalizedUrl(path, locale),
+      url,
       locale: openGraphLocales[locale],
-      type: "website"
+      alternateLocale: enabledLocales
+        .filter((candidate) => candidate !== locale)
+        .map((candidate) => openGraphLocales[candidate]),
+      type: "website",
+      images: [image]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image]
     }
   };
 }

@@ -4,8 +4,10 @@ import { notFound } from "next/navigation";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { StructuredData } from "@/components/StructuredData";
 import { createPageMetadata, siteUrl } from "@/i18n/metadata";
 import { routing } from "@/i18n/routing";
+import { createSiteStructuredData } from "@/lib/structuredData";
 
 type LocaleParamsProps = {
   params: Promise<{ locale: string }>;
@@ -33,11 +35,7 @@ export async function generateMetadata({ params }: LocaleParamsProps): Promise<M
     openGraph: localizedMetadata.openGraph
       ? { ...localizedMetadata.openGraph, siteName: title }
       : undefined,
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description
-    }
+    twitter: localizedMetadata.twitter
   };
 }
 
@@ -63,6 +61,13 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   const messages = await getMessages();
   const tNavigation = await getTranslations({ locale, namespace: "Navigation" });
+  const tMetadata = await getTranslations({ locale, namespace: "Metadata" });
+  const structuredData = createSiteStructuredData({
+    locale,
+    title: tMetadata("siteTitle"),
+    description: tMetadata("siteDescription"),
+    role: tNavigation("role")
+  });
   const clientMessages = {
     Common: messages.Common,
     Credentials: messages.Credentials,
@@ -74,6 +79,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body className="min-h-screen bg-background font-sans text-ink antialiased">
+        <StructuredData data={structuredData} />
         <NextIntlClientProvider messages={clientMessages}>
           <a href="#main-content" className="skip-link">
             {tNavigation("skipToContent")}

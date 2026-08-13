@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ProjectCaseStudy } from "@/components/ProjectCaseStudy";
+import { StructuredData } from "@/components/StructuredData";
 import { getProjectBySlug, projects } from "@/content/projects";
 import { isLocale } from "@/i18n/config";
 import { createPageMetadata } from "@/i18n/metadata";
 import { localizeProject } from "@/lib/localizeProject";
+import { createProjectStructuredData } from "@/lib/structuredData";
 
 type ProjectPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -50,5 +52,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const localizedProject = localizeProject(project, locale);
 
-  return <ProjectCaseStudy project={localizedProject} />;
+  return (
+    <>
+      <StructuredData data={createProjectStructuredData(localizedProject, locale)} />
+      <ProjectCaseStudy project={localizedProject} />
+    </>
+  );
 }

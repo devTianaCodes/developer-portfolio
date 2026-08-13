@@ -34,5 +34,24 @@ describe("localized metadata URLs", () => {
     assert.equal(metadata.alternates?.canonical, `${siteUrl}/it/credentials`);
     assert.equal(metadata.openGraph?.url, `${siteUrl}/it/credentials`);
     assert.equal(metadata.openGraph?.locale, "it_IT");
+    assert.deepEqual(metadata.openGraph?.alternateLocale, ["en_US", "ro_RO"]);
+    assert.deepEqual(metadata.openGraph?.images, [
+      {
+        url: `${siteUrl}/it/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Certificazioni"
+      }
+    ]);
+    assert.ok(metadata.twitter && "card" in metadata.twitter);
+    assert.equal(metadata.twitter.card, "summary_large_image");
+    assert.deepEqual(metadata.twitter.images, [
+      {
+        url: `${siteUrl}/it/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Certificazioni"
+      }
+    ]);
   });
 });
