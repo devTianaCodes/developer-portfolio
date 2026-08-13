@@ -7,6 +7,7 @@ import {
 } from "./credentials";
 import { projectPresentations } from "./projectPresentation";
 import { projects } from "./projects";
+import { projectSlugs } from "./projects/types";
 import { siteConfig, siteNavigation } from "./site";
 import { enabledLocales } from "@/i18n/config";
 import { localizeProject } from "@/lib/localizeProject";
@@ -53,6 +54,10 @@ describe("portfolio content identity", () => {
 
     assert.deepEqual(findDuplicates(projectSlugs), []);
     assert.deepEqual(findDuplicates(credentialSlugs), []);
+  });
+
+  it("registers every supported project slug exactly once", () => {
+    assert.deepEqual(projects.map(({ slug }) => slug).sort(), [...projectSlugs].sort());
   });
 
   it("provides exactly one presentation configuration per project", () => {

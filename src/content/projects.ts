@@ -1,101 +1,24 @@
-export type ProjectSlug =
-  | "chocolate"
-  | "english4u"
-  | "orchidcare"
-  | "petnest"
-  | "paytrack"
-  | "ai-comparator"
-  | "brickdrop"
-  | "sea-battle";
+import { createProjectRegistry } from "./projects/registry";
+import type { ProjectEntry } from "./projects/types";
 
-export type DeploymentMode = "live" | "media" | "hybrid";
-
-export type AssetStatus = "ready" | "capture-planned";
-
-export type MediaAsset = {
-  kind: "image" | "video";
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-  poster?: string;
-  optimizedSrc?: string;
-  featured?: boolean;
-  status?: AssetStatus;
-  note?: string;
-};
-
-export type ProjectLink = {
-  label: string;
-  href?: string;
-  kind: "live" | "code" | "case-study";
-};
-
-export type ProjectDetailGroup = {
-  title: string;
-  text: string;
-  items: string[];
-};
-
-export type ProjectRepository = {
-  label: string;
-  href: string;
-};
-
-export type ProjectSectionIntro = {
-  eyebrow: string;
-  title: string;
-  text: string;
-};
-
-export type ProjectEntry = {
-  slug: ProjectSlug;
-  name: string;
-  tagline: string;
-  summary: string;
-  role: string;
-  category: "full-stack" | "frontend" | "game";
-  deploymentMode: DeploymentMode;
-  year: string;
-  flagship?: boolean;
-  visualTone:
-    | "warm-luxury"
-    | "clean-learning"
-    | "soft-utility"
-    | "botanical-gold"
-    | "finance-peach"
-    | "ai-lilac"
-    | "arcade"
-    | "naval-tech";
-  hook: string;
-  techStack: string[];
-  strengths: string[];
-  challenge: string;
-  solution: string;
-  outcome: string;
-  features: string[];
-  architecture: string[];
-  metrics: { label: string; value: string }[];
-  impactBullets: string[];
-  interviewAngles: string[];
-  repositories?: ProjectRepository[];
-  repositoryRoots?: { label: string; path: string }[];
-  workflowIntro?: ProjectSectionIntro;
-  workflowHighlights?: ProjectDetailGroup[];
-  apiIntro?: ProjectSectionIntro;
-  apiDomains?: string[];
-  qualityIntro?: ProjectSectionIntro;
-  qualitySignals?: ProjectDetailGroup[];
-  media: MediaAsset[];
-  links: ProjectLink[];
-};
+export type {
+  AssetStatus,
+  DeploymentMode,
+  MediaAsset,
+  ProjectDetailGroup,
+  ProjectEntry,
+  ProjectLink,
+  ProjectRepository,
+  ProjectSectionIntro,
+  ProjectSlug
+} from "./projects/types";
 
 const fullStackLiveUrls = {
   chocolate: process.env.NEXT_PUBLIC_CHOCOLATE_WEB_APP_URL ?? "https://chocolate-frontend-one.vercel.app",
   petnest: process.env.NEXT_PUBLIC_PETNEST_WEB_APP_URL ?? "https://petnest-frontend.vercel.app"
 } as const;
 
-export const projects: ProjectEntry[] = [
+const projectEntries = [
   {
     slug: "chocolate",
     name: "Chocolate Craft House",
@@ -1846,8 +1769,12 @@ export const projects: ProjectEntry[] = [
       { label: "Case Study", href: "/projects/sea-battle", kind: "case-study" }
     ]
   }
-];
+] satisfies readonly ProjectEntry[];
+
+const projectRegistry = createProjectRegistry(projectEntries);
+
+export const projects = projectRegistry.entries;
 
 export function getProjectBySlug(slug: string) {
-  return projects.find((project) => project.slug === slug);
+  return projectRegistry.getBySlug(slug);
 }
