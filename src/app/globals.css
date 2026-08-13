@@ -249,7 +249,7 @@ body::-webkit-scrollbar,
     }
   }
 
-  .project-carousel--immersive > div {
+  .project-carousel-viewport {
     height: calc(100vh - var(--site-header-height));
     height: calc(100svh - var(--site-header-height));
     background: transparent;

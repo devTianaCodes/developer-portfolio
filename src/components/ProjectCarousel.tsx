@@ -144,10 +144,8 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     if (
       reduceMotion ||
       !autoplayEnabled ||
-      isMobileViewport ||
       !carouselInView ||
       !pageVisible ||
-      hoveredIndex !== null ||
       projects.length < 2
     ) return;
 
@@ -156,7 +154,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     }, autoplayIntervalMs);
 
     return () => window.clearInterval(intervalId);
-  }, [autoplayEnabled, carouselInView, hoveredIndex, isMobileViewport, pageVisible, projects.length, reduceMotion]);
+  }, [autoplayEnabled, carouselInView, pageVisible, projects.length, reduceMotion]);
 
   useEffect(() => {
     if (reduceMotion || shadeFreeIndex === activeIndex) return;
@@ -216,6 +214,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
       };
   return (
     <section
+      id="project-carousel"
       ref={carouselRef}
       data-testid="project-carousel"
       aria-label={tProjects("carouselLabel")}
@@ -226,7 +225,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
       <p className="sr-only" aria-live="polite" aria-atomic="true">
         {announcement}
       </p>
-      <div className="relative mx-auto max-w-none overflow-hidden bg-slate-950/20">
+      <div className="project-carousel-viewport relative mx-auto max-w-none overflow-hidden bg-slate-950/20">
         <button
           type="button"
           onClick={() => move(-1)}
@@ -343,34 +342,35 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
         </motion.div>
 
-        <div className="absolute bottom-3 left-1/2 z-[80] flex -translate-x-1/2 flex-col items-center gap-2 md:bottom-5">
-          <div
-            aria-label={tProjects("projectCount", {
-              current: activeIndex + 1,
-              total: projects.length
-            })}
-            className="project-carousel-counter pointer-events-none rounded-full bg-black/65 px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-white backdrop-blur-md"
-          >
-            {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
-          </div>
+      </div>
 
-          {!isMobileViewport && !reduceMotion ? (
-            <button
-              type="button"
-              onClick={() => setAutoplayEnabled((enabled) => !enabled)}
-              aria-pressed={!autoplayEnabled}
-              aria-label={tProjects(autoplayEnabled ? "pauseCarousel" : "resumeCarousel")}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/65 text-lg font-bold text-white shadow-sm backdrop-blur-md transition hover:scale-105 hover:bg-black/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
-            >
-              <span
-                aria-hidden="true"
-                className={classNames(!autoplayEnabled && "translate-x-[2px] translate-y-[1px]")}
-              >
-                {autoplayEnabled ? "Ⅱ" : "▶"}
-              </span>
-            </button>
-          ) : null}
+      <div className="flex flex-col items-center gap-2 py-3 md:py-4">
+        <div
+          aria-label={tProjects("projectCount", {
+            current: activeIndex + 1,
+            total: projects.length
+          })}
+          className="project-carousel-counter pointer-events-none rounded-full bg-white px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-black shadow-sm"
+        >
+          {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
         </div>
+
+        {!reduceMotion ? (
+          <button
+            type="button"
+            onClick={() => setAutoplayEnabled((enabled) => !enabled)}
+            aria-pressed={!autoplayEnabled}
+            aria-label={tProjects(autoplayEnabled ? "pauseCarousel" : "resumeCarousel")}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-lg font-bold text-black shadow-sm transition hover:scale-105 hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/70"
+          >
+            <span
+              aria-hidden="true"
+              className={classNames(!autoplayEnabled && "translate-x-[2px] translate-y-[1px]")}
+            >
+              {autoplayEnabled ? "Ⅱ" : "▶"}
+            </span>
+          </button>
+        ) : null}
       </div>
     </section>
   );
