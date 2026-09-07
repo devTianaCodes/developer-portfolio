@@ -13,7 +13,10 @@ concurrency:
 
 jobs:
   verify:
-    name: Verify portfolio
+    name: Verify portfolio (Node ${{ matrix.node }})
+    strategy:
+      matrix:
+        node: [20, 24]
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -28,7 +31,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: ${{ matrix.node }}
           cache: npm
           cache-dependency-path: portfolio-repo/package-lock.json
 

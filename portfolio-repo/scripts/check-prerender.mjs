@@ -1,7 +1,11 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { projects } from "../src/content/projects.ts";
-import { enabledLocales } from "../src/i18n/config.ts";
+import { createRequire } from "node:module";
+
+// Load TypeScript through tsx consistently across Node 20 and Node 24.
+const require = createRequire(import.meta.url);
+const { projects } = require("../src/content/projects.ts");
+const { enabledLocales } = require("../src/i18n/config.ts");
 
 const manifest = JSON.parse(await readFile(".next/prerender-manifest.json", "utf8"));
 const paths = ["", "/about", "/contact", "/credentials", "/projects",

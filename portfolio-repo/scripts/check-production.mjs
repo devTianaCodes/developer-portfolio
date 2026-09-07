@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
-import { enabledLocales } from "../src/i18n/config.ts";
 
 const origin = process.argv[2] ?? "http://localhost:5300";
 const require = createRequire(import.meta.url);
+const { enabledLocales } = require("../src/i18n/config.ts");
 const { default: sitemap } = require("../src/app/sitemap.ts");
 const entries = sitemap();
 
