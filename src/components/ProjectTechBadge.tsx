@@ -4,6 +4,7 @@ type TechIconKey =
   | "router"
   | "zustand"
   | "tailwind"
+  | "bootstrap"
   | "node"
   | "express"
   | "typescript"
@@ -13,6 +14,7 @@ type TechIconKey =
   | "prisma"
   | "java"
   | "spring"
+  | "docker"
   | "stripe"
   | "vercel"
   | "tool"
@@ -43,6 +45,7 @@ function techIconKey(tech: string): TechIconKey | undefined {
   if (value.includes("vite")) return "vite";
   if (value.includes("zustand")) return "zustand";
   if (value.includes("tailwind")) return "tailwind";
+  if (value.includes("bootstrap")) return "bootstrap";
   if (value.includes("node")) return "node";
   if (value.includes("express")) return "express";
   if (value.includes("mysql")) return "mysql";
@@ -50,6 +53,7 @@ function techIconKey(tech: string): TechIconKey | undefined {
   if (value.includes("prisma")) return "prisma";
   if (value === "java" || value.startsWith("java ")) return "java";
   if (value.includes("spring boot")) return "spring";
+  if (value.includes("docker")) return "docker";
   if (value.includes("stripe")) return "stripe";
   if (value.includes("vercel")) return "vercel";
   if (value.includes("axios") || value.includes("cors") || value.includes("morgan") || value.includes("pino")) return "api";
@@ -134,6 +138,15 @@ function TechIcon({ type }: { type: TechIconKey }) {
     );
   }
 
+  if (type === "bootstrap") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round">
+        <rect x="4" y="5" width="16" height="14" rx="3" />
+        <path d="M9 8.5h3.5c1.6 0 2.7.8 2.7 2.1 0 .9-.5 1.6-1.5 1.9 1.1.2 1.7.9 1.7 1.9 0 1.4-1.1 2.2-2.9 2.2H9V8.5Zm2 1.7v1.6h1.3c.7 0 1.1-.3 1.1-.8s-.4-.8-1.1-.8H11Zm0 3.2v1.7h1.5c.8 0 1.2-.3 1.2-.9 0-.5-.4-.8-1.2-.8H11Z" />
+      </svg>
+    );
+  }
+
   if (type === "node") {
     return (
       <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.55" strokeLinejoin="round">
@@ -195,6 +208,15 @@ function TechIcon({ type }: { type: TechIconKey }) {
     return (
       <svg aria-hidden="true" viewBox="0 0 128 128" className="h-5 w-5" fill="currentColor">
         <path d="M116.452 6.643a59.104 59.104 0 0 1-6.837 12.136A64.249 64.249 0 0 0 64.205-.026C28.984-.026 0 28.982 0 64.242a64.316 64.316 0 0 0 19.945 46.562l2.368 2.1a64.22 64.22 0 0 0 41.358 15.122c33.487 0 61.637-26.24 64.021-59.683 1.751-16.371-3.051-37.077-11.24-61.7zM29.067 111.17a5.5 5.5 0 0 1-4.269 2.034c-3.018 0-5.487-2.484-5.487-5.502 0-3.017 2.485-5.501 5.487-5.501 1.25 0 2.485.433 3.452 1.234 2.351 1.9 2.718 5.384.817 7.735zm87.119-19.238c-15.843 21.122-49.68 14.003-71.376 15.02 0 0-3.852.234-7.721.867 0 0 1.45-.617 3.335-1.334 15.226-5.301 22.43-6.335 31.685-11.086 17.427-8.869 34.654-28.274 38.24-48.463-6.637 19.422-26.75 36.11-45.077 42.895-12.557 4.635-35.238 9.136-35.238 9.136l-.917-.484c-15.442-7.518-15.91-40.977 12.157-51.78 12.291-4.735 24.048-2.134 37.323-5.302 14.175-3.367 30.568-14.004 37.238-27.874 7.471 22.19 16.46 56.932.35 78.405z" />
+      </svg>
+    );
+  }
+
+  if (type === "docker") {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 10h3V7H4v3Zm4 0h3V7H8v3Zm4 0h3V7h-3v3Zm-4-4h3V3H8v3Zm4 0h3V3h-3v3Z" />
+        <path d="M3 11h14c.6-1.3 1.6-2 3-2 0 1.1-.3 2-.9 2.6.6.1 1.2 0 1.9-.3-.7 3.6-3.3 6.7-8.5 6.7H8.8C5.6 18 3.5 15.7 3 11Z" />
       </svg>
     );
   }

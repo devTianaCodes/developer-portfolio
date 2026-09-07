@@ -81,8 +81,10 @@ export const siteConfig = {
     "PostgreSQL",
     "JWT",
     "Tailwind CSS",
+    "Bootstrap",
     "Java",
     "Spring Boot",
+    "Docker",
     "Vitest",
     "Supertest"
   ]
