@@ -17,6 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
+    defaults:
+      run:
+        working-directory: portfolio-repo
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
@@ -26,7 +30,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: package-lock.json
+          cache-dependency-path: portfolio-repo/package-lock.json
 
       - name: Install dependencies
         run: npm ci
