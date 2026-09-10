@@ -280,9 +280,9 @@
       },
       "universityDegrees": {
         "title": "Formazione universitaria",
-        "economicSciences": "Scienze Economiche",
-        "businessAdministration": "Amministrazione aziendale",
-        "foreignLanguages": "Lingue straniere e Letteratura Comparata"
+        "economicSciences": "Laurea triennale — Scienze Economiche",
+        "businessAdministration": "Laurea magistrale — Amministrazione aziendale",
+        "foreignLanguages": "Seconda laurea triennale — Lingue straniere e Letteratura Comparata"
       }
     },
     "languageItems": {

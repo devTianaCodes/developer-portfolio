@@ -280,9 +280,9 @@
       },
       "universityDegrees": {
         "title": "University education",
-        "economicSciences": "Economic Sciences",
-        "businessAdministration": "Business Administration",
-        "foreignLanguages": "Foreign Languages and Comparative Literature"
+        "economicSciences": "Bachelor’s degree — Economic Sciences",
+        "businessAdministration": "Master’s degree — Business Administration",
+        "foreignLanguages": "Second bachelor’s degree — Foreign Languages and Comparative Literature"
       }
     },
     "languageItems": {
