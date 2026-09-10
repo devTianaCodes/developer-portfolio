@@ -201,10 +201,10 @@ export default function AboutPage({ params }: AboutPageProps) {
               </section>
 
               <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="sharp-panel p-8">
+          <div className="sharp-panel flex flex-col p-8">
             <p className="section-label">{t("professionalExperience")}</p>
-            <h2 className="minimal-heading mt-3 text-4xl">{t("professionalExperienceTitle")}</h2>
-            <div className="mt-6 space-y-5">
+            <h2 className="minimal-heading mt-8 text-4xl">{t("professionalExperienceTitle")}</h2>
+            <div className="mt-12 space-y-5">
               {experienceItems.map((item) => (
                 <div key={item.role} className="border-t border-line pt-5 first:border-t-0 first:pt-0">
                   <h3 className="font-mono text-sm uppercase tracking-[0.2em] text-ink">{item.role}</h3>
@@ -220,7 +220,7 @@ export default function AboutPage({ params }: AboutPageProps) {
               <p className="section-label">{t("educationTraining")}</p>
               <ul className="mt-5 space-y-3 text-sm leading-7 text-muted">
                 {trainingItems.map((item) => (
-                  <li key={item.title} className={Array.isArray(item.detail) ? "grid grid-cols-[auto_minmax(0,1fr)] gap-x-4" : undefined}>
+                  <li key={item.title} className={Array.isArray(item.detail) ? "grid grid-cols-[minmax(0,0.8fr)_minmax(0,1.5fr)] items-baseline gap-x-4" : undefined}>
                     <div>
                       {item.href ? (
                         <Link href={item.href} target="_blank" rel="noreferrer" className="font-semibold text-ink underline-offset-4 hover:text-accent hover:underline">
@@ -232,15 +232,20 @@ export default function AboutPage({ params }: AboutPageProps) {
                     </div>
 
                     {Array.isArray(item.detail) ? (
-                      <ul className="min-w-0 divide-y divide-line text-xs leading-5">
-                        {item.detail.map((degree) => (
-                          <li key={degree} className="py-1 first:pt-0 last:pb-0">
-                            {degree}
-                          </li>
-                        ))}
+                      <ul className="min-w-0 divide-y divide-line text-sm leading-7">
+                        {item.detail.map((degree) => {
+                          const [level, subject] = degree.split(" — ");
+
+                          return (
+                            <li key={degree} className="py-1 first:pt-0 last:pb-0">
+                              <span className="font-semibold text-ink">{level}</span>
+                              {" — "}{subject}
+                            </li>
+                          );
+                        })}
                       </ul>
                     ) : (
-                      <span className="block text-xs leading-5">{item.detail}</span>
+                      <span className="block text-sm leading-7">{item.detail}</span>
                     )}
                   </li>
                 ))}
@@ -251,7 +256,7 @@ export default function AboutPage({ params }: AboutPageProps) {
               <p className="section-label">{t("languages")}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {languageItems.map((item) => (
-                  <span key={item.language} className="border border-line bg-surface px-3 py-2 font-mono text-xs uppercase tracking-[0.18em] text-muted">
+                  <span key={item.language} className="border border-line bg-surface px-3 py-2 font-mono text-xs uppercase tracking-[0.1em] text-muted">
                     {item.language} · {item.level}
                   </span>
                 ))}

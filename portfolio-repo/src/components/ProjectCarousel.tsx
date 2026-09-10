@@ -84,17 +84,17 @@ function ProjectPanel({ project, isHovered, reduceMotion, transitionMs, copy }: 
           <h2 className="max-w-xl text-balance font-sans text-[1.84rem] font-medium leading-[1.18] text-[#262626] md:text-[2.05rem]">
             {project.name}
           </h2>
-          <p className="mt-3 font-sans text-[11px] font-bold uppercase leading-[1.2] tracking-[1.8px] text-[#262626]/70 md:text-[12px]">
+          <p className="mt-3 font-sans text-xs font-bold uppercase leading-[1.2] tracking-[1.8px] text-[#262626]/70">
             {copy.projectType}
           </p>
-          <p className="mt-3 line-clamp-3 max-w-xl font-sans text-[15px] font-normal leading-[1.38] text-[#262626]/82 md:hidden">
+          <p className="mt-3 line-clamp-3 max-w-xl font-sans text-lg font-normal leading-[1.38] text-[#262626]/82 md:hidden">
             {copy.mobileSummary}
           </p>
           <p className="mt-3 hidden max-w-xl font-sans text-[19px] font-normal leading-[1.45] text-[#262626]/82 md:line-clamp-2">
             {copy.tagline}
           </p>
         </div>
-        <span className="mb-6 mt-5 inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent px-[1.25em] py-[0.85em] font-sans text-[13px] font-bold leading-[1.2] tracking-[1px] text-[#262626] transition duration-300 group-hover:scale-[1.03] group-hover:bg-[#262626] group-hover:text-white group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)] md:mb-8 md:text-[14px]">
+        <span className="mb-6 mt-5 inline-flex items-center justify-center rounded-[3px] border-2 border-[#262626] bg-transparent px-[1.25em] py-[0.85em] font-sans text-[0.975rem] font-bold leading-[1.2] tracking-[1px] text-[#262626] transition duration-300 group-hover:scale-[1.03] group-hover:bg-[#262626] group-hover:text-white group-hover:shadow-[0_2px_10px_rgba(0,0,0,0.13)] md:mb-8 md:text-sm">
           {copy.viewProject}
         </span>
       </div>
@@ -402,7 +402,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
               current: activeIndex + 1,
               total: projects.length
             })}
-            className="project-carousel-counter pointer-events-none rounded-[3px] border-2 border-[#262626] bg-white px-4 py-2 font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-black shadow-sm"
+            className="project-carousel-counter pointer-events-none rounded-[3px] border-2 border-[#262626] bg-white px-4 py-2 font-sans text-xs font-bold uppercase tracking-[0.22em] text-black shadow-sm"
           >
             {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
           </div>

@@ -310,7 +310,7 @@ function TechIcon({ type }: { type: TechIconKey }) {
 
 export function ProjectTechBadge({ tech, compact = false, className = "" }: ProjectTechBadgeProps) {
   const icon = techIconKey(tech);
-  const size = compact ? "text-[9px]" : "text-xs";
+  const size = compact ? "text-micro" : "text-xs";
   const padding = compact ? "px-2 py-1" : "px-4 py-2";
   const iconSize = compact ? "[&_svg]:h-4 [&_svg]:w-4" : "";
 

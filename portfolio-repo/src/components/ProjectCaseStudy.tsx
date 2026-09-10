@@ -94,13 +94,13 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
           <div className="flex min-w-0 flex-col gap-5 md:col-start-1 md:row-start-1">
             <div className="space-y-5">
               <div className="flex flex-wrap gap-3">
-                <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
+                <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-micro uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
                   {categoryLabel}
                 </span>
-                <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
+                <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-micro uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
                   {project.year}
                 </span>
-                <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
+                <span className="rounded-[3px] border border-[color:var(--case-line)] bg-white/24 px-3 py-2 text-micro uppercase tracking-[0.18em] text-[#262626]/76 sm:px-4 sm:text-xs sm:tracking-[0.26em]">
                   {deploymentLabel}
                 </span>
               </div>
@@ -131,7 +131,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
 
           <div className="space-y-5 md:col-start-1 md:row-start-2">
             {hasResourceBlock ? (
-              <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4 md:h-[11.5rem] md:overflow-hidden">
+              <div className="max-w-3xl space-y-3 rounded-[6px] border border-[color:var(--case-line)] bg-white/24 p-3 sm:p-4 md:min-h-[11.5rem]">
                 {project.repositories ? (
                   <div className="grid gap-3 sm:grid-cols-2">
                     {project.repositories.map((repo) => (
@@ -152,10 +152,10 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                   <div className="hidden gap-3 sm:grid sm:grid-cols-2">
                     {project.repositoryRoots.map((root) => (
                       <div key={root.path} className="min-w-0 rounded-[4px] border border-[color:var(--case-line)] bg-white/30 px-3 py-2 sm:px-3">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#262626]/58">
+                        <p className="text-micro font-bold uppercase tracking-[0.2em] text-[#262626]/58">
                           {t("repositoryRoot", { label: root.label })}
                         </p>
-                        <p className="mt-1 break-words font-mono text-[11px] leading-5 text-[#262626]/78">{root.path}</p>
+                        <p className="mt-1 break-words font-mono text-xs leading-5 text-[#262626]/78">{root.path}</p>
                       </div>
                     ))}
                   </div>
@@ -182,9 +182,9 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             ) : null}
           </div>
 
-          <div className="hidden min-w-0 self-end rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 md:col-start-2 md:row-start-2 md:block md:h-[11.5rem] md:overflow-hidden">
-            <p className="text-center text-[11px] font-bold uppercase tracking-[2px] text-[#262626]/62">{t("techStack")}</p>
-            <div className="mt-3 flex max-h-[8.25rem] flex-wrap justify-center gap-2 overflow-hidden">
+          <div className="hidden min-w-0 self-end rounded-[6px] border border-[color:var(--case-line)] bg-white/58 p-4 md:col-start-2 md:row-start-2 md:block md:min-h-[11.5rem]">
+            <p className="text-center text-xs font-bold uppercase tracking-[2px] text-[#262626]/62">{t("techStack")}</p>
+            <div className="mt-3 flex flex-wrap justify-center gap-2">
               {project.techStack.map((item) => (
                 <ProjectTechBadge
                   key={item}

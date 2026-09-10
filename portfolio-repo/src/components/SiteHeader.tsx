@@ -53,7 +53,7 @@ export function SiteHeader() {
           </span>
           <span className="min-w-0">
             <span className="block truncate font-sans text-xl font-medium text-[#262626] sm:text-2xl">{siteConfig.name}</span>
-            <span className="block text-[9px] uppercase tracking-[0.22em] text-[#262626]/62 sm:text-[11px] sm:tracking-[0.28em]">
+            <span className="block text-micro uppercase tracking-[0.08em] text-[#262626]/62 sm:text-xs sm:tracking-[0.12em]">
               {t("role")}
             </span>
           </span>

@@ -14,6 +14,11 @@ const config: Config = {
         accentSoft: "var(--color-accent-soft)",
         line: "var(--color-line)"
       },
+      fontSize: {
+        micro: ["0.75rem", { lineHeight: "1.125rem" }],
+        xs: ["0.9rem", { lineHeight: "1.35rem" }],
+        sm: ["1.05rem", { lineHeight: "1.575rem" }]
+      },
       fontFamily: {
         display: ["var(--font-display)"],
         sans: ["var(--font-sans)"]

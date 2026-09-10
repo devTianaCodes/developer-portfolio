@@ -8,7 +8,7 @@
   --color-panel: rgba(255, 255, 255, 0.82);
   --color-panel-strong: #ffffff;
   --color-ink: #111827;
-  --color-muted: #5f6b7a;
+  --color-muted: #4a5360;
   --color-accent: #315f9f;
   --color-accent-soft: #9db7d8;
   --color-line: rgba(51, 65, 85, 0.1);
@@ -108,7 +108,7 @@ body::-webkit-scrollbar,
   }
 
   .minimal-text {
-    @apply font-sans text-base font-normal leading-7 text-muted;
+    @apply font-sans text-sm font-normal leading-7 text-muted;
   }
 
   .sharp-button {

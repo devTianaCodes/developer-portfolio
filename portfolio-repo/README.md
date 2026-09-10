@@ -23,6 +23,10 @@ Multilingual developer portfolio for Tatiana Oblasser, built around detailed cas
 
 The site combines responsive project galleries, localized case-study content, accessible certificate dialogs, smooth project and UX/UI carousels, metadata for every locale, and static generation for all public pages. Project names remain stable across languages while descriptive content, navigation, metadata, and supporting interface copy are localized.
 
+Supporting text uses the shared `--color-muted` token (`#4a5360`) for consistent readability across page copy, education details, captions, and footer links. This provides approximately 20% more contrast on light surfaces than `#545f6d`, and approximately 44% more than the original `#5f6b7a`.
+
+Small text uses a shared readable scale: 12px compact badges, 14.4px captions and labels, and 16.8px body and footer text (at the default browser font size). Education details use the body size, with the university heading aligned to the first degree and degree levels emphasized in the heading color; subject names wrap naturally in the adjacent column. These sizes increase the former small-text styles by at least 20%.
+
 ## Project structure
 
 - `src/app`: App Router pages, layouts, metadata, sitemap, and robots configuration
