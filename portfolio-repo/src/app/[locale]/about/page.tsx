@@ -203,7 +203,7 @@ export default function AboutPage({ params }: AboutPageProps) {
               <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="sharp-panel flex flex-col p-8">
             <p className="section-label">{t("professionalExperience")}</p>
-            <h2 className="minimal-heading mt-8 text-4xl">{t("professionalExperienceTitle")}</h2>
+            <h2 className="minimal-heading mt-8 whitespace-pre-line text-4xl">{t("professionalExperienceTitle")}</h2>
             <div className="mt-12 space-y-5">
               {experienceItems.map((item) => (
                 <div key={item.role} className="border-t border-line pt-5 first:border-t-0 first:pt-0">
