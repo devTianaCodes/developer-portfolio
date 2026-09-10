@@ -220,7 +220,7 @@ export default function AboutPage({ params }: AboutPageProps) {
               <p className="section-label">{t("educationTraining")}</p>
               <ul className="mt-5 space-y-3 text-sm leading-7 text-muted">
                 {trainingItems.map((item) => (
-                  <li key={item.title} className={Array.isArray(item.detail) ? "grid grid-cols-[minmax(0,0.8fr)_minmax(0,1.5fr)] items-baseline gap-x-4" : undefined}>
+                  <li key={item.title} className={Array.isArray(item.detail) ? "grid grid-cols-[min-content_minmax(0,1fr)] items-baseline gap-x-5 sm:grid-cols-[max-content_minmax(0,1fr)]" : undefined}>
                     <div>
                       {item.href ? (
                         <Link href={item.href} target="_blank" rel="noreferrer" className="font-semibold text-ink underline-offset-4 hover:text-accent hover:underline">
